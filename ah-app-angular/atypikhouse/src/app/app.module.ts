@@ -1,8 +1,9 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
+import { GeolocationService } from "./geolocation.service";
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { DataService } from "./data.service";
 
 @NgModule({
   declarations: [
@@ -12,7 +13,7 @@ import { AppComponent } from './app.component';
     BrowserModule,
     AppRoutingModule
   ],
-  providers: [],
+  providers: [GeolocationService, DataService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
