@@ -8,12 +8,24 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatButtonModule, MatIconModule, MatInputModule, MatSelectModule, MatSliderModule,
          MatToolbarModule, MatCardModule, MatSlideToggleModule } from '@angular/material';
 import 'hammerjs';
+import { ListComponent } from './list/list.component';
+import { HouseComponent } from './house/house.component';
+import {Routes, RouterModule} from "@angular/router";
+
+const routes : Routes = [
+  { path: '', component: ListComponent },
+  { path: 'house', component: HouseComponent },
+  { path: 'house/:id', component: HouseComponent }
+];
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    ListComponent,
+    HouseComponent
   ],
   imports: [
+    RouterModule.forRoot(routes),
     BrowserModule, BrowserAnimationsModule,
     MatButtonModule, MatIconModule, MatInputModule, MatSelectModule, MatSliderModule,
     MatToolbarModule, MatCardModule, MatSlideToggleModule
