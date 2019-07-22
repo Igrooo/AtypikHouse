@@ -9,7 +9,10 @@ class House {
   //rating: number;
   //notes: string;
 
-  constructor(public name: string, public place: string, location: PlaceLocation) {
+  constructor(public name: string,
+              public place: string,
+              location: PlaceLocation)
+  {
 
   }
 

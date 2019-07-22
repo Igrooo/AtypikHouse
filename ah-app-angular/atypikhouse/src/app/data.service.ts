@@ -12,7 +12,8 @@ export class DataService {
     const list = [
       new House("Tipi de Roger", "Chez Roger", new PlaceLocation("Lieu dit inconnu", "Plouguernével")),
       new House("Cabane suspendue de l'amour", "Paradis", new PlaceLocation("Boulevard des amours", "Cité du Paradis")),
-    ]
+    ];
+    callback(list);
   }
 
   save(house, callback) {
