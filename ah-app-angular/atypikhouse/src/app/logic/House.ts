@@ -1,19 +1,21 @@
-class House {
+import {PlaceLocation} from "./PlaceLocation";
+
+export class House {
 
   // Properties
   //name: string;
-  //desc: string;
+  desc: string;
   //place: string;
-  //type: string;
+  type: string;
   //location: PlaceLocation;
   //rating: number;
   //notes: string;
 
-  constructor(public name: string,
-              public place: string,
-              location: PlaceLocation)
+  constructor(public name: string = "",
+              public place: string = "",
+              public location: PlaceLocation = null)
   {
-
+    this.location = new PlaceLocation();
   }
 
 }

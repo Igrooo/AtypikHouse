@@ -1,1 +1,30 @@
-<p>house works!</p>
+  <form>
+
+    <fieldset>
+      <input matInput placeholder="House Name" name="name" [(ngModel)]="house.name">
+    </fieldset>
+
+    <fieldset>
+      <input matInput placeholder="Place Name" name="place" [(ngModel)]="house.place">
+    </fieldset>
+    <fieldset>
+      <input matInput placeholder="Address" name="address" [(ngModel)]="house.location.address">
+    </fieldset>
+    <fieldset>
+      <input matInput placeholder="City" name="city" [(ngModel)]="house.location.city">
+    </fieldset>
+
+    <fieldset>
+      <mat-select placeholder="House Type" name="type" [(ngModel)]="house.type">
+        <mat-option *ngFor="let type of types" [value]="type">{{ type }}</mat-option>
+      </mat-select>
+    </fieldset>
+
+    <fieldset>
+      <textarea matTextareaAutosize placeholder="Description" name="desc" [(ngModel)]="house.desc"></textarea>
+    </fieldset>
+
+    <mat-card>
+      {{ house | json }}
+    </mat-card>
+  </form>

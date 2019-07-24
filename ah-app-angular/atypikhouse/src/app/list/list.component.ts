@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { DataService} from "../data.service";
+import { House } from "../logic/House";
 
 @Component({
   selector: 'app-list',
@@ -7,9 +9,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ListComponent implements OnInit {
 
-  constructor() { }
+  list: [House];
+
+  constructor(private data: DataService) { }
 
   ngOnInit() {
+    this.data.getList( list => {
+      this.list = list;
+    })
   }
 
 }

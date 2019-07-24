@@ -1,8 +1,7 @@
 import { Injectable } from '@angular/core';
+import { PlaceLocation } from "./logic/PlaceLocation";
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable()
 export class GeolocationService {
 
   constructor() { }
@@ -19,12 +18,12 @@ export class GeolocationService {
     )
   }
 
-  getMapLink(location) {
+  getMapLink(location: PlaceLocation) {
     let query = "";
     if (location.latitude) {
       query = location.latitude + "," + location.longitude;
     } else {
-      query = `${location.adress}, ${location.city}`;
+      query = `${location.address}, ${location.city}`;
     }
     if (/iPad|iPhone|iPod/.test(navigator.userAgent)) {
       return `https://maps.apple.com/?q=${query}`;

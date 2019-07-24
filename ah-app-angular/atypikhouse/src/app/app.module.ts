@@ -5,12 +5,14 @@ import { AppComponent } from './app.component';
 import { DataService } from "./data.service";
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MatButtonModule, MatIconModule, MatInputModule, MatSelectModule, MatSliderModule,
+import { MatButtonModule, MatIconModule, MatFormFieldModule, MatInputModule, MatSelectModule, MatSliderModule,
          MatToolbarModule, MatCardModule, MatSlideToggleModule } from '@angular/material';
 import 'hammerjs';
 import { ListComponent } from './list/list.component';
 import { HouseComponent } from './house/house.component';
-import {Routes, RouterModule} from "@angular/router";
+import { Routes, RouterModule } from "@angular/router";
+
+import { FormsModule } from "@angular/forms";
 
 const routes : Routes = [
   { path: '', component: ListComponent },
@@ -26,6 +28,7 @@ const routes : Routes = [
   ],
   imports: [
     RouterModule.forRoot(routes),
+    FormsModule,
     BrowserModule, BrowserAnimationsModule,
     MatButtonModule, MatIconModule, MatInputModule, MatSelectModule, MatSliderModule,
     MatToolbarModule, MatCardModule, MatSlideToggleModule
