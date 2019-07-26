@@ -12,4 +12,4 @@ ReactDOM.render(<App />, document.getElementById('root'));
 serviceWorker.unregister();
 
 
-/test/
+/test2/
