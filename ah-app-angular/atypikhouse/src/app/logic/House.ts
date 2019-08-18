@@ -7,6 +7,8 @@ export class House {
   desc: string;
   //place: string;
   type: string;
+  // _id debug only
+  _id: string;
   //location: PlaceLocation;
   //rating: number;
   //notes: string;

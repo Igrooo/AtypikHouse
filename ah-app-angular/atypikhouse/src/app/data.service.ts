@@ -13,6 +13,13 @@ export class DataService {
 
   public endpoint = "http://localhost:3000"; //API Server URL
 
+  get(houseId: string, callback) {
+    this.http.get(`${this.endpoint}/houses/${houseId}`)
+      .subscribe(response =>{
+        callback(response);
+      });
+  }
+
   getList(callback) {
     //TODO: real web service
     /*
@@ -40,6 +47,10 @@ export class DataService {
         });
     } else {
       // It's an insert
+      this.http.post(`${this.endpoint}/houses`, house)
+        .subscribe(response => {
+          callback(true);
+        });
     }
     callback(true);
   }

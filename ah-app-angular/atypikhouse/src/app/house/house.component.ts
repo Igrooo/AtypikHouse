@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from "@angular/router";
+import { ActivatedRoute, Router } from "@angular/router";
 import { House } from "../logic/House";
-import {GeolocationService} from "../geolocation.service";
+import { GeolocationService } from "../geolocation.service";
+import { DataService } from "../data.service";
 
 @Component({
   selector: 'app-house',
@@ -10,13 +11,29 @@ import {GeolocationService} from "../geolocation.service";
 })
 export class HouseComponent implements OnInit {
 
-  house : House;
+  house: House;
   types = ["Tipi", "Tiny house", "Caravan", "Yurt", "Hut", "Under the stars", "Bubble", "Cabin", "Arranged truck"];
 
   constructor(private route: ActivatedRoute,
-              private  geolocation: GeolocationService) { }
+              private geolocation: GeolocationService,
+              private router: Router,
+              private data: DataService
+              ) { }
+
 
   routingSubscription: any;
+
+  cancel() {
+    this.router.navigate(["/"]);
+  }
+
+  save() {
+    this.data.save( this.house, result => {
+      if (result) {
+        this.router.navigate(["/"]);
+      }
+    });
+  }
 
   ngOnInit() {
     this.house = new House();
@@ -24,6 +41,11 @@ export class HouseComponent implements OnInit {
     this.routingSubscription =
       this.route.params.subscribe(params => {
         console.log(params["id"]);
+        if(params["id"]) {
+          this.data.get(params["id"], response => {
+            this.house = response;
+          });
+        }
       });
 
     this.geolocation.requestLocation(location => {
