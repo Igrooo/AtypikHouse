@@ -33,7 +33,7 @@ export class ListComponent implements OnInit {
         title: house.name + ` - ` + house.place,
         text: house.desc,
         url: window.location.href
-      }).them( () => console.log("shared")).catch( () =>  console.log("error sharing"));
+      }).then( () => console.log("shared")).catch( () =>  console.log("error sharing"));
     } else {
       const shareTxt = house.name + ` - ` + house.place + ` - ` + house.desc;
       const shareURL = `whatsapp://send?text=${encodeURIComponent(shareTxt)}`;
