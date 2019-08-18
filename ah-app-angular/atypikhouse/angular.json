@@ -23,7 +23,6 @@
             "polyfills": "src/polyfills.ts",
             "tsConfig": "tsconfig.app.json",
             "aot": false,
-            "serviceWorker": true,
             "assets": [
               "src/assets",
               "src/manifest.json",
