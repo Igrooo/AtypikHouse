@@ -6,13 +6,14 @@ import { DataService } from "./data.service";
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatButtonModule, MatIconModule, MatFormFieldModule, MatInputModule, MatSelectModule, MatSliderModule,
-         MatToolbarModule, MatCardModule, MatSlideToggleModule } from '@angular/material';
+         MatToolbarModule, MatCardModule, MatSlideToggleModule, MatSnackBarModule } from '@angular/material';
 import 'hammerjs';
 import { ListComponent } from './list/list.component';
 import { HouseComponent } from './house/house.component';
 import { Routes, RouterModule } from "@angular/router";
 
 import { FormsModule } from "@angular/forms";
+import { HttpClientModule } from "@angular/common/http";
 
 const routes : Routes = [
   { path: '', component: ListComponent },
@@ -28,10 +29,10 @@ const routes : Routes = [
   ],
   imports: [
     RouterModule.forRoot(routes),
-    FormsModule,
+    FormsModule, HttpClientModule,
     BrowserModule, BrowserAnimationsModule,
     MatButtonModule, MatIconModule, MatInputModule, MatSelectModule, MatSliderModule,
-    MatToolbarModule, MatCardModule, MatSlideToggleModule
+    MatToolbarModule, MatCardModule, MatSlideToggleModule, MatSnackBarModule
   ],
   providers: [GeolocationService, DataService],
   bootstrap: [AppComponent]

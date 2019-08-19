@@ -1,27 +1,42 @@
   <form>
 
     <fieldset>
-      <input matInput placeholder="House Name" name="name" [(ngModel)]="house.name">
+      <mat-card>
+        <input matInput placeholder="House Name" name="name" [(ngModel)]="house.name">
+      </mat-card>
     </fieldset>
 
     <fieldset>
-      <input matInput placeholder="Place Name" name="place" [(ngModel)]="house.place">
-    </fieldset>
-    <fieldset>
-      <input matInput placeholder="Address" name="address" [(ngModel)]="house.location.address">
-    </fieldset>
-    <fieldset>
-      <input matInput placeholder="City" name="city" [(ngModel)]="house.location.city">
-    </fieldset>
-
-    <fieldset>
-      <mat-select placeholder="House Type" name="type" [(ngModel)]="house.type">
-        <mat-option *ngFor="let type of types" [value]="type">{{ type }}</mat-option>
-      </mat-select>
+      <mat-card>
+        <input matInput placeholder="Place Name" name="place" [(ngModel)]="house.place">
+      </mat-card>
+      <mat-card>
+        <input matInput placeholder="Address" name="address" [(ngModel)]="house.location.address">
+      </mat-card>
+      <mat-card>
+        <input matInput placeholder="City" name="city" [(ngModel)]="house.location.city">
+      </mat-card>
     </fieldset>
 
     <fieldset>
-      <textarea matTextareaAutosize placeholder="Description" name="desc" [(ngModel)]="house.desc"></textarea>
+      <mat-card>
+        <mat-select placeholder="House Type" name="type" [(ngModel)]="house.type">
+          <mat-option *ngFor="let type of types" [value]="type">{{ type }}</mat-option>
+        </mat-select>
+      </mat-card>
+    </fieldset>
+
+    <fieldset>
+      <mat-card>
+        <textarea matTextareaAutosize placeholder="Description" name="desc" [(ngModel)]="house.desc"></textarea>
+      </mat-card>
+    </fieldset>
+
+    <fieldset>
+      <mat-card>
+        <button mat-raised-button (click)="cancel()">Cancel</button>
+        <button mat-raised-button color="accent" (click)="save()">Save</button>
+      </mat-card>
     </fieldset>
 
     <mat-card>

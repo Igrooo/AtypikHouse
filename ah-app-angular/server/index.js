@@ -11,7 +11,7 @@ const datastore = new nedb({
 });
 
 const restAPI = rest();
-restAPI.addDatastore('coffees', datastore);
+restAPI.addDatastore('houses', datastore);
 
 app.use(cors());
 app.use('/' , restAPI);
