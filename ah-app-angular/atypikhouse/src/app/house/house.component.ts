@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from "@angular/router";
 import { House } from "../logic/House";
+import { Category } from "../logic/Category";
 import { GeolocationService } from "../geolocation.service";
 import { DataService } from "../data.service";
 
@@ -12,7 +13,7 @@ import { DataService } from "../data.service";
 export class HouseComponent implements OnInit {
 
   house: House;
-  types = ["Tipi", "Tiny house", "Caravan", "Yurt", "Hut", "Under the stars", "Bubble", "Cabin", "Arranged truck"];
+  types = Category;
 
   constructor(private route: ActivatedRoute,
               private geolocation: GeolocationService,

@@ -8,12 +8,23 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatButtonModule, MatIconModule, MatFormFieldModule, MatInputModule, MatSelectModule, MatSliderModule,
          MatToolbarModule, MatCardModule, MatSlideToggleModule, MatSnackBarModule } from '@angular/material';
 import 'hammerjs';
-import { ListComponent } from './list/list.component';
-import { HouseComponent } from './house/house.component';
+
 import { Routes, RouterModule } from "@angular/router";
 
 import { FormsModule } from "@angular/forms";
 import { HttpClientModule } from "@angular/common/http";
+
+import { ListComponent } from './list/list.component';
+import { HouseComponent } from './house/house.component';
+import { ActivityComponent } from './activity/activity.component';
+import { BookingComponent } from './booking/booking.component';
+import { CategoryComponent } from './category/category.component';
+import { CommentComponent } from './comment/comment.component';
+import { PaymentComponent } from './payment/payment.component';
+import { PicComponent } from './pic/pic.component';
+import { PostComponent } from './post/post.component';
+import { TagComponent } from './tag/tag.component';
+import { UserComponent } from './user/user.component';
 
 const routes : Routes = [
   { path: '', component: ListComponent },
@@ -25,7 +36,16 @@ const routes : Routes = [
   declarations: [
     AppComponent,
     ListComponent,
-    HouseComponent
+    HouseComponent,
+    ActivityComponent,
+    BookingComponent,
+    CategoryComponent,
+    CommentComponent,
+    PaymentComponent,
+    PicComponent,
+    PostComponent,
+    TagComponent,
+    UserComponent
   ],
   imports: [
     RouterModule.forRoot(routes),
