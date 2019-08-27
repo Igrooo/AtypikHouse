@@ -25,11 +25,14 @@ import { PicComponent } from './pic/pic.component';
 import { PostComponent } from './post/post.component';
 import { TagComponent } from './tag/tag.component';
 import { UserComponent } from './user/user.component';
+import { FormHouseComponent } from './form/form-house/form-house.component';
+import { ListCategoryComponent } from './list/list-category/list-category.component';
 
 const routes : Routes = [
   { path: '', component: ListComponent },
-  { path: 'house', component: HouseComponent },
-  { path: 'house/:id', component: HouseComponent }
+  { path: 'house', component: FormHouseComponent }, // new
+  { path: 'house/:id', component: HouseComponent },
+  { path: 'house/:id/edit', component: FormHouseComponent }
 ];
 
 @NgModule({
@@ -45,7 +48,9 @@ const routes : Routes = [
     PicComponent,
     PostComponent,
     TagComponent,
-    UserComponent
+    UserComponent,
+    FormHouseComponent,
+    ListCategoryComponent
   ],
   imports: [
     RouterModule.forRoot(routes),

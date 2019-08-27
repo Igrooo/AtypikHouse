@@ -1,16 +1,16 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from "@angular/router";
-import { House } from "../logic/House";
-import { Category } from "../logic/Category";
-import { GeolocationService } from "../geolocation.service";
-import { DataService } from "../data.service";
+import { House } from "../../logic/House";
+import { Category } from "../../logic/Category";
+import { GeolocationService } from "../../geolocation.service";
+import { DataService } from "../../data.service";
 
 @Component({
   selector: 'app-house',
-  templateUrl: './house.component.html',
-  styleUrls: ['./house.component.less']
+  templateUrl: './form-house.component.html',
+  styleUrls: ['./form-house.component.less']
 })
-export class HouseComponent implements OnInit {
+export class FormHouseComponent implements OnInit {
 
   house: House;
   types = Category;
@@ -21,7 +21,20 @@ export class HouseComponent implements OnInit {
               private data: DataService
               ) { }
 
+
   routingSubscription: any;
+
+  cancel() {
+    this.router.navigate(["/house", this.house._id]);
+  }
+
+  save() {
+    this.data.save( this.house, result => {
+      if (result) {
+        this.router.navigate(["/house", this.house._id]);
+      }
+    });
+  }
 
   ngOnInit() {
     this.house = new House();

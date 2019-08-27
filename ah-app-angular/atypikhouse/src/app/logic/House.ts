@@ -2,6 +2,9 @@ import {PlaceLocation} from "./PlaceLocation";
 
 export class House {
 
+  // _id debug only
+  _id: string;
+
   constructor(public name: string = "", // title in db
               public desc: string = "", // description in db
               public type: number = 0, // Id of category

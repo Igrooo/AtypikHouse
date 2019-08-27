@@ -1,45 +1,28 @@
-  <form>
+      <mat-card>
+        <mat-card-title>{{ house.name }}</mat-card-title>
+      </mat-card>
 
-    <fieldset>
       <mat-card>
-        <input matInput placeholder="House Name" name="name" [(ngModel)]="house.name">
+        <h2>{{ house.place }}</h2>
       </mat-card>
-    </fieldset>
+      <mat-card>
+        <h3>{{ house.location.address }}</h3>
+      </mat-card>
+      <mat-card>
+        <h4>{{ house.location.city }}</h4>
+      </mat-card>
 
-    <fieldset>
       <mat-card>
-        <input matInput placeholder="Place Name" name="place" [(ngModel)]="house.place">
+        <h4>{{ house.type }}</h4>
       </mat-card>
-      <mat-card>
-        <input matInput placeholder="Address" name="address" [(ngModel)]="house.location.address">
-      </mat-card>
-      <mat-card>
-        <input matInput placeholder="City" name="city" [(ngModel)]="house.location.city">
-      </mat-card>
-    </fieldset>
 
-    <fieldset>
       <mat-card>
-        <mat-select placeholder="House Type" name="type" [(ngModel)]="house.type">
-          <mat-option *ngFor="let type of types" [value]="type">{{ type }}</mat-option>
-        </mat-select>
+        <p>{{ house.desc }}</p>
       </mat-card>
-    </fieldset>
-
-    <fieldset>
-      <mat-card>
-        <textarea matTextareaAutosize placeholder="Description" name="desc" [(ngModel)]="house.desc"></textarea>
-      </mat-card>
-    </fieldset>
-
-    <fieldset>
-      <mat-card>
-        <button mat-raised-button (click)="cancel()">Cancel</button>
-        <button mat-raised-button color="accent" (click)="save()">Save</button>
-      </mat-card>
-    </fieldset>
 
     <mat-card>
       {{ house | json }}
     </mat-card>
-  </form>
+
+    <a id="btnEdit" mat-fab routerLink="/house/{{ house._id }}/edit"><mat-icon>edit</mat-icon></a>
+
