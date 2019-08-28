@@ -1,6 +1,4 @@
 import { Injectable } from '@angular/core';
-import { House} from "./logic/House";
-import { PlaceLocation } from "./logic/PlaceLocation";
 import { HttpHeaders, HttpClient, HttpParams } from "@angular/common/http";
 
 @Injectable({
@@ -13,23 +11,15 @@ export class DataService {
 
   public endpoint = "http://localhost:3000"; //API Server URL
 
-  get(houseId: string, callback) {
-    this.http.get(`${this.endpoint}/houses/${houseId}`)
+  get(elems:string, id: string, callback) {
+    this.http.get(`${this.endpoint}/${elems}/${id}`)
       .subscribe(response =>{
         callback(response);
       });
   }
 
-  getList(callback) {
-    //TODO: real web service
-    /*
-    const list = [
-      new House("Tipi de Roger", "Chez Roger", new PlaceLocation("Lieu dit inconnu", "Plouguernével")),
-      new House("Cabane suspendue", "Paradis", new PlaceLocation("Boulevard des amoureux", "Cité du Paradis")),
-    ];
-    callback(list);
-    */
-    this.http.get(`${this.endpoint}/houses`)
+  getList(elems:string, callback) {
+    this.http.get(`${this.endpoint}/${elems}`)
       .subscribe(response => {
       console.log(response);
       callback(response);
@@ -37,17 +27,16 @@ export class DataService {
 
   }
 
-  save(house, callback) {
-    //TODO: real web service
-    if (house._id) {
+  save(elems:string, elem, callback) {
+    if (elem._id) {
       // It's an update
-      this.http.put(`${this.endpoint}/houses/${house._id}`, house)
+      this.http.put(`${this.endpoint}/${elems}/${elem._id}`, elem)
         .subscribe(response => {
           callback(true);
         });
     } else {
       // It's an insert
-      this.http.post(`${this.endpoint}/houses`, house)
+      this.http.post(`${this.endpoint}/${elems}`, elem)
         .subscribe(response => {
           callback(true);
         });

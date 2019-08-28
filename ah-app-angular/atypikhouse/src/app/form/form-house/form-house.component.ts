@@ -29,7 +29,7 @@ export class FormHouseComponent implements OnInit {
   }
 
   save() {
-    this.data.save( this.house, result => {
+    this.data.save("houses", this.house, result => {
       if (result) {
         this.router.navigate(["/house", this.house._id]);
       }
@@ -43,7 +43,7 @@ export class FormHouseComponent implements OnInit {
       this.route.params.subscribe(params => {
         console.log(params["id"]);
         if(params["id"]) {
-          this.data.get(params["id"], response => {
+          this.data.get("houses", params["id"], response => {
             this.house = response;
           });
         }

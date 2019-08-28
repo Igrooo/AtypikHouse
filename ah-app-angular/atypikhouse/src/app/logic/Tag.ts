@@ -1,6 +1,6 @@
 export class Post {
   
-    constructor(public tage: string = ""
+    constructor(public tag: string = ""
                 )
     {
     }

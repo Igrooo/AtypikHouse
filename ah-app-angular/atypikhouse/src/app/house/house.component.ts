@@ -30,7 +30,7 @@ export class HouseComponent implements OnInit {
       this.route.params.subscribe(params => {
         console.log(params["id"]);
         if(params["id"]) {
-          this.data.get(params["id"], response => {
+          this.data.get("houses", params["id"], response => {
             this.house = response;
           });
         }

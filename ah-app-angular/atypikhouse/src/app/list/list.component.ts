@@ -42,7 +42,7 @@ export class ListComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.data.getList( list => {
+    this.data.getList("houses", list => {
       this.list = list;
     })
   }
