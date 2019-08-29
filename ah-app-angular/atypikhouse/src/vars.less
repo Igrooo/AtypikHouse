@@ -1,56 +1,77 @@
 // Font Family
-// Font family Roboto in PWA theme by default
+
+// Font family by default : Roboto in angular material theme
+@ah-font-family-title: monserrat;
+
 // Font Sizes
-@font-size-root:     12px;
-@font-size-title:    3rem;
-@font-size-subtitle: 2rem;
-@font-size-text:     1rem;
-@font-size-caption:  0.8rem; 
+@ah-font-size-root:     12px;
+@ah-font-size-text:     1rem;
+@ah-font-size-caption:  0.8rem;
+@ah-font-size-title:    3rem;
+@ah-font-size-subtitle: 2rem;
+@ah-font-size-subtitle-h3: @ah-font-size-subtitle / 2;
+@ah-font-size-subtitle-h4: @ah-font-size-subtitle / 2.5;
+@ah-font-size-subtitle-h5: @ah-font-size-subtitle / 3;
+@ah-font-size-subtitle-h6: @ah-font-size-text;
 
 ////// Colors
-@black:       #1d2120;
-@white:       #e6e6e6;
-@grey:        #5a5c51;
-@brown:       #ba9077;
-@green-light: #bcd5d1;
-@green:       #15a08c;
+@ah-black:       #1d2120;
+@ah-white:       #e6e6e6;
+@ah-grey:        #5a5c51;
+@ah-brown:       #ba9077;
+@ah-green-light: #bcd5d1;
+@ah-green:       #15a08c;
 
-@font-color-primary: @white;
-@font-color-secondary: @grey;
+@ah-font-color-primary:   @ah-white;
+@ah-font-color-secondary: @ah-grey;
 
-@background-color-primary: @black;
-@background-color-secondary: @grey;
+@ah-background-color-primary:   @ah-black;
+@ah-background-color-secondary: @ah-grey;
 
-@container-back-color-primary: @brown;
-@container-back-color-secondary: @green-light;
-@container-back-color-tertiary: @white;
-@container-font-color-primary: @white;
-@container-font-color-secondary: @grey;
-@container-font-color-tertiary: @grey;
+@ah-container-back-color-primary:   @ah-brown;
+@ah-container-back-color-secondary: @ah-green-light;
+@ah-container-back-color-tertiary:  @ah-white;
+@ah-container-font-color-primary:   @ah-white;
+@ah-container-font-color-secondary: @ah-grey;
+@ah-container-font-color-tertiary:  @ah-grey;
 
-@button-back-color-primary: @green;
-@button-back-color-secondary: @green-light;
-@button-back-color-tertiary: @grey;
-@button-font-color-primary: @white;
-@button-font-color-secondary: @grey;
-@button-font-color-tertiary: @white;
+@ah-button-back-color-primary:   @ah-green;
+@ah-button-back-color-secondary: @ah-green-light;
+@ah-button-back-color-tertiary:  @ah-grey;
+@ah-button-font-color-primary:   @ah-white;
+@ah-button-font-color-secondary: @ah-grey;
+@ah-button-font-color-tertiary:  @ah-white;
 
-@link-font-color-primary: @green-light;
-@link-font-color-secondary: @brown;
-@link-font-color-tertiary: @grey;
+@ah-link-font-color-primary:   @ah-green-light;
+@ah-link-font-color-secondary: @ah-brown;
+@ah-link-font-color-tertiary:  @ah-grey;
 
 ////// Layout 
-@size-bigger: 30px;
-@size-big:    25px;
-@size-medium: 20px;
-@size-base:   15px;
-@size-little: 10px;
-@size-tiny:   5px;
+@ah-size-bigger: 30px;
+@ah-size-big:    25px;
+@ah-size-medium: 20px;
+@ah-size-base:   15px;
+@ah-size-little: 10px;
+@ah-size-tiny:   5px;
 
-@padding-primary:   @size-base;
-@padding-secondary: @size-little;
-@padding-tertiary:  @size-tiny;
+@ah-padding-primary:   @ah-size-base;
+@ah-padding-secondary: @ah-size-little;
+@ah-padding-tertiary:  @ah-size-tiny;
 
-@margin-primary:    @size-bigger;
-@margin-secondary:  @size-big;
-@margin-tertiary:   @size-medium;
+@ah-margin-primary:    @ah-size-bigger;
+@ah-margin-secondary:  @ah-size-big;
+@ah-margin-tertiary:   @ah-size-medium;
+
+@ah-container-paddin-primary:   @ah-padding-primary;
+@ah-container-paddin-secondary: @ah-padding-secondary;
+@ah-container-paddin-tertiary:  @ah-padding-tertiary;
+@ah-container-margin-primary:   @ah-margin-primary;
+@ah-container-margin-secondary: @ah-margin-secondary;
+@ah-container-margin-tertiary:  @ah-margin-tertiary;
+
+@ah-child-paddin-primary:   @ah-padding-primary   / 2;
+@ah-child-paddin-secondary: @ah-padding-secondary / 2;
+@ah-child-paddin-tertiary:  @ah-padding-tertiary  / 2;
+@ah-child-margin-primary:   @ah-margin-primary    / 2;
+@ah-child-margin-secondary: @ah-margin-secondary  / 2;
+@ah-child-margin-tertiary:  @ah-margin-tertiary   / 2;

@@ -6,18 +6,26 @@
 @import 'vars.less';
 
 // Color theme
-.ah-theme-dark{
-    color: @font-color-primary;
-    background-color: @background-color-primary;
+.ah-theme-dark {
+    color: @ah-font-color-primary;
+    background-color: @ah-background-color-primary;
 }
 // Revert white & black on light theme
-.ah-theme-light{
-    color: @background-color-primary;
-    background-color: @font-color-primary;
+.ah-theme-light {
+    color: @ah-background-color-primary;
+    background-color: @ah-font-color-primary;
 }
 
-.ah{ //body
+//body
+.ah {
     margin: 0;
-    padding: 10px;
-    background-color: #212121;
+    padding:@ah-padding-primary;
+    background-color: @ah-background-color-primary
 }
+
+.ah-button-primary {
+    position: fixed;
+    right: 20px;
+    bottom: 20px;
+  }
+  
