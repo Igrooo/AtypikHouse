@@ -8,7 +8,7 @@ houses.post('/houses', function (req, res) {
 
     console.log(categoryID);
     categoryID = req.body.category;
-    if(category == null ){
+    if(categoryID == null ){
         connection.query("SELECT * FROM ah_houses", (err, result) => {
             if (err){
                 throw(err);
