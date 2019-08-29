@@ -1,12 +1,12 @@
 export class Booking {
-  
-    constructor(public nbPersons: number = 1,
+    id: number;
+    constructor(public status: number = 1, // 0 = canceled, 1= waiting 2 = validate
+                public nbPersons: number = 1,
                 public date: Date,
                 public dateStart: Date,
                 public dateEnd: Date,
-                public status: boolean, // 0 = canceled 1 = validate
-                public user: number, // Id of user
-                public house: number // Id of house
+                public ID_user: number = 0, // Id of user
+                public ID_house: number = 0 // Id of house
                 )
     {
     }

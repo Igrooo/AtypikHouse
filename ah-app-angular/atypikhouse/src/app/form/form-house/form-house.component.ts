@@ -13,7 +13,7 @@ import { DataService } from "../../data.service";
 export class FormHouseComponent implements OnInit {
 
   house: House;
-  types = Category;
+  types = [Category];
 
   constructor(private route: ActivatedRoute,
               private geolocation: GeolocationService,
@@ -25,13 +25,13 @@ export class FormHouseComponent implements OnInit {
   routingSubscription: any;
 
   cancel() {
-    this.router.navigate(["/house", this.house._id]);
+    this.router.navigate(["/house", this.house.id]);
   }
 
   save() {
     this.data.save("houses", this.house, result => {
       if (result) {
-        this.router.navigate(["/house", this.house._id]);
+        this.router.navigate(["/house", this.house.id]);
       }
     });
   }

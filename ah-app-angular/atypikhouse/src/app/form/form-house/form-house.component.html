@@ -2,14 +2,11 @@
     <form>
         <fieldset>
             <mat-form-field>
-                <input matInput placeholder="House Name" name="name" [(ngModel)]="house.name">
+                <input matInput placeholder="House Name" name="name" [(ngModel)]="house.title">
             </mat-form-field>
         </fieldset>
 
         <fieldset>
-        <mat-form-field>
-            <input matInput placeholder="Place Name" name="place" [(ngModel)]="house.place">
-        </mat-form-field>
         <mat-form-field>
             <input matInput placeholder="Address" name="address" [(ngModel)]="house.location.address">
         </mat-form-field>
@@ -21,7 +18,7 @@
         <fieldset>
             <mat-form-field>
                 <mat-select placeholder="House Type" name="type" [(ngModel)]="house.type">
-                    <mat-option *ngFor="let type of types" [value]="type">{{ type }}</mat-option>
+                    <mat-option *ngFor="let type of types" [value]="type">{{ type.title }}</mat-option>
                 </mat-select>
             </mat-form-field>
         </fieldset>

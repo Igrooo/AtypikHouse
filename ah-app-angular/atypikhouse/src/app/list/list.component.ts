@@ -19,7 +19,7 @@ export class ListComponent implements OnInit {
               ) { }
 
   goDetails(house: House) {
-    this.router.navigate(["/house", house._id]);
+    this.router.navigate(["/house", house.id]);
   }
 
   goMap(house: House) {
@@ -30,12 +30,12 @@ export class ListComponent implements OnInit {
   share(house: House) {
     if ('share' in navigator) {
       (navigator as any).share({
-        title: house.name + ` - ` + house.place,
+        title: house.title + ` - ` + house.city + "," + house.address,
         text: house.desc,
         url: window.location.href
       }).then( () => console.log("shared")).catch( () =>  console.log("error sharing"));
     } else {
-      const shareTxt = house.name + ` - ` + house.place + ` - ` + house.desc;
+      const shareTxt = house.title + ` - ` + house.city + "," + house.address + ` - ` + house.desc;
       const shareURL = `whatsapp://send?text=${encodeURIComponent(shareTxt)}`;
       location.href = shareURL;
     }

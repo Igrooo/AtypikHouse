@@ -1,6 +1,6 @@
 <mat-card *ngFor="let house of list">
-  <mat-card-title>{{ house.name }}</mat-card-title>
-  <mat-card-subtitle>Place: {{ house.place }}</mat-card-subtitle>
+  <mat-card-title>{{ house.title }}</mat-card-title>
+  <mat-card-subtitle>{{ house.address }}, {{ house.city }}</mat-card-subtitle>
   <mat-card-actions>
     <button (click)="goMap(house)" mat-button><mat-icon>map</mat-icon> Map</button>
     <button (click)="share(house)" mat-button><mat-icon>share</mat-icon> Share</button>

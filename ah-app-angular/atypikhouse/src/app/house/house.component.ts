@@ -13,7 +13,6 @@ import { DataService } from "../data.service";
 export class HouseComponent implements OnInit {
 
   house: House;
-  types = Category;
 
   constructor(private route: ActivatedRoute,
               private geolocation: GeolocationService,

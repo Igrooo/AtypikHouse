@@ -28,9 +28,9 @@ export class DataService {
   }
 
   save(elems:string, elem, callback) {
-    if (elem._id) {
+    if (elem.id) {
       // It's an update
-      this.http.put(`${this.endpoint}/${elems}/${elem._id}`, elem)
+      this.http.put(`${this.endpoint}/${elems}/${elem.id}`, elem)
         .subscribe(response => {
           callback(true);
         });

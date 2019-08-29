@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { DataService} from "../../data.service";
+import { Category } from "../../logic/Category";
 
 @Component({
   selector: 'app-list-category',
@@ -7,9 +9,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ListCategoryComponent implements OnInit {
 
-  constructor() { }
+  list: [Category];
+
+  constructor(private data: DataService
+    ) { }
 
   ngOnInit() {
+    this.data.getList("categories", list => {
+      this.list = list;
+    })
   }
 
 }

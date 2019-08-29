@@ -1,5 +1,5 @@
 export class Post {
-  
+  id: number;
     constructor(public date: Date,
                 public message: string = "", 
                 public house: number, // Id of House
