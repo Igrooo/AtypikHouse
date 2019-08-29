@@ -14,34 +14,34 @@ import { Routes, RouterModule } from "@angular/router";
 import { FormsModule } from "@angular/forms";
 import { HttpClientModule } from "@angular/common/http";
 
-import { HomeComponent } from './home/home.component';
-import { HouseComponent } from './house/house.component';
-import { ActivityComponent } from './activity/activity.component';
-import { BookingComponent } from './booking/booking.component';
-import { CategoryComponent } from './category/category.component';
-import { CommentComponent } from './comment/comment.component';
-import { PaymentComponent } from './payment/payment.component';
-import { PicComponent } from './pic/pic.component';
-import { PostComponent } from './post/post.component';
-import { TagComponent } from './tag/tag.component';
-import { UserComponent } from './user/user.component';
-import { ListComponent } from './list/list.component';
+import { HomeComponent }         from './home/home.component';
+import { HouseComponent }        from './house/house.component';
+import { ActivityComponent }     from './activity/activity.component';
+import { BookingComponent }      from './booking/booking.component';
+import { CategoryComponent }     from './category/category.component';
+import { CommentComponent }      from './comment/comment.component';
+import { PaymentComponent }      from './payment/payment.component';
+import { PicComponent }          from './pic/pic.component';
+import { PostComponent }         from './post/post.component';
+import { TagComponent }          from './tag/tag.component';
+import { UserComponent }         from './user/user.component';
+import { ListComponent }         from './list/list.component';
 import { ListCategoryComponent } from './list/list-category/list-category.component';
 import { ListActivityComponent } from './list/list-activity/list-activity.component';
-import { ListTagComponent } from './list/list-tag/list-tag.component';
-import { ListCommentComponent } from './list/list-comment/list-comment.component';
-import { ListPostComponent } from './list/list-post/list-post.component';
-import { ListPicComponent } from './list/list-pic/list-pic.component';
-import { ListUserComponent } from './list/list-user/list-user.component';
-import { FormHouseComponent } from './form/form-house/form-house.component';
+import { ListTagComponent }      from './list/list-tag/list-tag.component';
+import { ListCommentComponent }  from './list/list-comment/list-comment.component';
+import { ListPostComponent }     from './list/list-post/list-post.component';
+import { ListPicComponent }      from './list/list-pic/list-pic.component';
+import { ListUserComponent }     from './list/list-user/list-user.component';
+import { FormHouseComponent }    from './form/form-house/form-house.component';
 import { FormCategoryComponent } from './form/form-category/form-category.component';
 import { FormActivityComponent } from './form/form-activity/form-activity.component';
-import { FormTagComponent } from './form/form-tag/form-tag.component';
-import { FormBookingComponent } from './form/form-booking/form-booking.component';
-import { FormCommentComponent } from './form/form-comment/form-comment.component';
-import { FormPostComponent } from './form/form-post/form-post.component';
-import { FormPicComponent } from './form/form-pic/form-pic.component';
-import { FormUserComponent } from './form/form-user/form-user.component';
+import { FormTagComponent }      from './form/form-tag/form-tag.component';
+import { FormBookingComponent }  from './form/form-booking/form-booking.component';
+import { FormCommentComponent }  from './form/form-comment/form-comment.component';
+import { FormPostComponent }     from './form/form-post/form-post.component';
+import { FormPicComponent }      from './form/form-pic/form-pic.component';
+import { FormUserComponent }     from './form/form-user/form-user.component';
 
 const routes : Routes = [
   { path: '', component: HomeComponent },                           // Home
@@ -75,19 +75,19 @@ const routes : Routes = [
   { path: 'booking/:id/comment/:id', component: CommentComponent },          // Show commment
   { path: 'booking/:id/comment/:id/edit', component: FormCommentComponent }, // Edit comment
 
-  { path: 'house/:id/posts', component: ListPostComponent },           // List posts of an house
-  { path: 'house/:id/post', component: FormPostComponent },            // New post
-  { path: 'house/:id/post/:id', component: PostComponent },            // Show post
-  { path: 'house/:id/post/:id/edit', component: FormPostComponent },   // Edit post
+  { path: 'house/:id/posts', component: ListPostComponent },         // List posts of an house
+  { path: 'house/:id/post', component: FormPostComponent },          // New post
+  { path: 'house/:id/post/:id', component: PostComponent },          // Show post
+  { path: 'house/:id/post/:id/edit', component: FormPostComponent }, // Edit post
 
   { path: 'house/:id/pics', component: ListPicComponent },           // List pics of an house
   { path: 'house/:id/pic', component: FormPicComponent },            // New pic
   { path: 'house/:id/Pic/:id/edit', component: FormPicComponent },   // Edit pic
 
-{ path: 'users', component: ListUserComponent },                    // List users
-{ path: 'user', component: FormUserComponent },                     // New user
-{ path: 'user/:id', component: UserComponent },                     // Show user
-{ path: 'user/:id/edit', component: FormUserComponent },            // Edit user
+  { path: 'users', component: ListUserComponent },                   // List users
+  { path: 'user', component: FormUserComponent },                    // New user
+  { path: 'user/:id', component: UserComponent },                    // Show user
+  { path: 'user/:id/edit', component: FormUserComponent },           // Edit user
 ];
 
 @NgModule({

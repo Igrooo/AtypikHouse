@@ -1,6 +1,6 @@
 export class House {
 
-    constructor(public type: boolean, 
+    constructor(public type: boolean, // 0=admin 1=user
                 public email: string = "", 
                 public password: string = "", 
                 public name: string = "", 

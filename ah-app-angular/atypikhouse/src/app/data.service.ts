@@ -9,7 +9,7 @@ export class DataService {
 
   constructor(private http: HttpClient) { }
 
-  public endpoint = "http://localhost:3000"; //API Server URL
+  public endpoint = "http://localhost:1407"; //API Server URL
 
   get(elems:string, id: string, callback) {
     this.http.get(`${this.endpoint}/${elems}/${id}`)
