@@ -2,18 +2,22 @@
 
 @import '~@angular/material/prebuilt-themes/purple-green.css';
 
+/* globals vars*/
+@import 'vars.less';
+
+// Color theme
+.ah-theme-dark{
+    color: @font-color-primary;
+    background-color: @background-color-primary;
+}
+// Revert white & black on light theme
+.ah-theme-light{
+    color: @background-color-primary;
+    background-color: @font-color-primary;
+}
+
 .ah{ //body
     margin: 0;
     padding: 10px;
     background-color: #212121;
-    .ah-toolbar{
-
-    }
-}
-
-.ah-theme-dark{
-
-}
-.ah-theme-light{
-    
 }
