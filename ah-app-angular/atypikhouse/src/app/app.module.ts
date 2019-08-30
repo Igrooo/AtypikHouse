@@ -42,9 +42,12 @@ import { FormCommentComponent }  from './form/form-comment/form-comment.componen
 import { FormPostComponent }     from './form/form-post/form-post.component';
 import { FormPicComponent }      from './form/form-pic/form-pic.component';
 import { FormUserComponent }     from './form/form-user/form-user.component';
+import { DemoComponent }         from './demo/demo.component';
 
 const routes : Routes = [
   { path: '', component: HomeComponent },                           // Home
+
+  { path: 'demo', component: DemoComponent },                       // Angular components base
 
   { path: 'houses', component: ListComponent },                     // List Houses
   { path: 'house', component: FormHouseComponent },                 // New house
@@ -120,7 +123,8 @@ const routes : Routes = [
     FormCommentComponent,
     FormPostComponent,
     FormPicComponent,
-    FormUserComponent
+    FormUserComponent,
+    DemoComponent
   ],
   imports: [
     RouterModule.forRoot(routes),

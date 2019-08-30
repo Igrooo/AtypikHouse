@@ -1,12 +1,12 @@
 <mat-card>
     <form>
-        <fieldset>
+        <fieldset class="ah-form-fieldset">
             <mat-form-field>
                 <input matInput placeholder="House Name" name="name" [(ngModel)]="house.title">
             </mat-form-field>
         </fieldset>
 
-        <fieldset>
+        <fieldset class="ah-form-fieldset">
         <mat-form-field>
             <input matInput placeholder="Address" name="address" [(ngModel)]="house.location.address">
         </mat-form-field>
@@ -15,7 +15,7 @@
         </mat-form-field>
         </fieldset>
 
-        <fieldset>
+        <fieldset class="ah-form-fieldset">
             <mat-form-field>
                 <mat-select placeholder="House Type" name="type" [(ngModel)]="house.type">
                     <mat-option *ngFor="let type of types" [value]="type">{{ type.title }}</mat-option>
@@ -23,15 +23,15 @@
             </mat-form-field>
         </fieldset>
 
-        <fieldset>
+        <fieldset class="ah-form-fieldset">
         <mat-form-field>
             <textarea matNativeControl placeholder="Description" name="desc" [(ngModel)]="house.desc"></textarea>
         </mat-form-field>
         </fieldset>
 
-        <fieldset>
-            <button mat-button mat-raised-button (click)="cancel()">Cancel</button>
-            <button mat-button mat-raised-button color="accent" (click)="save()">Save</button>
+        <fieldset class="ah-form-fieldset">
+            <button class="ah-cta-primary" mat-button mat-raised-button (click)="cancel()">Cancel</button>
+            <button class="ah-cta-primary" mat-button mat-raised-button color="accent" (click)="save()">Save</button>
         </fieldset>
     </form>
 </mat-card>
