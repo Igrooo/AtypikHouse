@@ -14,6 +14,11 @@ import { Routes, RouterModule } from "@angular/router";
 import { FormsModule } from "@angular/forms";
 import { HttpClientModule } from "@angular/common/http";
 
+const lang = 'fr';
+
+import { WordingUI } from '../data/lang/'+lang+'/ui';
+import { WordingTXT } from '../data/lang/'+lang+'/txt';
+
 import { HomeComponent }         from './home/home.component';
 import { HouseComponent }        from './house/house.component';
 import { ActivityComponent }     from './activity/activity.component';

@@ -9,7 +9,7 @@ const domain:string = "localhost";
 
 // Production port : 1407
 // Dev port : 3000 (server-backup with static .db file)
-const port:string = "3000";
+const port:string = "1407";
 
 @Injectable({
   providedIn: 'root'

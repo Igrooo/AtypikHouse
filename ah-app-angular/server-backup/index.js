@@ -6,7 +6,7 @@ const cors = require("cors");
 const app = express();
 
 const datastore = new nedb({
-   filename: "atipykhouse.db",
+   filename: "atypikhouse.db",
    autoload: true
 });
 
