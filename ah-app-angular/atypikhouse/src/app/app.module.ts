@@ -42,53 +42,57 @@ import { FormCommentComponent }  from './form/form-comment/form-comment.componen
 import { FormPostComponent }     from './form/form-post/form-post.component';
 import { FormPicComponent }      from './form/form-pic/form-pic.component';
 import { FormUserComponent }     from './form/form-user/form-user.component';
+
 import { DemoComponent }         from './demo/demo.component';
+import { AllComponent } from './all/all.component';
+import { DemoTypoComponent } from './demo/demo-typo/demo-typo.component';
 
 const routes : Routes = [
   { path: '', component: HomeComponent },                           // Home
 
-  { path: 'demo', component: DemoComponent },                       // Angular components base
+  { path: 'demo', component: DemoComponent },                       // Angular Material components base
+  { path: 'all', component: AllComponent },                         // AtypikHouse components base
 
-  { path: 'houses', component: ListComponent },                     // List Houses
-  { path: 'house', component: FormHouseComponent },                 // New house
+  { path: 'houses', component: ListComponent },                     // List houses
+  { path: 'house', component: FormHouseComponent },                 // New  house
   { path: 'house/:id', component: HouseComponent },                 // Show house
   { path: 'house/:id/edit', component: FormHouseComponent },        // Edit house
 
   { path: 'categories', component: ListCategoryComponent },         // List categories
-  { path: 'category', component: FormCategoryComponent },           // New Category
+  { path: 'category', component: FormCategoryComponent },           // New  category
   { path: 'category/:id', component: CategoryComponent },           // List all houses of category
   { path: 'category/:id/edit', component: FormCategoryComponent },  // Edit category
 
   { path: 'activities', component: ListActivityComponent },         // List activities
-  { path: 'activity', component: FormActivityComponent },           // New activity
+  { path: 'activity', component: FormActivityComponent },           // New  activity
   { path: 'activity/:id', component: ActivityComponent },           // List all houses of activity
   { path: 'activity/:id/edit', component: FormActivityComponent },  // Edit activity
 
   { path: 'tags', component: ListTagComponent },                    // List tags
-  { path: 'tag', component: FormTagComponent },                     // New tag
+  { path: 'tag', component: FormTagComponent },                     // New  tag
   { path: 'tag/:id', component: TagComponent },                     // List all houses of tag
   { path: 'tag/:id/edit', component: FormTagComponent },            // Edit tag
 
-  { path: 'booking', component: FormBookingComponent },             // New booking
+  { path: 'booking', component: FormBookingComponent },             // New  booking
   { path: 'booking/:id', component: BookingComponent },             // Show Booking
   { path: 'payment/:id', component: PaymentComponent },             // Show payment detail of a booking
 
   { path: 'booking/:id/comments', component: ListCommentComponent },         // List comments of a booking
-  { path: 'booking/:id/comment', component: FormCommentComponent },          // New comment
+  { path: 'booking/:id/comment', component: FormCommentComponent },          // New  comment
   { path: 'booking/:id/comment/:id', component: CommentComponent },          // Show commment
   { path: 'booking/:id/comment/:id/edit', component: FormCommentComponent }, // Edit comment
 
   { path: 'house/:id/posts', component: ListPostComponent },         // List posts of an house
-  { path: 'house/:id/post', component: FormPostComponent },          // New post
+  { path: 'house/:id/post', component: FormPostComponent },          // New  post
   { path: 'house/:id/post/:id', component: PostComponent },          // Show post
   { path: 'house/:id/post/:id/edit', component: FormPostComponent }, // Edit post
 
   { path: 'house/:id/pics', component: ListPicComponent },           // List pics of an house
-  { path: 'house/:id/pic', component: FormPicComponent },            // New pic
+  { path: 'house/:id/pic', component: FormPicComponent },            // New  pic
   { path: 'house/:id/Pic/:id/edit', component: FormPicComponent },   // Edit pic
 
   { path: 'users', component: ListUserComponent },                   // List users
-  { path: 'user', component: FormUserComponent },                    // New user
+  { path: 'user', component: FormUserComponent },                    // New  user
   { path: 'user/:id', component: UserComponent },                    // Show user
   { path: 'user/:id/edit', component: FormUserComponent },           // Edit user
 ];
@@ -124,7 +128,9 @@ const routes : Routes = [
     FormPostComponent,
     FormPicComponent,
     FormUserComponent,
-    DemoComponent
+    DemoComponent,
+    AllComponent,
+    DemoTypoComponent
   ],
   imports: [
     RouterModule.forRoot(routes),

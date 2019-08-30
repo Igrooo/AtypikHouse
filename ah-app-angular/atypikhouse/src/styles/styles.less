@@ -1,20 +1,34 @@
 /* You can add global styles to this file, and also import other style files */
 @import '~@angular/material/prebuilt-themes/purple-green.css';
-/* globals vars*/
+
+/* Globals Vars for AtypikHouse Theme */
 @import 'vars.less';
+
+////////////////////////////////////////////////////
+////////////////////////// RESET MATERIAL STYLES
+////////////////////////////////////////////////////
+.mat-toolbar{
+    padding: 0 !important;
+}
+
+////////////////////////////////////////////////////
+////////////////////////// ATYPIKHOUSE THEME
+////////////////////////////////////////////////////
 
 //body // remove global class .ah in html to disable theme
 .ah {
     margin: 0 auto;
     padding: @ah-padding-primary;
+    font-size: @ah-font-size-root;
 
 /*******************/
 /*** COLOR THEME ***/
 /*******************/
     // Common colors il all themes
+    //Toggle in body to switch theme // switch black to white in 
     &.ah-theme-dark,
     &.ah-theme-light{
-        .ah-link-primary {
+        .ah-link{
             color: @ah-link-font-color-primary;
         }
     }
@@ -32,15 +46,45 @@
 /*********************/
 /**** CONTAINERS *****/
 /*********************/
+    .ah-section{
+
+    }
+    .ah-container{
+
+    }
 
 /*********************/
 /****** HEADER *******/
 /*********************/
+    .ah-header{
+
+    }
 
 /*********************/
 /*** HEADING & TEXT **/
 /*********************/
-
+    .ah-title{
+        font-family: @ah-font-family-title;
+        font-size: @ah-font-size-title;
+        text-transform: uppercase;
+    }
+    .ah-subtitle{
+        font-size: @ah-font-size-subtitle;
+    }
+    .ah-subtitle-h3{
+        font-size: @ah-font-size-subtitle-h3;
+    }
+    .ah-subtitle-h4{
+        font-size: @ah-font-size-subtitle-h3;
+    }
+    .ah-subtitle-h5{
+        font-size: @ah-font-size-subtitle-h3;
+        text-transform: capitalize;
+    }
+    .ah-subtitle-h6{
+        font-size: @ah-font-size-subtitle-h3;
+    }
+    
 /*********************/
 /******** CTA ********/
 /*********************/
@@ -48,6 +92,15 @@
         position: fixed;
         right: @ah-padding-primary;
         bottom: @ah-padding-primary;
+    }
+    .ah-cta-primary-edit {
+
+    }
+    .ah-cta-primary-valid {
+    }
+    .ah-cta-primary-cancel {
+        left: @ah-padding-primary;
+        right: auto;
     }
 
 /*********************/
@@ -69,6 +122,9 @@
 /*********************/
 /****** FOOTER *******/
 /*********************/
+    .ah-footer-primary{
+        
+    }
 
 /*********************/
 /**** lOGIN PAGE *****/

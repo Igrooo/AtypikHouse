@@ -1,22 +1,27 @@
+/* Tiny Typo Base */
+// https://github.com/tetue/tinytypo
+//@import './tinytypo/tinytypo.less';
+
 // Font Family
 @font-face {
-    font-family:'monserrat';
-    src:url('fonts/montserrat/montserrat-regular.woff2') format('woff2');
+    font-family:'Monserrat';
+    src:url('../fonts/montserrat/montserrat-regular.woff2') format('woff2');
     font-weight:normal;
     font-style:normal;
 }
 // Font family by default : Roboto in angular material theme
-@ah-font-family-title: 'monserrat';
+@ah-font-family-text:  'Roboto';
+@ah-font-family-title: 'Monserrat';
 
 // Font Sizes
-@ah-font-size-root:     12px;
+@ah-font-size-root:     14px;
 @ah-font-size-text:     1rem;
-@ah-font-size-caption:  0.8rem;
-@ah-font-size-title:    3rem;
-@ah-font-size-subtitle: 2rem;
-@ah-font-size-subtitle-h3: @ah-font-size-subtitle / 2;
-@ah-font-size-subtitle-h4: @ah-font-size-subtitle / 2.5;
-@ah-font-size-subtitle-h5: @ah-font-size-subtitle / 3;
+@ah-font-size-tiny:     0.8rem;
+@ah-font-size-title:    2rem;
+@ah-font-size-subtitle: 1.5rem;
+@ah-font-size-subtitle-h3: @ah-font-size-subtitle / 1.5;
+@ah-font-size-subtitle-h4: @ah-font-size-subtitle / 2;
+@ah-font-size-subtitle-h5: @ah-font-size-subtitle / 2.5;
 @ah-font-size-subtitle-h6: @ah-font-size-text;
 
 ////// Colors

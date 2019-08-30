@@ -1,7 +1,8 @@
 {
-  "name": "server",
+  "name": "server-backup",
+  "repository": "server-backup",
   "version": "1.0.0",
-  "description": "AtypikHouse API Server",
+  "description": "AtypikHouse API Server Backup",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
