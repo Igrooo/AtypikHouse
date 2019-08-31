@@ -1,3 +1,6 @@
+/* globals vars*/
+@import '../../../../styles/vars.less';
+
 /* Tiny Typo Demo Page */
 body { text-align: center; }
 .page { width: 40em; max-width: 768px; margin: 1em auto; text-align: left; }
@@ -17,5 +20,21 @@ body { text-align: center; }
 .app-demo-typo{
     &:before{
         content: 'app-demo-typo';
+    }
+}
+
+// THEME VARIANTS
+.ah-theme-dark {
+    .app-typo-demo{
+        .ah-container-demo{
+            border-bottom: @ah-margin-primary @ah-font-color-primary solid;
+        }
+    }
+}
+.ah-theme-light{
+    .app-typo-demo{
+        .ah-container-demo{
+            border-bottom: @ah-margin-primary @ah-background-color-primary solid;
+        }
     }
 }

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Post } from 'src/app/logic/Post';
 
 @Component({
   selector: 'app-post',
@@ -6,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./post.component.less']
 })
 export class PostComponent implements OnInit {
-
+  post: Post;
   constructor() { }
 
   ngOnInit() {

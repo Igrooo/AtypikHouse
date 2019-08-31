@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Pic } from 'src/app/logic/Pic';
 
 @Component({
   selector: 'app-pic',
@@ -6,6 +7,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./pic.component.less']
 })
 export class PicComponent implements OnInit {
+  pic : Pic;
 
   constructor() { }
 

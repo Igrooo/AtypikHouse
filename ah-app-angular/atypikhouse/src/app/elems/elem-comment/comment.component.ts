@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Comment } from "../../logic/Comment";
+import { Comment } from "src/app/logic/Comment";
 @Component({
   selector: 'app-comment',
   templateUrl: './comment.component.html',

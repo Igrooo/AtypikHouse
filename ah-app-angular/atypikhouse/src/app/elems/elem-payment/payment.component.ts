@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Payment } from 'src/app/logic/Payment';
 
 @Component({
   selector: 'app-payment',
@@ -6,6 +7,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./payment.component.less']
 })
 export class PaymentComponent implements OnInit {
+  payment : Payment;
 
   constructor() { }
 

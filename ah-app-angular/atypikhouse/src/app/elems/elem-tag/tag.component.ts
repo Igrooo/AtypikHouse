@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Tag } from 'src/app/logic/Tag';
 
 @Component({
   selector: 'app-tag',
@@ -6,7 +7,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./tag.component.less']
 })
 export class TagComponent implements OnInit {
-
+  tag: Tag;
+  
   constructor() { }
 
   ngOnInit() {

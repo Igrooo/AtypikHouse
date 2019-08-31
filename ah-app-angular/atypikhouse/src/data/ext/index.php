@@ -1,22 +1,14 @@
 <?php
 /*
-    PHP for external modules & website
+    PHP external modules & websites
 
     Need configure alias on server for each module: 
     by exemple :
-    domain.com/blog > redirect to > domain.com/src/ext/index.phph?module=wordpress
+    domain.com/blog > redirect to > domain.com/src/data/ext/wordpress
     
-    Create your folder in ext & get ?module=
-    
-    // go to index.php (need a index.php on your folder)
+    Need add redirect routing in angular app
+
 */
 
-$ext = $_GET['module'];
-
-if($ext) {
-    include("$ext/index.php");
-}
-else{
-    echo 'Need GET ?module=';
-}
+    echo 'Need module name folder in url after /ext/';
 ?>

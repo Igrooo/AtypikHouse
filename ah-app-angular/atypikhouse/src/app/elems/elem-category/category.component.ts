@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Category } from "../../logic/Category";
+import { Category } from "src/app/logic/Category";
 
 @Component({
   selector: 'app-category',

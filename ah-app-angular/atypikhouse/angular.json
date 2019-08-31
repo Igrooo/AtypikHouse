@@ -29,9 +29,9 @@
               "src/icons"
             ],
             "styles": [
-              "src/styles/styles.less"
+              "src/assets/styles.less"
             ],
-            "scripts": []
+            "scripts": ["src/assets/js/script.js"]
           },
           "configurations": {
             "production": {
@@ -89,7 +89,7 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles/styles.less"
+              "src/assets/styles.less"
             ],
             "scripts": []
           }

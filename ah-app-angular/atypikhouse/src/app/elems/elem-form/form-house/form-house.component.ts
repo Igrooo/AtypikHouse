@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from "@angular/router";
-import { House } from "../../../logic/House";
-import { Category } from "../../../logic/Category";
-import { GeolocationService } from "../../../geolocation.service";
-import { DataService } from "../../../data.service";
+import { House } from "src/app/logic/House";
+import { Category } from "src/app/logic/Category";
+import { GeolocationService } from "src/app/geolocation.service";
+import { DataService } from "src/app/data.service";
 
 @Component({
   selector: 'app-house',
