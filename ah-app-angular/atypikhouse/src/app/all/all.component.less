@@ -1,13 +1,29 @@
 /* globals vars*/
 @import '../../styles/vars.less';
 
+.app-all{
+    &:before{
+        content: 'app-all';
+    }
+}
+.app-all-child{
+    &:before{
+        content: attr(data-content);
+    }
+}
+
+// THEME VARIANTS
 .ah-theme-dark {
-    .ah-container-demo{
-        border-bottom: @ah-margin-primary @ah-font-color-primary solid;
+    .app-all{
+        .ah-container-demo{
+            border-bottom: @ah-margin-primary @ah-font-color-primary solid;
+        }
     }
 }
 .ah-theme-light{
-    .ah-container-demo{
-        border-bottom: @ah-margin-primary @ah-background-color-primary solid;
+    .app-all{
+        .ah-container-demo{
+            border-bottom: @ah-margin-primary @ah-background-color-primary solid;
+        }
     }
 }

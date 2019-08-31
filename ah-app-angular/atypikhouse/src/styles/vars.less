@@ -1,8 +1,6 @@
 /* Tiny Typo Base */
 // https://github.com/tetue/tinytypo
-@import './tinytypo/tinytypo.less';
-// Tiny Typo replacement here
-
+ @import './tinytypo/tinytypo.less';
 
 // Font Family
 @font-face {
@@ -34,6 +32,13 @@
 @ah-green-light: #bcd5d1;
 @ah-green:       #15a08c;
 
+// Tiny Typo replacement
+@color-bg:				@ah-black;	    // Background color
+@color-txt:				@ah-white;		// Text color
+@color-mid:				@ah-grey;		// Color for medium gray and lines
+@color: 				@ah-green;		// Brand color
+mark, .mark { background: @color; color: @color-txt; }
+
 @ah-font-color-primary:   @ah-white;
 @ah-font-color-secondary: @ah-grey;
 
@@ -42,10 +47,11 @@
 
 @ah-container-back-color-primary:   @ah-brown;
 @ah-container-back-color-secondary: @ah-green-light;
-@ah-container-back-color-tertiary:  @ah-white;
+@ah-container-back-color-tertiary:  @ah-grey;
+
 @ah-container-font-color-primary:   @ah-white;
 @ah-container-font-color-secondary: @ah-grey;
-@ah-container-font-color-tertiary:  @ah-grey;
+@ah-container-font-color-tertiary:  @ah-white;
 
 @ah-button-back-color-primary:   @ah-green;
 @ah-button-back-color-secondary: @ah-green-light;

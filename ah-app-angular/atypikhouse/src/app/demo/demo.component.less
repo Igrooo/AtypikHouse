@@ -1,0 +1,24 @@
+/* globals vars*/
+@import '../../styles/vars.less';
+
+.app-demo{
+    &:before{
+        content: 'app-demo';
+    }
+}
+
+// THEME VARIANTS
+.ah-theme-dark {
+    .app-demo{
+        .ah-container-demo{
+            border-bottom: @ah-margin-primary @ah-font-color-primary solid;
+        }
+    }
+}
+.ah-theme-light{
+    .app-demo{
+        .ah-container-demo{
+            border-bottom: @ah-margin-primary @ah-background-color-primary solid;
+        }
+    }
+}
