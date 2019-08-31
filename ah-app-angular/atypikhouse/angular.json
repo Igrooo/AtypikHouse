@@ -29,7 +29,7 @@
               "src/icons"
             ],
             "styles": [
-              "src/assets/styles.less"
+              "src/assets/less/styles.less"
             ],
             "scripts": ["src/assets/js/script.js"]
           },
@@ -89,7 +89,7 @@
               "src/assets"
             ],
             "styles": [
-              "src/assets/styles.less"
+              "src/assets/less/styles.less"
             ],
             "scripts": []
           }

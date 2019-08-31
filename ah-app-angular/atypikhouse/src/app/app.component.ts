@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { MatSnackBar } from "@angular/material";
+declare const switchTheme: any;
 
 @Component({
   selector: 'app-root',
@@ -7,6 +8,11 @@ import { MatSnackBar } from "@angular/material";
   styleUrls: ['./app.component.less']
 })
 export class AppComponent {
+
+  onClick() {
+    switchTheme();
+  }
+
   constructor(private snackBar: MatSnackBar) {
   }
 
