@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { DataService} from "../data.service";
-import { House } from "../logic/House";
+import { DataService} from "../../data.service";
+import { House } from "../../logic/House";
 import { Router } from "@angular/router";
-import { GeolocationService } from "../geolocation.service";
+import { GeolocationService } from "../../geolocation.service";
 
 @Component({
   selector: 'app-list',

@@ -5,6 +5,7 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './all.component.html',
   styleUrls: ['./all.component.less']
 })
+
 export class AllComponent implements OnInit {
 
   constructor() { }

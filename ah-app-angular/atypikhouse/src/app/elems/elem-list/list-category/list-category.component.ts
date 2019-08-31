@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { DataService} from "../../data.service";
-import { Category } from "../../logic/Category";
+import { DataService} from "../../../data.service";
+import { Category } from "../../../logic/Category";
 
 @Component({
   selector: 'app-list-category',

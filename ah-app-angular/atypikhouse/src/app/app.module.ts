@@ -19,38 +19,40 @@ const lang = 'fr';
 //import { WordingUI } from '../data/lang/'+lang+'/ui';
 //import { WordingTXT } from '../data/lang/'+lang+'/txt';
 
-import { HomeComponent }         from './home/home.component';
-import { HouseComponent }        from './house/house.component';
-import { ActivityComponent }     from './activity/activity.component';
-import { BookingComponent }      from './booking/booking.component';
-import { CategoryComponent }     from './category/category.component';
-import { CommentComponent }      from './comment/comment.component';
-import { PaymentComponent }      from './payment/payment.component';
-import { PicComponent }          from './pic/pic.component';
-import { PostComponent }         from './post/post.component';
-import { TagComponent }          from './tag/tag.component';
-import { UserComponent }         from './user/user.component';
-import { ListComponent }         from './list/list.component';
-import { ListCategoryComponent } from './list/list-category/list-category.component';
-import { ListActivityComponent } from './list/list-activity/list-activity.component';
-import { ListTagComponent }      from './list/list-tag/list-tag.component';
-import { ListCommentComponent }  from './list/list-comment/list-comment.component';
-import { ListPostComponent }     from './list/list-post/list-post.component';
-import { ListPicComponent }      from './list/list-pic/list-pic.component';
-import { ListUserComponent }     from './list/list-user/list-user.component';
-import { FormHouseComponent }    from './form/form-house/form-house.component';
-import { FormCategoryComponent } from './form/form-category/form-category.component';
-import { FormActivityComponent } from './form/form-activity/form-activity.component';
-import { FormTagComponent }      from './form/form-tag/form-tag.component';
-import { FormBookingComponent }  from './form/form-booking/form-booking.component';
-import { FormCommentComponent }  from './form/form-comment/form-comment.component';
-import { FormPostComponent }     from './form/form-post/form-post.component';
-import { FormPicComponent }      from './form/form-pic/form-pic.component';
-import { FormUserComponent }     from './form/form-user/form-user.component';
+//ELEMS
+import { HouseComponent }        from './elems/elem-house/house.component';
+import { ActivityComponent }     from './elems/elem-activity/activity.component';
+import { BookingComponent }      from './elems/elem-booking/booking.component';
+import { CategoryComponent }     from './elems/elem-category/category.component';
+import { CommentComponent }      from './elems/elem-comment/comment.component';
+import { PaymentComponent }      from './elems/elem-payment/payment.component';
+import { PicComponent }          from './elems/elem-pic/pic.component';
+import { PostComponent }         from './elems/elem-post/post.component';
+import { TagComponent }          from './elems/elem-tag/tag.component';
+import { UserComponent }         from './elems/elem-user/user.component';
+import { ListComponent }         from './elems/elem-list/list.component';
+import { ListCategoryComponent } from './elems/elem-list/list-category/list-category.component';
+import { ListActivityComponent } from './elems/elem-list/list-activity/list-activity.component';
+import { ListTagComponent }      from './elems/elem-list/list-tag/list-tag.component';
+import { ListCommentComponent }  from './elems/elem-list/list-comment/list-comment.component';
+import { ListPostComponent }     from './elems/elem-list/list-post/list-post.component';
+import { ListPicComponent }      from './elems/elem-list/list-pic/list-pic.component';
+import { ListUserComponent }     from './elems/elem-list/list-user/list-user.component';
+import { FormHouseComponent }    from './elems/elem-form/form-house/form-house.component';
+import { FormCategoryComponent } from './elems/elem-form/form-category/form-category.component';
+import { FormActivityComponent } from './elems/elem-form/form-activity/form-activity.component';
+import { FormTagComponent }      from './elems/elem-form/form-tag/form-tag.component';
+import { FormBookingComponent }  from './elems/elem-form/form-booking/form-booking.component';
+import { FormCommentComponent }  from './elems/elem-form/form-comment/form-comment.component';
+import { FormPostComponent }     from './elems/elem-form/form-post/form-post.component';
+import { FormPicComponent }      from './elems/elem-form/form-pic/form-pic.component';
+import { FormUserComponent }     from './elems/elem-form/form-user/form-user.component';
 
-import { DemoComponent }         from './demo/demo.component';
-import { AllComponent } from './all/all.component';
-import { DemoTypoComponent } from './demo/demo-typo/demo-typo.component';
+//PAGES
+import { HomeComponent }         from './pages/page-home/home.component';
+import { DemoComponent }         from './pages/page-demo/demo.component';
+import { DemoTypoComponent }     from './pages/page-demo/demo-typo/demo-typo.component';
+import { AllComponent }          from './pages/page-all/all.component';
 
 const routes : Routes = [
   { path: '', component: HomeComponent },                           // Home
@@ -141,7 +143,7 @@ const routes : Routes = [
     RouterModule.forRoot(routes),
     FormsModule, HttpClientModule,
     BrowserModule, BrowserAnimationsModule,
-    MatButtonModule, MatIconModule, MatInputModule, MatSelectModule, MatSliderModule,
+    MatButtonModule, MatIconModule, MatFormFieldModule, MatInputModule, MatSelectModule, MatSliderModule,
     MatToolbarModule, MatCardModule, MatSlideToggleModule, MatSnackBarModule
   ],
   providers: [GeolocationService, DataService],

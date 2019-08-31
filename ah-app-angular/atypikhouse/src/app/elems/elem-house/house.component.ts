@@ -1,15 +1,16 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from "@angular/router";
-import { House } from "../logic/House";
-import { Category } from "../logic/Category";
-import { GeolocationService } from "../geolocation.service";
-import { DataService } from "../data.service";
+import { House } from "../../logic/House";
+import { Category } from "../../logic/Category";
+import { GeolocationService } from "../../geolocation.service";
+import { DataService } from "../../data.service";
 
 @Component({
   selector: 'app-house',
   templateUrl: './house.component.html',
   styleUrls: ['./house.component.less']
 })
+
 export class HouseComponent implements OnInit {
 
   house: House;
