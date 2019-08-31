@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./all.component.less']
 })
 
-export class AllComponent implements OnInit {
+export class AllPage implements OnInit {
 
   constructor() { }
 

@@ -49,16 +49,16 @@ import { FormPicComponent }      from './elems/elem-form/form-pic/form-pic.compo
 import { FormUserComponent }     from './elems/elem-form/form-user/form-user.component';
 
 //PAGES
-import { HomeComponent }         from './pages/page-home/home.component';
-import { DemoComponent }         from './pages/page-demo/demo.component';
-import { DemoTypoComponent }     from './pages/page-demo/demo-typo/demo-typo.component';
-import { AllComponent }          from './pages/page-all/all.component';
+import { HomePage }         from './pages/page-home/home.component';
+import { DemoPage }         from './pages/page-demo/demo.component';
+import { DemoTypoPage }     from './pages/page-demo/demo-typo/demo-typo.component';
+import { AllPage }          from './pages/page-all/all.component';
 
 const routes : Routes = [
-  { path: '', component: HomeComponent },                           // Home
+  { path: '', component: HomePage },                           // Home
 
-  { path: 'demo', component: DemoComponent },                       // Angular Material components base
-  { path: 'all', component: AllComponent },                         // AtypikHouse components base
+  { path: 'demo', component: DemoPage },                       // Angular Material components base
+  { path: 'all', component: AllPage },                         // AtypikHouse components base
 
   { path: 'houses', component: ListComponent },                     // List houses
   { path: 'house', component: FormHouseComponent },                 // New  house
@@ -107,7 +107,7 @@ const routes : Routes = [
 @NgModule({
   declarations: [
     AppComponent,
-    HomeComponent,
+    HomePage,
     HouseComponent,
     ActivityComponent,
     BookingComponent,
@@ -135,9 +135,9 @@ const routes : Routes = [
     FormPostComponent,
     FormPicComponent,
     FormUserComponent,
-    DemoComponent,
-    AllComponent,
-    DemoTypoComponent
+    AllPage,
+    DemoPage,
+    DemoTypoPage
   ],
   imports: [
     RouterModule.forRoot(routes),
