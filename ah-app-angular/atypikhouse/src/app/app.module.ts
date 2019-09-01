@@ -14,24 +14,47 @@ import { Routes, RouterModule } from "@angular/router";
 import { FormsModule } from "@angular/forms";
 import { HttpClientModule } from "@angular/common/http";
 
-const lang = 'fr';
+//const lang = 'fr';
 
 //import { WordingUI } from 'src/data/lang/'+lang+'/ui';
 //import { WordingTXT } from 'src/data/lang/'+lang+'/txt';
 
+// Imports all pages
 import { HomePage }         from './pages/page-home/home.component';
 import { DemoPage }         from './pages/page-demo/demo.component';
 import { DemoTypoPage }     from './pages/page-demo/demo-typo/demo-typo.component';
-import { AllPage }          from './pages/page-all/all.component';
+import { ExternalPage }     from './pages/page-ext/ext.component';
+//import { AllPage }        from './pages/page-all/all.component';
 
-//PHP Server URL for external pages
-const PHPsecure:string = ""; // s > activate https
-const PHPdomain:string = "localhost";
-const PHPport:string = "8888";
 
-const PHPurl:string = "http"+PHPsecure+"://"+PHPdomain+":"+PHPport;
-
-//ON ELEMENT PAGES
+//import all elems
+//import { HouseComponent }        from './elems/elem-house/house.component';
+//import { ActivityComponent }     from './elems/elem-activity/activity.component';
+//import { BookingComponent }      from './elems/elem-booking/booking.component';
+//import { CategoryComponent }     from './elems/elem-category/category.component';
+//import { CommentComponent }      from './elems/elem-comment/comment.component';
+//import { PaymentComponent }      from './elems/elem-payment/payment.component';
+//import { PicComponent }          from './elems/elem-pic/pic.component';
+//import { PostComponent }         from './elems/elem-post/post.component';
+//import { TagComponent }          from './elems/elem-tag/tag.component';
+//import { UserComponent }         from './elems/elem-user/user.component';
+//import { ListComponent }         from './elems/elem-list/list.component';
+//import { ListCategoryComponent } from './elems/elem-list/list-category/list-category.component';
+//import { ListActivityComponent } from './elems/elem-list/list-activity/list-activity.component';
+//import { ListTagComponent }      from './elems/elem-list/list-tag/list-tag.component';
+//import { ListCommentComponent }  from './elems/elem-list/list-comment/list-comment.component';
+//import { ListPostComponent }     from './elems/elem-list/list-post/list-post.component';
+//import { ListPicComponent }      from './elems/elem-list/list-pic/list-pic.component';
+//import { ListUserComponent }     from './elems/elem-list/list-user/list-user.component';
+//import { FormHouseComponent }    from './elems/elem-form/form-house/form-house.component';
+//import { FormCategoryComponent } from './elems/elem-form/form-category/form-category.component';
+//import { FormActivityComponent } from './elems/elem-form/form-activity/form-activity.component';
+//import { FormTagComponent }      from './elems/elem-form/form-tag/form-tag.component';
+//import { FormBookingComponent }  from './elems/elem-form/form-booking/form-booking.component';
+//import { FormCommentComponent }  from './elems/elem-form/form-comment/form-comment.component';
+//import { FormPostComponent }     from './elems/elem-form/form-post/form-post.component';
+//import { FormPicComponent }      from './elems/elem-form/form-pic/form-pic.component';
+//import { FormUserComponent }     from './elems/elem-form/form-user/form-user.component';
 
 const routes : Routes = [
 
@@ -41,7 +64,7 @@ const routes : Routes = [
   { path: '', component: HomePage },                           // Home
   { path: 'demo', component: DemoPage },                       // Angular Material components base
   { path: 'demo-typo', component: DemoTypoPage },              // Fonts components base
-  { path: 'all', component: AllPage },                         // AtypikHouse components base
+  //{ path: 'all', component: AllPage },                         // AtypikHouse components base
   
   //List Pages (add search module in this ?)
   //{ path: 'houses', component: HousesPage },                 // List all houses
@@ -65,7 +88,7 @@ const routes : Routes = [
   //{ path: 'house/:id/bookings', component: BookingsPage },   // List booking of an house
   //{ path: 'house/:id/comments', component: CommentsPage },   // List comments of a house
 
-
+  
   ////// ONE ELEMENT PAGES (FORMS)
 
   //{ path: 'house', component: FormHouseComponent },                 // New  house
@@ -100,20 +123,49 @@ const routes : Routes = [
   //{ path: 'user/:id/edit', component: FormUserComponent },           // Edit user
 
     // Redirect to editorial content, faq, support...
-    {path: 'blog',    redirectTo:PHPurl+'/AtypikHouse/ah-app-angular/atypikhouse/src/data/ext/wordpress', pathMatch:'full'},
-    {path: 'faq',     redirectTo:'/login', pathMatch:'full'},
-    {path: 'support', redirectTo:'/login', pathMatch:'full'},
+    {path: 'blog',    component: ExternalPage},
+    {path: 'faq',     component: ExternalPage},
+    {path: 'support', component: ExternalPage},
+    {path: 'news', component: ExternalPage},
+    {path: 'cgu', component: ExternalPage},
   
-
 ];
 
 @NgModule({
   declarations: [
     AppComponent,
     HomePage,
-    AllPage,
+    ExternalPage,
+    //AllPage,
     DemoPage,
-    DemoTypoPage
+    DemoTypoPage,
+    //HouseComponent,
+    //ActivityComponent,
+    //BookingComponent,
+    //CategoryComponent,
+    //CommentComponent,
+    //PaymentComponent,
+    //PicComponent,
+    //PostComponent,
+    //TagComponent,
+    //UserComponent,
+    //ListComponent,
+    //ListCategoryComponent,
+    //ListActivityComponent,
+    //ListTagComponent,
+    //ListCommentComponent,
+    //ListPostComponent,
+    //ListPicComponent,
+    //ListUserComponent,
+    //FormHouseComponent,
+    //FormCategoryComponent,
+    //FormActivityComponent,
+    //FormTagComponent,
+    //FormBookingComponent,
+    //FormCommentComponent,
+    //FormPostComponent,
+    //FormPicComponent,
+    //FormUserComponent,
   ],
   imports: [
     RouterModule.forRoot(routes),

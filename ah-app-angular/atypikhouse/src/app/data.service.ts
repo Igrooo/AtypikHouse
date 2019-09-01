@@ -7,8 +7,8 @@ import { HttpHeaders, HttpClient, HttpParams } from "@angular/common/http";
 const secure:string = ""; // s > activate https
 const domain:string = "localhost";
 
-// Production port : 1407
-// Dev port : 3000 (server-backup with static .db file)
+// Production port  : 1407
+// Development port : 3000 (server-backup with static .db file)
 const port:string = "1407";
 
 @Injectable({

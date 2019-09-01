@@ -1,14 +1,21 @@
 /* globals vars*/
 @import '../../../assets/less/vars.less';
 
+app-demo,
 .app-demo{
     &:before{
         content: 'app-demo';
     }
 }
+.app-demo-child{
+    &:before{
+        content: attr(data-content);
+    }
+}
 
 // THEME VARIANTS
 .ah-theme-dark {
+    app-demo,
     .app-demo{
         .ah-container-demo{
             border-bottom: @ah-margin-primary @ah-font-color-primary solid;
@@ -16,6 +23,7 @@
     }
 }
 .ah-theme-light{
+    app-demo,
     .app-demo{
         .ah-container-demo{
             border-bottom: @ah-margin-primary @ah-background-color-primary solid;

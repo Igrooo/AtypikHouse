@@ -9,8 +9,7 @@ signup.post('/signup', (req, res) =>{
     var prenom = JSON.stringify(req.body.prenom);
     var email = JSON.stringify(req.body.email);
   
-    console.log('test');   
-  
+    console.log('test');
   
     if(req.body.email && req.body.password && req.body.verifPassword && req.body.nom && req.body.prenom){
   

@@ -7,6 +7,7 @@
     domain.com/blog > redirect to > domain.com/src/data/ext/wordpress
     
     Need add redirect routing in angular app
+    & add PHP port in angular app /pages/page ext
 
 */
 

@@ -3,68 +3,61 @@
 
 /* Globals Vars for AtypikHouse Theme */
 @import 'vars.less';
+/* Colors */
+@import 'colors.less';
+
+//body // remove global class .ah in html to disable theme
+.ah {
+    margin: 0;
+    font-family: @ah-font-family-text;
+    font-size: @ah-font-size-root;
 
 ////////////////////////////////////////////////////
 ////////////////////////// RESET MATERIAL STYLES
 ////////////////////////////////////////////////////
-.mat-toolbar{
-    padding: 0 !important;
-}
-.ah-theme-light {
     .mat-toolbar{
-        color: @ah-background-color-primary;
-        background-color: @ah-font-color-primary;
+        padding: 0 !important;
     }
-}
-////////////////////////////////////////////////////
-////////////////////////// ATYPIKHOUSE THEME
-////////////////////////////////////////////////////
 
-//body // remove global class .ah in html to disable theme
-.ah {
-    margin: 0 auto;
-    padding: @ah-padding-primary;
-    font-family: @ah-font-family-text;
-    font-size: @ah-font-size-root;
-
-/*******************/
-/*** COLOR THEME ***/
-/*******************/
-    // Common colors il all themes
-    //Toggle in body to switch theme // switch black to white in 
-    &.ah-theme-dark,
-    &.ah-theme-light{
-        .ah-link{
-            color: @ah-link-font-color-primary;
-        }
-    }
-    // Variants
-    &.ah-theme-dark {
-        color: @ah-font-color-primary;
-        background-color: @ah-background-color-primary;
-    }
-    // Revert white & black on light theme
-    &.ah-theme-light {
-        color: @ah-background-color-primary;
-        background-color: @ah-font-color-primary;
-    }
+////////////////////////////////////////////////////
+////////////////////////// ATYPIKHOUSE LAYOUT
+////////////////////////////////////////////////////
 
 /*********************/
 /**** CONTAINERS *****/
 /*********************/
+    .ah-page{
+        min-height: 100vh;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .ah-header,
+    .ah-footer{
+        padding: 0 @ah-padding-primary;
+        width: calc(100% - @ah-padding-primary * 2 );
+    }
+    .ah-header{
+        position: sticky;
+        top: 0;
+    }
+
+    .ah-container-main{
+        padding: @ah-padding-primary;
+        min-height: 100%;
+    }
+
     .ah-section{
 
     }
     .ah-container{
 
     }
-
+    
 /*********************/
 /****** HEADER *******/
 /*********************/
-    .ah-header{
 
-    }
 
 /*********************/
 /*** HEADING & TEXT **/
@@ -73,6 +66,7 @@
         font-family: @ah-font-family-title;
         font-size: @ah-font-size-title;
         text-transform: uppercase;
+        border-bottom: 2px transparent solid;
     }
     .ah-subtitle{
         font-size: @ah-font-size-subtitle;
@@ -94,10 +88,6 @@
 /*********************/
 /******** CTA ********/
 /*********************/
-    .ah-cta-primary {
-        background-color: @ah-cta-back-color-primary;
-    }
-
     /* CTA in overlay (fixed position to bottom)*/
     .ah-overlay-cta-primary {
         position: fixed;
@@ -117,6 +107,11 @@
 /*********************/
 /***** NAV & LIST ****/
 /*********************/
+    .ah-nav-sticky{
+        position: sticky;
+        top: 0;
+
+    }
 // grid
 
 /*********************/
@@ -126,15 +121,13 @@
         border: none;
         margin-top: @ah-margin-primary;
     }
-    .ah-form-search {
-        background-color: @ah-background-color-secondary;
-    }
 
 /*********************/
 /****** FOOTER *******/
 /*********************/
-    .ah-footer-primary{
-        
+    .ah-footer{
+        position: absolute;
+        bottom: 0;
     }
 
 /*********************/
