@@ -1,0 +1,146 @@
+/* You can add global styles to this file, and also import other style files */
+@import '~@angular/material/prebuilt-themes/purple-green.css';
+
+/* Globals Vars for AtypikHouse Theme */
+@import 'vars.less';
+/* Colors */
+@import 'colors.less';
+
+//body // remove global class .ah in html to disable theme
+.ah {
+    margin: 0;
+    font-family: @ah-font-family-text;
+    font-size: @ah-font-size-root;
+
+////////////////////////////////////////////////////
+////////////////////////// RESET MATERIAL STYLES
+////////////////////////////////////////////////////
+    .mat-toolbar{
+        padding: 0 !important;
+    }
+
+////////////////////////////////////////////////////
+////////////////////////// ATYPIKHOUSE LAYOUT
+////////////////////////////////////////////////////
+
+/*********************/
+/**** CONTAINERS *****/
+/*********************/
+    .ah-page{
+        min-height: 100vh;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .ah-header,
+    .ah-footer{
+        padding: 0 @ah-padding-primary;
+        width: calc(100% - @ah-padding-primary * 2 );
+    }
+    .ah-header{
+        position: sticky;
+        top: 0;
+    }
+
+    .ah-header-wrap,
+    .ah-footer-wrap,
+    .ah-container-main{
+        max-width: 1000px;
+        margin: auto;
+    }
+    .ah-container-main{
+        padding: @ah-padding-primary;
+        min-height: 100%;
+    }
+
+    .ah-section{
+
+    }
+    .ah-container{
+
+    }
+    
+/*********************/
+/****** HEADER *******/
+/*********************/
+
+
+/*********************/
+/*** HEADING & TEXT **/
+/*********************/
+    .ah-title{
+        font-family: @ah-font-family-title;
+        font-size: @ah-font-size-title;
+        text-transform: uppercase;
+        border-bottom: 1px transparent solid;
+    }
+    .ah-subtitle{
+        font-size: @ah-font-size-subtitle;
+    }
+    .ah-subtitle-h3{
+        font-size: @ah-font-size-subtitle-h3;
+    }
+    .ah-subtitle-h4{
+        font-size: @ah-font-size-subtitle-h3;
+    }
+    .ah-subtitle-h5{
+        font-size: @ah-font-size-subtitle-h3;
+        text-transform: capitalize;
+    }
+    .ah-subtitle-h6{
+        font-size: @ah-font-size-subtitle-h3;
+    }
+    
+/*********************/
+/******** CTA ********/
+/*********************/
+    /* CTA in overlay (fixed position to bottom)*/
+    .ah-overlay-cta-primary {
+        position: fixed;
+        right: @ah-padding-primary;
+        bottom: @ah-padding-primary;
+    }
+    .ah-overlay-cta-primary-edit {
+
+    }
+    .ah-overlay-cta-primary-valid {
+    }
+    .ah-overlay-cta-primary-cancel {
+        left: @ah-padding-primary;
+        right: auto;
+    }
+
+/*********************/
+/***** NAV & LIST ****/
+/*********************/
+    .ah-nav-sticky{
+        position: sticky;
+        top: 0;
+
+    }
+// grid
+
+/*********************/
+/******* FORMS *******/
+/*********************/
+    .ah-form-fieldset {
+        border: none;
+        margin-top: @ah-margin-primary;
+    }
+
+/*********************/
+/****** FOOTER *******/
+/*********************/
+    .ah-footer{
+        position: absolute;
+        bottom: 0;
+    }
+
+/*********************/
+/**** lOGIN PAGE *****/
+/*********************/
+
+/*********************/
+/*** MEDIA QUERIES ***/
+/*********************/
+}
