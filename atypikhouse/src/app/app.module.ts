@@ -122,9 +122,7 @@ const routes : Routes = [
   //{ path: 'user/:id', component: UserComponent },                    // Show user
   //{ path: 'user/:id/edit', component: FormUserComponent },           // Edit user
 
-    // Redirect to editorial content, faq, support...
-    {path: 'data/ext/**', redirectTo: '/data/ext/ext.json' },
-
+    // Redirect to editorial content
     {path: 'faq',     component: ExternalPage},
     {path: 'support', component: ExternalPage},
     {path: 'news',    component: ExternalPage},
