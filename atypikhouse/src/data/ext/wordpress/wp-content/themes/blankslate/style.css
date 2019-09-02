@@ -19,7 +19,11 @@ html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abb
 .sticky{}.bypostauthor{}.wp-caption{}.wp-caption-text{}.gallery-caption{}.alignright{}.alignleft{}.aligncenter{}.screen-reader-text{clip:rect(1px, 1px, 1px, 1px);position:absolute !important}
 
 .post-edit-link,
-.ah-ext-entry-meta{
+.ah-ext-entry-meta,
+#ah-ext-header,
+#ah-ext-branding,
+#ah-ext-sidebar,
+#ah-ext-footer{
     display: none;
     visibility: hidden;
 }

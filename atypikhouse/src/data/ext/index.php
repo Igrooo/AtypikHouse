@@ -2,12 +2,14 @@
 /*
     PHP external modules & websites
 
-    Need configure alias on server for each module: 
-    by exemple :
-    domain.com/blog > redirect to > domain.com/src/data/ext/wordpress
+    Need 
     
-    Need add redirect routing in angular app
-    & add PHP port in angular app /pages/page ext
+    Need:
+    - activate headers_module on Apache server
+    - add domain & port of server in ext.component.ts
+    - add routing in angular app 
+    - add ext.component.ts
+    - add PHP port in angular app /pages/page ext
 
 */
 

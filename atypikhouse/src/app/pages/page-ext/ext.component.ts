@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from "@angular/router";
 
 // EXT Server URL for external pages
 const EXTsecure:string  = ""; // s > activate https
@@ -6,24 +7,22 @@ const EXTdomain:string  = "localhost";
 const EXTport:string    = "8888";
 
 const EXTroot:string    = "/AtypikHouse/atypikhouse/";
-const EXTfofder:string  = "src/data/ext/";
-const EXTmodule:string  = "wordpress/";
+const EXTfolder:string  = "src/data/ext/";
+const EXTurl:string     = "http"+EXTsecure+"://"+EXTdomain+":"+EXTport+EXTroot+EXTfolder;
 
-const EXTurl:string     = "http"+EXTsecure+"://"+EXTdomain+":"+EXTport+EXTroot+EXTfofder+EXTmodule;
+const EXTlist:string     = EXTurl+"ext.json";
+const EXTlisttype:string = "json";
 
-const EXTpage:string    = "news";
-
-const EXTiframe:string  = '<iframe src="'+EXTurl+EXTpage+'"></iframe>';
+const EXTloader:string  = `<div id="app-ext-data" data-list="`+EXTlist+`" data-type="`+EXTlisttype+`" data-src="`+EXTurl+`" class="ah-loading ah-loading-overlay"></div>`; 
+//assets/js/script.js
 
 @Component({
   selector: 'app-ext',
-  styles:   ['iframe{width:100%;height:100%;border:none}'],
-  template: EXTiframe
+  styles:   [],
+  template: EXTloader
 })
 
 export class ExternalPage implements OnInit {
-
-  constructor() { }
 
   ngOnInit() {
   }
