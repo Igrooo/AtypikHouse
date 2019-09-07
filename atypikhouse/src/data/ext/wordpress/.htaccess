@@ -2,11 +2,11 @@
 # BEGIN WordPress
 <IfModule mod_rewrite.c>
 RewriteEngine On
-RewriteBase /AtypikHouse/atypikhouse/src/data/ext/wordpress/
+RewriteBase /www2/AtypikHouse/atypikhouse/src/data/ext/wordpress/
 RewriteRule ^index\.php$ - [L]
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
-RewriteRule . /AtypikHouse/atypikhouse/src/data/ext/wordpress/index.php [L]
+RewriteRule . /www2/AtypikHouse/atypikhouse/src/data/ext/wordpress/index.php [L]
 </IfModule>
 
 # END WordPress
