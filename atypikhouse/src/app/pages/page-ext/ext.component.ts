@@ -4,9 +4,9 @@ import { ActivatedRoute } from "@angular/router";
 // EXT Server URL for external pages
 const EXTsecure:string  = ""; // s > activate https
 const EXTdomain:string  = "localhost";
-const EXTport:string    = "8888";
+const EXTport:string    = "80";
 
-const EXTroot:string    = "/AtypikHouse/atypikhouse/";
+const EXTroot:string    = "/www2/AtypikHouse/atypikhouse/";
 const EXTfolder:string  = "src/data/ext/";
 const EXTurl:string     = "http"+EXTsecure+"://"+EXTdomain+":"+EXTport+EXTroot+EXTfolder;
 
