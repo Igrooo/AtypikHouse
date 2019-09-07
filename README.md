@@ -1,5 +1,3 @@
-Cf. ah-app-angular/atypikhouse/README.md
-
 # AtypikHouse - Plan
 ## Public (visiteur) :
 * Voir infos Atipik House
