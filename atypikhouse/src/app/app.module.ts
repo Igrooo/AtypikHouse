@@ -24,7 +24,7 @@ import { HomePage }         from './pages/page-home/home.component';
 import { DemoPage }         from './pages/page-demo/demo.component';
 import { DemoTypoPage }     from './pages/page-demo/demo-typo/demo-typo.component';
 import { ExternalPage }     from './pages/page-ext/ext.component';
-//import { AllPage }        from './pages/page-all/all.component';
+import { AllPage }        from './pages/page-all/all.component';
 
 
 //import all elems
@@ -64,7 +64,7 @@ const routes : Routes = [
   { path: '', component: HomePage },                           // Home
   { path: 'demo', component: DemoPage },                       // Angular Material components base
   { path: 'demo-typo', component: DemoTypoPage },              // Fonts components base
-  //{ path: 'all', component: AllPage },                         // AtypikHouse components base
+  { path: 'all', component: AllPage },                         // AtypikHouse components base
   
   //List Pages (add search module in this ?)
   //{ path: 'houses', component: HousesPage },                 // List all houses
@@ -138,7 +138,7 @@ const routes : Routes = [
     AppComponent,
     HomePage,
     ExternalPage,
-    //AllPage,
+    AllPage,
     DemoPage,
     DemoTypoPage,
     //HouseComponent,

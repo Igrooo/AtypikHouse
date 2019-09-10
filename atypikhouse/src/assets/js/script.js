@@ -1,6 +1,5 @@
 // jQuery scripts for UI
-function switchTheme(){
-  console.log( 'click!' );
+function UIswitchTheme(){
   if($('body').hasClass('ah-theme-dark')){
     $('meta[name="theme-color"]').attr('content', 'light');
     $('body').removeClass('ah-theme-dark').addClass('ah-theme-light');
@@ -9,6 +8,12 @@ function switchTheme(){
     $('meta[name="theme-color"]').attr('content', 'dark');
     $('body').removeClass('ah-theme-light').addClass('ah-theme-dark');
   }
+}
+
+function UIswitchSidenav(){
+  console.log('open nav');
+  $('#sidenav').toggleClass('open');
+  $('#sidenav-cta').toggleClass('open');
 }
 
 setTimeout(function() {

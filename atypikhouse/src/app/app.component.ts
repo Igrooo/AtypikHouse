@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { MatSnackBar } from "@angular/material";
-declare const switchTheme: any;
+declare const UIswitchTheme: any;
+declare const UIswitchSidenav: any;
 
 @Component({
   selector: 'app-root',
@@ -9,8 +10,11 @@ declare const switchTheme: any;
 })
 export class AppComponent {
 
-  onClick() {
-    switchTheme();
+  toggleTheme() {
+    UIswitchTheme();
+  }
+  toggleSidenav() {
+    UIswitchSidenav();
   }
 
   constructor(private snackBar: MatSnackBar) {

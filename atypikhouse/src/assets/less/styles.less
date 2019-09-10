@@ -69,6 +69,7 @@
         left: calc(50% - 144px / 2);
         top: calc(50% - 144px / 2);
         padding: 15px 20px 25px;
+        opacity: 0;
     }
     .ah-loader-triangle{
         width: 0;
@@ -105,27 +106,23 @@
         position: relative;
         overflow: hidden;
     }
-
     .ah-header,
     .ah-footer{
         padding: 0 @ah-padding-primary;
         width: calc(100% - @ah-padding-primary * 2 );
     }
-    .ah-header{
-        position: fixed;
-    }
-
     .ah-header-wrap,
     .ah-footer-wrap,
     .ah-container-main{
-        max-width: 900px;
+        max-width: 1000px;
         margin: auto;
     }
+    .ah-nav-sidenav,
     .ah-container-main{
-        margin-top: 64px;
-        margin-bottom: 64px;
+        margin-top: 56px;
+        margin-bottom: 56px;
         padding: @ah-padding-primary;
-        min-height: calc(100vh - 64px - 64px - @ah-padding-primary * 2);
+        min-height: calc(100vh - 56px - 56px - @ah-padding-primary * 2);
     }
 
     .ah-section{
@@ -138,6 +135,12 @@
 /*********************/
 /****** HEADER *******/
 /*********************/
+    .ah-header{
+        position: fixed;
+    }
+    .ah-header-title{
+        display: none;
+    }
 
 
 /*********************/
@@ -150,6 +153,7 @@
         font-family: @ah-font-family-title;
         font-size: @ah-font-size-title;
         text-transform: uppercase;
+        display: block;
     }
     h2,
     .ah-ext-entry-title,
@@ -165,15 +169,22 @@
     }
     .ah-subtitle-h5{
         font-size: @ah-font-size-subtitle-h5;
-        text-transform: capitalize;
     }
     .ah-subtitle-h6{
         font-size: @ah-font-size-subtitle-h6;
+        text-transform: capitalize;
     }
     
 /*********************/
-/******** CTA ********/
+/****CTA & LINKS *****/
 /*********************/
+    .ah-link{
+        text-decoration: none;
+    }
+    .ah-link:hover{
+        text-decoration: underline;
+    }
+
     /* CTA in overlay (fixed position to bottom)*/
     .ah-overlay-cta-primary {
         position: fixed;
@@ -193,14 +204,65 @@
 /*********************/
 /***** NAV & LIST ****/
 /*********************/
+    .ah-nav-primary,
+    .ah-nav-secondary {
+        display: inline-block;
+        vertical-align: bottom;
+        .list-menu,
+        .list-inline{
+            list-style-type: none;
+            margin: 0;
+            li{
+                vertical-align: middle;
+            }
+        }
+    }
+    .ah-header-nav-primary,
+    .ah-footer-nav-secondary {
+        margin-left: auto;
+    }
+
     .ah-nav-sticky{
         position: sticky;
         top: 0;
-
     }
-    .ah-nav-page{
+    .ah-nav-sidenav{
         position: absolute;
+        overflow: hidden;
+        visibility: hidden;
+        top: 0;
+        width: 0;
+        opacity: 0;
+        z-index: 1000;
+        margin-left: -@ah-padding-primary;
+        padding: @ah-padding-primary 0;
+        transition: width 250ms ease-in-out,  opacity 100ms linear;
     }
+    .ah-nav-sidenav.open{
+        visibility: visible;
+        opacity: 1;
+        width: 300px;
+        padding: @ah-padding-primary;
+        transition: width 250ms ease-in-out,  opacity 100ms linear;
+    }
+    #sidenav-cta{
+        padding: 0;
+        margin-right: @ah-padding-primary;
+        .mat-icon{
+            transform: scale(1.8);
+        }
+        .mat-button-wrapper .mat-icon:last-child{
+            display: none;
+        }
+        &.open{
+            .mat-button-wrapper .mat-icon:last-child{
+                display: inline-block;
+            }
+            .mat-button-wrapper .mat-icon:first-child{
+                display: none;
+            }
+        }
+    } 
 
 // grid
 
@@ -218,12 +280,6 @@
     .ah-footer{
         position: absolute;
         bottom: 0;
-        .ah-footer-nav-primary {
-            margin-bottom: 0;
-        }
-        .ah-footer-nav-secondary {
-            margin-left: auto;
-        }
     }
 
 /*********************/
@@ -233,6 +289,20 @@
 /*********************/
 /*** MEDIA QUERIES ***/
 /*********************/
+    .not-desktop{
+        display: none;
+    }
+    .not-mobile{
+        display: inline-block;
+    }
+    @media screen and (max-width: 800px) {
+        .not-mobile{
+            display: none;
+        }
+        .not-desktop{
+            display: inline-block;
+        }
+    }
 }
 
 /* Colors */
