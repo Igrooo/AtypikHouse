@@ -7,7 +7,7 @@ import { GeolocationService } from "src/app/geolocation.service";
 @Component({
   selector: 'app-list',
   templateUrl: './list.component.html',
-  styleUrls: ['./list.component.less']
+  styles: []
 })
 export class ListComponent implements OnInit {
 

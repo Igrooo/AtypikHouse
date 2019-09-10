@@ -5,7 +5,7 @@ import { Category } from "src/app/logic/Category";
 @Component({
   selector: 'app-list-category',
   templateUrl: './list-category.component.html',
-  styleUrls: ['./list-category.component.less']
+  styles: []
 })
 export class ListCategoryComponent implements OnInit {
 

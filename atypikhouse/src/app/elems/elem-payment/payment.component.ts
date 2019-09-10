@@ -4,7 +4,7 @@ import { Payment } from 'src/app/logic/Payment';
 @Component({
   selector: 'app-payment',
   templateUrl: './payment.component.html',
-  styleUrls: ['./payment.component.less']
+  styles: []
 })
 export class PaymentComponent implements OnInit {
   payment : Payment;

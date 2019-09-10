@@ -8,7 +8,7 @@ import { DataService } from "src/app/data.service";
 @Component({
   selector: 'app-house',
   templateUrl: './form-house.component.html',
-  styleUrls: ['./form-house.component.less']
+  styles: []
 })
 export class FormHouseComponent implements OnInit {
 

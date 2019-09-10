@@ -4,7 +4,7 @@ import { Pic } from 'src/app/logic/Pic';
 @Component({
   selector: 'app-pic',
   templateUrl: './pic.component.html',
-  styleUrls: ['./pic.component.less']
+  styles: []
 })
 export class PicComponent implements OnInit {
   pic : Pic;

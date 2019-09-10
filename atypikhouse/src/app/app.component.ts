@@ -6,7 +6,7 @@ declare const UIswitchSidenav: any;
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.less']
+  styles: []
 })
 export class AppComponent {
 

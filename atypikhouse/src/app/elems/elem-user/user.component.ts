@@ -4,7 +4,7 @@ import { User } from 'src/app/logic/User';
 @Component({
   selector: 'app-user',
   templateUrl: './user.component.html',
-  styleUrls: ['./user.component.less']
+  styles: []
 })
 export class UserComponent implements OnInit {
   user : User;

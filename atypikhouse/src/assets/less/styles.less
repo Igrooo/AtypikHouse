@@ -21,7 +21,7 @@
     100% { transform:rotate(0deg); } 
 }
 
-//body // remove global class .ah in html to disable theme
+//body // remove global class .ah in html to disable theme layout
 .ah {
     margin: 0;
     font-family: @ah-font-family-text;
@@ -224,6 +224,11 @@
                 margin-bottom: @ah-padding-primary;
             }
         }
+        .list-menu-bottom{
+            position: absolute;
+            bottom: 0;
+            width: calc(100% - @ah-padding-primary * 2)
+        }
     }
     .ah-header-nav-primary,
     .ah-footer-nav-secondary {
@@ -245,13 +250,19 @@
         margin-left: -@ah-padding-primary;
         padding: @ah-padding-primary 0;
         transition: width 250ms ease-in-out,  opacity 100ms linear;
+        & *{
+            opacity: 0;
+            transition: opacity 300ms linear;
+        }
     }
     .ah-nav-sidenav.open{
         visibility: visible;
         opacity: 1;
         width: 300px;
         padding: @ah-padding-primary;
-        transition: width 250ms ease-in-out,  opacity 100ms linear;
+        & *{
+            opacity: 1;
+        }
     }
     #sidenav-cta{
         padding: 0;

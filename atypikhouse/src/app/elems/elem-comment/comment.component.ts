@@ -3,7 +3,7 @@ import { Comment } from "src/app/logic/Comment";
 @Component({
   selector: 'app-comment',
   templateUrl: './comment.component.html',
-  styleUrls: ['./comment.component.less']
+  styles: []
 })
 export class CommentComponent implements OnInit {
   comment: Comment;

@@ -4,7 +4,7 @@ import { Category } from "src/app/logic/Category";
 @Component({
   selector: 'app-category',
   templateUrl: './category.component.html',
-  styleUrls: ['./category.component.less']
+  styles: []
 })
 
 export class CategoryComponent implements OnInit {

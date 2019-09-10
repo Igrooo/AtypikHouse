@@ -11,9 +11,9 @@ function UIswitchTheme(){
 }
 
 function UIswitchSidenav(){
-  console.log('open nav');
   $('#sidenav').toggleClass('open');
   $('#sidenav-cta').toggleClass('open');
+  $('.ah-container-main').toggleClass('sidenav-overlay');
 }
 
 setTimeout(function() {

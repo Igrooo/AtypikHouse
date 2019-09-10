@@ -1,4 +1,5 @@
-.ah{
+//body // remove global class .ah-theme in html to disable color theme
+.ah-theme{
 /*******************/
 /*** COLOR THEME ***/
 /*******************/
@@ -43,7 +44,13 @@
         border-color: @ah-container-back-color-secondary;
     }
 
-    .ah-nav-sidenav,
+    .ah-nav-sidenav{
+        background-color: fade(darken(@ah-background-color-primary, 5%), 90%);
+    }
+    .sidenav-overlay{
+        opacity: 0.2;
+        filter: blur(5px);
+    }
     .ah-header,
     .ah-footer{
         background-color: darken(@ah-background-color-primary, 5%);

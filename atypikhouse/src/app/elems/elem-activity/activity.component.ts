@@ -4,7 +4,7 @@ import { Activity } from "src/app/logic/Activity";
 @Component({
   selector: 'app-activity',
   templateUrl: './activity.component.html',
-  styleUrls: ['./activity.component.less']
+  styles: []
 })
 
 export class ActivityComponent implements OnInit {
