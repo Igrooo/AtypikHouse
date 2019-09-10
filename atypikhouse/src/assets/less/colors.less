@@ -2,32 +2,47 @@
 /*******************/
 /*** COLOR THEME ***/
 /*******************/
-    // Common colors il all themes
-    //Toggle in body to switch theme // switch black to white in 
-    &.ah-theme-dark,
-    &.ah-theme-light{
-        .ah-link{
-            color: @ah-link-font-color-primary;
-        }
-    }
     // Variants
     &.ah-theme-dark {
         color: @ah-font-color-primary;
         background-color: @ah-background-color-primary;
+        h2,
+        .ah-ext-entry-title,
         .ah-title{
             border-color: darken(@ah-font-color-primary, 20%);
         }
-
     }
+    
     // Revert white & black on light theme
     &.ah-theme-light {
         color: @ah-background-color-primary;
         background-color: @ah-font-color-primary;
+        h2,
+        .ah-ext-entry-title,
         .ah-title{
             border-color: lighten(@ah-background-color-primary, 20%);
         }
     }
-    
+
+    // Common colors il all themes
+    //Toggle in body to switch theme // switch black to white in 
+
+    .ah-link{
+        color: @ah-link-font-color-primary;
+    }
+    .ah-loader-triangle{
+        &.ah-loader-triangle-back{
+            border-bottom-color: darken(@ah-background-color-primary, 5%);
+        }
+        &.ah-loader-triangle-border{
+            border-bottom-color: @ah-container-back-color-secondary;
+        }
+    }
+    .ah-loader-icon{
+        color: @ah-cta-back-color-primary;
+        border-color: @ah-container-back-color-secondary;
+    }
+
     .ah-header,
     .ah-footer{
         background-color: darken(@ah-background-color-primary, 5%);
@@ -40,5 +55,8 @@
     }
     .ah-nav-sticky{
         background-color: @ah-cta-back-color-primary;
+    }
+    hr{
+        color: @ah-cta-back-color-primary;
     }
 }

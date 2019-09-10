@@ -7,18 +7,42 @@
   </div>
 
 </header>
+<nav class="ah-nav-page ah-nav-secondary">
+  Aside nav
+  <mat-card-title class="ah-title ah-subtitle-h4"><a class="ah-link ah-link-secondary" href="/news">Actualités</a></mat-card-title>
+  <mat-card-title class="ah-title ah-subtitle-h4"><a class="ah-link ah-link-secondary" href="/help">Aide</a></mat-card-title>
+</nav>
 
-<div class="ah-container-main">
+<div class="ah-container-main ah-loading ah-loading-overlay">
   <router-outlet></router-outlet>
+  <div class="ah-loader">
+    <div class="ah-loader-container">
+      <!--
+        <div class="ah-loader-triangle ah-loader-triangle-border"></div>
+        <div class="ah-loader-triangle ah-loader-triangle-back"></div>
+        <div class="ah-loader-logo"></div>
+      -->
+        <i class="ah-loader-icon la la-leaf"></i>
+    </div>
+  </div>
 </div>
 
 <footer class="ah-footer">
   <div class="ah-footer-wrap">
     <mat-toolbar color="background" class="ah-nav-secondary">
-      <mat-card-title class="ah-title ah-subtitle-h4"><a class="ah-link ah-link-secondary" href="">Footer</a></mat-card-title>
-      <mat-card-actions>
+      <ul class="list-inline ah-footer-nav-primary">
+        <li><mat-card-title class="ah-title ah-subtitle-h3"><a class="ah-link ah-link-secondary" href="/all">all</a></mat-card-title></li>
+        <li><mat-card-title class="ah-title ah-subtitle-h3"><a class="ah-link ah-link-secondary" href="/demo">demo</a></mat-card-title></li>
+        <li><mat-card-title class="ah-title ah-subtitle-h3"><a class="ah-link ah-link-secondary" href="/demo-typo">demo-typo</a></mat-card-title></li>
+        <li><mat-card-title class="ah-title ah-subtitle-h3"><a class="ah-link ah-link-secondary" href="/about">À propos</a></mat-card-title></li>
+        <li><mat-card-title class="ah-title ah-subtitle-h3"><a class="ah-link ah-link-secondary" href="/blog">Blog</a></mat-card-title></li>
+        <li><mat-card-title class="ah-title ah-subtitle-h3"><a class="ah-link ah-link-secondary" href="/support">Support</a></mat-card-title></li>
+        <li><mat-card-title class="ah-title ah-subtitle-h3"><a class="ah-link ah-link-secondary" href="/faq">FAQ</a></mat-card-title></li>
+        <li><mat-card-title class="ah-title ah-subtitle-h3"><a class="ah-link ah-link-secondary" href="/cgu">CGU</a></mat-card-title></li>
+      </ul>
+      <mat-card-actions class="ah-footer-nav-secondary">
           <button (click)="onClick()" class="ah-cta-primary" mat-button><mat-icon>brightness_6</mat-icon></button>
-      </mat-card-actions>
+        </mat-card-actions>
     </mat-toolbar>
   </div>
 </footer>

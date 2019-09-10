@@ -11,9 +11,9 @@ function switchTheme(){
   }
 }
 
+setTimeout(function() {
 // Load external data
-if($("#app-ext-data")){
-  setTimeout(function() {
+if($('#app-ext-data').length){
     var datasrc  = $('#app-ext-data').attr('data-src');
     var datafile = $('#app-ext-data').attr('data-list');
     var datatype = $('#app-ext-data').attr('data-type');
@@ -25,20 +25,23 @@ if($("#app-ext-data")){
     $.ajax({
       dataType: datatype,
       url: datafile,
-      type: "GET",
+      type: 'GET',
       data: { get_param: datapage },
       success: function (data) {
         $.each(data, function (index, data) {
-          if("/"+index === datapage){
+          if('/'+index === datapage){
             var datasource = datasrc+data+datapage;
             console.log('load '+datapage+' of '+data);
-            $( "#app-ext-data" ).load( datasource+" #ah-ext-content" );
+            $( '#app-ext-data' ).load( datasource+' #ah-ext-content' );
+            $( '.ah-container-main' ).removeClass('ah-loading');
           }
-      })
+        })
       },
       error: function (xhr, error) {
         console.log('error load '+datafile, xhr, error);
       }
     });
-  }, 2000);
-}
+  }else{
+    $( '.ah-container-main' ).removeClass('ah-loading');
+  }
+}, 2000);

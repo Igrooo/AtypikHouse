@@ -13,7 +13,7 @@ const EXTurl:string     = "http"+EXTsecure+"://"+EXTdomain+":"+EXTport+EXTroot+E
 const EXTlist:string     = EXTurl+"ext.json";
 const EXTlisttype:string = "json";
 
-const EXTloader:string  = `<div id="app-ext-data" data-list="`+EXTlist+`" data-type="`+EXTlisttype+`" data-src="`+EXTurl+`" class="ah-loading ah-loading-overlay"></div>`; 
+const EXTloader:string  = `<div id="app-ext-data" data-list="`+EXTlist+`" data-type="`+EXTlisttype+`" data-src="`+EXTurl+`"></div>`; 
 //assets/js/script.js
 
 @Component({
