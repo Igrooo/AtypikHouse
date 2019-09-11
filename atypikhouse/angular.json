@@ -31,7 +31,12 @@
             "styles": [
               "src/assets/less/styles.less"
             ],
-            "scripts": ["src/assets/js/script.js"]
+            "scripts": [
+              "src/assets/js/script.js",
+              "src/assets/js/ui.js",
+              "src/assets/js/icons.js",
+              "src/assets/js/data.js"
+            ]
           },
           "configurations": {
             "production": {
@@ -91,7 +96,12 @@
             "styles": [
               "src/assets/less/styles.less"
             ],
-            "scripts": []
+            "scripts": [
+              "src/assets/js/script.js",
+              "src/assets/js/ui.js",
+              "src/assets/js/icons.js",
+              "src/assets/js/data.js"
+            ]
           }
         },
         "lint": {

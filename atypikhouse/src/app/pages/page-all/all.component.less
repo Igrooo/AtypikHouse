@@ -14,17 +14,13 @@ app-all,
 }
 
 // THEME VARIANTS
-.ah-theme-dark {
-    .app-all{
-        .ah-container-demo{
-            border-bottom: @ah-margin-primary @ah-font-color-primary solid;
-        }
-    }
+
+.app-all-child{
+    border-bottom: @ah-margin-primary * 2 @ah-font-color-primary solid;
 }
+
 .ah-theme-light{
-    .app-all{
-        .ah-container-demo{
-            border-bottom: @ah-margin-primary @ah-background-color-primary solid;
-        }
+    .app-all-child{
+        border-color: @ah-background-color-primary;
     }
 }

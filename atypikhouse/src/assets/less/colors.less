@@ -4,6 +4,7 @@
 /*** COLOR THEME ***/
 /*******************/
     // Variants
+    // Toggle in body to switch theme dark to light
     &.ah-theme-dark {
         color: @ah-font-color-primary;
         background-color: @ah-background-color-primary;
@@ -24,10 +25,28 @@
             border-color: lighten(@ah-background-color-primary, 20%);
         }
     }
+    // Icons colors variants //
+    &.ah-theme-dark{
+        .ah-icon-asset{
+            //black to white //
+            filter: invert(1);
+        }
+        .ah-tag:not(.tag-with-color),
+        .ah-icon.icon-without-color,
+        .ah-icon.icon-tiny{
+            border-color: fade(@ah-font-color-primary,80%);
+        }
+    }
+    &.ah-theme-light{
+        .ah-tag:not(.tag-with-color),
+        .ah-icon.icon-without-color,
+        .ah-icon.icon-tiny{
+            border-color:  fade(@ah-background-color-primary,80%);
+        }
+    }
+
 
     // Common colors il all themes
-    //Toggle in body to switch theme // switch black to white in 
-
     .ah-link{
         color: @ah-link-font-color-primary;
     }

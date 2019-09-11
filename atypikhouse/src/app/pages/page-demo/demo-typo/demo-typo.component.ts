@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 @Component({
   selector: 'app-demo-typo',
   templateUrl: './demo-typo.component.html',
-  styles: []
+  styleUrls: ['./demo-typo.component.less']
 })
 export class DemoTypoPage implements OnInit {
 

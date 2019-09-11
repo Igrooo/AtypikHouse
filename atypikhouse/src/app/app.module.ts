@@ -20,12 +20,12 @@ import { HttpClientModule } from "@angular/common/http";
 //import { WordingTXT } from 'src/data/lang/'+lang+'/txt';
 
 // Imports all pages
-import { HomePage }         from './pages/page-home/home.component';
-import { DemoPage }         from './pages/page-demo/demo.component';
-import { DemoTypoPage }     from './pages/page-demo/demo-typo/demo-typo.component';
-import { ExternalPage }     from './pages/page-ext/ext.component';
+import { HomePage }       from './pages/page-home/home.component';
+import { DemoPage }       from './pages/page-demo/demo.component';
+import { DemoTypoPage }   from './pages/page-demo/demo-typo/demo-typo.component';
+import { DemoIconsPage }  from './pages/page-demo/demo-icons/demo-icons.component';
+import { ExternalPage }   from './pages/page-ext/ext.component';
 import { AllPage }        from './pages/page-all/all.component';
-
 
 //import all elems
 //import { HouseComponent }        from './elems/elem-house/house.component';
@@ -64,6 +64,7 @@ const routes : Routes = [
   { path: '', component: HomePage },                           // Home
   { path: 'demo', component: DemoPage },                       // Angular Material components base
   { path: 'demo-typo', component: DemoTypoPage },              // Fonts components base
+  { path: 'demo-icons', component: DemoIconsPage },            // AtypikHouse icons base
   { path: 'all', component: AllPage },                         // AtypikHouse components base
   
   //List Pages (add search module in this ?)
@@ -141,6 +142,7 @@ const routes : Routes = [
     AllPage,
     DemoPage,
     DemoTypoPage,
+    DemoIconsPage,
     //HouseComponent,
     //ActivityComponent,
     //BookingComponent,

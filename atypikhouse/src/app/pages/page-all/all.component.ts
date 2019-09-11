@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 @Component({
   selector: 'app-all',
   templateUrl: './all.component.html',
-  styles: []
+  styleUrls: ['./all.component.less']
 })
 
 export class AllPage implements OnInit {

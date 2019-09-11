@@ -8,8 +8,6 @@
       <nav class="ah-nav-primary ah-header-nav-primary">
         <ul class="list-inline">
           <li class="not-mobile"><a class="ah-title ah-subtitle-h3 ah-link ah-link-secondary" href="/categories"><mat-icon>search</mat-icon> Explorer</a></li>
-          <li class="not-mobile"><a class="ah-title ah-subtitle-h3 ah-link ah-link-secondary" href="/news"><mat-icon>new_releases</mat-icon> Actualités</a></li>
-          <li class="not-mobile"><a class="ah-title ah-subtitle-h3 ah-link ah-link-secondary" href="/help"><mat-icon>help</mat-icon> Aide</a></li>
           <li><button (click)="login()" class="ah-cta-primary" mat-button><mat-icon>person</mat-icon> Se connecter</button></li>
         </ul>
       </nav>
@@ -54,9 +52,11 @@
       </nav>
       <nav class="ah-nav-secondary ah-footer-nav-secondary">
         <ul class="list-inline">
-          <li><a class="ah-title ah-subtitle-h4 ah-link ah-link-secondary" href="/all">all</a></li>
-          <li><a class="ah-title ah-subtitle-h4 ah-link ah-link-secondary" href="/demo">demo</a></li>
-          <li><a class="ah-title ah-subtitle-h4 ah-link ah-link-secondary" href="/demo-typo">demo-typo</a></li>
+          <li class="hide"><a class="ah-title ah-subtitle-h4 ah-link ah-link-secondary" href="/all">all</a></li>
+          <li class="hide"><a class="ah-title ah-subtitle-h4 ah-link ah-link-secondary" href="/demo">demo</a></li>
+          <li class="hide"><a class="ah-title ah-subtitle-h4 ah-link ah-link-secondary" href="/demo-typo">demo-typo</a></li>
+          <li class="not-mobile"><a class="ah-title ah-subtitle-h4 ah-link ah-link-secondary" href="/news"><mat-icon>new_releases</mat-icon> Actualités</a></li>
+          <li class="not-mobile"><a class="ah-title ah-subtitle-h4 ah-link ah-link-secondary" href="/help"><mat-icon>help</mat-icon> Aide</a></li>
           <li><button (click)="toggleTheme()" class="ah-cta-primary" mat-button><mat-icon>brightness_6</mat-icon></button></li>
         </ul>
       </nav>
