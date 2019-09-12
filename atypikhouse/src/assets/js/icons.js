@@ -3,30 +3,57 @@ $(function() {
     var iconsSet    = 'assets/icons/travel-set/';
     var iconsType   = 'svg';
     var backgFolder = 'assets/img/bg/';
+
     $('.ah-icon').each(function() {
-        var icon  = $(this).attr('data-icon'); 
-        var group = $(this).attr('data-group');
-        var color = $(this).attr('data-color');
-        var backg = $(this).attr('data-backg');
+        var icon = $(this);
+        var iconName = icon.attr('data-icon'); 
+        var group = icon.attr('data-group');
+        var color = icon.attr('data-color');
+        var backg = icon.attr('data-backg');
         if(backg != undefined && backg.length != 0){
-            $(this).css('background-image', 'url('+backgFolder+backg+'.png)');
-        }
-        if(color != undefined && color.length != 0){
-            $(this).css('background-color', color);
+            icon.css('background-image', 'url('+backgFolder+backg+'.png)');
         }
         else{
-            $(this).addClass('icon-without-color');
+            icon.addClass('icon-without-backg');
         }
-        $(this).append('<img class="ah-icon-asset" src="'+iconsSet+group+'/'+icon+'.'+iconsType+'" alt="'+icon+'">');
-    });
-    $('ah-tag').each(function() {
-        var icon  = $(this).attr('data-icon'); 
-        var group = $(this).attr('data-group');
-        var color = $(this).attr('data-color');
         if(color != undefined && color.length != 0){
-            $(this).css('background-color', color);
-            $(this).addClass('tag-with-color');
+            icon.css('background-color', color);
+        }else{
+            icon.addClass('icon-without-color');
         }
-        //(this).append('<img class="ah-icon-asset" src="'+iconsSet+group+'/'+icon+'.'+iconsType+'" alt="'+icon+'">');
+        var title  = icon.attr('data-title');
+        if(title != undefined && title.length != 0){
+            title = '<span class="icon-title">'+title+'</span>';
+        }
+        else{
+            title = '';
+        }
+        if(icon.hasClass('icon-card')){
+            var text   = icon.attr('data-text');
+            var marker = icon.attr('data-marker');
+            if(text != undefined && text.length != 0){
+                text = '<p class="ah-card-text ah-tiny">'+text+'</p>';
+            }else{
+                text = '';
+            }
+            if(marker != undefined && marker.length != 0){
+                marker = '<p class="ah-card-marker">'+marker+'</p>';
+            }else{
+                marker = '';
+            }
+            icon.append('<img class="ah-icon-asset" src="'+iconsSet+group+'/'+iconName+'.'+iconsType+'" alt="'+iconName+'"><div class="ah-card-content"><p class="ah-card-title ah-title ah-subtitle-h6">'+title+'</p>'+text+marker+'</div>');
+        }
+        else{
+            icon.append('<img class="ah-icon-asset" src="'+iconsSet+group+'/'+iconName+'.'+iconsType+'" alt="'+iconName+'">'+title);
+        }
+    });
+
+    $('.ah-tag').each(function() {
+        var tag = $(this);
+        var color = tag.attr('data-color');
+        if(color != undefined && color.length != 0){
+            tag.css('background-color', color);
+            tag.addClass('tag-with-color');
+        }
     });
 });

@@ -31,17 +31,35 @@
             //black to white //
             filter: invert(1);
         }
+        .ah-tag.tag-icon,
         .ah-tag:not(.tag-with-color),
         .ah-icon.icon-without-color,
         .ah-icon.icon-tiny{
             border-color: fade(@ah-font-color-primary,80%);
         }
+        .ah-tag.tag-icon{
+            .ah-icon{
+                background-color: @ah-background-color-primary;
+            }
+        }
+        .ah-card-content{
+            text-shadow: @ah-background-color-primary 1px 0 5px,  @ah-background-color-primary -1px 0 5px,  @ah-background-color-primary 0px 1px 5px, @ah-background-color-primary 0px -1px 5px;
+        }
     }
     &.ah-theme-light{
+        .ah-tag.tag-icon,
         .ah-tag:not(.tag-with-color),
         .ah-icon.icon-without-color,
         .ah-icon.icon-tiny{
-            border-color:  fade(@ah-background-color-primary,80%);
+            border-color:  fade(@ah-background-color-primary,70%);
+        }
+        .ah-tag.tag-icon{
+            .ah-icon{
+                background-color: @ah-font-color-primary;
+            }
+        }
+        .ah-card-content{
+            text-shadow: @ah-font-color-primary 1px 0 5px;
         }
     }
 
