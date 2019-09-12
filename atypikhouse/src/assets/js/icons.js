@@ -1,8 +1,8 @@
 // AtypikHouse Icons
 $(function() {
-    var iconsSet    = 'assets/icons/travel-set/';
+    var iconsSet    = '';
     var iconsType   = 'svg';
-    var backgFolder = 'assets/img/bg/';
+    var backgFolder = '';
 
     $('.ah-icon').each(function() {
         var icon = $(this);
