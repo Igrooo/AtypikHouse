@@ -1,16 +1,18 @@
+////////////////////////////////////////////////////
+////////////////////////// ATYPIKHOUSE COLOR THEME
+////////////////////////////////////////////////////
 //body // remove global class .ah-theme in html to disable color theme
 .ah-theme{
-/*******************/
-/*** COLOR THEME ***/
-/*******************/
+
     // Variants
     // Toggle in body to switch theme dark to light
     &.ah-theme-dark {
         color: @ah-font-color-primary;
         background-color: @ah-background-color-primary;
-        h2,
-        .ah-ext-entry-title,
-        .ah-title{
+        h3,
+        .ah-sidenav-link,
+        .ah-ext-entry-content h2,
+        .ah-subtitle-h3{
             border-color: darken(@ah-font-color-primary, 20%);
         }
     }
@@ -19,9 +21,11 @@
     &.ah-theme-light {
         color: @ah-background-color-primary;
         background-color: @ah-font-color-primary;
-        h2,
-        .ah-ext-entry-title,
-        .ah-title{
+        
+        h3,
+        .ah-sidenav-link,
+        .ah-ext-entry-content h2,
+        .ah-subtitle{
             border-color: lighten(@ah-background-color-primary, 20%);
         }
     }
@@ -31,10 +35,8 @@
             //black to white //
             filter: invert(1);
         }
-        .ah-tag.tag-icon,
         .ah-tag:not(.tag-with-color),
-        .ah-icon.icon-without-color,
-        .ah-icon.icon-tiny{
+        .ah-icon.icon-without-color{
             border-color: fade(@ah-font-color-primary,80%);
         }
         .ah-tag.tag-icon{
@@ -47,10 +49,9 @@
         }
     }
     &.ah-theme-light{
-        .ah-tag.tag-icon,
+
         .ah-tag:not(.tag-with-color),
-        .ah-icon.icon-without-color,
-        .ah-icon.icon-tiny{
+        .ah-icon.icon-without-color{
             border-color:  fade(@ah-background-color-primary,70%);
         }
         .ah-tag.tag-icon{
@@ -63,11 +64,28 @@
         }
     }
 
-
     // Common colors il all themes
+    .ah-container-secondary{
+        color: @ah-container-font-color-secondary;
+        background-color: @ah-container-back-color-secondary;
+    }
+    .ah-container-tertiary{
+        color: @ah-container-font-color-tertiary;
+        background-color: @ah-container-back-color-tertiary;
+    } 
     .ah-link{
         color: @ah-link-font-color-primary;
+        &.selected,
+        &.focus,
+        &.open,
+        &.current{
+            color: @ah-link-font-color-secondary;
+        }
+        &.external{
+            color: @ah-link-font-color-tertiary;
+        }
     }
+    //
     .ah-loader-triangle{
         &.ah-loader-triangle-back{
             border-bottom-color: darken(@ah-background-color-primary, 5%);
@@ -80,17 +98,16 @@
         color: @ah-cta-back-color-primary;
         border-color: @ah-container-back-color-secondary;
     }
-
+    //
     .ah-nav-sidenav{
         background-color: fade(darken(@ah-background-color-primary, 5%), 90%);
     }
-    .sidenav-overlay{
-        opacity: 0.2;
-        filter: blur(5px);
-    }
     .ah-header,
-    .ah-footer{
+    .ah-footer-top{
         background-color: darken(@ah-background-color-primary, 5%);
+    }
+    .ah-footer-sub{
+        background-color: fade(@ah-background-color-primary,80%);
     }
     .ah-cta-primary {
         background-color: @ah-cta-back-color-primary;
@@ -103,5 +120,14 @@
     }
     hr{
         color: @ah-cta-back-color-primary;
+    }
+
+    .ah-footer{
+        &:before{
+            background-color: @ah-container-back-color-tertiary;
+        }
+        &:after{
+            background-color: @ah-container-back-color-secondary;
+        }
     }
 }

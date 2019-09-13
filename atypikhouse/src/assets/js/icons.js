@@ -1,8 +1,8 @@
 // AtypikHouse Icons
 $(function() {
-    var iconsSet    = '';
+    var iconsSet    = 'assets/icons/travel-set/';
     var iconsType   = 'svg';
-    var backgFolder = '';
+    var backgFolder = 'assets/img/bg/';
 
     $('.ah-icon').each(function() {
         var icon = $(this);
@@ -33,15 +33,19 @@ $(function() {
             var marker = icon.attr('data-marker');
             if(text != undefined && text.length != 0){
                 text = '<p class="ah-card-text ah-tiny">'+text+'</p>';
+                icon.addClass('card-with-text');
             }else{
                 text = '';
+                icon.addClass('card-without-text');
             }
             if(marker != undefined && marker.length != 0){
                 marker = '<p class="ah-card-marker">'+marker+'</p>';
+                icon.addClass('card-with-marker');
             }else{
                 marker = '';
+                icon.addClass('card-without-marker');
             }
-            icon.append('<img class="ah-icon-asset" src="'+iconsSet+group+'/'+iconName+'.'+iconsType+'" alt="'+iconName+'"><div class="ah-card-content"><p class="ah-card-title ah-title ah-subtitle-h6">'+title+'</p>'+text+marker+'</div>');
+            icon.append('<img class="ah-icon-asset" src="'+iconsSet+group+'/'+iconName+'.'+iconsType+'" alt="'+iconName+'"><div class="ah-card-content"><p class="ah-card-title">'+title+'</p>'+text+marker+'</div>');
         }
         else{
             icon.append('<img class="ah-icon-asset" src="'+iconsSet+group+'/'+iconName+'.'+iconsType+'" alt="'+iconName+'">'+title);

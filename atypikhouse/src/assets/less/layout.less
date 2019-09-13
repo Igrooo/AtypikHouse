@@ -1,0 +1,517 @@
+////////////////////////////////////////////////////
+////////////////////////// ATYPIKHOUSE LAYOUT
+////////////////////////////////////////////////////
+
+// Animations
+@keyframes loader-spin {
+    0%{ transform:rotate(0deg);}
+    100% { transform:rotate(360deg); } 
+}
+
+@keyframes loader-spin-2 {
+    0%{ transform:rotate(0deg);}
+    80% { transform:rotate(240deg); } 
+    100% { transform:rotate(240deg); } 
+}
+
+@keyframes loader-spin-2-reverse {
+    0%{ transform:rotate(240deg);}
+    80% { transform:rotate(0deg); } 
+    100% { transform:rotate(0deg); } 
+}
+
+// Body // remove global class .ah in html to disable theme layout
+.ah {
+    margin: 0;
+    font-family: @ah-font-family-text;
+    font-size: @ah-font-size-root;
+
+////////////////////////////////////////////////////
+////////////////////////// RESET MATERIAL STYLES
+////////////////////////////////////////////////////
+    .mat-toolbar{
+        padding: 0 !important;
+        background-color:transparent;
+    }
+
+/*********************/
+/**** CONTAINERS *****/
+/*********************/
+    .ah-page{
+        min-height: 100vh;
+        position: relative;
+        overflow: hidden;
+    }
+    .ah-header,
+    .ah-footer{
+        width: 100%;
+    }
+    .ah-header-wrap,
+    .ah-footer-wrap{
+        padding: 0 @ah-padding-primary;
+    }
+    .ah-header-wrap,
+    .ah-footer-wrap,
+    .ah-container-main{
+        max-width: 1000px;
+        margin: auto;
+    }
+    .ah-nav-sidenav,
+    .ah-container-main{
+        margin-top: 56px;
+        margin-bottom: 56px;
+        padding: @ah-padding-primary;
+        min-height: calc(100vh - 56px - 56px - @ah-padding-primary * 2);
+    }
+    .ah-section,
+    .ah-container{
+        margin-bottom: @ah-container-margin-primary;
+    }
+    .ah-container-secondary{
+        padding: @ah-container-paddin-secondary;
+        margin-bottom: @ah-container-margin-secondary;
+    }
+    .ah-container-tertiary{
+        padding: @ah-container-paddin-tertiary;
+        margin-bottom: @ah-container-margin-tertiary;
+    }
+    .ah-child-primary{
+        padding: @ah-child-paddin-primary;
+        margin-bottom: @ah-child-margin-primary;
+    }
+    .ah-child-secondary{
+        padding: @ah-child-paddin-secondary;
+        margin-bottom: @ah-child-margin-secondary;
+    }
+    .ah-child-tertiary{
+        padding: @ah-child-paddin-tertiary;
+        margin-bottom: @ah-child-margin-tertiary;
+    }
+
+    .ah-slide{
+
+    }
+    
+/*********************/
+/****** HEADER *******/
+/*********************/
+    .ah-header{
+        position: fixed;
+        z-index: 1;
+    }
+    .ah-header-title{
+        display: none;
+    }
+    .ah-header-logo {
+        margin-top: -17px;
+    }
+
+
+/*********************/
+/*** HEADING & TEXT **/
+/*********************/
+    .ah-text{
+        font-size: @ah-font-size-text;
+    }
+    .ah-tiny{
+        font-size: @ah-font-size-tiny;
+        margin-bottom: 0;
+    }
+    h1,h2,h3,h4,h5,
+    .ah-subtitle,
+    .ah-subtitle-h3,
+    .ah-subtitle-h4,
+    .ah-header-link,
+    .ah-sidenav-link,
+    .ah-footer-link,
+    .ah-ext-entry-title,
+    .ah-title{
+        display: block;
+        font-family: @ah-font-family-title;
+        text-transform: uppercase;
+    }
+    h1:not(.ah-header-title),
+    h2,
+    .ah-ext-entry-title,
+    .ah-title:not(.ah-header-title){
+        font-size: @ah-font-size-title;
+        margin-bottom: @ah-padding-primary;
+        text-align: center;
+        font-weight: bolder;
+        margin-bottom: 0;
+        opacity: 0.5;
+    }
+    .ah-header-link,
+    .ah-ext-entry-content h2{
+        text-align: left;
+        opacity: 1;
+    }
+    h3,
+    .ah-sidenav-link,
+    .ah-ext-entry-content h2,
+    .ah-subtitle{
+        font-size: @ah-font-size-subtitle;
+        font-weight: lighter;
+        border-bottom: 1px transparent solid;
+        margin-bottom: 1em;
+    }
+    h4,
+    .ah-subtitle-h4{
+        font-size: @ah-font-size-subtitle-h4;
+    }
+    h5,
+    .ah-subtitle-h5{
+        font-size: @ah-font-size-subtitle-h5;
+        text-transform: capitalize;
+    }
+    h6,
+    .ah-subtitle-h6{
+        font-size: @ah-font-size-subtitle-h6;
+        text-transform: capitalize;
+        font-weight: normal;
+        margin-bottom: 0;
+        padding-left: 1rem;
+        & + * {
+            padding-left: 1rem;
+        }
+    }
+    
+/*********************/
+/****CTA & LINKS *****/
+/*********************/
+    .ah-link{
+        text-decoration: none;
+    }
+    .ah-link:hover{
+        text-decoration: underline;
+    }
+
+    /* CTA in overlay (fixed position to bottom)*/
+    .ah-overlay-cta-primary {
+        position: fixed;
+        right: @ah-padding-primary;
+        bottom: @ah-padding-primary;
+    }
+    /*
+    .ah-overlay-cta-primary-edit {
+
+    }
+    .ah-overlay-cta-primary-valid {
+    }
+    */
+    .ah-overlay-cta-primary-cancel {
+        left: @ah-padding-primary;
+        right: auto;
+    }
+
+/*********************/
+/***** NAV & LIST ****/
+/*********************/
+    .ah-nav-primary,
+    .ah-nav-secondary {
+        display: inline-block;
+        vertical-align: bottom;
+        .list-menu,
+        .list-inline{
+            list-style-type: none;
+            margin: 0;
+            li{
+                vertical-align: middle;
+            }
+        }
+        .list-menu{
+            li{
+                margin-bottom: @ah-padding-primary;
+            }
+        }
+        .list-menu-bottom{
+            position: absolute;
+            bottom: 0;
+            width: calc(100% - @ah-padding-primary * 2)
+        }
+    }
+    .ah-header-nav-primary,
+    .ah-footer-nav-secondary {
+        margin-left: auto;
+    }
+
+    .ah-nav-sticky{
+        position: sticky;
+        top: 0;
+    }
+    .ah-nav-sidenav{
+        position: absolute;
+        overflow: hidden;
+        visibility: hidden;
+        top: 0;
+        width: 0;
+        opacity: 0;
+        z-index: 1000;
+        margin-left: -@ah-padding-primary;
+        padding: @ah-padding-primary 0;
+        transition: width 250ms ease-in-out,  opacity 100ms linear;
+        & *{
+            opacity: 0;
+            transition: opacity 300ms linear;
+        }
+    }
+    .ah-nav-sidenav.open{
+        visibility: visible;
+        opacity: 1;
+        width: 300px;
+        padding: @ah-padding-primary;
+        & *{
+            opacity: 1;
+        }
+    }
+    #sidenav-cta{
+        padding: 0;
+        margin-right: @ah-padding-primary;
+        .mat-icon{
+            transform: scale(1.8);
+        }
+        .mat-button-wrapper .mat-icon:last-child{
+            display: none;
+        }
+        &.open{
+            .mat-button-wrapper .mat-icon:last-child{
+                display: inline-block;
+            }
+            .mat-button-wrapper .mat-icon:first-child{
+                display: none;
+            }
+        }
+    }
+    .sidenav-overlay{
+        opacity: 0.8;
+        filter: blur(8px);
+    }
+
+// Flex & Grid
+    .ah-flex-list{
+        display: flex;
+        flex-flow: row wrap;
+        justify-content: space-between;
+        &.flex-lines-to-left {
+            justify-content: flex-start;
+        }
+    }
+
+/*********************/
+/******* FORMS *******/
+/*********************/
+    .ah-form-fieldset {
+        border: none;
+        margin-top: @ah-margin-primary;
+    }
+
+/*********************/
+/****** FOOTER *******/
+/*********************/
+    .ah-footer{
+        position: absolute;
+        bottom: calc(-120px + -@ah-padding-primary * 2);
+        &:before,
+        &:after{
+            content: '';
+            position: absolute;
+            display: block;
+            width: 600px;
+            height: 600px;
+            top: 0;
+            z-index: -1;
+            opacity: 0.6;
+        }
+        &::before{
+            left: -170px;
+            transform: rotate(25deg) scale(1.4);
+        }
+        &:after{
+            right: -100px;
+            top: -130px;
+            transform: rotate(-40deg);
+        }
+        .ah-footer-sub{
+            height: 120px;
+            overflow: hidden;
+            padding: @ah-padding-primary 0;
+        }
+    }
+
+/*********************/
+/**** ICONS & TAGS ***/
+/*********************/
+    .ah-tag{
+        padding: 2px 5px;
+        &.tag-icon{
+            position: relative;
+            padding-left: 38px;
+            margin-bottom: 12px;
+            .ah-icon{
+                position: absolute;
+                top: -8px;
+                left: -6px;
+                margin: 0;
+                padding: 8px;
+                width: 40px;
+                height: 40px;
+                .ah-icon-asset{
+                    vertical-align: baseline;
+                }
+            }
+        }
+    }
+    .ah-icon,
+    .ah-tag{
+        display: inline-block;
+        box-sizing: border-box;
+        margin: 5px;
+        border: 2px transparent solid;
+        border-radius: 8px;
+    }
+
+    .ah-icon-asset{
+        opacity: 0.8;
+        width: 100%;
+        height: 100%;
+    }
+    .ah-icon{
+        position: relative;
+        overflow: hidden;
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center;
+        &.icon-card{
+            width: 320px;
+            height: 200px;
+            padding: 50px 110px;
+        }
+        &.icon-big{
+            width: 190px;
+            height: 190px;
+            padding: 60px;
+        }
+        &.icon-mid{
+            width: 100px;
+            height: 100px;
+            padding: 25px;
+        }
+        &.icon-tiny{
+            width: 50px;
+            height: 50px;
+            padding: 8px;
+            &.circle{
+                border-radius: 50%;
+            }
+        }
+        .ah-card-title{
+            margin-bottom: 0;
+        }
+        &:not(.icon-card) .icon-title,
+        .ah-card-content {
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 100%;
+            padding: 5px;
+            text-align: center;
+        }
+        .ah-card-content-text{
+            visibility: hidden;
+            opacity: 0;
+            height: 0;
+            overflow: hidden;
+        }
+        .ah-marker{
+            position: absolute;
+            right: 0;
+            top: 20px;
+        }
+    }
+    .ah-icon-inline-toolbar{
+        vertical-align: text-bottom;
+    }
+    .ah-icon-inline{
+        vertical-align: baseline;
+    }
+
+/*********************/
+/******* LOADER ******/
+/*********************/
+    .ah-loading-overlay{
+        &:not(.ah-loading) .ah-loader{
+            display: none;
+        }
+    }
+
+    .ah-loader,    
+    .ah-loader-triangle,
+    .ah-loader-logo,
+    .ah-loader-icon{
+        position: absolute;
+    }
+    .ah-loader{
+        left: calc(50% - 100px);
+        top: calc(50% - 100px);
+        .ah-loader-container{
+            position: relative;
+            width: 200px;
+            height: 173px;
+        }
+    }
+    .ah-loader-icon{
+        display: block;
+        animation:loader-spin 2s linear infinite;
+        border: 2px solid transparent;
+        border-radius: 50%;
+        font-size: 100px;
+        left: calc(50% - 144px / 2);
+        top: calc(50% - 144px / 2);
+        padding: 15px 20px 25px;
+        opacity: 0;
+    }
+    .ah-loader-triangle{
+        width: 0;
+        height: 0;
+        animation:loader-spin-2 3s linear infinite alternate;
+        &.ah-loader-triangle-back{
+            border-right : 90px solid transparent;
+            border-left : 90px solid transparent;
+            border-bottom : 156px solid transparent;
+            left:calc(50% -  90px);
+            top: 11px;
+            animation-name:loader-spin-2-reverse;
+            transform-origin: center 109px;
+        }
+        &.ah-loader-triangle-border{
+            border-right : 100px solid transparent;
+            border-left : 100px solid transparent;
+            border-bottom : 173px solid transparent;
+            transform-origin: center 115px;
+        }
+    }
+    .ah-loader-logo{
+        background: @ah-logo;
+        width: 100%;
+        height: 100%;
+    }
+
+/*********************/
+/*** MEDIA QUERIES ***/
+/*********************/
+    .hide,
+    .not-desktop{
+        display: none;
+    }
+    .not-mobile{
+        display: inline-block;
+    }
+    @media screen and (max-width: 800px) {
+        .not-mobile{
+            display: none;
+        }
+        .not-desktop{
+            display: inline-block;
+        }
+    }
+}
