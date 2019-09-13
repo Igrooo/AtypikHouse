@@ -3,7 +3,9 @@ $(function() {
     var iconsSet    = 'assets/icons/travel-set/';
     var iconsType   = 'svg';
     var backgFolder = 'assets/img/bg/';
-
+    var defaultColor = $('body').css('color');
+    var defaultBack  = $('body').css('background-color');
+    // Icons & Cards
     $('.ah-icon').each(function() {
         var icon = $(this);
         var iconName = icon.attr('data-icon'); 
@@ -11,7 +13,21 @@ $(function() {
         var color = icon.attr('data-color');
         var backg = icon.attr('data-backg');
         if(backg != undefined && backg.length != 0){
-            icon.css('background-image', 'url('+backgFolder+backg+'.png)');
+            $.ajax({
+                url: backgFolder+backg+'.png',
+                type:'HEAD',
+                error: function(){
+                    icon.addClass('icon-backg-not-found');
+                },
+                success: function(){
+                    if(icon.hasClass('ah-banner')){
+                        icon.css('background-image', 'url('+backgFolder+backg+'-banner.png)');
+                    }
+                    else{
+                        icon.css('background-image', 'url('+backgFolder+backg+'.png)');
+                    }
+                }
+            });
         }
         else{
             icon.addClass('icon-without-backg');
@@ -45,13 +61,21 @@ $(function() {
                 marker = '';
                 icon.addClass('card-without-marker');
             }
-            icon.append('<img class="ah-icon-asset" src="'+iconsSet+group+'/'+iconName+'.'+iconsType+'" alt="'+iconName+'"><div class="ah-card-content"><p class="ah-card-title">'+title+'</p>'+text+marker+'</div>');
+            icon.append('<img class="ah-icon-asset" src="'+iconsSet+group+'/'+iconName+'.'+iconsType+'" alt="'+iconName+'"><div class="ah-card-content"><p class="ah-card-title">'+title+'</p>'+text+'</div>'+marker);
         }
         else{
             icon.append('<img class="ah-icon-asset" src="'+iconsSet+group+'/'+iconName+'.'+iconsType+'" alt="'+iconName+'">'+title);
         }
     });
-
+    // Markers on cards
+    $('.icon-card:not(.icon-without-color):not(.card-without-marker)').each(function() {
+        var card = $(this);
+        var color = card.attr('data-color');
+        card.css('border-color', color);
+        card.find('.ah-card-marker').css('background-color', color);
+    });
+    
+    // Tags
     $('.ah-tag').each(function() {
         var tag = $(this);
         var color = tag.attr('data-color');
