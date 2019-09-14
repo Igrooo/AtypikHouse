@@ -1,4 +1,5 @@
 {
+    "_comment": "Connector route > module folder, need declare route to ExternalPage in app.module.ts {path: 'routename', component: ExternalPage}",
     "faq":      "wordpress",
     "support":  "wordpress",
     "news":     "wordpress",

@@ -4,7 +4,7 @@ import connection from '../modules/dbConnection';
 let houses = express.Router();
 let categoryID;
 
-houses.post('/houses', function (req, res) {
+houses.post('houses', function (req, res) {
 
     console.log(categoryID);
     categoryID = req.body.category;
