@@ -36,30 +36,32 @@
       <section role="search" class="ah-section-search">
         <div class="ah-header-wrap">
           <h2><i class="ah-title-icon-left la la-leaf"></i>Offrez-vous une nuit insolite<i class="ah-title-icon-right la la-leaf"></i></h2> 
-            <form class="ah-form-search">SEARCH</form>
+          <form class="ah-form-search">SEARCH</form>
         </div>
       </section>
     </section>
   </header>
 
   <main id="{{ pageid }}" role="main" class="ah-container-main not-ah-loading ah-loading-overlay {{ page }}-content">
-    <router-outlet></router-outlet>
-    <!--
-    <div class="ah-loader">
-      <div class="ah-loader-container">
-          <i class="ah-loader-icon la la-leaf"></i>
-      </div>
-    </div>
-  -->
+    <div class="content-wrap">
+      <router-outlet></router-outlet>
       <!--
-    <div class="ah-loader">
-      <div class="ah-loader-container">
-          <div class="ah-loader-triangle ah-loader-triangle-border"></div>
-          <div class="ah-loader-triangle ah-loader-triangle-back"></div>
-          <div class="ah-loader-logo"></div>
-      </div>
+        <div class="ah-loader">
+          <div class="ah-loader-container">
+            <i class="ah-loader-icon la la-leaf"></i>
+          </div>
+        </div>
+      -->
+      <!--
+        <div class="ah-loader">
+          <div class="ah-loader-container">
+            <div class="ah-loader-triangle ah-loader-triangle-border"></div>
+            <div class="ah-loader-triangle ah-loader-triangle-back"></div>
+            <div class="ah-loader-logo"></div>
+          </div>
+        </div>
+      -->
     </div>
-  -->
   </main>
 
   <footer id="footer" class="ah-footer">

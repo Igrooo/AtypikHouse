@@ -64,9 +64,9 @@
     }
     .ah-header-wrap,
     .ah-footer-wrap,
-    .ah-container-main{
+    .ah-content-wrap{
         position: relative;
-        max-width: 1200px;
+        max-width: 1320px;
         margin: auto;
     }
     .ah-nav-sidenav,
@@ -87,6 +87,7 @@
     }
     .ah-container-primary.lead{
         padding: @ah-container-paddin-primary;
+        padding-bottom: @ah-container-paddin-primary * 3;
         margin-left: -@ah-container-margin-primary / 2;
         margin-right: -@ah-container-margin-primary / 2;
     }
@@ -171,6 +172,7 @@
         overflow: hidden;
         padding: @ah-margin-primary;
         position: fixed;
+        background-image: url(../img/bg.png);
     }
     /*
     .ah-slide{
@@ -322,18 +324,24 @@
 /*********************/
 /***** NAV & LIST ****/
 /*********************/
+
+    .ah-nav-primary .list-menu,
+    .ah-nav-primary .list-inline,
+    .ah-nav-secondary .list-menu
+    .ah-nav-secondary .list-inline,
+    .ah-list-tags.list-inline,
+    .ah-flex-list{
+        list-style-type: none;
+        margin: 0;
+        li{
+            vertical-align: middle;
+        }
+    }
+    
     .ah-nav-primary,
     .ah-nav-secondary {
         display: inline-block;
         vertical-align: bottom;
-        .list-menu,
-        .list-inline{
-            list-style-type: none;
-            margin: 0;
-            li{
-                vertical-align: middle;
-            }
-        }
         .list-menu{
             li{
                 margin-bottom: @ah-padding-primary;
