@@ -9,30 +9,48 @@
     &.ah-theme-dark {
         color: @ah-font-color-primary;
         background-color: @ah-background-color-primary;
+        .ah-container-main{
+            color: @ah-font-color-primary;
+            background-color: @ah-background-color-primary;
+        }
         h3,
         .ah-sidenav-link,
         .ah-ext-entry-content h2,
         .ah-subtitle-h3{
             border-color: darken(@ah-font-color-primary, 20%);
         }
-        .ah-section-spaced,
-        .ah-section-demo{
-            border-color: fade(@ah-font-color-primary, 5%);
+        .ah-container-primary.lead{
+            background-color: fade(@ah-font-color-primary, 5%);
+        }
+        .ah-title-icon-left,
+        .ah-title-icon-right,
+        .ah-title-separator:before,
+        .ah-title-separator:after{
+            color: darken(@ah-font-color-primary, 20%);
         }
     }
     // Revert white & black on light theme
     &.ah-theme-light {
         color: @ah-background-color-primary;
         background-color: @ah-font-color-primary;
+        .ah-container-main{
+            color: @ah-background-color-primary;
+            background-color: @ah-font-color-primary;
+        }
         h3,
         .ah-sidenav-link,
         .ah-ext-entry-content h2,
         .ah-subtitle{
             border-color: lighten(@ah-background-color-primary, 20%);
         }
-        .ah-section-spaced,
-        .ah-section-demo{
-            border-color: fade(@ah-background-color-primary, 5%);
+        .ah-container-primary.lead{
+            background-color: fade(@ah-background-color-primary, 5%);
+        }
+        .ah-title-icon-left,
+        .ah-title-icon-right,
+        .ah-title-separator:before,
+        .ah-title-separator:after{
+            color: lighten(@ah-background-color-primary, 20%);
         }
     }
     // Icons colors variants //
@@ -122,7 +140,7 @@
     }
     .ah-container-tertiary{
         color: @ah-container-font-color-tertiary;
-        background-color: @ah-container-back-color-tertiary;
+        background-color: fade(darken(@ah-container-back-color-tertiary, 20%),80%);
     } 
     .ah-link{
         color: @ah-link-font-color-primary;
@@ -153,18 +171,39 @@
     .ah-nav-sidenav{
         background-color: fade(darken(@ah-background-color-primary, 5%), 90%);
     }
-    .ah-header,
+    .ah-header-top,
     .ah-footer-top{
         background-color: darken(@ah-background-color-primary, 5%);
     }
+    .ah-header-sup,
     .ah-footer-sub{
-        background-color: fade(@ah-background-color-primary,80%);
+        background-color: fade(@ah-background-color-primary,30%);
+    }
+    .ah-section-search{
+        border-top: 7px darken(@ah-cta-back-color-secondary,10%) solid;
+        color: @ah-container-font-color-secondary;
+    }
+    .important{
+        color: @ah-cta-back-color-primary !important;
+    }
+    .important .ah-title-icon-left,
+    .important .ah-title-icon-right,
+    .important.ah-title-separator:before,
+    .important.ah-title-separator:after{
+        color: darken(@ah-cta-back-color-primary, 10%);
     }
     .ah-cta-primary {
         background-color: @ah-cta-back-color-primary;
     }
+    .ah-cta-secondary {
+        background-color: darken(@ah-cta-back-color-secondary,10%);
+    }
+    .ah-cta-tertiary {
+        background-color: @ah-cta-back-color-tertiary;
+    }
+
     .ah-form-search {
-        background-color: @ah-background-color-secondary;
+        background-color: fade(@ah-background-color-primary,40%);
     }
     .ah-nav-sticky{
         background-color: @ah-cta-back-color-primary;
@@ -181,4 +220,5 @@
             background-color: @ah-container-back-color-secondary;
         }
     }
+    
 }

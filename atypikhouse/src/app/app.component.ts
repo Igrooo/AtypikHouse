@@ -9,6 +9,12 @@ declare const UIswitchSidenav: any;
   styles: []
 })
 export class AppComponent {
+  public title: string = 'atypikhouse';
+  public href: string = "";
+  public pageid: string = "";
+  public page: string = "";
+  public openSearchbox: string = "";
+  public randomBanner: number = Math.floor((Math.random() * 7) + 1);
 
   toggleTheme() {
     UIswitchTheme();
@@ -17,11 +23,31 @@ export class AppComponent {
     UIswitchSidenav();
   }
 
-  constructor(private snackBar: MatSnackBar) {
-  }
+  constructor(private snackBar: MatSnackBar) { }
 
-  title = 'atypikhouse';
   ngOnInit() {
+    this.href = window.location.pathname.substring(1); // remove '/'
+    if(this.href == ''){
+      this.pageid = 'home-'+this.title;
+      this.page = 'home';
+    }
+    else{
+      this.pageid = this.href.replace('/', '-');
+      if(this.href.indexOf('/') != -1){
+        this.page = this.href.substring(0,this.href.indexOf('/'));
+      }
+      else{
+        this.page = this.pageid;
+      }
+    }
+    if(this.page == 'home'){
+      this.openSearchbox = 'open-searchbox'
+    }else{
+
+    }
+    console.log(this.page);
+
+
     if ((navigator as any).standalone == false) {
       // This is an iOS device and we are in the browser
       this.snackBar.open("You can add this App to the Home Screen", "", {duration: 3000});

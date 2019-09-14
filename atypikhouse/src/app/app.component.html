@@ -1,51 +1,69 @@
 <!--The content below is only a placeholder and can be replaced.-->
-<div class="ah-page">
+<div class="ah-page ah-page-{{ page }} {{ openSearchbox }}">
   <header id="header" class="ah-header">
-    <div class="ah-header-wrap">
-      <mat-toolbar color="background">
-        <button id="sidenav-cta" (click)="toggleSidenav()" class="ah-cta-secondary not-desktop" mat-button><mat-icon>menu</mat-icon><mat-icon>menu_open</mat-icon></button>
-        <a class="ah-title ah-header-title ah-link ah-link-primary" href="/"><h1 class="ah-header-title">AtypikHouse</h1><img class="ah-header-logo" src="assets/img/logo.png" alt="AtypikHouse Logo"></a>
-        <nav class="ah-nav-primary ah-header-nav-primary">
-          <ul class="list-inline">
-            <!-- need hide in production -->
-            <li class="ah-tiny"><a class="ah-footer-link ah-link ah-link-secondary" href="/all">all</a></li>
-            <li class="ah-tiny"><a class="ah-footer-link ah-link ah-link-secondary" href="/demo">demo</a></li>
-            <li class="ah-tiny"><a class="ah-footer-link ah-link ah-link-secondary" href="/demo-typo">demo-typo</a></li>
-            <li class="ah-tiny"><a class="ah-footer-link ah-link ah-link-secondary" href="/demo-icons">demo-icons</a></li>
-            <li class="not-mobile"><a class="ah-header-link ah-link ah-link-secondary" href="/categories"><mat-icon class="ah-icon-inline-toolbar">landscape</mat-icon><span>Explorer</span></a></li>
-            <li><button (click)="searchbox()" class="ah-header-link ah-cta-secondary ah-nav-search current" mat-button><mat-icon>search</mat-icon><span>Chercher</span></button></li>
-            <li><button (click)="login()" class="ah-cta-primary" mat-button><mat-icon>person</mat-icon><span>Se connecter</span></button></li>
+    <section id="header-top" class="ah-header-top" role="navigation">
+      <div class="ah-header-wrap">
+        <mat-toolbar color="background">
+          <button id="sidenav-cta" (click)="toggleSidenav()" class="ah-cta-secondary not-desktop" mat-button><mat-icon>menu</mat-icon><mat-icon>menu_open</mat-icon></button>
+          <a class="ah-title ah-header-title ah-link ah-link-primary" href="/"><h1  class="ah-header-title">AtypikHouse</h1><img class="ah-header-logo" src="assets/img/logo.png" alt="AtypikHouse Logo"></a>
+          <nav class="ah-nav-primary ah-header-nav-primary">
+            <ul class="list-inline">
+              <!-- need hide in production -->
+              <li class="ah-tiny"><a class="ah-header-link ah-link ah-link-secondary" href="/all">all</a></li>
+              <li class="ah-tiny"><a class="ah-header-link ah-link ah-link-secondary" href="/demo">demo</a></li>
+              <li class="ah-tiny"><a class="ah-header-link ah-link ah-link-secondary" href="/demo-typo">demo-typo</a></li>
+              <li class="ah-tiny"><a class="ah-header-link ah-link ah-link-secondary" href="/demo-icons">demo-icons</a></li>
+              <li class="not-mobile"><a class="ah-header-link ah-link ah-link-secondary" href="/categories"><mat-icon class="ah-icon-inline-toolbar">landscape</mat-icon><span>Explorer</span></a></li>
+              <li><button (click)="searchbox()" class="ah-header-link ah-cta-secondary ah-cta-search-top current" mat-button><mat-icon>search</mat-icon><span>Chercher</span></button></li>
+              <li><button (click)="login()" class="ah-cta-primary" mat-button><mat-icon>person</mat-icon><span>Se connecter</span></button></li>
+            </ul>
+          </nav>
+        </mat-toolbar>
+        <nav id="sidenav" class="ah-nav-sidenav ah-nav-secondary not-desktop">
+          <ul class="list-menu">
+            <li><a class="ah-sidenav-link ah-link ah-link-secondary" href="/categories"><mat-icon class="ah-icon-inline-">landscape</mat-icon><span>Explorer</span></a></li>
+            <li><a class="ah-sidenav-link ah-link ah-link-secondary" href="/news">      <mat-icon class="ah-icon-inline-">new_releases</mat-icon><span>Actualités</span></a></li>
+          </ul>
+          <ul class="list-menu list-menu-bottom">
+              <li><a class="ah-sidenav-link ah-link ah-link-secondary" href="/help">      <mat-icon>help</mat-icon><span>Aide</span></a></li>
           </ul>
         </nav>
-      </mat-toolbar>
-      <nav id="sidenav" class="ah-nav-sidenav ah-nav-secondary not-desktop">
-        <ul class="list-menu">
-          <li><a class="ah-sidenav-link ah-link ah-link-secondary" href="/categories"><mat-icon class="ah-icon-inline-">landscape</mat-icon><span>Explorer</span></a></li>
-          <li><a class="ah-sidenav-link ah-link ah-link-secondary" href="/news">      <mat-icon class="ah-icon-inline-">new_releases</mat-icon><span>Actualités</span></a></li>
-        </ul>
-        <ul class="list-menu list-menu-bottom">
-            <li><a class="ah-sidenav-link ah-link ah-link-secondary" href="/help">      <mat-icon>help</mat-icon><span>Aide</span></a></li>
-        </ul>
-      </nav>
-    </div>
+      </div>
+    </section>
+    <section id="searchbox" class="ah-header-sup" role="navigation">
+      <section role="banner" class="ah-banner ah-banner-{{ randomBanner }}">
+      </section>
+      <section role="search" class="ah-section-search">
+        <div class="ah-header-wrap">
+          <h2><i class="ah-title-icon-left la la-leaf"></i>Offrez-vous une nuit insolite<i class="ah-title-icon-right la la-leaf"></i></h2> 
+            <form class="ah-form-search">SEARCH</form>
+        </div>
+      </section>
+    </section>
   </header>
 
-  <main role="main" class="ah-container-main ah-loading ah-loading-overlay">
+  <main id="{{ pageid }}" role="main" class="ah-container-main not-ah-loading ah-loading-overlay {{ page }}-content">
     <router-outlet></router-outlet>
+    <!--
     <div class="ah-loader">
       <div class="ah-loader-container">
-        <!--
-          <div class="ah-loader-triangle ah-loader-triangle-border"></div>
-          <div class="ah-loader-triangle ah-loader-triangle-back"></div>
-          <div class="ah-loader-logo"></div>
-        -->
           <i class="ah-loader-icon la la-leaf"></i>
       </div>
     </div>
+  -->
+      <!--
+    <div class="ah-loader">
+      <div class="ah-loader-container">
+          <div class="ah-loader-triangle ah-loader-triangle-border"></div>
+          <div class="ah-loader-triangle ah-loader-triangle-back"></div>
+          <div class="ah-loader-logo"></div>
+      </div>
+    </div>
+  -->
   </main>
 
   <footer id="footer" class="ah-footer">
-    <div id="footer-top" class="ah-footer-top">
+    <section id="footer-top" class="ah-footer-top">
       <div class="ah-footer-wrap">
         <mat-toolbar color="background">
           <nav class="ah-nav-secondary ah-footer-nav-primary">
@@ -66,11 +84,11 @@
           </nav>
         </mat-toolbar>
       </div>
-    </div>
-    <div class="ah-footer-sub">
+    </section>
+    <section class="ah-footer-sub">
       <div class="ah-footer-wrap">
         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Corporis nemo sed repellendus id deserunt optio obcaecati ipsa laudantium, quod rerum sapiente illum temporibus tempore omnis commodi molestias iste officia non?</p>
       </div>
-    </div>
+    </section>
   </footer>
 </div>
