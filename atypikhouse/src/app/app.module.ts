@@ -7,6 +7,7 @@ import { DataService } from "./data.service";
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatButtonModule, MatIconModule, MatFormFieldModule, MatInputModule, MatSelectModule, MatSliderModule, MatAutocomplete,
          MatToolbarModule, MatCardModule, MatSlideToggleModule, MatSnackBarModule } from '@angular/material';
+import {MatBadgeModule} from '@angular/material/badge'; 
 import 'hammerjs';
 
 import { Routes, RouterModule } from "@angular/router";
@@ -179,7 +180,7 @@ const routes : Routes = [
     FormsModule, HttpClientModule,
     BrowserModule, BrowserAnimationsModule,
     MatButtonModule, MatIconModule, MatFormFieldModule, MatInputModule, MatSelectModule, MatSliderModule,
-    MatToolbarModule, MatCardModule, MatSlideToggleModule, MatSnackBarModule
+    MatToolbarModule, MatCardModule, MatSlideToggleModule, MatSnackBarModule, MatBadgeModule
   ],
   providers: [GeolocationService, DataService],
   bootstrap: [AppComponent]
