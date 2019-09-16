@@ -157,7 +157,7 @@
     .ah-banner{
         position: absolute;
         background-attachment: fixed;
-        background-size: cover;
+        //background-size: cover;
         background-position: top center;
         background-repeat: no-repeat;
         z-index: -1;
@@ -442,6 +442,9 @@
         &.flex-lines-to-left {
             justify-content: flex-start;
         }
+        &.ah-footer-list{
+            justify-content: space-between;
+        }
     }
 
 /*********************/
@@ -457,8 +460,25 @@
     }
 
 /*********************/
-/****** FOOTER *******/
+/*** ASIDE & FOOTER **/
 /*********************/
+    .ah-aside{
+        position: relative;
+        padding-top: 50px;
+        padding-bottom: 100px;
+        margin-bottom: 200px;
+        > .ah-title:first-child{
+            position: absolute;
+            width: 100%;
+            margin-top: -1.6em;
+        }
+        .ah-aside-foot-icon{
+            position: absolute;
+            font-size: 10em;
+            right: 0;
+            bottom: -10px;
+        }
+    }
     .ah-footer{
         position: absolute;
         bottom: 0; 

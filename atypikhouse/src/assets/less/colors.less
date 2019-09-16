@@ -39,6 +39,9 @@
         .ah-title-separator:after{
             color: darken(@ah-font-color-primary, 20%);
         }
+        .ah-aside{
+            background-image: url(../img/bg.png);
+        }
     }
     // Revert white & black on light theme
     &.ah-theme-light {
@@ -62,6 +65,9 @@
         .ah-title-separator:before,
         .ah-title-separator:after{
             color: lighten(@ah-background-color-primary, 20%);
+        }
+        .ah-aside{
+            background-image: url(../img/bg-invert.png);
         }
     }
     // Icons colors variants //
@@ -145,6 +151,11 @@
     }
 
     // Common colors il all themes
+    .ah-container-primary.lead{
+        h1,h2,.ah-title{
+           color: @ah-container-back-color-secondary;
+        }
+    }
     .ah-container-secondary{
         color: @ah-container-font-color-secondary;
         background-color: @ah-container-back-color-secondary;
@@ -201,6 +212,8 @@
     }
     .ah-section-search{
         background-color: fade(@ah-background-color-primary,20%);
+    }
+    .ah-section-search{
         border-top: 7px darken(@ah-cta-back-color-secondary,10%) solid;
         color: @ah-container-font-color-secondary;
         .ah-title-icon-left,
