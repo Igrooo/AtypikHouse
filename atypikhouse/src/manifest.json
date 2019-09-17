@@ -1,0 +1,29 @@
+{
+  "name" : "AtypikHouse - Slogan",
+  "start_url": "/",
+  "orientation": "portrait",
+  "scope": "/",
+  "display": "standalone",
+
+  "short_name" : "AtypikHouse",
+  "theme_color" : "#15a08c",
+  "background_color": "#1d2120",
+  "icons": [
+    {
+      "src": "assets/icons/icon_96.png",
+      "sizes": "96x96"
+    },
+    {
+      "src": "assets/icons/icon_144.png",
+      "sizes": "144x144"
+    },
+    {
+      "src": "assets/icons/icon_192.png",
+      "sizes": "192x192"
+    },
+    {
+      "src": "assets/icons/icon_512.png",
+      "sizes": "512x512"
+    }
+  ]
+}

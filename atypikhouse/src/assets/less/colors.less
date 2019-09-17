@@ -1,0 +1,264 @@
+////////////////////////////////////////////////////
+////////////////////////// ATYPIKHOUSE COLOR THEME
+////////////////////////////////////////////////////
+//body // remove global class .ah-theme in html to disable color theme
+.ah-theme{
+
+    .mat-badge-content,
+    .mat-badge-primary .mat-badge-content{
+        background-color: @ah-green !important;
+    }
+    .mat-badge-accent .mat-badge-content{
+        background-color: @ah-green-light !important;
+    }
+    .mat-badge-warn .mat-badge-content{
+        background-color: @ah-brown !important;
+    } 
+    // Variants
+    // Toggle in body to switch theme dark to light
+    
+    &.ah-theme-dark {
+        color: @ah-font-color-primary;
+        background-color: @ah-background-color-primary;
+        .ah-container-main{
+            color: @ah-font-color-primary;
+            background-color: @ah-background-color-primary;
+        }
+        .ah-container-primary.lead{
+            background-color: fade(@ah-font-color-primary, 5%);
+        }
+        h3,
+        .ah-sidenav-link,
+        .ah-ext-entry-content h2,
+        .ah-subtitle-h3{
+            border-color: darken(@ah-font-color-primary, 20%);
+        }
+        .ah-title-icon-left,
+        .ah-title-icon-right,
+        .ah-title-separator:before,
+        .ah-title-separator:after{
+            color: darken(@ah-font-color-primary, 20%);
+        }
+        .ah-aside{
+            background-image: url(../img/bg.png);
+        }
+    }
+    // Revert white & black on light theme
+    &.ah-theme-light {
+        color: @ah-background-color-primary;
+        background-color: @ah-font-color-primary;
+        .ah-container-main{
+            color: @ah-background-color-primary;
+            background-color: @ah-font-color-primary;
+        }
+        .ah-container-primary.lead{
+            background-color: fade(@ah-background-color-primary, 5%);
+        }
+        h3,
+        .ah-sidenav-link,
+        .ah-ext-entry-content h2,
+        .ah-subtitle{
+            border-color: lighten(@ah-background-color-primary, 20%);
+        }
+        .ah-title-icon-left,
+        .ah-title-icon-right,
+        .ah-title-separator:before,
+        .ah-title-separator:after{
+            color: lighten(@ah-background-color-primary, 20%);
+        }
+        .ah-aside{
+            background-image: url(../img/bg-invert.png);
+        }
+    }
+    // Icons colors variants //
+    &.ah-theme-dark{
+        .ah-icon:not(.icon-without-backg):not(.icon-backg-not-found){
+            &:before{ // img overlay
+                background-color: fade(@ah-background-color-primary,10%);
+            }
+            .ah-card-content{
+                text-shadow: @ah-background-color-primary 1px 0 5px,  @ah-background-color-primary -1px 0 5px,  @ah-background-color-primary 0px 1px 5px, @ah-background-color-primary 0px -1px 5px;
+            }
+            .ah-banner,
+            &:hover{
+                .ah-card-content{
+                    background-color: fade(@ah-background-color-primary,40%);
+                }
+            }
+        }
+        .ah-icon.icon-card.icon-without-color{ //default reverse marker on card without color
+            .ah-card-marker{
+                color: @ah-background-color-primary;
+                background-color: @ah-font-color-primary;
+            }
+        }
+        .ah-icon-asset{
+            //black to white icon //
+            filter: invert(1);
+        }
+        .ah-tag:not(.tag-with-color),
+        .ah-icon.icon-without-color{
+            border-color: fade(@ah-font-color-primary,80%);
+        }
+        .ah-tag,
+        .ah-tag.tag-icon,
+        .ah-icon{
+            background-color: @ah-background-color-primary;
+        }
+        .ah-icon.icon-card.card-with-marker{
+            background-color: @ah-background-color-primary !important;
+        }
+        .ah-loader-icon{
+            background-color: @ah-background-color-primary;
+        }
+    }
+
+    &.ah-theme-light{
+        .ah-icon:not(.icon-without-backg):not(.icon-backg-not-found){
+            &:before{ // img overlay
+                background-color: fade(@ah-font-color-primary,10%);
+            }
+            .ah-card-content{
+                text-shadow: @ah-font-color-primary 1px 0 5px,  @ah-font-color-primary -1px 0 5px,  @ah-font-color-primary 0px 1px 5px, @ah-font-color-primary 0px -1px 5px;
+            }
+            &:hover{
+                .ah-card-content{
+                    background-color: fade(@ah-font-color-primary,20%);
+                }
+            }
+        }
+        .ah-icon.icon-card.icon-without-color{ //default reverse marker on card without color
+            .ah-card-marker{
+                color: @ah-font-color-primary;
+                background-color: @ah-background-color-primary;
+            }
+        }
+        .ah-tag:not(.tag-with-color),
+        .ah-icon.icon-without-color{
+            border-color:  fade(@ah-background-color-primary,70%);
+        }
+        .ah-tag,
+        .ah-tag.tag-icon,
+        .ah-icon{
+            background-color: @ah-font-color-primary;
+        }
+        .ah-icon.icon-card.card-with-marker{
+            background-color: @ah-font-color-primary !important;
+        }
+        .ah-loader-icon{
+            background-color: @ah-font-color-primary;
+        }
+    }
+
+    // Common colors il all themes
+    .ah-container-primary.lead{
+        h1,h2,.ah-title{
+           color: @ah-container-back-color-secondary;
+        }
+    }
+    .ah-container-secondary{
+        color: @ah-container-font-color-secondary;
+        background-color: @ah-container-back-color-secondary;
+        h3,
+        .ah-sidenav-link,
+        .ah-ext-entry-content h2,
+        .ah-subtitle-h3{
+            border-color: @ah-container-font-color-secondary;
+        }
+    }
+    .ah-container-tertiary{
+        color: @ah-container-font-color-tertiary;
+        background-color: fade(darken(@ah-container-back-color-tertiary, 20%),80%);
+    } 
+    .ah-link{
+        color: @ah-link-font-color-primary;
+        &.selected,
+        &.focus,
+        &.open,
+        &.current{
+            color: @ah-link-font-color-secondary;
+        }
+        &.external{
+            color: @ah-link-font-color-tertiary;
+        }
+    }
+    //
+    .ah-loader-triangle{
+        &.ah-loader-triangle-back{
+            border-bottom-color: darken(@ah-background-color-primary, 5%);
+        }
+        &.ah-loader-triangle-border{
+            border-bottom-color: @ah-container-back-color-secondary;
+        }
+    }
+    .ah-loader-icon{
+        color: @ah-cta-back-color-primary;
+        border-color: @ah-container-back-color-secondary;
+    }
+    //
+    .ah-nav-sidenav{
+        background-color: fade(darken(@ah-background-color-primary, 5%), 90%);
+    }
+    .ah-header,
+    .ah-footer{
+        color: @ah-font-color-primary;
+    }
+    .ah-header-top,
+    .ah-footer-top{
+        background-color: darken(@ah-background-color-primary, 5%);
+    }
+    .ah-footer-sub{
+        background-color: fade(@ah-background-color-primary,90%);
+    }
+    .ah-section-search{
+        background-color: fade(@ah-background-color-primary,20%);
+    }
+    .ah-section-search{
+        border-top: 7px darken(@ah-cta-back-color-secondary,10%) solid;
+        color: @ah-container-font-color-secondary;
+        .ah-title-icon-left,
+        .ah-title-icon-right,
+        .ah-title-separator:before,
+        .ah-title-separator:after{
+            color: @ah-container-font-color-secondary;
+        }
+    }
+    .important{
+        color: @ah-cta-back-color-primary !important;
+    }
+    .important .ah-title-icon-left,
+    .important .ah-title-icon-right,
+    .important.ah-title-separator:before,
+    .important.ah-title-separator:after{
+        color: darken(@ah-cta-back-color-primary, 10%);
+    }
+    .ah-cta-primary {
+        background-color: @ah-cta-back-color-primary;
+    }
+    .ah-cta-secondary {
+        background-color: darken(@ah-cta-back-color-secondary,10%);
+    }
+    .ah-cta-tertiary {
+        background-color: @ah-cta-back-color-tertiary;
+    }
+
+    .ah-form-search {
+        background-color: fade(@ah-background-color-primary,50%);
+    }
+    .ah-nav-sticky{
+        background-color: @ah-cta-back-color-primary;
+    }
+    hr{
+        color: @ah-cta-back-color-primary;
+    }
+
+    .ah-footer{
+        &:before{
+            background-color: @ah-container-back-color-tertiary;
+        }
+        &:after{
+            background-color: @ah-container-back-color-secondary;
+        }
+    }
+    
+}

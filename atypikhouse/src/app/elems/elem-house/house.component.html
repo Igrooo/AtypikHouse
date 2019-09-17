@@ -1,0 +1,25 @@
+
+      <mat-card>
+        <mat-card-title>{{ house.title }}</mat-card-title>
+      </mat-card>
+
+      <mat-card>
+        <h3>{{ house.location.address }}</h3>
+      </mat-card>
+      <mat-card>
+        <h4>{{ house.location.city }}</h4>
+      </mat-card>
+
+      <mat-card>
+        <h4>{{ house.type }}</h4>
+      </mat-card>
+
+      <mat-card>
+        <p>{{ house.desc }}</p>
+      </mat-card>
+
+    <mat-card>
+      {{ house | json }}
+    </mat-card>
+
+    <a class="ah-overlay-cta-primary" mat-fab routerLink="/house/{{ house.id }}/edit"><mat-icon>edit</mat-icon></a>

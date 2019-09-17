@@ -1,0 +1,116 @@
+/* Tiny Typo Base */
+// https://github.com/tetue/tinytypo
+ @import './tinytypo/tinytypo.less';
+
+// Font Family
+@font-face {
+    font-family:'Monserrat';
+    src:url('../fonts/montserrat/montserrat-regular.woff2') format('woff2');
+    font-weight:normal;
+    font-style:normal;
+}
+@font-face {
+    font-family: 'Lobster';
+    src: url(../fonts/lobster/lobster-regular.woff2) format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'Lobster';
+    src: url(../fonts/lobster/lobster-bold.woff2) format('woff2');
+    font-weight: bold;
+    font-style: normal;
+}
+// Font family by default : Roboto in angular material theme
+@ah-font-family-text:  'Roboto';
+@ah-font-family-title: 'Monserrat';
+@ah-font-family-suptitle: 'Lobster';
+
+// Font Sizes
+@ah-font-size-root:     14px;
+@ah-font-size-text:     1rem;
+@ah-font-size-tiny:     0.8rem;
+@ah-font-size-title:    3rem;
+@ah-font-size-subtitle: 2rem;
+@ah-font-size-subtitle-h4: @ah-font-size-subtitle / 1.2;
+@ah-font-size-subtitle-h5: @ah-font-size-subtitle / 1.5;
+@ah-font-size-subtitle-h6: @ah-font-size-text;
+
+////// Colors
+@ah-black:       #1d2120; //#292f2d;
+@ah-white:       #e6e6e6;
+//@ah-black:       mix(#1d2120, #ba9077, 95%);; //#292f2d;
+//@ah-white:       mix(#e6e6e6, #ba9077, 90%);
+@ah-grey:        #5a5c51;
+@ah-brown:       #ba9077;
+@ah-green-light: #bcd5d1;
+@ah-green:       #15a08c;
+
+// Tiny Typo replacement
+@color-bg:				@ah-black;	    // Background color
+@color-txt:				@ah-white;		// Text color
+@color-mid:				@ah-grey;		// Color for medium gray and lines
+@color: 				@ah-green;		// Brand color
+mark, .mark { background: @color; color: @color-txt; }
+
+@ah-font-color-primary:   @ah-white;
+@ah-font-color-secondary: @ah-white;
+
+@ah-background-color-primary:   @ah-black;
+@ah-background-color-secondary: @ah-grey;
+
+@ah-container-back-color-primary:   transparent;
+@ah-container-back-color-secondary: @ah-brown;
+@ah-container-back-color-tertiary:  @ah-green-light;
+
+@ah-container-font-color-primary:   @ah-white;
+@ah-container-font-color-secondary: @ah-white;
+@ah-container-font-color-tertiary:  @ah-white;
+
+@ah-cta-back-color-primary:   @ah-green;
+@ah-cta-back-color-secondary: @ah-green-light;
+@ah-cta-back-color-tertiary:  @ah-grey;
+
+@ah-cta-font-color-primary:   @ah-white;
+@ah-cta-font-color-secondary: @ah-grey;
+@ah-cta-font-color-tertiary:  @ah-white;
+
+@ah-link-font-color-primary:   @ah-green-light;
+@ah-link-font-color-secondary: @ah-brown;
+@ah-link-font-color-tertiary:  @ah-grey;
+
+////// Icons & logo
+@ah-icon: '../icons/icon_144.png';
+@ah-logo: url(@ah-icon) no-repeat center 28px;
+
+////// Layout 
+@ah-size-bigger: 50px;
+@ah-size-big:    40px;
+@ah-size-medium: 30px;
+@ah-size-base:   15px;
+@ah-size-little: 10px;
+@ah-size-tiny:   5px;
+
+@ah-padding-primary:   @ah-size-base;
+@ah-padding-secondary: @ah-size-little;
+@ah-padding-tertiary:  @ah-size-tiny;
+
+@ah-margin-primary:    @ah-size-bigger;
+@ah-margin-secondary:  @ah-size-big;
+@ah-margin-tertiary:   @ah-size-medium;
+
+@ah-container-paddin-primary:   @ah-padding-primary;
+@ah-container-paddin-secondary: @ah-padding-secondary;
+@ah-container-paddin-tertiary:  @ah-padding-tertiary;
+
+@ah-container-margin-primary:   @ah-margin-primary;
+@ah-container-margin-secondary: @ah-margin-secondary;
+@ah-container-margin-tertiary:  @ah-margin-tertiary;
+
+@ah-child-paddin-primary:   @ah-padding-primary   / 2;
+@ah-child-paddin-secondary: @ah-padding-secondary / 2;
+@ah-child-paddin-tertiary:  @ah-padding-tertiary  / 2;
+
+@ah-child-margin-primary:   @ah-margin-primary    / 2;
+@ah-child-margin-secondary: @ah-margin-secondary  / 2;
+@ah-child-margin-tertiary:  @ah-margin-tertiary   / 2;

@@ -1,0 +1,41 @@
+/* globals vars*/
+@import '../../../../assets/less/vars.less';
+
+/* Tiny Typo Demo Page */
+body { text-align: center; }
+.page { width: 40em; max-width: 768px; margin: 1em auto; text-align: left; }
+@media ( max-width: 768px) { .page { width: 80%; } }
+@media ( max-width: 480px) { .page { width: auto; margin: 1em 10px; } }
+
+.left { float: left; }
+.right { float: right; }
+.center { margin-left: auto; margin-right: auto; }
+.clear { clear: both; }
+
+.half { float: left; width: 45%; margin-right: 5%; }
+.third { float: left; width: 30%; margin-right: 3%; }
+@media ( max-width: 768px) { .half, .third { float: none; width: 100%; margin-right: 0; } }
+
+///
+app-demo-typo,
+.app-demo-typo{
+    &:before{
+        content: 'app-demo-typo';
+    }
+}
+
+// THEME VARIANTS
+.ah-theme-dark {
+    .app-typo-demo{
+        .ah-section-demo{
+            border-bottom: @ah-margin-primary @ah-font-color-primary solid;
+        }
+    }
+}
+.ah-theme-light{
+    .app-typo-demo{
+        .ah-section-demo{
+            border-bottom: @ah-margin-primary @ah-background-color-primary solid;
+        }
+    }
+}

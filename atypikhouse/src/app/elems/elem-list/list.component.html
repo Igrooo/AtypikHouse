@@ -1,0 +1,11 @@
+<mat-card *ngFor="let house of list">
+  <mat-card-title>{{ house.title }}</mat-card-title>
+  <mat-card-subtitle>{{ house.address }}, {{ house.city }}</mat-card-subtitle>
+  <mat-card-actions>
+    <button (click)="goMap(house)" mat-button><mat-icon>map</mat-icon> Map</button>
+    <button (click)="share(house)" mat-button><mat-icon>share</mat-icon> Share</button>
+    <button (click)="goDetails(house)" mat-button><mat-icon>list</mat-icon> Details</button>
+  </mat-card-actions>
+</mat-card>
+
+<a class="ah-overlay-cta-primary" mat-fab routerLink="/house"><mat-icon>add</mat-icon></a>

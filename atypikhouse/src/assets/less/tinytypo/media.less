@@ -1,0 +1,80 @@
+/*! Images and Gallery - Tiny Typo v2.5.5 2017 - MIT License - tinytypo.tetue.net */
+/* ------------------------------------------------------------------------------ */
+
+@import "var.less";
+
+// List common types NIME
+// [fr] Liste des types NIME usuels
+// - application
+// - audio
+// - example
+// - image
+// - message
+// - model
+// - multipart
+// - text
+// - video
+// - vnd
+
+img {
+  max-width: 100%; height: auto; // Make images responsive by default
+  border: 0; // Remove the border on images inside links in IE 10-.
+  vertical-align: middle;
+}
+@media print {
+	img { max-width: 100% !important; }
+}
+
+svg:not(:root) {
+  overflow: hidden; // Correct overflow not hidden in IE 9/10/11.
+}
+
+audio,
+canvas,
+progress,
+video {
+  display: inline-block; // Add the correct display in IE 9-.
+  vertical-align: baseline; // Normalize vertical alignment of `progress` in Chrome, Firefox, and Opera.
+}
+
+audio:not([controls]) {
+  display: none; height: 0; // Add the correct display in iOS 4-7.
+}
+
+/* thumbnail */
+.thumb,
+.thumb.left { margin: 0 10px 10px 0; }
+.thumb.right { margin: 0 0 10px 10px; }
+
+/* style effects */
+img.round { border-radius: 5px; }
+img.circle { border-radius: 50%; }
+img.border { padding: 4px; background-color: #fff; border: 1px solid #bbb; }
+img.shadow { box-shadow: -1px 2px 5px 1px rgba(0, 0, 0, 0.7), -1px 2px 20px rgba(255, 255, 255, 0.6) inset; }
+
+/* figure */
+figure,
+figcaption {
+  display: block; // Add the correct display in IE 9-.
+}
+
+figure { margin: 0; margin-bottom: @p/2; }
+figure.center { margin-bottom: @p; text-align: center; }
+figure.left { margin-right: @gutter; }
+figure.right { margin-left: @gutter; }
+figure figcaption { font-size: 80%; }
+
+@media (max-width: @screen-medium) {
+	figure { margin-bottom: @p; }
+	figure.center {}
+	figure.left { float: none; margin-right: 0; }
+	figure.right { float: none; margin-left: 0; }
+}
+
+figcaption {}
+
+/* album */
+.album { margin-bottom: @p; } // for figure or div
+.album ul { overflow: hidden; margin: 0; list-style: none; }
+.album li { float: left; margin: 0; margin: 0 10px 10px 0; }
+.album .thumb { margin: 0; }
