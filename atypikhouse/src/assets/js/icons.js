@@ -1,8 +1,6 @@
 // AtypikHouse Icons
 $(function() {
-    var iconsSet    = 'assets/icons/travel-set/';
     var iconsType   = 'svg';
-    var backgFolder = 'assets/img/bg/';
     var defaultColor = $('body').css('color');
     var defaultBack  = $('body').css('background-color');
     // Icons & Cards
@@ -12,6 +10,28 @@ $(function() {
         var group = icon.attr('data-group');
         var color = icon.attr('data-color');
         var backg = icon.attr('data-backg');
+        var iconsSet    = icon.attr('data-icons-set');
+        var backgFolder = icon.attr('data-bg-src')
+        switch (iconsSet) {
+            case 'travel': iconsSet = 'assets/icons/travel-set/'
+                break;
+            default: iconsSet = 'assets/icons/travel-set/'
+        }
+        switch (backgFolder) {
+            case 'placeholder': backgFolder     = 'assets/img/bg/'
+                break;
+            case 'houses': backgFolder          = 'src/data/houses'
+                break;
+            case 'categories': backgFolder      = 'src/data/categories'
+                break;
+            case 'themes': backgFolder          = 'src/data/themes'
+                break;
+            case 'activities': backgFolder      = 'src/data/activities'
+                break;
+            case 'users': backgFolder           = 'src/data/users'
+                break;
+            default: backgFolder                = 'assets/img/bg/'
+        }
         if(backg != undefined && backg.length != 0){
             $.ajax({
                 url: backgFolder+backg+'.png',
@@ -34,6 +54,7 @@ $(function() {
         }
         if(color != undefined && color.length != 0){
             icon.css('background-color', color);
+            icon.css('border-color', color);
         }else{
             icon.addClass('icon-without-color');
         }
@@ -71,7 +92,6 @@ $(function() {
     $('.icon-card:not(.icon-without-color):not(.card-without-marker)').each(function() {
         var card = $(this);
         var color = card.attr('data-color');
-        card.css('border-color', color);
         card.find('.ah-card-marker').css('background-color', color);
     });
     

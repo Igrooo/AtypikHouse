@@ -180,7 +180,7 @@ const routes : Routes = [
     FormsModule, HttpClientModule,
     BrowserModule, BrowserAnimationsModule,
     MatButtonModule, MatIconModule, MatFormFieldModule, MatInputModule, MatSelectModule, MatSliderModule,
-    MatToolbarModule, MatCardModule, MatSlideToggleModule, MatSnackBarModule, MatBadgeModule
+    MatToolbarModule, MatCardModule, MatSlideToggleModule, MatSnackBarModule, MatBadgeModule,
   ],
   providers: [GeolocationService, DataService],
   bootstrap: [AppComponent]

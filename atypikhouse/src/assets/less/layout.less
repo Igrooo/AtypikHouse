@@ -187,7 +187,7 @@
     .ah-section-search{
         overflow: hidden;
         padding-top: 120px;
-        background-image: url(../img/bg.png);
+        background-image: url(../img/bg-invert.png);
     }
     /*
     .ah-slide{
@@ -515,6 +515,7 @@
 /*********************/
     .ah-tag{
         padding: 2px 5px;
+        text-decoration: none;
         &.tag-icon{
             position: relative;
             padding-left: 38px;
@@ -551,6 +552,7 @@
         height: 100%;
         margin: auto;
         opacity: 0.8;
+        transition: opacity ease-in-out 200ms;
     }
     .ah-icon{
         position: relative;
@@ -586,9 +588,14 @@
             width: 50px;
             height: 50px;
             padding: 8px;
-            &.circle{
-                border-radius: 50%;
-            }
+  
+        }
+        &.circle{
+            border-radius: 50%;
+        }
+        .icon-title,
+        .ah-card-content{
+            transition: background-color 250ms ease-in-out;
         }
         &:not(.icon-card) .icon-title,
         .ah-card-title,
@@ -610,16 +617,16 @@
         .ah-card-text{
             visibility: hidden;
             opacity: 0;
-            max-height: 0;
+            height: 0;
             overflow: hidden;
             padding-bottom: 0;
-            transition: max-height 500ms ease-out, opacity 500ms ease-out;
+            transition: height 450ms ease-out, opacity 250ms ease-out;
         }
         &:hover{
             .ah-card-text{
                 visibility: visible;
                 opacity: 1;
-                max-height: 150px;
+                height: 135px;
             }
         }
         .ah-card-marker{
