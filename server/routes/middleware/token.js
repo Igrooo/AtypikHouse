@@ -9,27 +9,31 @@ auth.use(function (req, res, next) {
 
     var decoded_token = jwt.verify(token, secretkey, function (err) {
         if(err){
-            console.log(err);
-            return;
-        }
-        else if (!decoded_token) {
             res.status(500).send({
                 status: false,
                 message: 'Vous devez être identifié pour accéder à ce contenu  !'
             })
+            return;
         }else{
             var decoded = jwt.decode(token, {
-                complete: true
+                complete: true 
             });
         
-            var usernameInToken = decoded.payload.username
+         var firstnameInToken = decoded.payload.firstname;
+         var lastnameInToken = decoded.payload.lastname;
+         var IdInToken = decoded.payload.Id;
+         var emailInToken = decoded.payload.email;
+
+         console.log(firstnameInToken, lastnameInToken, emailInToken, IdInToken);
+
         
-            req.decodedUser = decoded;
-            req.token = token;
-            req.usernameInToken = usernameInToken
+            req.decodedToken = decoded;
+            // req.token = token;
+            // req.usernameInToken = usernameInToken
             
         
-            var verifyUSer = users.includes(usernameInToken);
+            // var verifyUSer = users.includes(usernameInToken);
+
             next();
         }
     });

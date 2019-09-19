@@ -1,25 +1,26 @@
 let express = require('express');
-import connection from '../modules/dbConnection';
+import connection from './../modules/dbConnection';
 
-let houses = express.Router();
-let categoryID;
 
-houses.post('houses', function (req, res) {
+let showProducts = express.Router();
 
-    console.log(categoryID);
-    categoryID = req.body.category;
-    if(categoryID == null ){
+
+
+showProducts.get('/showProducts', function (req, res) {
         connection.query("SELECT * FROM ah_houses", (err, result) => {
             if (err){
                 throw(err);
             }
             res.status(200).send({
                 status: true,
-                content: result[0]
+                content: result
             })
         });
-    }else{
-        connection.query("SELECT * FROM ah_houses WHERE ID_category = " + "'" + categoryID + "'", (err, result) => {
+});
+
+
+showProducts.get('/showProducts/:id', function (req, res) {
+        connection.query("SELECT * FROM ah_houses WHERE `ID`= " + "'" + req.params.id + "'", (err, result) => {
             if (err){
                 throw(err);
             }
@@ -28,9 +29,6 @@ houses.post('houses', function (req, res) {
                 content: result[0]
             })
         });
-
-    };
-
 });
 
-export default houses;
+export default showProducts;

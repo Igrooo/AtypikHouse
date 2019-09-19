@@ -9,7 +9,7 @@ signup.post('/signup', (req, res) =>{
     var prenom = JSON.stringify(req.body.prenom);
     var email = JSON.stringify(req.body.email);
   
-    console.log('test');
+
   
     if(req.body.email && req.body.password && req.body.verifPassword && req.body.nom && req.body.prenom){
   
@@ -19,7 +19,7 @@ signup.post('/signup', (req, res) =>{
         })
       }
   
-      connection.query("SELECT * FROM utilisateurs WHERE `EMAIL` = " + "'" + req.body.email + "'" , (err, result) =>{
+      connection.query("SELECT * FROM ah_users WHERE `email` = " + "'" + req.body.email + "'" , (err, result) =>{
   
         if(err){
           return res.status(500).send(err);
@@ -29,7 +29,7 @@ signup.post('/signup', (req, res) =>{
             message: 'Cet E-mail est déjà utilisé, veuillez en utiliser un autre !'
           })
         }else{
-          connection.query("INSERT INTO utilisateurs (EMAIL, NOM, PRÉNOM) VALUES (" +email+ ", " +nom+ ", " +prenom+ ")")
+          connection.query("INSERT INTO ah_users (email, name, firstname, password) VALUES (" +email+ ", " +nom+ ", " +prenom+ ", "+password+")")
           res.status(200).send({
             message: 'Votre compte utilisateur a bien été créé !' 
           })
