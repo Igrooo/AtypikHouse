@@ -1,4 +1,5 @@
 <!--The content below is only a placeholder and can be replaced.-->
+<!-- Double curly braces {{ }} only for content & universal html attribute, for custom attributes like data- use Property Binding [attribute]="value"-->
 <div class="ah-page ah-page-{{ page }} {{ openSearchbox }} private">
   <header id="header" class="ah-header">
     <section id="header-top" class="ah-header-top" role="navigation">
@@ -91,7 +92,7 @@
     </section>
   </header>
 
-  <main id="{{ pageid }}" role="main" class="ah-container-main ah-loading ah-loading-overlay {{ page }}-content">
+  <main [id]='pageid' role="main" class="ah-container-main ah-loading ah-loading-overlay {{ page }}-content">
     <div class="ah-content-wrap">
       <router-outlet></router-outlet>
       <!--

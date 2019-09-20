@@ -31,11 +31,11 @@ export class ListComponent implements OnInit {
     if ('share' in navigator) {
       (navigator as any).share({
         title: house.title + ` - ` + house.city + "," + house.address,
-        text: house.desc,
+        text: house.description,
         url: window.location.href
       }).then( () => console.log("shared")).catch( () =>  console.log("error sharing"));
     } else {
-      const shareTxt = house.title + ` - ` + house.city + "," + house.address + ` - ` + house.desc;
+      const shareTxt = house.title + ` - ` + house.city + "," + house.address + ` - ` + house.description;
       const shareURL = `whatsapp://send?text=${encodeURIComponent(shareTxt)}`;
       location.href = shareURL;
     }

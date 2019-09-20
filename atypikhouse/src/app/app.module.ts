@@ -27,6 +27,7 @@ import { DemoTypoPage }   from './pages/page-demo/demo-typo/demo-typo.component'
 import { DemoIconsPage }  from './pages/page-demo/demo-icons/demo-icons.component';
 import { ExternalPage }   from './pages/page-ext/ext.component';
 import { AllPage }        from './pages/page-all/all.component';
+import { CategoriesPage } from './pages/page-categories/categories.component';
 
 //import all elems
 import { HouseComponent }        from './elems/elem-house/house.component';
@@ -62,42 +63,42 @@ const routes : Routes = [
   ////// BOOTSTRAPED PAGES (HOME)
 
   /**** Global pages ****/
-  { path: '', component: HomePage },                           // Home
-  { path: 'demo', component: DemoPage },                       // Angular Material components base
-  { path: 'demo-typo', component: DemoTypoPage },              // Fonts components base
-  { path: 'demo-icons', component: DemoIconsPage },            // AtypikHouse icons base
-  { path: 'all', component: AllPage },                         // AtypikHouse components base
+  { path: '',           component: HomePage },           // Home
+  { path: 'demo',       component: DemoPage },           // Angular Material components base
+  { path: 'demo-typo',  component: DemoTypoPage },       // Fonts components base
+  { path: 'demo-icons', component: DemoIconsPage },      // AtypikHouse icons base
+  { path: 'all',        component: AllPage },            // AtypikHouse components base
+  { path: 'categories', component: CategoriesPage },     // List all categories, all activities, all tags
 
 
   ////// ONE ELEMENT PAGES (LISTS)
 
   //List Pages (add search module in this ?)
-  { path: 'houses', component: ListComponent },                    // List all houses
-  { path: 'category/:id', component: ListComponent },              // List all houses of category
-  { path: 'activity/:id', component: ListComponent },              // List all houses of activity
-  { path: 'tag/:id', component: ListComponent },                   // List all houses of tag
+  { path: 'houses',       component: ListComponent },         // List all houses
+  { path: 'category/:id', component: ListComponent },         // List all houses of category
+  { path: 'activity/:id', component: ListComponent },         // List all houses of activity
+  { path: 'tag/:id',      component: ListComponent },         // List all houses of tag
 
-  { path: 'categories', component: ListCategoryComponent },          // List categories
-  { path: 'activities', component: ListActivityComponent },          // List activities
-  //{ path: 'users', component: ListUserComponent },                   // List users
-  { path: 'tags', component: ListTagComponent },                     // List tags
+  { path: 'activities',   component: ListActivityComponent },          // List activities
+  //{ path: 'users',      component: ListUserComponent },                   // List users
+  { path: 'tags',         component: ListTagComponent },                     // List tags
 
   /**** Users pages - Need connected ****/
   { path: 'house/:id/posts', component: ListPostComponent },      // List posts of an house (userFrom & userTo)
 
   //Locataires pages
-  //{ path: 'user/:id/bookings', component: BookingsPage },    // List booking of an user
+  //{ path: 'user/:id/bookings',  component: BookingsPage },    // List booking of an user
   
   //Loueurs pages
-  //{ path: 'user/:id/houses', component: ListComponent },        // List houses of an user
+  //{ path: 'user/:id/houses',    component: ListComponent },        // List houses of an user
   //{ path: 'house/:id/bookings', component: BookingsPage },   // List booking of an house
   //{ path: 'house/:id/comments', component: CommentsPage },   // List comments of a house
 
   
   ////// ONE ELEMENT PAGES (FORMS)
 
-  { path: 'house', component: FormHouseComponent },                 // New  house
-  { path: 'house/:id', component: HouseComponent },                 // Show house
+  { path: 'house',          component: FormHouseComponent },                 // New  house
+  { path: 'house/:id',      component: HouseComponent },                 // Show house
   { path: 'house/:id/edit', component: FormHouseComponent },        // Edit house
 
   //{ path: 'category', component: FormCategoryComponent },           // New  category
@@ -120,7 +121,7 @@ const routes : Routes = [
   //{ path: 'house/:id/post', component: FormPostComponent },          // New  post
   //{ path: 'house/:id/post/:id/edit', component: FormPostComponent }, // Edit post
 
-  { path: 'house/:id/pic', component: FormPicComponent },            // New  pic
+  { path: 'house/:id/pic',          component: FormPicComponent },            // New  pic
   { path: 'house/:id/Pic/:id/edit', component: FormPicComponent },   // Edit pic
 
   //{ path: 'user', component: FormUserComponent },                    // New  user
@@ -147,6 +148,7 @@ const routes : Routes = [
     DemoPage,
     DemoTypoPage,
     DemoIconsPage,
+    CategoriesPage,
     HouseComponent,
     ActivityComponent,
     BookingComponent,

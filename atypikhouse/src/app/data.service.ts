@@ -24,15 +24,16 @@ export class DataService {
   get(elems:string, id: string, callback) {
     this.http.get(`${this.endpoint}/${elems}/${id}`)
       .subscribe(response =>{
-        callback(response);
+        console.log('get :');
+        callback(response['content']);
       });
   }
 
   getList(elems:string, callback) {
     this.http.get(`${this.endpoint}/${elems}`)
       .subscribe(response => {
-      console.log(response);
-      callback(response);
+      console.log('get list');
+      callback(response['content']);
     });
 
   }

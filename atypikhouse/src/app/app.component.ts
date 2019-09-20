@@ -45,7 +45,7 @@ export class AppComponent {
     }else{
 
     }
-    console.log(this.page);
+    console.log('Current page: '+this.page);
 
 
     if ((navigator as any).standalone == false) {

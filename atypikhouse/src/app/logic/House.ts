@@ -2,9 +2,9 @@ import {PlaceLocation} from "./PlaceLocation";
 
 export class House {
   id: number;
-  constructor(public status: number = 0, // status : 0=off 1=on , 2= pin in homepage (Mise en avnat Admin)
+  constructor(public status: number = 0, // status : 0=off 1=on , 2= pin in homepage (Mise en avant Admin)
               public title: string = "", // title in db
-              public desc: string = "", // description in db
+              public description: string = "", // description in db
               public type: number = 0, // Id of category
               public address: string = "",
               public zipcode: number = 0,

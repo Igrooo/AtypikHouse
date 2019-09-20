@@ -1,1 +1,8 @@
-<p>list-category works!</p>
+<section class="ah-section ah-container-primary lead">
+    <h2>Les types d'hébergements</h2>
+    <ul class="ah-list-icons ah-flex-list">
+        <li *ngFor="let category of list">
+            <a class="ah-icon icon-card" href="/category/{{ category.ID }}" data-icons-set="travel" [attr.data-group]="icons[category.ID-1].group" [attr.data-icon]="icons[category.ID-1].name" data-bg-src="categories" [attr.data-backg]="category.ID" data-color="#ba9077" [attr.data-title]="category.title" [attr.data-text]="category.description"></a>
+        </li>
+    </ul>
+</section>
