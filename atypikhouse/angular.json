@@ -32,10 +32,7 @@
               "src/assets/less/styles.less"
             ],
             "scripts": [
-              "src/assets/js/script.js",
-              "src/assets/js/ui.js",
-              "src/assets/js/icons.js",
-              "src/assets/js/data.js"
+              "node_modules/jquery/dist/jquery.min.js"
             ]
           },
           "configurations": {
@@ -97,10 +94,7 @@
               "src/assets/less/styles.less"
             ],
             "scripts": [
-              "src/assets/js/script.js",
-              "src/assets/js/ui.js",
-              "src/assets/js/icons.js",
-              "src/assets/js/data.js"
+              "node_modules/jquery/dist/jquery.min.js"
             ]
           }
         },

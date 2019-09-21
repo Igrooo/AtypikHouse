@@ -17,11 +17,11 @@
             background-color:transparent;
             color: @ah-font-color-primary;
         }
-        .mat-icon{
+        .mat-button .mat-icon{
             margin-right: 5px;
         }
-        .mat-icon:last-child,
-        .mat-icon:only-child{
+        .mat-button .mat-icon:last-child,
+        .mat-button .mat-icon:only-child{
             margin-right: 0;
         }
         #sidenav-cta{
@@ -455,13 +455,47 @@
         margin-top: @ah-margin-primary;
     }
     .ah-form-fieldset-inline{
-        margin-right: @ah-padding-primary;
+        margin-right: @ah-padding-primary + 5px;
+        vertical-align: middle;
     }
     .ah-form-search{
-        max-width: 900px;
+        max-width: 1235px;
         margin:  auto;
         padding: @ah-padding-primary calc(@ah-padding-primary * 2);
-        font-size: 1rem;
+        .ah-form-icon{
+            margin-right: 5px;
+        }
+        .ah-form-search-date-start,
+        .ah-form-search-date-end{
+            max-width: 130px;
+        }
+        .ah-form-search-nb{
+            max-width: 170px
+        }
+
+        .ah-form-fieldset-inline:not(.ah-form-search-date-start):not(.ah-form-search-date-end){
+            .mat-form-field-infix{
+                padding-top: 10px;
+            }
+        }
+            /*
+            .mat-form-field-prefix{
+                padding-bottom: 10px;
+            }*/
+        
+        /*
+        .ah-form-label{
+            padding-left: calc(24px + 5px);
+            font-size: 1rem;
+        }
+        .ah-form-select{
+            width:calc(100% - 24px - 5px); //material icon size 24px + margin 5px
+        }
+        */
+        .mat-form-field-appearance-legacy .mat-form-field-prefix .mat-datepicker-toggle-default-icon{
+            width: 21px;
+        }
+        
     }
 
 /*********************/

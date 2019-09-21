@@ -1,6 +1,6 @@
 import {PlaceLocation} from "./PlaceLocation";
 export class Activity {
-    id: number;
+    ID: number;
     constructor(public title: string = "",
                 public description: string = "", // description in db
                 public location: PlaceLocation = null, // location.latitude & location.longitude , locationLat locationLng in db

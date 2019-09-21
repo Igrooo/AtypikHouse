@@ -1,5 +1,5 @@
 export class User {
-  id: number;
+  ID: number;
     constructor(public type: boolean, // 0=admin 1=user
                 public email: string = "", 
                 public password: string = "", 

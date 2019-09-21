@@ -1,7 +1,7 @@
 export class Category {
-    id: number;
+    ID: number;
     constructor(public title: string = "", 
-                public desc: string = "", // description in db
+                public description: string = "", // description in db
                 )
     {
     }

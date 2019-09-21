@@ -1,5 +1,5 @@
 export class Booking {
-    id: number;
+    ID: number;
     constructor(public status: number = 1, // 0 = canceled, 1= waiting 2 = validate
                 public nbPersons: number = 1,
                 public date: Date,

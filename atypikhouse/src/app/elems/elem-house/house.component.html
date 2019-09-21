@@ -1,0 +1,30 @@
+<section class="ah-product-banner">
+
+</section>
+
+<section class="ah-product-info">
+  <mat-card>
+    <mat-card-title>{{ house.title }}</mat-card-title>
+  </mat-card>
+
+  <mat-card>
+    <h3>{{ house.location.address }}</h3>
+  </mat-card>
+  <mat-card>
+    <h4>{{ house.location.city }}</h4>
+  </mat-card>
+
+  <mat-card>
+    <h4>{{ house.type }}</h4>
+  </mat-card>
+
+  <mat-card>
+    <p>{{ house.description }}</p>
+  </mat-card>
+
+  <mat-card>
+    {{ house | json }}
+  </mat-card>
+</section>
+
+    <a class="ah-overlay-cta-primary" mat-fab routerLink="/house/{{ house.ID }}/edit"><mat-icon>edit</mat-icon></a>

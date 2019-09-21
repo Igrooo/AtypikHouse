@@ -1,0 +1,14 @@
+/* globals vars*/
+@import '../../../assets/less/vars.less';
+
+app-demo,
+.app-demo{
+    &:before{
+        content: 'app-demo';
+    }
+}
+.app-demo-child{
+    &:before{
+        content: attr(data-content);
+    }
+}

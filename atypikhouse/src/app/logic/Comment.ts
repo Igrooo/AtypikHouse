@@ -1,5 +1,5 @@
 export class Comment {
-    id: number;
+    ID: number;
     constructor(public comment: string = "", 
                 public rating: number, // score 1 to 5 stars
                 public date: Date,

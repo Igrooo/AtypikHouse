@@ -1,7 +1,7 @@
 import {PlaceLocation} from "./PlaceLocation";
 
 export class House {
-  id: number;
+  ID: number;
   constructor(public status: number = 0, // status : 0=off 1=on , 2= pin in homepage (Mise en avant Admin)
               public title: string = "", // title in db
               public description: string = "", // description in db
