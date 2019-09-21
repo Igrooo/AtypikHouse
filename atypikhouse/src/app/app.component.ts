@@ -1,5 +1,8 @@
 import { Component } from '@angular/core';
 import { MatSnackBar } from "@angular/material";
+import { GeolocationService } from "src/app/geolocation.service";
+import { Category } from "src/app/logic/Category";
+import { Tag } from "src/app/logic/Tag";
 declare const UIswitchTheme: any;
 declare const UIswitchSidenav: any;
 
@@ -16,6 +19,9 @@ export class AppComponent {
   public openSearchbox: string = "";
   public randomBanner: number = Math.floor((Math.random() * 7) + 1);
 
+  listSearchType: [Category];
+  listSearchThema: [Tag];
+
   toggleTheme() {
     UIswitchTheme();
   }
@@ -23,9 +29,33 @@ export class AppComponent {
     UIswitchSidenav();
   }
 
-  constructor(private snackBar: MatSnackBar) { }
+  open(target:string){
+
+  }
+  login(){
+
+  }
+  searchbox(){
+
+  }
+
+  searchboxLocation(location){
+    
+  }
+
+  constructor(private snackBar: MatSnackBar,
+              private geolocation: GeolocationService,
+              ) { }
 
   ngOnInit() {
+
+    this.geolocation.requestLocation(location => {
+      if (location) {
+        this.searchboxLocation(location);
+        console.log(location.latitude,location.longitude);
+      }
+    });
+
     this.href = window.location.pathname.substring(1); // remove '/'
     if(this.href == ''){
       this.pageid = 'home-'+this.title;

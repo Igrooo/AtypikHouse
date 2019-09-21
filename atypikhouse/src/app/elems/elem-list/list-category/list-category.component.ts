@@ -61,7 +61,6 @@ export class ListCategoryComponent implements OnInit {
     this.data.getList("categorie", list => {
       this.list = list;
     })
-    console.log(this.list);
     console.log(this.icons);
   }
 

@@ -22,8 +22,8 @@
                 </ul>
                 <ul class="list-inline only-logged">
                     <li class="ah-cta-group">
-                      <button (click)="open(loyalty)" mat-button><mat-icon>loyalty</mat-icon></button>
-                      <button (click)="open(notifications)" mat-button><mat-icon matBadge="2" matBadgeOverlap="false">notifications</mat-icon></button>
+                      <button (click)="open('loyalty')" mat-button><mat-icon>loyalty</mat-icon></button>
+                      <button (click)="open('notifications')" mat-button><mat-icon matBadge="2" matBadgeOverlap="false">notifications</mat-icon></button>
                     </li>
                     <li><button (click)="login()" class="ah-cta-primary" mat-button><mat-icon>person</mat-icon><span>Mon compte</span></button></li>
                   </ul>
@@ -55,37 +55,42 @@
         <div class="ah-header-wrap">
           <h2 class="ah-suptitle"><i class="ah-title-icon-left la la-leaf"></i>Offrez-vous une nuit insolite<i class="ah-title-icon-right la la-leaf"></i></h2> 
           <form class="ah-form-search">
-              <mat-form-field>
-                  <mat-label>text</mat-label>
+            <mat-form-field class="ah-form-fieldset-inline">
+              <mat-label><mat-icon>room</mat-icon> Destination</mat-label>
+              <mat-select matNativeControl>
+                <mat-option [value]="location" selected><mat-icon>person_pin</mat-icon> Autours de moi</mat-option>
+                <mat-option [value]="location"><mat-icon>location_city</mat-icon> Saisir l'adresse</mat-option>
+              </mat-select>
+            </mat-form-field>
+            <mat-form-field class="ah-form-fieldset-inline">
+              <mat-label><i class="la la-home"></i>Type d'hébergement</mat-label>
+              <mat-select>
+                <mat-option value="null">list type</mat-option>
+              </mat-select>
+            </mat-form-field>
+            <mat-form-field class="ah-form-fieldset-inline">
+              <mat-label>Thématique</mat-label>
+              <mat-select>
+                <mat-option value="null">list type</mat-option>
+              </mat-select>
+            </mat-form-field>
+            <mat-form-field class="ah-form-fieldset-inline">
+                <mat-label>Date d'arrivée</mat-label>
+                <input [matDatepicker]="DateStart">
+                <mat-datepicker #DateStart></mat-datepicker>
+            </mat-form-field>
+            <mat-form-field class="ah-form-fieldset-inline">
+                <mat-label>Date de départ</mat-label>
+                <input [matDatepicker]="DateEnd">
+                <mat-datepicker #DateEnd></mat-datepicker>
+            </mat-form-field>
+            <mat-form-field class="ah-form-fieldset-inline">
+                  <mat-label>Thématique</mat-label>
                   <mat-select>
-                    <mat-option value="food.value">Text</mat-option>
-                    <mat-option value="food.value">Text</mat-option>
+                    <mat-option value="null">list type</mat-option>
                   </mat-select>
-                </mat-form-field>
-            <mat-form-field>
-              <mat-label>Type</mat-label>
-              <mat-select>
-                <mat-option value="food.value">Text</mat-option>
-                <mat-option value="food.value">Text</mat-option>
-                <mat-option value="food.value">Text</mat-option>
-                <mat-option value="food.value">Text</mat-option>
-                <mat-option value="food.value">Text</mat-option>
-                <mat-option value="food.value">Text</mat-option>
-                <mat-option value="food.value">Text</mat-option>
-              </mat-select>
             </mat-form-field>
-            <mat-form-field>
-              <mat-label>Thèmatique</mat-label>
-              <mat-select>
-                <mat-option value="food.value">Text</mat-option>
-                <mat-option value="food.value">Text</mat-option>
-                <mat-option value="food.value">Text</mat-option>
-                <mat-option value="food.value">Text</mat-option>
-                <mat-option value="food.value">Text</mat-option>
-                <mat-option value="food.value">Text</mat-option>
-                <mat-option value="food.value">Text</mat-option>
-              </mat-select>
-            </mat-form-field>
+            <button mat-button class="ah-cta-primary"><mat-icon>search</mat-icon> Rechercher</button>
           </form>
         </div>
       </section>

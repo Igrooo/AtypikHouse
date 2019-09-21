@@ -3,7 +3,7 @@
 ////////////////////////////////////////////////////
 //body // remove global class .ah-theme in html to disable color theme
 .ah-theme{
-
+    // Matereials Theme Colors replacement - Primary Color
     .mat-primary .mat-option.mat-selected:not(.mat-option-disabled){color:@ah-green}
     .mat-primary .mat-pseudo-checkbox-checked,.mat-primary .mat-pseudo-checkbox-indeterminate{background:@ah-green}
     .mat-badge-content{color:@ah-white;background:@ah-green}
@@ -33,7 +33,7 @@
     .mat-tab-group.mat-primary .mat-ink-bar,.mat-tab-nav-bar.mat-primary .mat-ink-bar{background-color:@ah-green}
     .mat-tab-nav-bar.mat-background-primary .mat-tab-header-pagination,.mat-tab-nav-bar.mat-background-primary .mat-tab-links{background-color:@ah-green}
     .mat-toolbar.mat-primary{background:@ah-green;color:@ah-white}
-
+    // Matereials Theme Colors replacement - Accent Color
     .mat-accent .mat-option.mat-selected:not(.mat-option-disabled){color:@ah-green-light}
     .mat-accent .mat-pseudo-checkbox-checked,.mat-accent .mat-pseudo-checkbox-indeterminate,.mat-pseudo-checkbox-checked,.mat-pseudo-checkbox-indeterminate{background:@ah-green-light}
     .mat-badge-accent .mat-badge-content{background:@ah-green-light;color:rgba(0,0,0,.87)}
@@ -64,7 +64,7 @@
     .mat-tab-nav-bar.mat-background-accent .mat-tab-header-pagination,.mat-tab-nav-bar.mat-background-accent .mat-tab-links{background-color:@ah-green-light}
     .mat-toolbar.mat-accent{background:@ah-green-light;color:rgba(0,0,0,.87)}
     .mat-simple-snackbar-action{color:@ah-green-light}
-
+    // Matereials Theme Colors replacement - Warn Color
     .mat-warn .mat-option.mat-selected:not(.mat-option-disabled){color:@ah-brown}
     .mat-warn .mat-pseudo-checkbox-checked,.mat-warn .mat-pseudo-checkbox-indeterminate{background:@ah-brown}
     .mat-badge-warn .mat-badge-content{color:@ah-white;background:@ah-brown}
@@ -173,12 +173,12 @@
     &.ah-theme-dark{
         .ah-icon{
             &:hover{
-                &.ah-card{
+                &.icon-card{
                     .ah-card-content{
                         background-color: fade(@ah-background-color-primary,50%);
                     }
                 }
-                &:not(.ah-card){
+                &:not(.icon-card){
                     .icon-title{
                         background-color: fade(@ah-background-color-primary,50%);
                     }

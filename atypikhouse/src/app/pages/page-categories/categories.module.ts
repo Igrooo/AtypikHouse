@@ -7,18 +7,17 @@ import { ListCategoryComponent } from 'src/app/elems/elem-list/list-category/lis
 import { ListActivityComponent } from 'src/app/elems/elem-list/list-activity/list-activity.component';
 import { ListTagComponent }      from 'src/app/elems/elem-list/list-tag/list-tag.component';
 
-
 @NgModule({
-  declarations: [
-    CategoriesPage
-  ],
-  imports: [
-    ListCategoryComponent,
-    ListActivityComponent,
-    ListTagComponent,
-  ],
-  providers: [],
-  bootstrap: [CategoriesPage] // bootstrapped entry component
-})
-
-export class AllModule { }
+    declarations: [
+      CategoriesPage
+    ],
+    imports: [
+      ListCategoryComponent,
+      ListActivityComponent,
+      ListTagComponent,
+    ],
+    providers: [],
+    bootstrap: [CategoriesPage] // bootstrapped entry component
+  })
+  
+  export class CategoriesModule { }

@@ -157,7 +157,7 @@
     .ah-banner{
         position: absolute;
         background-attachment: fixed;
-        //background-size: cover;
+        background-size: 100% auto;
         background-position: top center;
         background-repeat: no-repeat;
         z-index: -1;
@@ -454,9 +454,14 @@
         border: none;
         margin-top: @ah-margin-primary;
     }
+    .ah-form-fieldset-inline{
+        margin-right: @ah-padding-primary;
+    }
     .ah-form-search{
-        margin:  @ah-margin-primary;
-        padding: @ah-padding-primary;
+        max-width: 900px;
+        margin:  auto;
+        padding: @ah-padding-primary calc(@ah-padding-primary * 2);
+        font-size: 1rem;
     }
 
 /*********************/
