@@ -107,8 +107,6 @@ export class IconComponent {
   constructor() { }
 
   ngOnInit() {
-    console.log(this.iconCircle);
-    console.log(this.cardMarker);
     this.setIconsSet();
     this.setIconBgFolder();
     this.setClasses();

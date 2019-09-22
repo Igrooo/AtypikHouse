@@ -80,10 +80,10 @@ const routes : Routes = [
   //////// ONE ELEMENT PAGES (LISTS)
 //
   ////List Pages (add search module in this ?)
-  { path: 'houses',       component: ListComponent },         // List all houses
-  //{ path: 'category/:id', component: CategoryComponent },     // List all houses of category
-  //{ path: 'activity/:id', component: ActivityComponent },     // List all houses of activity
-  //{ path: 'tag/:id',      component: TagComponent },          // List all houses of tag
+  { path: 'houses',       component: ListComponent },         // List all houses (search result page)
+  { path: 'category/:id', component: CategoryComponent },     // List all houses of category
+  //{ path: 'activity/:id', component: ActivityComponent },   // List all houses of activity
+  //{ path: 'tag/:id',      component: TagComponent },        // List all houses of tag
 //
   //{ path: 'activities',   component: ListActivityComponent },          // List activities
   ////{ path: 'users',      component: ListUserComponent },              // List users

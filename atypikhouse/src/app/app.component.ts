@@ -13,7 +13,6 @@ export class AppComponent implements OnInit {
   public href: string = "";
   public pageid: string = "";
   public page: string = "";
-  public openSearchbox: string = "";
 
   constructor(private snackBar: MatSnackBar,
               private router: Router) {
@@ -21,15 +20,28 @@ export class AppComponent implements OnInit {
                 this.router.events.subscribe((event: Event) => {
                 if (event instanceof NavigationStart) {
                     // Show loading indicator
-                    console.log('navigation start');
                 }
                 if (event instanceof NavigationEnd) {
                     // Hide loading indicator
-                    console.log('navigation end');
+                    //Update pageid 
+                    this.href = window.location.pathname.substring(1); // remove '/'
+                    if(this.href == ''){
+                      this.pageid = 'home-'+this.title;
+                      this.page = 'home';
+                    }
+                    else{
+                      this.pageid = this.href.replace('/', '-');
+                      if(this.href.indexOf('/') != -1){
+                        this.page = this.href.substring(0,this.href.indexOf('/'));
+                      }
+                      else{
+                        this.page = this.pageid;
+                      }
+                    }
+                    console.log('Current page: '+this.page);
                 }
                 if (event instanceof NavigationError) {
                     // Hide loading indicator
-    
                     // Present error to user
                     console.log(event.error);
                 }
@@ -37,27 +49,6 @@ export class AppComponent implements OnInit {
               }
 
   ngOnInit() {
-
-    this.href = window.location.pathname.substring(1); // remove '/'
-    if(this.href == ''){
-      this.pageid = 'home-'+this.title;
-      this.page = 'home';
-    }
-    else{
-      this.pageid = this.href.replace('/', '-');
-      if(this.href.indexOf('/') != -1){
-        this.page = this.href.substring(0,this.href.indexOf('/'));
-      }
-      else{
-        this.page = this.pageid;
-      }
-    }
-    if(this.page == 'home' || 'houses'){
-      this.openSearchbox = 'open-searchbox'
-    }else{
-
-    }
-    console.log('Current page: '+this.page);
 
     if ((navigator as any).standalone == false) {
       // This is an iOS device and we are in the browser

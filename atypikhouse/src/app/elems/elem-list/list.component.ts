@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { DataService} from "src/app/data.service";
 import { House } from "src/app/logic/House";
 import { Router } from "@angular/router";
@@ -10,8 +10,16 @@ import { GeolocationService } from "src/app/geolocation.service";
   styles: []
 })
 export class ListComponent implements OnInit {
+  @Input() listTitle:string = 'Locations disponibles';
+  @Input() filterCategory = 1;
 
   list: [House];
+  icons: any[];
+  iconsSet      :string = 'travel';
+  iconsSize     :string = 'card';
+  iconsColor    :string = '#9dc1bb';
+  iconsBgFolder :string = 'houses';
+  
 
   constructor(private data: DataService,
               private router: Router,
@@ -42,7 +50,7 @@ export class ListComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.data.getList("houses", list => {
+    this.data.getList("showProducts", list => {
       this.list = list;
     })
   }

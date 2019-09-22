@@ -1,3 +1,4 @@
+<!--
 <mat-card *ngFor="let house of list">
   <mat-card-title>{{ house.title }}</mat-card-title>
   <mat-card-subtitle>{{ house.address }}, {{ house.city }}</mat-card-subtitle>
@@ -7,5 +8,17 @@
     <button (click)="goDetails(house)" mat-button><mat-icon>list</mat-icon> Details</button>
   </mat-card-actions>
 </mat-card>
+-->
+
+<section class="ah-section ah-container-primary">
+    <h2>{{ listTitle }}</h2>
+    <ul class="ah-list-icons ah-flex-list">
+        <ng-container *ngIf="filterCategory == house.ID_category">
+            <li *ngFor="let house of list">
+                <app-icon routerLink="/house/{{ house.ID }}" [iconSize]="iconsSize" [iconsSet]="iconsSet" [iconGroup]="icons[house.ID-1].group" [iconName]="icons[house.ID-1].name" [iconBgFolder]="iconsBgFolder" [iconBg]="house.ID" [iconColor]="iconsColor" [iconTitle]="house.title" [cardText]="house.description"></app-icon>
+            </li>
+        </ng-container>
+    </ul>
+</section>
 
 <a class="ah-overlay-cta-primary" mat-fab routerLink="/house"><mat-icon>add</mat-icon></a>

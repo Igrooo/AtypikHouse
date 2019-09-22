@@ -61,10 +61,11 @@
                 display: none;
             }
         }
+        &.ah-page-home,
+        &.ah-page-houses,
         &.open-searchbox{
             .ah-container-main{
-                margin-top: calc(430px + 64px);
-                padding-top: 0;
+                margin-top: calc(430px + @ah-mat-toolbar-height);
             }
         }
     }
@@ -87,10 +88,10 @@
     }
     .ah-nav-sidenav,
     .ah-container-main{
-        margin-top: 56px;
-        margin-bottom: 56px;
-        padding: @ah-padding-primary;
-        min-height: calc(100vh - 56px - 56px - @ah-padding-primary * 2);
+        margin-top: @ah-mat-toolbar-height;
+        margin-bottom: @ah-mat-toolbar-height;
+        padding: 0 @ah-padding-primary;
+        min-height: calc(100vh - @ah-mat-toolbar-height - @ah-mat-toolbar-height - @ah-padding-primary * 2);
         z-index: 2;
     }
     .ah-section,
@@ -138,7 +139,7 @@
         visibility: hidden;
         width: 100%;
         height: 0;
-        padding-top: 64px;
+        padding-top: @ah-mat-toolbar-height;
         opacity: 0;
     }
     .ah-banner,
@@ -147,17 +148,19 @@
         width: 100%;
         box-sizing: border-box;
     }
+    .ah-page-home,
+    .ah-page-houses,
     .open-searchbox{
         .ah-header-sup{
             visibility: visible;
-            height: calc(430px + 64px);
+            height: calc(430px + @ah-mat-toolbar-height);
             opacity: 1;
         }
     }
     .ah-banner{
         position: absolute;
         background-attachment: fixed;
-        background-size: auto 501px;
+        background-size: auto 502px;
         background-position: top center;
         background-repeat: no-repeat;
         z-index: -1;
@@ -215,8 +218,12 @@
     .ah-suptitle{
         font-family: @ah-font-family-suptitle;
         text-transform: lowercase;
-        &::first-letter{
-            text-transform: uppercase;
+        .ah-suptitle-text{
+            display: inline-block;
+            max-width: 521px;
+            &:first-letter{
+                text-transform: uppercase;
+            }
         }
     }
     .ah-text{

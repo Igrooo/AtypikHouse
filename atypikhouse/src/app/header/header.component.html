@@ -12,17 +12,17 @@
                 <li class="not-mobile ah-tiny"><a class="ah-header-link ah-link ah-link-secondary" routerLink="/demo-typo">demo-typo</a></li>
                 <li class="not-mobile ah-tiny"><a class="ah-header-link ah-link ah-link-secondary" routerLink="/demo-icons">demo-icons</a></li>
                 <li class="not-mobile"><a class="ah-header-link ah-link ah-link-secondary" routerLink="/categories"><mat-icon class="ah-icon-inline-toolbar">landscape</mat-icon><span>Explorer</span></a></li>
-                <li><button (click)="searchbox()" class="ah-header-link ah-cta-secondary ah-cta-search-top current" mat-button><mat-icon>search</mat-icon><span>Chercher</span></button></li>
+                <li><button (click)="searchbox()" class="ah-header-link ah-cta-secondary ah-cta-search-top current" mat-button><mat-icon>search</mat-icon><span class="not-mobile">Chercher</span></button></li>
                 <li>
                 <ul class="list-inline only-public">
-                    <li><button (click)="login()" class="ah-cta-primary" mat-button><mat-icon>person</mat-icon><span>Se connecter</span></button></li>
+                    <li><button (click)="login()" class="ah-cta-primary" mat-button><mat-icon>person</mat-icon><span class="not-mobile">Se connecter</span></button></li>
                 </ul>
                 <ul class="list-inline only-logged">
                     <li class="ah-cta-group">
                         <button (click)="open('loyalty')" mat-button><mat-icon>loyalty</mat-icon></button>
                         <button (click)="open('notifications')" mat-button><mat-icon matBadge="2" matBadgeOverlap="false">notifications</mat-icon></button>
                     </li>
-                    <li><button (click)="login()" class="ah-cta-primary" mat-button><mat-icon>person</mat-icon><span>Mon compte</span></button></li>
+                    <li><button (click)="login()" class="ah-cta-primary" mat-button><mat-icon>person</mat-icon><span class="not-mobile">Mon compte</span></button></li>
                     </ul>
                 <li><button (click)="UItoggleTheme()" mat-button><mat-icon>brightness_6</mat-icon></button></li>
             </ul>
@@ -40,7 +40,7 @@
             <li class="ah-tiny"><a class="ah-sidenav-link ah-link ah-link-secondary" routerLink="/demo-icons">demo-icons</a></li>
             </ul>
             <ul class="list-menu list-menu-bottom">
-                <li><a class="ah-sidenav-link ah-link ah-link-secondary" routerLink="/help">      <mat-icon>help</mat-icon><span>Aide</span></a></li>
+                <li><a class="ah-sidenav-link ah-link ah-link-secondary" routerLink="/help"><mat-icon>help</mat-icon><span>Aide</span></a></li>
             </ul>
         </nav>
         </div>
@@ -50,7 +50,7 @@
         </section>
         <section role="search" class="ah-section-search">
         <div class="ah-header-wrap">
-            <h2 class="ah-suptitle"><i class="ah-title-icon-left la la-leaf"></i>Offrez-vous une nuit insolite<i class="ah-title-icon-right la la-leaf"></i></h2> 
+            <h2 class="ah-suptitle"><i class="ah-title-icon-left la la-leaf"></i><span class="ah-suptitle-text">Offrez-vous une nuit insolite</span><i class="ah-title-icon-right la la-leaf"></i></h2> 
             <form class="ah-form-search">
             <mat-form-field class="ah-form-fieldset-inline ah-form-search-type">
                 <mat-icon class="ah-form-icon" matPrefix>room</mat-icon>
