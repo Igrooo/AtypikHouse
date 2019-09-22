@@ -26,7 +26,7 @@ const EXTloader:string  = `<div id="app-ext-data" data-list="`+EXTlist+`" data-t
 export class ExternalPage implements OnInit {
 
   ngOnInit() {
-    $(function() {
+    $(() => {
       // jQuery scripts for DATA
       // Load external data
       if($('#app-ext-data').length){

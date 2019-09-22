@@ -8,6 +8,8 @@
     "src/**/*.ts"
   ],
   "exclude": [
+    "src/environments/environment.prod.ts",
+    "src/data/lang/**/*.ts",
     "src/test.ts",
     "src/**/*.spec.ts"
   ]

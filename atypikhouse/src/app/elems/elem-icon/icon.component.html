@@ -1,0 +1,14 @@
+<a class="ah-icon icon-{{ iconSize }} {{ iconCircleClass }} {{ iconBgNotFoundClass }} {{ iconWithoutBgClass }} {{ iconWithoutColorClass }} {{ cardWithTextClass }} {{ cardWithMarkerClass }}" [ngStyle]="styles()">
+    <img class="ah-icon-asset" src="{{ iconsSet }}{{ iconGroup }}/{{ iconName }}.{{ iconsType }}" alt="{{ iconName }}">
+    <div *ngIf="iconSize == 'card' || 'banner'; else onlyTitle" class="ah-card-content">
+        <span *ngIf="iconTitle" class="icon-title">{{ iconTitle }}</span>
+        <p *ngIf="cardText" class="ah-card-text ah-tiny">{{ cardText }}</p>
+    </div>
+    <p *ngIf="cardMarker && iconColor; else markerWithoutColor" class="ah-card-marker" [ngStyle]="stylesMarker()">{{ cardMarker }}</p>
+    <ng-template #markerWithoutColor>
+        <p *ngIf="cardMarker" class="ah-card-marker">{{ cardMarker }}</p>
+    </ng-template>
+    <ng-template #onlyTitle>
+        <span *ngIf="iconTitle" class="icon-title">{{ iconTitle }}</span>
+    </ng-template>
+</a>

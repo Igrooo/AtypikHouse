@@ -2,7 +2,7 @@
     <h2>Les types d'hébergements</h2>
     <ul class="ah-list-icons ah-flex-list">
         <li *ngFor="let category of list">
-            <a class="ah-icon icon-card" routerLink="/category/{{ category.ID }}" data-icons-set="travel" [attr.data-group]="icons[category.ID-1].group" [attr.data-icon]="icons[category.ID-1].name" data-bg-src="categories" [attr.data-backg]="category.ID" data-color="#ba9077" [attr.data-title]="category.title" [attr.data-text]="category.description"></a>
+            <app-icon routerLink="/category/{{ category.ID }}" [iconSize]="iconsSize" [iconsSet]="iconsSet" [iconGroup]="icons[category.ID-1].group" [iconName]="icons[category.ID-1].name" [iconBgFolder]="iconsBgFolder" [iconBg]="category.ID" [iconColor]="iconsColor" [iconTitle]="category.title" [cardText]="category.description"></app-icon>
         </li>
     </ul>
 </section>

@@ -1,4 +1,3 @@
-import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 import { GeolocationService } from "./geolocation.service";
@@ -8,16 +7,22 @@ import { HttpClientModule } from "@angular/common/http";
 import { Routes, RouterModule } from "@angular/router";
 
 import { FormsModule } from "@angular/forms";
+import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatButtonModule, MatIconModule, MatFormFieldModule, MatInputModule, MatSelectModule, MatSliderModule, MatAutocompleteModule,
          MatToolbarModule, MatCardModule, MatSlideToggleModule, MatSnackBarModule, MatNativeDateModule, MatDatepickerModule } from '@angular/material';
 import {MatBadgeModule} from '@angular/material/badge'; 
+import { from } from 'rxjs';
 import 'hammerjs';
 
 //const lang = 'fr';
 
 //import { WordingUI } from 'src/data/lang/'+lang+'/ui';
 //import { WordingTXT } from 'src/data/lang/'+lang+'/txt';
+
+import { HeaderComponent } from './header/header.component';
+import { FooterComponent } from './footer/footer.component';
+import { AsideComponent } from './aside/aside.component';
 
 // Imports all pages
 import { HomePage }       from './pages/page-home/home.component';
@@ -47,6 +52,7 @@ import { ListCommentComponent }  from './elems/elem-list/list-comment/list-comme
 import { ListPostComponent }     from './elems/elem-list/list-post/list-post.component';
 import { ListPicComponent }      from './elems/elem-list/list-pic/list-pic.component';
 import { ListUserComponent }     from './elems/elem-list/list-user/list-user.component';
+import { ListPromoteComponent }  from './elems/elem-list/list-promote/list-promote.component';
 import { FormHouseComponent }    from './elems/elem-form/form-house/form-house.component';
 import { FormCategoryComponent } from './elems/elem-form/form-category/form-category.component';
 import { FormActivityComponent } from './elems/elem-form/form-activity/form-activity.component';
@@ -56,6 +62,7 @@ import { FormCommentComponent }  from './elems/elem-form/form-comment/form-comme
 import { FormPostComponent }     from './elems/elem-form/form-post/form-post.component';
 import { FormPicComponent }      from './elems/elem-form/form-pic/form-pic.component';
 import { FormUserComponent }     from './elems/elem-form/form-user/form-user.component';
+import { IconComponent } from './elems/elem-icon/icon.component';
 
 const routes : Routes = [
 
@@ -141,6 +148,9 @@ const routes : Routes = [
 @NgModule({
   declarations: [
     AppComponent,
+    HeaderComponent,
+    FooterComponent,
+    AsideComponent,
     HomePage,
     ExternalPage,
     AllPage,
@@ -166,6 +176,7 @@ const routes : Routes = [
     ListPostComponent,
     ListPicComponent,
     ListUserComponent,
+    ListPromoteComponent,
     FormHouseComponent,
     FormCategoryComponent,
     FormActivityComponent,
@@ -175,6 +186,7 @@ const routes : Routes = [
     FormPostComponent,
     FormPicComponent,
     FormUserComponent,
+    IconComponent,
   ],
   imports: [
     RouterModule.forRoot(routes),
