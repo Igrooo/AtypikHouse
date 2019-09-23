@@ -4,9 +4,9 @@
         <span *ngIf="iconTitle" class="icon-title">{{ iconTitle }}</span>
         <p *ngIf="cardText" class="ah-card-text ah-tiny">{{ cardText }}</p>
     </div>
-    <p *ngIf="cardMarker && iconColor; else markerWithoutColor" class="ah-card-marker" [ngStyle]="stylesMarker()">{{ cardMarker }}</p>
+    <p *ngIf="cardMarker && iconColor; else markerWithoutColor" class="ah-card-marker" [ngStyle]="stylesMarker()">à partir de <span class="price">{{ cardMarker }}&thinsp;€</span> /nuit</p>
     <ng-template #markerWithoutColor>
-        <p *ngIf="cardMarker" class="ah-card-marker">{{ cardMarker }}</p>
+        <p *ngIf="cardMarker" class="ah-card-marker">à partir de <span class="price">{{ cardMarker }}</span> /nuit</p>
     </ng-template>
     <ng-template #onlyTitle>
         <span *ngIf="iconTitle" class="icon-title">{{ iconTitle }}</span>

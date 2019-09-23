@@ -86,6 +86,9 @@
         max-width: 1320px;
         margin: auto;
     }
+    .ah-container-main{
+        transition: margin-top 250ms ease-out;
+    }
     .ah-nav-sidenav,
     .ah-container-main{
         margin-top: @ah-mat-toolbar-height;
@@ -97,8 +100,9 @@
     .ah-section,
     .ah-container,
     .ah-container-primary{
-        margin-bottom: @ah-container-margin-primary;
-        &:first-child:not(.lead){
+        padding-top: @ah-container-paddin-primary;
+        margin-bottom: @ah-margin-primary * 2;
+        &:first-child:not(.lead):not(.top){
             margin-top: @ah-container-margin-primary;
         }
     }
@@ -141,6 +145,8 @@
         height: 0;
         padding-top: @ah-mat-toolbar-height;
         opacity: 0;
+        transition-delay: 250ms;
+        transition: opacity 150ms ease-out;
     }
     .ah-banner,
     .ah-section-search{
@@ -234,6 +240,7 @@
         margin-bottom: 0;
     }
     h1,h2,h3,h4,h5,
+    .icon-banner .icon-title,
     .ah-subtitle,
     .ah-subtitle-h3,
     .ah-subtitle-h4,
@@ -248,6 +255,7 @@
     }
     h1:not(.ah-header-title),
     h2,
+    .icon-banner .icon-title,
     .ah-ext-entry-title,
     .ah-title:not(.ah-header-title){
         font-size: @ah-font-size-title;
@@ -466,8 +474,6 @@
         vertical-align: middle;
     }
     .ah-form-search{
-        max-width: 1235px;
-        margin:  auto;
         padding: @ah-padding-primary calc(@ah-padding-primary * 2);
         .ah-form-icon{
             margin-right: 5px;
@@ -477,7 +483,7 @@
             max-width: 130px;
         }
         .ah-form-search-nb{
-            max-width: 170px
+            max-width: 180px;
         }
 
         .ah-form-fieldset-inline:not(.ah-form-search-date-start):not(.ah-form-search-date-end){
@@ -617,8 +623,19 @@
         }
         &.icon-banner{
             width: 100%;
-            height: 300px;
-            padding: 50px 110px;
+            height: 480px;
+            margin: 0;
+            border-top-left-radius: 0;
+            border-top-right-radius: 0;
+            padding-top: 234px;
+            padding-bottom: 50px;
+            padding-left: 50px;
+            padding-right: calc(100% - 196px - 50px);
+            cursor: default;
+            .icon-title{
+                margin: 0;
+                text-align: left;
+            }
         }
         &.icon-card{
             width: 320px;
@@ -672,6 +689,7 @@
             padding-bottom: 0;
             transition: height 450ms ease-out, opacity 250ms ease-out;
         }
+        &.icon-banner,
         &:hover{
             .ah-card-text{
                 visibility: visible;
@@ -679,13 +697,30 @@
                 height: 135px;
             }
         }
+        &.icon-banner{
+            .ah-card-content{
+                padding-left: 50px + 192px + 15px; 
+                padding-right: 50px;
+                padding-bottom: 50px;
+                text-align: left;
+            }
+            .ah-card-text{
+                height: auto;
+                font-size:1rem;
+            }
+        }
         .ah-card-marker{
             position: absolute;
             right: 0;
-            top: 20px;
+            top: 10px;
             padding: 5px;
             border-top-left-radius: 4px;
             border-bottom-left-radius: 10px;
+            font-size: 0.8rem;
+            .price{
+                font-size: 1rem;
+                font-weight: bold;
+            }
         }
     }
     .ah-icon-inline-toolbar{

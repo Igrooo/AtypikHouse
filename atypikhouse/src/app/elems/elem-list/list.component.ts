@@ -3,6 +3,7 @@ import { DataService} from "src/app/data.service";
 import { House } from "src/app/logic/House";
 import { Router } from "@angular/router";
 import { GeolocationService } from "src/app/geolocation.service";
+import { Icons } from "src/app/elems/elem-icon/icons-categories"
 
 @Component({
   selector: 'app-list',
@@ -10,16 +11,19 @@ import { GeolocationService } from "src/app/geolocation.service";
   styles: []
 })
 export class ListComponent implements OnInit {
-  @Input() listTitle:string = 'Locations disponibles';
-  @Input() filterCategory = 1;
+  @Input() listTitle:string = 'Locations disponibles pour vos critères';
+  @Input() filterCategory:number = 1;
+  @Input() allCategories:boolean = true;
 
+  math = Math;
+  
   list: [House];
-  icons: any[];
+
+  icons =  Icons;
   iconsSet      :string = 'travel';
   iconsSize     :string = 'card';
   iconsColor    :string = '#9dc1bb';
   iconsBgFolder :string = 'houses';
-  
 
   constructor(private data: DataService,
               private router: Router,

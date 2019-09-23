@@ -2,15 +2,24 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from "@angular/router";
 import { DataService} from "src/app/data.service";
 import { Category } from "src/app/logic/Category";
+import { Icons } from "src/app/elems/elem-icon/icons-categories";
 
 @Component({
   selector: 'app-category',
-  template: '<app-list [listTitle]="" [filterCategory]="category.id"></app-list>',
+  templateUrl: './category.component.html',
   styles: []
 })
 
 export class CategoryComponent implements OnInit {
+
   category: Category;
+  listTitle: string;
+
+  icons = Icons;
+  iconsSet      :string = 'travel';
+  iconsSize     :string = 'banner';
+  iconsColor    :string = '#ba9077';
+  iconsBgFolder :string = 'categories';
 
   constructor(private route: ActivatedRoute,
               private data: DataService
@@ -19,15 +28,14 @@ export class CategoryComponent implements OnInit {
   routingSubscription: any;
 
   ngOnInit() {
-
     this.category = new Category();
-
+    
     this.routingSubscription =
       this.route.params.subscribe(params => {
-        console.log(params["id"]);
         if(params["id"]) {
           this.data.get("categorie", params["id"], response => {
             this.category = response;
+            this.listTitle = 'Locations de '+ this.category.title;
           });
         }
       });

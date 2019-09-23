@@ -24,7 +24,7 @@ export class DataService {
   get(elems:string, id: string, callback) {
     this.http.get(`${this.endpoint}/${elems}/${id}`)
       .subscribe(response =>{
-        console.log('Get DATA : '+elems);
+        //console.log('Get DATA : '+elems);
         callback(response['content']);
       });
   }
@@ -32,7 +32,7 @@ export class DataService {
   getList(elems:string, callback) {
     this.http.get(`${this.endpoint}/${elems}`)
       .subscribe(response => {
-      console.log('Get DATA list : '+elems);
+      //console.log('Get DATA list : '+elems);
       callback(response['content']);
     });
 

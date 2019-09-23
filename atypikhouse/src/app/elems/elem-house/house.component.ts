@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from "@angular/router";
-import { House } from "src/app/logic/House";
-import { Category } from "src/app/logic/Category";
+import { ActivatedRoute } from "@angular/router";
 import { GeolocationService } from "src/app/geolocation.service";
 import { DataService } from "src/app/data.service";
+import { House } from "src/app/logic/House";
+import { Icons } from "src/app/elems/elem-icon/icons-categories";
 
 @Component({
   selector: 'app-house',
@@ -12,12 +12,18 @@ import { DataService } from "src/app/data.service";
 })
 
 export class HouseComponent implements OnInit {
+  math = Math;
 
   house: House;
 
+  icons = Icons;
+  iconsSet      :string = 'travel';
+  iconsSize     :string = 'banner';
+  iconsColor    :string = '#9dc1bb';
+  iconsBgFolder :string = 'houses';
+
   constructor(private route: ActivatedRoute,
               private geolocation: GeolocationService,
-              private router: Router,
               private data: DataService
               ) { }
 
@@ -28,9 +34,8 @@ export class HouseComponent implements OnInit {
 
     this.routingSubscription =
       this.route.params.subscribe(params => {
-        console.log(params["id"]);
         if(params["id"]) {
-          this.data.get("houses", params["id"], response => {
+          this.data.get("showProducts", params["id"], response => {
             this.house = response;
           });
         }

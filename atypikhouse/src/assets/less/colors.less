@@ -109,13 +109,6 @@
         .mat-badge-primary .mat-badge-content{
             background-color: @ah-green !important;
         }
-        .mat-badge-accent .mat-badge-content{
-            background-color: @ah-green-light !important;
-        }
-        .mat-badge-warn .mat-badge-content{
-            background-color: @ah-brown !important;
-        } 
-
     }
    
     // Variants
@@ -176,7 +169,7 @@
     }
     // Icons colors variants //
     &.ah-theme-dark{
-        .ah-icon{
+        .ah-icon:not(.icon-banner){
             &:hover{
                 &.icon-card{
                     .ah-card-content{
@@ -220,8 +213,11 @@
         .ah-icon{
             background-color: @ah-background-color-primary;
         }
-        .ah-icon.icon-card.card-with-marker{
-            background-color: @ah-background-color-primary !important;
+        .ah-icon.icon-card,
+        .ah-icon.icon-banner{
+            &.card-with-marker{
+                background-color: @ah-background-color-primary !important;
+            }
         }
         .ah-loader-icon{
             background-color: @ah-background-color-primary;
@@ -230,7 +226,7 @@
 
     &.ah-theme-light{
         .ah-icon{
-            &:hover{
+            &:hover:not(.icon-banner){
                 &.icon-card{
                     .ah-card-content{
                         background-color: fade(@ah-font-color-primary,60%);
@@ -269,8 +265,11 @@
         .ah-icon{
             background-color: @ah-font-color-primary;
         }
-        .ah-icon.icon-card.card-with-marker{
-            background-color: @ah-font-color-primary !important;
+        .ah-icon.icon-card,
+        .ah-icon.icon-banner{
+            &.card-with-marker{
+                background-color: @ah-font-color-primary !important;
+            }
         }
         .ah-loader-icon{
             background-color: @ah-font-color-primary;

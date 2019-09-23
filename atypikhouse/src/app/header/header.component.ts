@@ -37,13 +37,14 @@ export class HeaderComponent implements OnInit {
   }
 
   open(target:string){
-
+    
   }
   login(){
 
   }
   searchbox(){
-
+    $('.ah-page').addClass('open-searchbox');
+    $('html, body').animate({ scrollTop: 0 }, 500);
   }
 
   searchboxLocation(location){
@@ -59,7 +60,7 @@ export class HeaderComponent implements OnInit {
     this.geolocation.requestLocation(location => {
       if (location) {
         this.searchboxLocation(location);
-        console.log(location.latitude,location.longitude);
+        //console.log('User Location: '+location.latitude,location.longitude);
       }
     });
 

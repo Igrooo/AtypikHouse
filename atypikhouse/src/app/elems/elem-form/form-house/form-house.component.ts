@@ -41,7 +41,6 @@ export class FormHouseComponent implements OnInit {
 
     this.routingSubscription =
       this.route.params.subscribe(params => {
-        console.log(params["id"]);
         if(params["id"]) {
           this.data.get("houses", params["id"], response => {
             this.house = response;

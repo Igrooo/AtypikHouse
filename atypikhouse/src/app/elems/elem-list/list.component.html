@@ -1,23 +1,20 @@
-<!--
-<mat-card *ngFor="let house of list">
-  <mat-card-title>{{ house.title }}</mat-card-title>
-  <mat-card-subtitle>{{ house.address }}, {{ house.city }}</mat-card-subtitle>
-  <mat-card-actions>
-    <button (click)="goMap(house)" mat-button><mat-icon>map</mat-icon> Map</button>
-    <button (click)="share(house)" mat-button><mat-icon>share</mat-icon> Share</button>
-    <button (click)="goDetails(house)" mat-button><mat-icon>list</mat-icon> Details</button>
-  </mat-card-actions>
-</mat-card>
--->
 
-<section class="ah-section ah-container-primary">
-    <h2>{{ listTitle }}</h2>
+  <!--
+    <mat-card-title>{{ house.title }}</mat-card-title>
+    <mat-card-subtitle>{{ house.address }}, {{ house.city }}</mat-card-subtitle>
+    <mat-card-actions>
+      <button (click)="goMap(house)" mat-button><mat-icon>map</mat-icon> Map</button>
+      <button (click)="share(house)" mat-button><mat-icon>share</mat-icon> Share</button>
+      <button (click)="goDetails(house)" mat-button><mat-icon>list</mat-icon> Details</button>
+    </mat-card-actions>
+  -->
+
+<section class="ah-section ah-container-primary top">
+    <h2 class="ah-title">{{ listTitle }}</h2>
     <ul class="ah-list-icons ah-flex-list">
-        <ng-container *ngIf="filterCategory == house.ID_category">
-            <li *ngFor="let house of list">
-                <app-icon routerLink="/house/{{ house.ID }}" [iconSize]="iconsSize" [iconsSet]="iconsSet" [iconGroup]="icons[house.ID-1].group" [iconName]="icons[house.ID-1].name" [iconBgFolder]="iconsBgFolder" [iconBg]="house.ID" [iconColor]="iconsColor" [iconTitle]="house.title" [cardText]="house.description"></app-icon>
-            </li>
-        </ng-container>
+      <li *ngFor="let house of list">
+          <app-icon routerLink="/house/{{ house.ID }}" [iconSize]="iconsSize" [iconsSet]="iconsSet" [iconGroup]="icons[house.ID_category - 1].group" [iconName]="icons[house.ID_category - 1].name" [iconBgFolder]="iconsBgFolder" [iconBg]="house.ID" [iconColor]="iconsColor" [iconTitle]="house.title" [cardText]="house.description" [cardMarker]="math.round(house.price + ((house.price/100) * house.tax))"></app-icon>
+      </li>
     </ul>
 </section>
 

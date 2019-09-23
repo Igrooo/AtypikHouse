@@ -11,6 +11,7 @@ export class FooterComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+    /*
     $(() => {
       $('#footer').scroll(() => {
         console.log('scroll');
@@ -19,6 +20,7 @@ export class FooterComponent implements OnInit {
         }
       });
     });
+    */
   }
 
 }

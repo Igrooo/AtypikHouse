@@ -51,47 +51,59 @@
         <section role="search" class="ah-section-search">
         <div class="ah-header-wrap">
             <h2 class="ah-suptitle"><i class="ah-title-icon-left la la-leaf"></i><span class="ah-suptitle-text">Offrez-vous une nuit insolite</span><i class="ah-title-icon-right la la-leaf"></i></h2> 
-            <form class="ah-form-search">
-            <mat-form-field class="ah-form-fieldset-inline ah-form-search-type">
-                <mat-icon class="ah-form-icon" matPrefix>room</mat-icon>
-                <mat-label>Destination</mat-label>
-                <mat-select matNativeControl>
-                <mat-option value="location-user" selected><mat-icon class="ah-form-icon" matPrefix>person_pin</mat-icon> Autours de moi</mat-option>
-                <mat-option value="location-city"><mat-icon class="ah-form-icon" matPrefix>location_city</mat-icon> Saisir l'adresse</mat-option>
-                </mat-select>
-            </mat-form-field>
-            <mat-form-field class="ah-form-fieldset-inline ah-form-search-type">
-                <mat-icon class="ah-form-icon" matPrefix>home</mat-icon>
-                <mat-label>Type d'hébergement</mat-label>
-                <mat-select>
-                <mat-option value="null">list type</mat-option>
-                </mat-select>
-            </mat-form-field>
-            <mat-form-field class="ah-form-fieldset-inline ah-form-search-thema">
-                <mat-icon class="ah-form-icon" matPrefix>local_florist</mat-icon>
-                <mat-label>Thématique</mat-label>
-                <mat-select>
-                <mat-option value="null">list themes</mat-option>
-                </mat-select>
-            </mat-form-field>
-            <mat-form-field class="ah-form-fieldset-inline ah-form-search-date-start">
-                <mat-label>Date d'arrivée</mat-label>
-                <input matInput [matDatepicker]="DateStart">
-                <mat-datepicker-toggle class="ah-form-icon" matPrefix [for]="DateStart"></mat-datepicker-toggle>
-                <mat-datepicker #DateStart></mat-datepicker>
-            </mat-form-field>
-            <mat-form-field class="ah-form-fieldset-inline ah-form-search-date-end">
-                <mat-label>Date de départ</mat-label>
-                <mat-datepicker-toggle class="ah-form-icon" matPrefix [for]="DateEnd"></mat-datepicker-toggle>
-                <input matInput [matDatepicker]="DateEnd">
-                <mat-datepicker #DateEnd></mat-datepicker>
-            </mat-form-field>
-            <mat-form-field class="ah-form-fieldset-inline ah-form-search-nb">
-                <mat-icon class="ah-form-icon" matPrefix>people_alt</mat-icon>
-                <mat-label>Nombre de personne</mat-label>
-                <input matInput number>
-            </mat-form-field>
-            <button mat-button class="ah-cta-primary" (click)="search()"><mat-icon>search</mat-icon></button>
+            <form action="/houses" class="ah-form-search">
+                <mat-form-field class="ah-form-fieldset-inline ah-form-search-type">
+                    <mat-icon class="ah-form-icon" matPrefix>room</mat-icon>
+                    <mat-label>Destination</mat-label>
+                    <mat-select matNativeControl>
+                        <mat-option value="location-user" selected><mat-icon class="ah-form-icon" matPrefix>person_pin</mat-icon> Autours de moi</mat-option>
+                        <mat-option value="location-city"><mat-icon class="ah-form-icon" matPrefix>location_city</mat-icon> Saisir l'adresse</mat-option>
+                    </mat-select>
+                </mat-form-field>
+                <mat-form-field class="ah-form-fieldset-inline ah-form-search-type">
+                    <mat-icon class="ah-form-icon" matPrefix>home</mat-icon>
+                    <mat-label>Type d'hébergement</mat-label>
+                    <mat-select>
+                        <mat-option value="null">list type</mat-option>
+                    </mat-select>
+                </mat-form-field>
+                <mat-form-field class="ah-form-fieldset-inline ah-form-search-thema">
+                    <mat-icon class="ah-form-icon" matPrefix>local_florist</mat-icon>
+                    <mat-label>Thématique</mat-label>
+                    <mat-select>
+                        <mat-option value="null">list themes</mat-option>
+                    </mat-select>
+                </mat-form-field>
+                <mat-form-field class="ah-form-fieldset-inline ah-form-search-date-start">
+                    <mat-label>Date d'arrivée</mat-label>
+                    <input matInput [matDatepicker]="DateStart">
+                    <mat-datepicker-toggle class="ah-form-icon" matPrefix [for]="DateStart"></mat-datepicker-toggle>
+                    <mat-datepicker #DateStart></mat-datepicker>
+                </mat-form-field>
+                <mat-form-field class="ah-form-fieldset-inline ah-form-search-date-end">
+                    <mat-label>Date de départ</mat-label>
+                    <mat-datepicker-toggle class="ah-form-icon" matPrefix [for]="DateEnd"></mat-datepicker-toggle>
+                    <input matInput [matDatepicker]="DateEnd">
+                    <mat-datepicker #DateEnd></mat-datepicker>
+                </mat-form-field>
+                <mat-form-field class="ah-form-fieldset-inline ah-form-search-nb">
+                    <mat-icon class="ah-form-icon" matPrefix>people_alt</mat-icon>
+                    <mat-label>Nombre de personnes</mat-label>
+                    <mat-select>
+                        <mat-option value="1">1</mat-option>
+                        <mat-option value="2">2</mat-option>
+                        <mat-option value="3">3</mat-option>
+                        <mat-option value="4">4</mat-option>
+                        <mat-option value="5">5</mat-option>
+                        <mat-option value="6">6</mat-option>
+                        <mat-option value="7">7</mat-option>
+                        <mat-option value="8">8</mat-option>
+                        <mat-option value="9">9</mat-option>
+                        <mat-option value="10">10</mat-option>
+                    </mat-select>
+                </mat-form-field>
+                <!--<mat-slider min="1" max="10" step="1" value="2"></mat-slider>-->
+                <button mat-button type="submit" class="ah-cta-primary" (click)="search()"><mat-icon>search</mat-icon></button>
             </form>
         </div>
         </section>

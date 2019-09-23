@@ -34,7 +34,7 @@ export class ExternalPage implements OnInit {
           var datafile = $('#app-ext-data').attr('data-list');
           var datatype = $('#app-ext-data').attr('data-type');
       
-          console.log('get '+datafile);
+          //console.log('get '+datafile);
       
           var datapage = window.location.pathname;
       
@@ -47,14 +47,14 @@ export class ExternalPage implements OnInit {
               $.each(data, function (index, data) {
                 if('/'+index.toString() === datapage){
                   var datasource = datasrc+data+datapage;
-                  console.log('load '+datapage+' of '+data);
+                  //('load '+datapage+' of '+data);
                   $( '#app-ext-data' ).load( datasource+' #ah-ext-content' );
                   $( '.ah-container-main' ).removeClass('ah-loading');
                 }
               })
             },
             error: function (xhr, error) {
-              console.log('error load '+datafile, xhr, error);
+              //console.log('error load '+datafile, xhr, error);
             }
           });
       }else{

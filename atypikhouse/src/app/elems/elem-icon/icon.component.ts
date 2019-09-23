@@ -37,15 +37,15 @@ export class IconComponent {
     switch (this.iconBgFolder) {
       case 'placeholder': this.iconBgFolder = 'assets/img/bg/'
           break;
-      case 'houses':      this.iconBgFolder = 'src/data/static/img/houses/'
+      case 'houses':      this.iconBgFolder = 'data/static/img/houses/'
           break;
-      case 'categories':  this.iconBgFolder = 'src/data/static/img/categories/'
+      case 'categories':  this.iconBgFolder = 'data/static/img/categories/'
           break;
-      case 'themes':      this.iconBgFolder = 'src/data/static/img/themes/'
+      case 'themes':      this.iconBgFolder = 'data/static/img/themes/'
           break;
-      case 'activities':  this.iconBgFolder = 'src/data/static/img/activities/'
+      case 'activities':  this.iconBgFolder = 'data/static/img/activities/'
           break;
-      case 'users':       this.iconBgFolder = 'src/data/static/img/users/'
+      case 'users':       this.iconBgFolder = 'data/static/img/users/'
           break;
       default:            this.iconBgFolder = 'assets/img/bg/'
     }
@@ -86,7 +86,7 @@ export class IconComponent {
 
   styles(){
     if(this.iconSize == 'banner'){
-      this.iconBg = this.iconBg+'banner';
+      this.iconBg = this.iconBg+'-banner';
     }
     if(this.iconWithoutBgClass != 'icon-without-backg' && this.iconColor){
       return {'background-image': 'url('+this.iconBgFolder+this.iconBg+'.png)', 'background-color': this.iconColor, 'border-color': this.iconColor}

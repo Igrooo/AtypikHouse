@@ -104,7 +104,7 @@ const routes : Routes = [
   //////// ONE ELEMENT PAGES (FORMS)
 //
   //{ path: 'house',          component: FormHouseComponent },        // New  house
-  //{ path: 'house/:id',      component: HouseComponent },            // Show house
+  { path: 'house/:id',      component: HouseComponent },            // Show house
   //{ path: 'house/:id/edit', component: FormHouseComponent },        // Edit house
 
   //{ path: 'category', component: FormCategoryComponent },           // New  category
