@@ -1,14 +1,5 @@
-const express = require("express");
-const bodyParser = require("body-parser");
-var app = express();
-
-
-
-
-const connection = require ("./modules/dbConnection.js");
-
 // IMPORT ROUTES
-
+import bodyparser from 'body-parser'
 import signup from './routes/signup-route';
 import login from './routes/login-route';
 import showProduct from './routes/showProduct-route';
@@ -17,7 +8,15 @@ import addProduct from './routes/addProduct-route';
 import categorie from './routes/categorie-route';
 
 
+const express = require("express");
+const bodyParser = require("body-parser");
+var app = express();
 
+app.use(bodyParser.urlencoded({extended: true}));
+app.use(bodyParser.json());
+
+
+const connection = require ("./modules/dbConnection.js");
 
 // Connexion to server
 
