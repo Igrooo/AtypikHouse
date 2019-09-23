@@ -1,11 +1,11 @@
-import { Component, Input } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
   selector: 'app-tag',
   template: '<a class="ah-tag ah-tag-type-{{ tagType.toString() }} {{ tagWithIconClass }} {{ tagWithIconClass }}" [ngStyle]="styles()">{{ tagText }}</a>',
   styles: []
 })
-export class TagComponent {
+export class TagComponent implements OnInit {
   @Input() tagWithIcon:boolean = false;
   @Input() tagType:number  = 0;
   @Input() tagColor:string = "";

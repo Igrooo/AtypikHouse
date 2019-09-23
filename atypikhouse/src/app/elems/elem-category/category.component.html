@@ -1,2 +1,2 @@
-<app-icon [iconSize]="iconsSize" [iconsSet]="iconsSet" [iconGroup]="icons[category.ID - 1].group" [iconName]="icons[category.ID - 1].name" [iconBgFolder]="iconsBgFolder" [iconBg]="category.ID" [iconColor]="iconsColor" [iconTitle]="category.title" [cardText]="category.description"></app-icon>
+<app-icon *ngIf="category" [iconSize]="iconsSize" [iconsSet]="iconsSet" [iconGroup]="icons[category.ID - 1].group" [iconName]="icons[category.ID - 1].name" [iconBgFolder]="iconsBgFolder" [iconBg]="category.ID" [iconColor]="iconsColor" [iconTitle]="category.title" [cardText]="category.description"></app-icon>
 <app-list [listTitle]="listTitle" [allCategories]="false" [filterCategory]="category.id"></app-list>

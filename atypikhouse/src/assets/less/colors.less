@@ -186,7 +186,7 @@
                 }
             }
         }
-        .ah-icon:not(.icon-without-backg):not(.icon-backg-not-found){
+        .ah-icon:not(.icon-without-backg):not(.icon-backg-not-found):not(.icon-banner){
             &:before{ // img overlay
                 background-color: fade(@ah-background-color-primary,10%);
             }
@@ -219,6 +219,12 @@
                 background-color: @ah-background-color-primary !important;
             }
         }
+        .ah-icon.icon-banner{
+            .icon-asset,
+            .ah-card-content{
+                background-color: @ah-background-color-primary;
+            }
+        }
         .ah-loader-icon{
             background-color: @ah-background-color-primary;
         }
@@ -242,7 +248,7 @@
                 }
             }
         }
-        .ah-icon:not(.icon-without-backg):not(.icon-backg-not-found){
+        .ah-icon:not(.icon-without-backg):not(.icon-backg-not-found):not(.icon-banner){
             &:before{ // img overlay
                 background-color: fade(@ah-font-color-primary,10%);
             }
@@ -269,6 +275,12 @@
         .ah-icon.icon-banner{
             &.card-with-marker{
                 background-color: @ah-font-color-primary !important;
+            }
+        }
+        .ah-icon.icon-banner{
+            .icon-asset,
+            .ah-card-content{
+                background-color: @ah-font-color-primary;
             }
         }
         .ah-loader-icon{

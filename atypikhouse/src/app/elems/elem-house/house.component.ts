@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output } from '@angular/core';
 import { ActivatedRoute } from "@angular/router";
 import { GeolocationService } from "src/app/geolocation.service";
 import { DataService } from "src/app/data.service";
@@ -40,14 +40,14 @@ export class HouseComponent implements OnInit {
           });
         }
       });
-
+      /*
     this.geolocation.requestLocation(location => {
       if (location) {
         this.house.location.latitude = location.latitude;
         this.house.location.longitude = location.longitude;
       }
     });
-
+     */
 
   }
 

@@ -1,4 +1,4 @@
-<app-icon [iconSize]="iconsSize" [iconsSet]="iconsSet" [iconGroup]="icons[house.ID_category - 1].group" [iconName]="icons[house.ID_category - 1].name" [iconBgFolder]="iconsBgFolder" [iconBg]="house.ID" [iconColor]="iconsColor" [iconTitle]="house.title" [cardText]="house.description" [cardMarker]="math.round(house.price + ((house.price/100) * house.tax))"></app-icon>
+<app-icon *ngIf="house" (click)="slide()" [iconSize]="iconsSize" [iconsSet]="iconsSet" [iconGroup]="icons[house.ID_category - 1].group" [iconName]="icons[house.ID_category - 1].name" [iconBgFolder]="iconsBgFolder" [iconBg]="house.ID" [iconColor]="iconsColor" [iconTitle]="house.title" [cardText]="house.description" [cardMarker]="math.round(house.price + ((house.price/100) * house.tax)).toString()"></app-icon>
 <!--
 <section class="ah-product-info">
   <mat-card>

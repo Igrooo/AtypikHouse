@@ -1,30 +1,39 @@
 import * as $ from 'jquery';
-import { Component, Input } from '@angular/core';
+import { Component, OnInit, OnChanges, Input } from '@angular/core';
 
 @Component({
   selector: 'app-icon',
   templateUrl: './icon.component.html',
   styles: []
 })
-export class IconComponent {
-  @Input() iconsSet:string     = '';
-  @Input() iconSize:string     = '';
-  @Input() iconCircle:boolean  = false;
-  @Input() iconGroup:string    = '';
-  @Input() iconName:string     = '';
-  @Input() iconBgFolder:string = '';
-  @Input() iconBg:string       = '';
-  @Input() iconColor:string    = '';
-  @Input() iconTitle:string    = '';
-  @Input() cardText:string     = '';
-  @Input() cardMarker:string   = '';
+export class IconComponent implements OnInit, OnChanges {
   iconsType:string             = 'svg';
-  iconCircleClass:string       = '';
-  iconBgNotFoundClass:string   = '';
-  iconWithoutBgClass:string    = '';
-  iconWithoutColorClass:string = '';
-  cardWithTextClass:string     = '';
-  cardWithMarkerClass:string   = '';
+  @Input() iconCircle:boolean  = false;
+  @Input() iconsSet:string     ;
+  @Input() iconSize:string     ;
+  @Input() iconGroup:string    ;
+  @Input() iconName:string     ;
+  @Input() iconBgFolder:string ;
+  @Input() iconBg:string       ;
+  @Input() iconColor:string    ;
+  @Input() iconTitle:string    ;
+  @Input() cardText:string     ;
+  @Input() cardMarker:string   ;
+  iconCircleClass:string       ='';
+  iconBgNotFoundClass:string   ='';
+  iconWithoutBgClass:string    ='';
+  iconWithoutColorClass:string ='';
+  cardWithTextClass:string     ='';
+  cardWithMarkerClass:string   ='';
+
+  constructor() { }
+
+  imgExists(url, callback) {
+    var img = new Image();
+    img.onload = function() { callback(true); };
+    img.onerror = function() { callback(false); };
+    img.src = url;
+  }
 
   setIconsSet(){
     switch (this.iconsSet) {
@@ -50,13 +59,17 @@ export class IconComponent {
       default:            this.iconBgFolder = 'assets/img/bg/'
     }
   }
+  setIconBg(){
+    if(this.iconSize == 'banner'){
+      this.iconBg = this.iconBg+'-banner';
+    }
+  }
 
   setClasses(){
     if(this.iconBg){
-      $.ajax({
-        url: this.iconBgFolder+this.iconBg+'.png',
-        type:'HEAD',
-        error: () =>{
+      this.imgExists('http://localhost:4200/'+this.iconBgFolder+this.iconBg+'.png', function(exists) {
+        console.log(exists);
+        if(exists == false){
           this.iconBgNotFoundClass = 'icon-backg-not-found';
         }
       });
@@ -85,9 +98,6 @@ export class IconComponent {
   }
 
   styles(){
-    if(this.iconSize == 'banner'){
-      this.iconBg = this.iconBg+'-banner';
-    }
     if(this.iconWithoutBgClass != 'icon-without-backg' && this.iconColor){
       return {'background-image': 'url('+this.iconBgFolder+this.iconBg+'.png)', 'background-color': this.iconColor, 'border-color': this.iconColor}
     }
@@ -98,18 +108,43 @@ export class IconComponent {
       return {'background-color': this.iconColor, 'border-color': this.iconColor}
     }
   }
+  stylesCardContent(){
+    if(this.iconColor && this.iconSize == 'banner'){
+      return {'background-color': this.iconColor}
+    }
+  }
   stylesMarker(){
     if(this.iconColor){
       return {'background-color': this.iconColor}
     }
   }
 
-  constructor() { }
-
   ngOnInit() {
     this.setIconsSet();
     this.setIconBgFolder();
-    this.setClasses();
+  }
+  counterOnChanger = 0; // only on second time of OnCange (when data is ready)
+  ngOnChanges() {
+    if(this.counterOnChanger == 1){
+      this.setIconBg();
+      this.setClasses();
+      //console.log('iconsType: '+this.iconsType);
+      //console.log('iconsSet: '+this.iconsSet);
+      //console.log('iconBgFolder: '+this.iconBgFolder);
+      //console.log('iconBg: '+this.iconBg);
+      //console.log('iconColor: '+this.iconColor);
+      //console.log('iconTitle: '+this.iconTitle);
+      //console.log('cardText: '+this.cardText);
+      //console.log('cardMarker: '+this.cardMarker);
+      //console.log('iconCircleClass: '+this.iconCircleClass);
+      //console.log('iconBgNotFoundClass: '+this.iconBgNotFoundClass);
+      //console.log('iconWithoutBgClass: '+this.iconWithoutBgClass);
+      //console.log('iconWithoutColorClass: '+this.iconWithoutColorClass);
+      //console.log('cardWithTextClass: '+this.cardWithTextClass);
+      //console.log('cardWithMarkerClass: '+this.cardWithMarkerClass);
+      //console.log('---------------------------------');
+    }
+    this.counterOnChanger ++;
   }
 
 }
