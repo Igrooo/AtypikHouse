@@ -4,16 +4,10 @@ import jwt from 'jsonwebtoken';
 
 
 
+let express = require('express');
+let showProducts = express.Router();
 let addProduct = express.Router();
 
-
-
-addProduct.post('/addProduct', function (req, res) {
-
-    
-    var userInfo = req.decodedToken.payload;
-    console.log(userInfo);
-    
     var title = JSON.stringify(req.body.title);
     var description = JSON.stringify(req.body.description);
     var address = JSON.stringify(req.body.address);
@@ -27,6 +21,15 @@ addProduct.post('/addProduct', function (req, res) {
     var user = JSON.stringify(userInfo.id);
     var category = JSON.stringify(req.body.category);
 
+
+
+addProduct.post('/addProduct', function (req, res) {
+
+    
+    var userInfo = req.decodedToken.payload;
+    console.log(userInfo);
+    
+   
 
     if(req.body.title && req.body.description && req.body.address && req.body.zip && req.body.city && req.body.beds && req.body.price && req.body.activite && req.body.tags && req.body.pics && req.body.user && req.body.category){
 
@@ -45,3 +48,33 @@ addProduct.post('/addProduct', function (req, res) {
 });
 
 export default addProduct;
+
+
+
+showProducts.get('/showProducts', function (req, res) {
+        connection.query("SELECT * FROM ah_houses", (err, result) => {
+            if (err){
+                throw(err);
+            }
+            res.status(200).send({
+                status: true,
+                content: result
+            })
+        });
+});
+
+
+showProducts.get('/showProducts/:id', function (req, res) {
+        connection.query("SELECT * FROM ah_houses WHERE `ID`= " + "'" + req.params.id + "'", (err, result) => {
+            if (err){
+                throw(err);
+            }
+            res.status(200).send({
+                status: true,
+                content: result[0]
+            })
+        });
+});
+
+export default showProducts;
+
