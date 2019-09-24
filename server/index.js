@@ -1,13 +1,19 @@
 // IMPORT ROUTES
-import bodyparser from 'body-parser'
+//import bodyparser from 'body-parser'
 import signup from './routes/users';
 import login from './routes/connection';
-import house from './routes/houses';
+//import house from './routes/houses';
 import auth from './routes/middleware/token';
 import addProduct from './routes/houses';
 import updateProduct from './routes/houses';
-import categorie from './routes/categoriese';
-//import booking from './routes/booking';
+import showProduct from './routes/houses';
+import categorie from './routes/categories';
+import insertbooking from './routes/booking';
+import updatebooking from './routes/booking';
+import deletebooking from './routes/booking';
+import fetchbooking from './routes/booking';
+
+
 
 
 const express = require("express");
@@ -61,8 +67,8 @@ app.use(signup);
 app.use(login);
 
 // ROUTE SHOW PRODUCT//
-
-app.use(house);
+app.use(showProduct);
+//app.use(house);
 
 // ROUTE CATEGORIE // 
 
@@ -79,8 +85,14 @@ app.use(addProduct);
 // ROUTE UPDATE PRODUCT // 
 app.use(updateProduct);
 
+
 // ROUTE DELETE PRODUCT // 
 
 // ROUTE BOOKING // 
 
-app.use(booking);
+app.use(insertbooking);
+app.use(updatebooking);
+app.use(deletebooking);
+app.use(fetchbooking);
+
+
