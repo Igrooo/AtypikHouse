@@ -4,17 +4,18 @@ let update_user = express.Router();
 let delete_user = express.Router();
 import connection from './../modules/dbConnection';
 
-    var type = JSON.stringify(req.body.type);
+    
+
+signup.post('/signup', (req, res) =>{ 
+  
+ var type = JSON.stringify(req.body.type);
     var name = JSON.stringify(req.body.name);
     var firstname = JSON.stringify(req.body.prenom);
     var address = JSON.stringify(req.body.prenom);
     var zipcode = JSON.stringify(req.body.zipcode);
     var city = JSON.stringify(req.body.city);
     var email = JSON.stringify(req.body.email);
-    var password = JSON.stringify(req.body.password);    
-
-signup.post('/signup', (req, res) =>{ 
-
+    var password = JSON.stringify(req.body.password);   
   
     if(req.body.email && req.body.password && req.body.verifPassword && req.body.nom && req.body.prenom){
   

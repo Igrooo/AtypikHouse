@@ -18,7 +18,7 @@ router.createBooking = function(req, res){
      ID_house = JSON.stringify(req.body.ID_house),
  })
     
-    booking.save(function(err, savedBooking){
+    booking.save('./insertbooking',function(err, savedBooking){
         if(err)
             res.status(400).json(err)
         else if(!savedBooking)
@@ -27,7 +27,7 @@ router.createBooking = function(req, res){
             res.status(201).json(savedBooking= connection.query("INSERT INTO ah_booking (nb_persons, date_start, date_end, status) VALUES ("+nb_persons+","+date_start+","+date_end+","+status+")"))
     })
 
-    booking.update(function(err, updateBooking){
+    booking.update('./updatebooking',function(err, updateBooking){
         if(err)
             res.status(400).json(err)
         else if(!updateBooking)
@@ -35,7 +35,7 @@ router.createBooking = function(req, res){
         else
             res.status(201).json(updateBooking= connection.query("UPDATE ah_booking SET nb_persons="+nb_persons+", date_start="+date_start+", date_end="+date_end+", status="+status+""))
     })
-    booking.delete(function(err, deleteBooking){
+    booking.delete('./deletebooking',function(err, deleteBooking){
         if(err)
             res.status(400).json(err)       
         else
@@ -44,7 +44,7 @@ router.createBooking = function(req, res){
 
 }
 
-router.fetchBooking = function(req, res){
+router.fetchBooking ( './fetchbooking',function(req, res){
     console.log(req.params.ID_user)
     Booking.find({ ID_user: req.params.ID_user }).exec(function(err, roomData){
         if(err)
@@ -54,7 +54,7 @@ router.fetchBooking = function(req, res){
         else
             res.status(200).json(roomData)
     })
-}
+})
 
 
 module.exports = router

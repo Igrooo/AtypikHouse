@@ -8,6 +8,16 @@ let express = require('express');
 let showProducts = express.Router();
 let addProduct = express.Router();
 
+   
+
+
+
+addProduct.post('/addProduct', function (req, res) {
+
+    
+    var userInfo = req.decodedToken.payload;
+    console.log(userInfo);
+    
     var title = JSON.stringify(req.body.title);
     var description = JSON.stringify(req.body.description);
     var address = JSON.stringify(req.body.address);
@@ -20,16 +30,6 @@ let addProduct = express.Router();
     var pics = JSON.stringify(req.body.pics);
     var user = JSON.stringify(userInfo.id);
     var category = JSON.stringify(req.body.category);
-
-
-
-addProduct.post('/house', function (req, res) {
-
-    
-    var userInfo = req.decodedToken.payload;
-    console.log(userInfo);
-    
-   
 
     if(req.body.title && req.body.description && req.body.address && req.body.zip && req.body.city && req.body.beds && req.body.price && req.body.activite && req.body.tags && req.body.pics && req.body.user && req.body.category){
 
@@ -51,6 +51,18 @@ export default addProduct;
 
 updateProduct.post('/updateProduct', function (req, res) {
 
+    var title = JSON.stringify(req.body.title);
+    var description = JSON.stringify(req.body.description);
+    var address = JSON.stringify(req.body.address);
+    var zip = JSON.stringify(req.body.zip);
+    var city = JSON.stringify(req.body.city);
+    var beds = JSON.stringify(req.body.beds);
+    var price = JSON.stringify(req.body.price);
+    var activite = JSON.stringify(req.body.activite);
+    var tags = JSON.stringify(req.body.tags);
+    var pics = JSON.stringify(req.body.pics);
+    var user = JSON.stringify(userInfo.id);
+    var category = JSON.stringify(req.body.category);
     
     var userInfo = req.decodedToken.payload;
     console.log(userInfo);
@@ -76,7 +88,7 @@ updateProduct.post('/updateProduct', function (req, res) {
 export default updateProduct;
 
 
-showProducts.get('/showProducts', function (req, res) {
+showProduct.get('/showProduct', function (req, res) {
         connection.query("SELECT * FROM ah_houses", (err, result) => {
             if (err){
                 throw(err);
@@ -89,7 +101,7 @@ showProducts.get('/showProducts', function (req, res) {
 });
 
 
-showProducts.get('/showProducts/:id', function (req, res) {
+showProduct.get('/showProduct/:id', function (req, res) {
         connection.query("SELECT * FROM ah_houses WHERE `ID`= " + "'" + req.params.id + "'", (err, result) => {
             if (err){
                 throw(err);
@@ -101,5 +113,5 @@ showProducts.get('/showProducts/:id', function (req, res) {
         });
 });
 
-export default showProducts;
+export default showProduct;
 
