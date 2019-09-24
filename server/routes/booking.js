@@ -44,17 +44,17 @@ router.createBooking = function(req, res){
 
 }
 
-/*router.fetchBooking ( './fetchbooking',function(req, res){
-    console.log(req.params.ID_user)
+
+router.fetchBooking = function(req, res){
+    console.log(req.params.user_id)
     Booking.find({ ID_user: req.params.ID_user }).exec(function(err, roomData){
         if(err)
             res.status(400).json(err)
         else if(!roomData)
-            res.status(202).json("aucune donnée trouvée")
+            res.status(202).json("no data found")
         else
             res.status(200).json(roomData)
     })
-})*/
-
+}
 
 module.exports = router
