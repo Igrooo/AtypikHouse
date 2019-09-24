@@ -1,19 +1,21 @@
 // IMPORT ROUTES
 import bodyparser from 'body-parser'
-import signup from './routes/signup-route';
-import login from './routes/login-route';
-import showProduct from './routes/showProduct-route';
+import signup from './routes/users';
+import login from './routes/connection';
+import house from './routes/houses';
 import auth from './routes/middleware/token';
-import addProduct from './routes/addProduct-route';
-import categorie from './routes/categorie-route';
+import addProduct from './routes/houses';
+import updateProduct from './routes/houses';
+import categorie from './routes/categoriese';
+//import booking from './routes/booking';
 
 
 const express = require("express");
-const bodyParser = require("body-parser");
+const bodyparser = require("body-parser");
 var app = express();
 
-app.use(bodyParser.urlencoded({extended: true}));
-app.use(bodyParser.json());
+app.use(bodyparser.urlencoded({extended: true}));
+app.use(bodyparser.json());
 
 
 const connection = require ("./modules/dbConnection.js");
@@ -29,10 +31,10 @@ app.listen(port, (err) => {
     }
 })
 
-app.use(bodyParser.urlencoded({
+app.use(bodyparser.urlencoded({
   extended: false
 }));
-app.use(bodyParser.json());
+app.use(bodyparser.json());
 
 //CORS cross-origin
 
@@ -60,7 +62,7 @@ app.use(login);
 
 // ROUTE SHOW PRODUCT//
 
-app.use(showProduct);
+app.use(house);
 
 // ROUTE CATEGORIE // 
 
@@ -75,8 +77,10 @@ app.use(auth);
 app.use(addProduct);
 
 // ROUTE UPDATE PRODUCT // 
-
+app.use(updateProduct);
 
 // ROUTE DELETE PRODUCT // 
 
+// ROUTE BOOKING // 
 
+app.use(booking);
