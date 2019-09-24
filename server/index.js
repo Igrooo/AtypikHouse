@@ -6,12 +6,14 @@ import login from './routes/connection';
 import auth from './routes/middleware/token';
 import addProduct from './routes/houses';
 import updateProduct from './routes/houses';
-import showProduct from './routes/houses';
+//import showProduct from './routes/houses';
 import categorie from './routes/categories';
-import insertbooking from './routes/booking';
+//import router from './routes/booking';
+
+/*import insertbooking from './routes/booking';
 import updatebooking from './routes/booking';
 import deletebooking from './routes/booking';
-import fetchbooking from './routes/booking';
+import fetchbooking from './routes/booking';*/
 
 
 
@@ -67,7 +69,7 @@ app.use(signup);
 app.use(login);
 
 // ROUTE SHOW PRODUCT//
-app.use(showProduct);
+//app.use(showProduct);
 //app.use(house);
 
 // ROUTE CATEGORIE // 
@@ -80,19 +82,21 @@ app.use(auth);
 
 // ROUTE ADD PRODUCT // 
 
-app.use(addProduct);
+//app.use(addProduct);
 
 // ROUTE UPDATE PRODUCT // 
-app.use(updateProduct);
+//app.use(updateProduct);
 
 
 // ROUTE DELETE PRODUCT // 
 
 // ROUTE BOOKING // 
-
+//app.use(router);
+/*
 app.use(insertbooking);
 app.use(updatebooking);
 app.use(deletebooking);
 app.use(fetchbooking);
 
 
+*/

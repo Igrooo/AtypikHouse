@@ -1,18 +1,17 @@
-let express = require('express');
 import connection from './../modules/dbConnection';
 import jwt from 'jsonwebtoken';
 
 
 
 let express = require('express');
-let showProducts = express.Router();
+let showProduct = express.Router();
 let addProduct = express.Router();
-
+let updateProduct = express.Router();
    
 
 
 
-addProduct.post('/addProduct', function (req, res) {
+ addProduct.post('/addProduct', function (req, res) {
 
     
     var userInfo = req.decodedToken.payload;
@@ -47,7 +46,7 @@ addProduct.post('/addProduct', function (req, res) {
 
 });
 
-export default addProduct;
+
 
 updateProduct.post('/updateProduct', function (req, res) {
 
@@ -58,11 +57,7 @@ updateProduct.post('/updateProduct', function (req, res) {
     var city = JSON.stringify(req.body.city);
     var beds = JSON.stringify(req.body.beds);
     var price = JSON.stringify(req.body.price);
-    var activite = JSON.stringify(req.body.activite);
-    var tags = JSON.stringify(req.body.tags);
-    var pics = JSON.stringify(req.body.pics);
-    var user = JSON.stringify(userInfo.id);
-    var category = JSON.stringify(req.body.category);
+  
     
     var userInfo = req.decodedToken.payload;
     console.log(userInfo);
@@ -85,7 +80,7 @@ updateProduct.post('/updateProduct', function (req, res) {
 
 });
 
-export default updateProduct;
+
 
 
 showProduct.get('/showProduct', function (req, res) {
@@ -113,5 +108,11 @@ showProduct.get('/showProduct/:id', function (req, res) {
         });
 });
 
-export default showProduct;
 
+
+module.exports = {
+      addProduct: addProduct,
+      updateProduct: updateProduct,
+      showProduct: showProduct
+
+}

@@ -8,15 +8,15 @@ import connection from './../modules/dbConnection';
 
 router.createBooking = function(req, res){
   
-    let booking = new Booking({
+    
 
-     nb_persons = JSON.stringify(req.body.nb_persons),
-     date_start = JSON.stringify(req.body.date_start),
-     date_end = JSON.stringify(req.body.date_end),
-     status = JSON.stringify(req.body.status),
-     ID_user = JSON.stringify(req.body.ID_user),
-     ID_house = JSON.stringify(req.body.ID_house),
- })
+     var nb_persons = JSON.stringify(req.body.nb_persons);
+     var date_start = JSON.stringify(req.body.date_start);
+     var date_end = JSON.stringify(req.body.date_end);
+     var status = JSON.stringify(req.body.status);
+     var ID_user = JSON.stringify(req.body.ID_user);
+     var ID_house = JSON.stringify(req.body.ID_house);
+ 
     
     booking.save('./insertbooking',function(err, savedBooking){
         if(err)
@@ -44,7 +44,7 @@ router.createBooking = function(req, res){
 
 }
 
-router.fetchBooking ( './fetchbooking',function(req, res){
+/*router.fetchBooking ( './fetchbooking',function(req, res){
     console.log(req.params.ID_user)
     Booking.find({ ID_user: req.params.ID_user }).exec(function(err, roomData){
         if(err)
@@ -54,7 +54,7 @@ router.fetchBooking ( './fetchbooking',function(req, res){
         else
             res.status(200).json(roomData)
     })
-})
+})*/
 
 
 module.exports = router
