@@ -47,9 +47,4 @@ let addProduct = express.Router();
 });
 
 
-
-
-
-
-
 export default addProduct;
