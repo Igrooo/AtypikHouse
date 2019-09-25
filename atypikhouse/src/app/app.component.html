@@ -1,6 +1,6 @@
 <!--The content below is only a placeholder and can be replaced.-->
 <!-- Double curly braces {{ }} only for content & universal html attribute, for custom attributes like data- use Property Binding [attribute]="value"-->
-<div class="ah-page ah-page-{{ page }} private">
+<div class="ah-page ah-page-{{ page }} {{ pagetype }}">
   <app-header></app-header>
   <main [id]='pageid' role="main" class="ah-container-main ah-loading ah-loading-overlay {{ page }}-content">
     <div class="ah-content-wrap">

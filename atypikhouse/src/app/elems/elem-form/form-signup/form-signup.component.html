@@ -1,0 +1,50 @@
+<section class="ah-container ah-section ah-container-login">
+    <h2>Créer un compte</h2>
+    <form>
+        <mat-form-field>
+            <mat-label>Nom</mat-label>
+            <input matInput  name="name">
+        </mat-form-field>
+    
+        <mat-form-field>
+            <mat-label>Prénom</mat-label>
+            <input matInput  name="firstname">
+        </mat-form-field>
+    
+        <mat-form-field>
+            <mat-label>Adresse</mat-label>
+            <input matInput name="adress">
+        </mat-form-field>
+        
+        <mat-form-field>
+            <mat-label>Code postal</mat-label>
+            <input matInput  name="zipcode">
+        </mat-form-field>
+    
+        <mat-form-field>
+            <mat-label>Ville</mat-label>
+            <input matInput  name="city">
+        </mat-form-field>
+        
+        <mat-form-field>
+            <mat-label>E-mail</mat-label>
+            <input matInput name="email" type="email">
+        </mat-form-field>
+
+        <mat-form-field>
+            <mat-label>Mot de passe</mat-label>
+            <input matInput name="password" type="password">
+        </mat-form-field>
+    
+        <mat-form-field>
+            <mat-label>Vérification du mot de passe</mat-label>
+            <input matInput  name="checkpassword" type="password">
+        </mat-form-field>
+    
+        <button mat-raised-button type="submit">Valider</button>
+
+        <p>Vous avez déjà un compte ?<br>
+            <a routerLink="/login">Connectez-vous</a>
+        </p>
+    </form>
+</section>
