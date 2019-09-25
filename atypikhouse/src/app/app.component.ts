@@ -8,10 +8,12 @@ import { MatSnackBar } from "@angular/material";
   styles: []
 })
 export class AppComponent implements OnInit {
-  public title: string = 'atypikhouse';
-  public href: string = "";
-  public pageid: string = "";
-  public page: string = "";
+  public title:string = 'atypikhouse';
+  public href:string = "";
+  public pageid:string = "";
+  public page:string = "";
+  public pagetype:string;
+  public logged:boolean = false;
 
   constructor(private snackBar: MatSnackBar,
               private router: Router) {
@@ -19,6 +21,12 @@ export class AppComponent implements OnInit {
                 this.router.events.subscribe((event: Event) => {
                 if (event instanceof NavigationStart) {
                     // Show loading indicator
+                    if(this.logged){
+                      this.pagetype = 'private';
+                    }
+                    else{
+                      this.pagetype = 'public';
+                    }
                 }
                 if (event instanceof NavigationEnd) {
                     // Hide loading indicator

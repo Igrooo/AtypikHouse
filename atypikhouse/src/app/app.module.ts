@@ -62,7 +62,9 @@ import { FormCommentComponent }  from './elems/elem-form/form-comment/form-comme
 import { FormPostComponent }     from './elems/elem-form/form-post/form-post.component';
 import { FormPicComponent }      from './elems/elem-form/form-pic/form-pic.component';
 import { FormUserComponent }     from './elems/elem-form/form-user/form-user.component';
-import { IconComponent } from './elems/elem-icon/icon.component';
+import { FormLoginComponent }    from './elems/elem-form/form-login/form-login.component';
+import { FormSignupComponent }   from './elems/elem-form/form-signup/form-signup.component';
+import { IconComponent }         from './elems/elem-icon/icon.component';
 
 const routes : Routes = [
 
@@ -88,7 +90,9 @@ const routes : Routes = [
   //{ path: 'activities',   component: ListActivityComponent },          // List activities
   ////{ path: 'users',      component: ListUserComponent },              // List users
   //{ path: 'tags',         component: ListTagComponent },               // List tags
-//
+  { path: 'login',      component: FormLoginComponent },
+  { path: 'logout',     component: FormSignupComponent },
+
   ///**** Users pages - Need connected ****/
   //{ path: 'house/:id/posts', component: ListPostComponent },    // List posts of an house (userFrom & userTo)
 //
@@ -187,6 +191,8 @@ const routes : Routes = [
     FormPicComponent,
     FormUserComponent,
     IconComponent,
+    FormLoginComponent,
+    FormSignupComponent,
   ],
   imports: [
     RouterModule.forRoot(routes),

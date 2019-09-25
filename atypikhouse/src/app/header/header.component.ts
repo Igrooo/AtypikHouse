@@ -40,7 +40,10 @@ export class HeaderComponent implements OnInit {
     
   }
   login(){
-
+    this.router.navigate(["/login"]);
+  }
+  user(){
+    //this.router.navigate(["/user", user.ID]);
   }
   searchbox(){
     $('.ah-page').addClass('open-searchbox');
