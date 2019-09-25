@@ -15,6 +15,8 @@ import { Routes, RouterModule } from "@angular/router";
 import { FormsModule } from "@angular/forms";
 import { HttpClientModule } from "@angular/common/http";
 
+
+
 //const lang = 'fr';
 
 //import { WordingUI } from 'src/data/lang/'+lang+'/ui';
@@ -27,6 +29,11 @@ import { DemoTypoPage }   from './pages/page-demo/demo-typo/demo-typo.component'
 import { DemoIconsPage }  from './pages/page-demo/demo-icons/demo-icons.component';
 import { ExternalPage }   from './pages/page-ext/ext.component';
 import { AllPage }        from './pages/page-all/all.component';
+import { PageLoginComponent } from './pages/page-login/page-login.component';
+import { PageRegisterComponent } from './pages/page-register/page-register.component';
+
+
+
 
 //import all elems
 import { HouseComponent }        from './elems/elem-house/house.component';
@@ -56,6 +63,8 @@ import { FormCommentComponent }  from './elems/elem-form/form-comment/form-comme
 import { FormPostComponent }     from './elems/elem-form/form-post/form-post.component';
 import { FormPicComponent }      from './elems/elem-form/form-pic/form-pic.component';
 import { FormUserComponent }     from './elems/elem-form/form-user/form-user.component';
+import { FormSignupComponent } from './elems/elem-form/form-signup/form-signup.component';
+
 
 const routes : Routes = [
 
@@ -67,6 +76,11 @@ const routes : Routes = [
   { path: 'demo-typo', component: DemoTypoPage },              // Fonts components base
   { path: 'demo-icons', component: DemoIconsPage },            // AtypikHouse icons base
   { path: 'all', component: AllPage },                         // AtypikHouse components base
+  { path: 'login', component: PageLoginComponent },                         // AtypikHouse components base
+  { path: 'register', component: PageRegisterComponent },                         // AtypikHouse components base
+
+
+  
 
 
   ////// ONE ELEMENT PAGES (LISTS)
@@ -174,6 +188,9 @@ const routes : Routes = [
     FormPostComponent,
     FormPicComponent,
     FormUserComponent,
+    FormSignupComponent,
+    PageLoginComponent,
+    PageRegisterComponent,
   ],
   imports: [
     RouterModule.forRoot(routes),

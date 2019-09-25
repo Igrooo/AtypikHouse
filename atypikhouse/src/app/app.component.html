@@ -9,10 +9,13 @@
           <nav class="ah-nav-primary ah-header-nav-primary">
             <ul class="list-inline">
               <!-- need hide in production -->
+              <li class="not-mobile ah-tiny"><a class="ah-header-link ah-link ah-link-secondary" href="/login">login</a></li>
+              <li class="not-mobile ah-tiny"><a class="ah-header-link ah-link ah-link-secondary" href="/register">register</a></li>
+<!-- 
               <li class="not-mobile ah-tiny"><a class="ah-header-link ah-link ah-link-secondary" href="/all">all</a></li>
               <li class="not-mobile ah-tiny"><a class="ah-header-link ah-link ah-link-secondary" href="/demo">demo</a></li>
               <li class="not-mobile ah-tiny"><a class="ah-header-link ah-link ah-link-secondary" href="/demo-typo">demo-typo</a></li>
-              <li class="not-mobile ah-tiny"><a class="ah-header-link ah-link ah-link-secondary" href="/demo-icons">demo-icons</a></li>
+              <li class="not-mobile ah-tiny"><a class="ah-header-link ah-link ah-link-secondary" href="/demo-icons">demo-icons</a></li> -->
               <li class="not-mobile"><a class="ah-header-link ah-link ah-link-secondary" href="/categories"><mat-icon class="ah-icon-inline-toolbar">landscape</mat-icon><span>Explorer</span></a></li>
               <li><button (click)="searchbox()" class="ah-header-link ah-cta-secondary ah-cta-search-top current" mat-button><mat-icon>search</mat-icon><span>Chercher</span></button></li>
               <li>
@@ -24,7 +27,7 @@
                       <button (click)="open(loyalty)" mat-button><mat-icon>loyalty</mat-icon></button>
                       <button (click)="open(notifications)" mat-button><mat-icon matBadge="2" matBadgeOverlap="false">notifications</mat-icon></button>
                     </li>
-                    <li><button (click)="login()" class="ah-cta-primary" mat-button><mat-icon>person</mat-icon><span>Mon compte</span></button></li>
+                    <li><button routerLink="login" class="ah-cta-primary" mat-button><mat-icon>person</mat-icon><span>Mon compte</span></button></li>
                   </ul>
               <li><button (click)="toggleTheme()" mat-button><mat-icon>brightness_6</mat-icon></button></li>
             </ul>
