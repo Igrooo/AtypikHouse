@@ -1,6 +1,6 @@
 // IMPORT ROUTES
 
-import signup from './routes/users';
+
 import login from './routes/connection';
 import auth from './routes/middleware/token';
 
@@ -15,7 +15,7 @@ import addPics from './routes/addPics';
 import addPost from './routes/addPost';
 import addProduct from './routes/addproduct';
 import addTag from './routes/addTag';
-import addUser from './routes/addUser';
+import signup from './routes/addUser';
 
 // UPDATE IMPORTS ROUTES //
 import updateActivity_type from './routes/updateActivity_type';
@@ -109,7 +109,7 @@ app.use(addPics);
 app.use(addPost);
 app.use(addProduct);
 app.use(addTag);
-app.use(addUser);
+app.use(signup);
 
 app.use(updateActivity_type);
 app.use(updateActivity);

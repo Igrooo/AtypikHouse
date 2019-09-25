@@ -4,7 +4,7 @@ import jwt from 'jsonwebtoken';
 
 
 let express = require('express');
-let updateProduct = express.Router();
+let updateActivity = express.Router();
    
 
 
@@ -14,14 +14,14 @@ updateActivity.post('/updateActivity', function (req, res) {
 
     var title = JSON.stringify(req.body.title);
     var description = JSON.stringify(req.body.description);
-    var locationLat = JSON.stringify(req.body.address);
-    var locationLng = JSON.stringify(req.body.zip);
-    var listID_tags = JSON.stringify(req.body.city);
-    var ID_type = JSON.stringify(req.body.beds);
+    var locationLat = JSON.stringify(req.body.locationLat);
+    var locationLng = JSON.stringify(req.body.locationLng);
+    var listID_tags = JSON.stringify(req.body.listID_tags);
+    var ID_type = JSON.stringify(req.body.ID_type);
   
     
-    var userInfo = req.decodedToken.payload;
-    console.log(userInfo);
+    //var userInfo = req.decodedToken.payload;
+    //console.log(userInfo);
     
    
 

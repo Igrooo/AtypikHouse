@@ -5,13 +5,13 @@ import jwt from 'jsonwebtoken';
 
 let express = require('express');
 
-let addTag = express.Router();
+let updateTag = express.Router();
 
    
 
 
 
-addTag.post('/addTag', function (req, res) {
+updateTag.post('/updateTag', function (req, res) {
 
     
     //var userInfo = req.decodedToken.payload;
@@ -27,9 +27,9 @@ addTag.post('/addTag', function (req, res) {
 
     if(req.body.type && req.body.tag && req.body.ID_house){
 
-        connection.query("INSERT INTO ah_tags (type, tag) VALUES (" +type+ ", " +tag+ ")");
+        connection.query("UPDATE ah_tags SET type=" +type+ ", tag=" +tag+ "");
           res.type(200).send({
-            message: 'Votre photo a été ajoutée avec succes !' 
+            message: 'Votre tag a été modifié avec succes !' 
           })
         
     }else{
@@ -42,4 +42,4 @@ addTag.post('/addTag', function (req, res) {
 });
 
 
-export default addTag;
+export default updateTag;
