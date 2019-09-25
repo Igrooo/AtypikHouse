@@ -18,10 +18,11 @@ export class HouseComponent implements OnInit {
   house: House;
 
   icons = Icons;
-  iconsSet      :string = 'travel';
+  iconsParams:any = {};
+  iconsSet      :string = 'assets/icons/travel-set/';
   iconsSize     :string = 'banner';
   iconsColor    :string = '#9dc1bb';
-  iconsBgFolder :string = 'houses';
+  iconsBgFolder :string = 'data/static/img/houses/';
 
   constructor(private route: ActivatedRoute,
               private geolocation: GeolocationService,
@@ -38,6 +39,19 @@ export class HouseComponent implements OnInit {
         if(params["id"]) {
           this.data.get("showProduct", params["id"], response => {
             this.house = response;
+            this.iconsParams = {
+              size: this.iconsSize,
+              set: this.iconsSet,
+              group: this.icons[this.house.ID_category - 1].group,
+              name: this.icons[this.house.ID_category - 1].name,
+              bgFolder: this.iconsBgFolder,
+              bg: this.house.ID,
+              color: this.iconsColor,
+              title: this.house.title,
+              subTitle: this.house.zipcode+','+this.house.city,
+              cardText: this.house.description,
+              cardMarker: this.math.round(this.house.price + ((this.house.price/100) * this.house.tax)).toString()
+            }
           });
         }
       });

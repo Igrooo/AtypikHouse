@@ -7,26 +7,18 @@ import { Component, OnInit, OnChanges, Input } from '@angular/core';
   styles: []
 })
 export class IconComponent implements OnInit, OnChanges {
-  iconsType:string             = 'svg';
-  @Input() forceReload:boolean = false;
-  @Input() iconCircle:boolean  = false;
-  @Input() iconsSet:string     ;
-  @Input() iconSize:string     ;
-  @Input() iconGroup:string    ;
-  @Input() iconName:string     ;
-  @Input() iconBgFolder:string ;
-  @Input() iconBg:string       ;
-  @Input() iconColor:string    ;
-  @Input() iconTitle:string    ;
-  @Input() iconSubTitle:string ;
-  @Input() cardText:string     ;
-  @Input() cardMarker:string   ;
-  iconCircleClass:string       ='';
-  iconBgNotFoundClass:string   ='';
-  iconWithoutBgClass:string    ='';
-  iconWithoutColorClass:string ='';
-  cardWithTextClass:string     ='';
-  cardWithMarkerClass:string   ='';
+  iconsType = 'svg';
+  @Input() iconsParams:any = {
+
+  }
+  iconsClass:any = {
+    circle         : '',
+    bgNotFound     : '',
+    withoutBg      : '',
+    withoutColor   : '',
+    cardWithText   : '',
+    cardWithMarker : '',
+  }
   
   constructor() { }
 
@@ -40,116 +32,100 @@ export class IconComponent implements OnInit, OnChanges {
   }
 
   setIconsSet(){
-    switch (this.iconsSet) {
-      case 'travel': this.iconsSet = 'assets/icons/travel-set/'
+    this.iconsParams.set = 'assets/icons/travel-set/';
+    /*
+    switch (this.iconsParams.set) {
+      case 'travel': this.iconsParams.set = 'assets/icons/travel-set/'
           break;
-      default:       this.iconsSet = 'assets/icons/travel-set/'
-    }
+      default:       this.iconsParams.set = 'assets/icons/travel-set/'
+    }*/
   }
   setIconBgFolder(){
-    switch (this.iconBgFolder) {
-      case 'placeholder': this.iconBgFolder = 'assets/img/bg/'
+    switch (this.iconsParams.bgFolder) {
+      case 'placeholder': this.iconsParams.bgFolder = 'assets/img/bg/'
           break;
-      case 'houses':      this.iconBgFolder = 'data/static/img/houses/'
+      case 'houses':      this.iconsParams.bgFolder = 'data/static/img/houses/'
           break;
-      case 'categories':  this.iconBgFolder = 'data/static/img/categories/'
+      case 'categories':  this.iconsParams.bgFolder = 'data/static/img/categories/'
           break;
-      case 'themes':      this.iconBgFolder = 'data/static/img/themes/'
+      case 'themes':      this.iconsParams.bgFolder = 'data/static/img/themes/'
           break;
-      case 'activities':  this.iconBgFolder = 'data/static/img/activities/'
+      case 'activities':  this.iconsParams.bgFolder = 'data/static/img/activities/'
           break;
-      case 'users':       this.iconBgFolder = 'data/static/img/users/'
+      case 'users':       this.iconsParams.bgFolder = 'data/static/img/users/'
           break;
-      default:            this.iconBgFolder = 'assets/img/bg/'
+      default:            this.iconsParams.bgFolder = 'assets/img/bg/'
     }
   }
   setIconBg(){
-    if(this.iconSize == 'banner'){
-      this.iconBg = this.iconBg+'-banner';
+    if(this.iconsParams.size == 'banner'){
+      this.iconsParams.bg = this.iconsParams.bg+'-banner';
     }
   }
 
   setClasses(){
-    if(this.iconBg){
-      if(this.imgExists('http://localhost:4200/'+this.iconBgFolder+this.iconBg+'.png') == false) {
-        this.iconBgNotFoundClass = 'icon-backg-not-found';
+    if(this.iconsParams.bg){
+      if(this.imgExists('http://localhost:4200/'+this.iconsParams.bgFolder+this.iconsParams.bg+'.png') == false) {
+        this.iconsClass.bgNotFound = 'icon-backg-not-found';
       }
     }
     else{
-      this.iconWithoutBgClass = 'icon-without-backg';
+      this.iconsClass.withoutBg = 'icon-without-backg';
     }
-    if(!this.iconColor){
-      this.iconWithoutColorClass = 'icon-without-color';
+    if(!this.iconsParams.color){
+      this.iconsClass.withoutColor = 'icon-without-color';
     }
-    if(this.iconCircle){
-      this.iconCircleClass = 'circle';
+    if(this.iconsParams.circle){
+      this.iconsClass.circle = 'circle';
     }
-    if(this.cardText){
-      this.cardWithTextClass = 'card-with-text';
-    }
-    else{
-      this.cardWithTextClass = 'card-without-text';
-    }
-    if(this.cardMarker){
-      this.cardWithMarkerClass = 'card-with-marker';
+    if(this.iconsParams.cardText){
+      this.iconsClass.cardWithText = 'card-with-text';
     }
     else{
-      this.cardWithMarkerClass = 'card-without-marker';
+      this.iconsClass.cardWithText = 'card-without-text';
+    }
+    if(this.iconsParams.cardMarker){
+      this.iconsClass.cardWithMarker = 'card-with-marker';
+    }
+    else{
+      this.iconsClass.cardWithMarker = 'card-without-marker';
     }
   }
 
   styles(){
-    if(this.iconWithoutBgClass != 'icon-without-backg' && this.iconColor){
-      return {'background-image': 'url('+this.iconBgFolder+this.iconBg+'.png)', 'background-color': this.iconColor, 'border-color': this.iconColor}
+    if(this.iconsClass.withoutBg != 'icon-without-backg' && this.iconsParams.color){
+      return {'background-image': 'url('+this.iconsParams.bgFolder+this.iconsParams.bg+'.png)', 'background-color': this.iconsParams.color, 'border-color': this.iconsParams.color}
     }
-    else if(this.iconWithoutBgClass != 'icon-without-backg' && !this.iconColor){
-      return {'background-image': 'url('+this.iconBgFolder+this.iconBg+'.png)'}
+    else if(this.iconsClass.withoutBg != 'icon-without-backg' && !this.iconsParams.color){
+      return {'background-image': 'url('+this.iconsParams.bgFolder+this.iconsParams.bg+'.png)'}
     }
-    else if(this.iconColor){
-      return {'background-color': this.iconColor, 'border-color': this.iconColor}
+    else if(this.iconsParams.color){
+      return {'background-color': this.iconsParams.color, 'border-color': this.iconsParams.color}
     }
   }
   stylesCardContent(){
-    if(this.iconColor && this.iconSize == 'banner'){
-      return {'background-color': this.iconColor}
+    if(this.iconsParams.color && this.iconsParams.size == 'banner'){
+      return {'background-color': this.iconsParams.color}
     }
   }
   stylesMarker(){
-    if(this.iconColor){
-      return {'background-color': this.iconColor}
+    if(this.iconsParams.color){
+      return {'background-color': this.iconsParams.color}
     }
   }
 
   ngOnInit() {
+    console.log(this.iconsParams);
     this.setIconsSet();
     this.setIconBgFolder();
   }
-  
-  counterOnChanges = 0; // OnChanges only on second time (when data is ready), or when force reload (first time before OnInit)
+
+  counterOnChanges = 0; // OnChanges only on second time (when data is ready)
   ngOnChanges() {
-    if(this.forceReload){
-      this.counterOnChanges = 1;
-    }
     if(this.counterOnChanges == 1){
       this.setIconBg();
       this.setClasses();
-      //console.log('iconsType: '+this.iconsType);
-      //console.log('iconsSet: '+this.iconsSet);
-      //console.log('iconBgFolder: '+this.iconBgFolder);
-      //console.log('iconBg: '+this.iconBg);
-      //console.log('iconColor: '+this.iconColor);
-      //console.log('iconTitle: '+this.iconTitle);
-      //console.log('cardText: '+this.cardText);
-      //console.log('cardMarker: '+this.cardMarker);
-      //console.log('iconCircleClass: '+this.iconCircleClass);
-      //console.log('iconBgNotFoundClass: '+this.iconBgNotFoundClass);
-      //console.log('iconWithoutBgClass: '+this.iconWithoutBgClass);
-      //console.log('iconWithoutColorClass: '+this.iconWithoutColorClass);
-      //console.log('cardWithTextClass: '+this.cardWithTextClass);
-      //console.log('cardWithMarkerClass: '+this.cardWithMarkerClass);
-      //console.log('---------------------------------');
     }
     this.counterOnChanges ++;
   }
-
 }

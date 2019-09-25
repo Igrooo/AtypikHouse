@@ -65,6 +65,8 @@ import { FormUserComponent }     from './elems/elem-form/form-user/form-user.com
 import { FormLoginComponent }    from './elems/elem-form/form-login/form-login.component';
 import { FormSignupComponent }   from './elems/elem-form/form-signup/form-signup.component';
 import { IconComponent }         from './elems/elem-icon/icon.component';
+import { ServiceWorkerModule } from '@angular/service-worker';
+import { environment } from '../environments/environment';
 
 const routes : Routes = [
 
@@ -199,7 +201,7 @@ const routes : Routes = [
     FormsModule, HttpClientModule,
     BrowserModule, BrowserAnimationsModule,
     MatButtonModule, MatIconModule, MatFormFieldModule, MatInputModule, MatSelectModule, MatSliderModule, MatAutocompleteModule,
-    MatToolbarModule, MatCardModule, MatSlideToggleModule, MatSnackBarModule, MatBadgeModule, MatNativeDateModule, MatDatepickerModule
+    MatToolbarModule, MatCardModule, MatSlideToggleModule, MatSnackBarModule, MatBadgeModule, MatNativeDateModule, MatDatepickerModule, ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
   ],
   providers: [GeolocationService, DataService, MatDatepickerModule],
   bootstrap: [AppComponent]
