@@ -13,7 +13,7 @@ export class AppComponent implements OnInit {
   public pageid:string = "";
   public page:string = "";
   public pagetype:string;
-  public logged:boolean = false;
+  public logged:boolean = true;
 
   constructor(private snackBar: MatSnackBar,
               private router: Router) {

@@ -1,7 +1,14 @@
-import { NgModule } from '@angular/core';
+import { NgModule, LOCALE_ID } from '@angular/core';
 import { AppComponent } from './app.component';
 import { GeolocationService } from "./geolocation.service";
 import { DataService } from "./data.service";
+
+import { registerLocaleData } from '@angular/common';
+import localeFr from '@angular/common/locales/fr';
+registerLocaleData(localeFr, 'fr');
+
+import { ServiceWorkerModule } from '@angular/service-worker';
+import { environment } from '../environments/environment';
 
 import { HttpClientModule } from "@angular/common/http";
 import { Routes, ActivatedRoute, RouterModule } from "@angular/router";
@@ -65,8 +72,6 @@ import { FormUserComponent }     from './elems/elem-form/form-user/form-user.com
 import { FormLoginComponent }    from './elems/elem-form/form-login/form-login.component';
 import { FormSignupComponent }   from './elems/elem-form/form-signup/form-signup.component';
 import { IconComponent }         from './elems/elem-icon/icon.component';
-import { ServiceWorkerModule } from '@angular/service-worker';
-import { environment } from '../environments/environment';
 
 const routes : Routes = [
 
@@ -203,7 +208,10 @@ const routes : Routes = [
     MatButtonModule, MatIconModule, MatFormFieldModule, MatInputModule, MatSelectModule, MatSliderModule, MatAutocompleteModule,
     MatToolbarModule, MatCardModule, MatSlideToggleModule, MatSnackBarModule, MatBadgeModule, MatNativeDateModule, MatDatepickerModule, ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
   ],
-  providers: [GeolocationService, DataService, MatDatepickerModule],
+  providers: [
+    {provide: LOCALE_ID, useValue: 'fr' },
+    GeolocationService, DataService, MatDatepickerModule
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -115,7 +115,7 @@ export class IconComponent implements OnInit, OnChanges {
   }
 
   ngOnInit() {
-    console.log(this.iconsParams);
+    //console.log(this.iconsParams);
     this.setIconsSet();
     this.setIconBgFolder();
   }

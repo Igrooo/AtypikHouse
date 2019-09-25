@@ -1,5 +1,10 @@
 <section class="ah-section ah-container-primary lead">
     <h2 class="ah-title"><i class="la la-sun-o"></i>Les plus beaux séjours<i class="la la-sun-o"></i></h2>
     <ul class="ah-list-icons ah-flex-list">
+        <ng-container *ngFor="let house of list">
+            <li>
+              <app-icon routerLink="/house/{{ house.ID }}" [iconsParams.size]="iconsSize" [iconsParams.set]="iconsSet" [iconsParams.group]="icons[house.ID_category - 1].group" [iconsParams.name]="icons[house.ID_category - 1].name" [iconsParams.bgFolder]="iconsBgFolder" [iconsParams.bg]="house.ID" [iconsParams.color]="iconsColor" [iconsParams.title]="house.title" [iconsParams.subTitle]="house.zipcode+', '+house.city" [iconsParams.cardText]="house.description" [iconsParams.cardMarker]="math.round(house.price + ((house.price/100) * house.tax))"></app-icon>
+            </li>
+        </ng-container>
     </ul>
 </section>

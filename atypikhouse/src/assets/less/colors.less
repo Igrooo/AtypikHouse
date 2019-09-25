@@ -307,6 +307,12 @@
     .ah-container-tertiary{
         color: @ah-container-font-color-tertiary;
         background-color: fade(darken(@ah-container-back-color-tertiary, 20%),80%);
+        h3,
+        .ah-sidenav-link,
+        .ah-ext-entry-content h2,
+        .ah-subtitle-h3{
+            border-color: @ah-container-font-color-secondary;
+        }
     } 
     .ah-link{
         color: @ah-link-font-color-primary;
@@ -379,8 +385,11 @@
     .ah-cta-tertiary {
         background-color: @ah-cta-back-color-tertiary;
     }
-
-    .ah-form-search {
+    :disabled,
+    .disabled{
+        opacity: 0.3;
+    }
+    .ah-form {
         background-color: fade(@ah-background-color-primary,60%);
     }
     .ah-nav-sticky{
