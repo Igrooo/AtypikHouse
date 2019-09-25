@@ -4,7 +4,7 @@ import { GeolocationService } from "./geolocation.service";
 import { DataService } from "./data.service";
 
 import { HttpClientModule } from "@angular/common/http";
-import { Routes, RouterModule } from "@angular/router";
+import { Routes, ActivatedRoute, RouterModule } from "@angular/router";
 
 import { FormsModule } from "@angular/forms";
 import { BrowserModule } from '@angular/platform-browser';

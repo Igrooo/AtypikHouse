@@ -109,8 +109,8 @@
     .ah-container-primary.lead{
         padding: @ah-container-paddin-primary;
         padding-bottom: @ah-container-paddin-primary * 3;
-        margin-left: -@ah-container-margin-primary / 2;
-        margin-right: -@ah-container-margin-primary / 2;
+        margin-left: -@ah-container-paddin-primary;
+        margin-right: -@ah-container-paddin-primary;
     }
     .ah-container-secondary{
         padding: @ah-container-paddin-secondary;
@@ -198,12 +198,38 @@
         padding-top: 120px;
         background-image: url(../img/bg-invert.png);
     }
-    /*
-    .ah-slide{
-
+    .ah-product-banner{
+        margin: 0;
+        padding: 0;
     }
-    */
-    
+    .ah-product-info.lead{
+        margin-top: -100px;
+        padding-top: 100px;
+        padding-left: 35px;
+        padding-right: 35px;
+        padding-bottom: 20px;
+        .ah-product-booking{
+            margin-left:0;
+            margin-right:0;
+        }
+    }
+
+    .ah-slide{
+        .icon-banner{
+            &:before,
+            &:after{
+                position: absolute;
+                top: 0;
+            }
+            &:before{
+                content: '<';
+            }
+            &:after{
+                content: '>';
+            }
+        }
+    }
+
 /*********************/
 /****** HEADER *******/
 /*********************/
@@ -260,10 +286,10 @@
     .ah-title:not(.ah-header-title){
         font-size: @ah-font-size-title;
         text-align: center;
-        font-weight: bolder;
+        //font-weight: bolder;
         margin-top: @ah-margin-primary;
         margin-bottom: @ah-margin-primary;
-        opacity: 0.8;
+        opacity: 0.9;
     }
     .ah-header-link,
     .ah-ext-entry-content h2{
@@ -603,7 +629,7 @@
         display: block;
         height: 100%;
         margin: auto;
-        opacity: 0.8;
+        opacity: 0.7;
         transition: opacity ease-in-out 200ms;
     }
     .ah-icon{
@@ -612,7 +638,7 @@
         background-repeat: no-repeat;
         background-size: cover;
         background-position: center;
-        &:not(.icon-without-backg):not(.icon-backg-not-found):before{ // img overlay
+        &:not(.icon-banner):not(.icon-without-backg):not(.icon-backg-not-found):before{ // img overlay
             content:'';
             position: absolute;
             display: block;
@@ -636,14 +662,13 @@
             .ah-icon-asset{
                 position: absolute;
                 height: 192px;
-                left: 50px;
+                left: 25px;
                 z-index:1;
             }
             .ah-card-content{
                min-height: 192px + 15px;
-               padding-left: 50px + 192px + 15px; 
-               padding-right: 50px;
-               padding-bottom: 15px;
+               padding: 25px;
+               padding-left: 25px + 192px + 15px; 
                text-align: left;
             }
             .ah-card-text{
@@ -652,7 +677,15 @@
             }
             .icon-title{
                 margin: 0;
+                padding-left: 5px;
+                padding-bottom: 5px;
                 text-align: left;
+                line-height: 0.5;
+                white-space: nowrap;
+            }
+            .icon-subtitle{
+                font-size: @ah-font-size-text !important;
+                line-height: @ah-font-size-text;
             }
             .ah-card-marker{
                 transform: scale(1.5) translateY(20px);
@@ -682,7 +715,6 @@
         &.circle{
             border-radius: 50%;
         }
-        .icon-title,
         .ah-card-content{
             transition: background-color 250ms ease-in-out;
         }
@@ -711,12 +743,15 @@
             padding-bottom: 0;
             transition: height 450ms ease-out, opacity 250ms ease-out;
         }
+        .icon-subtitle{
+            font-size: 0.8em;           
+        }
         &.icon-banner,
         &:hover{
             .ah-card-text{
                 visibility: visible;
                 opacity: 1;
-                height: 135px;
+                height: 100px;
             }
         }
         .ah-card-marker{

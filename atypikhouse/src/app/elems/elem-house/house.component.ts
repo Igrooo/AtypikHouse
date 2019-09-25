@@ -1,6 +1,7 @@
 import { Component, OnInit, Output } from '@angular/core';
 import { ActivatedRoute } from "@angular/router";
 import { GeolocationService } from "src/app/geolocation.service";
+//import { APIroutes, DataService } from "src/app/data.service";
 import { DataService } from "src/app/data.service";
 import { House } from "src/app/logic/House";
 import { Icons } from "src/app/elems/elem-icon/icons-categories";
@@ -35,7 +36,7 @@ export class HouseComponent implements OnInit {
     this.routingSubscription =
       this.route.params.subscribe(params => {
         if(params["id"]) {
-          this.data.get("showProducts", params["id"], response => {
+          this.data.get("showProduct", params["id"], response => {
             this.house = response;
           });
         }

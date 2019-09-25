@@ -1,4 +1,35 @@
-<app-icon *ngIf="house" (click)="slide()" [iconSize]="iconsSize" [iconsSet]="iconsSet" [iconGroup]="icons[house.ID_category - 1].group" [iconName]="icons[house.ID_category - 1].name" [iconBgFolder]="iconsBgFolder" [iconBg]="house.ID" [iconColor]="iconsColor" [iconTitle]="house.title" [cardText]="house.description" [cardMarker]="math.round(house.price + ((house.price/100) * house.tax)).toString()"></app-icon>
+<section class="ah-container-primary ah-section ah-product-banner ah-slide">
+    <app-icon *ngIf="house" (click)="slide()" [iconSize]="iconsSize" [iconsSet]="iconsSet" [iconGroup]="icons[house.ID_category - 1].group" [iconName]="icons[house.ID_category - 1].name" [iconBgFolder]="iconsBgFolder" [iconBg]="house.ID" [iconColor]="iconsColor" [iconTitle]="house.title" [iconSubTitle]="house.zipcode+', '+house.city" [cardText]="house.description" [cardMarker]="math.round(house.price + ((house.price/100) * house.tax)).toString()"></app-icon>
+</section>
+<section class="ah-container-primary lead ah-section ah-product-info">
+  <h2 class="ah-title hide">{{house.title}}</h2>
+    <p>Icon tag list thema (tags type 0)</p>
+    <section class="ah-container-tertiary ah-section ah-product-booking">
+        <form>
+          <p>Form booking</p>
+        </form>
+    </section>
+</section>
+
+<section class="ah-container-primary ah-section ah-product-details">
+  <h2 class="ah-title ah-title-separator important"><span class="ah-title-text"><i class="ah-title-icon-left la la-leaf"></i>Détails<i class="ah-title-icon-right la la-leaf"></i></span></h2>
+  <section class="ah-container ah-section ah-product-details-tags">
+    <h3>Services & équipements</h3>
+    <p>Icon tags list (tags type 1)</p>
+    <app-list-tag></app-list-tag>
+  </section>
+  <section class="ah-container ah-section ah-product-details-activity">
+      <h3>Localisation & Activités à proximité</h3>
+      <p>{{ house.address }}, {{ house.zipcode }}, {{ house.city }}<a>localiser</a></p> 
+      <p>map activities</p>
+      <p>activities list</p>
+  </section>
+</section>
+<section class="ah-container-primary ah-section ah-product-comments">
+    <h2 class="ah-title ah-title-separator important"><span class="ah-title-text"><i class="ah-title-icon-left la la-leaf"></i>Commentaires<i class="ah-title-icon-right la la-leaf"></i></span></h2>
+  <p>list comments</p>
+</section>
+
 <!--
 <section class="ah-product-info">
   <mat-card>

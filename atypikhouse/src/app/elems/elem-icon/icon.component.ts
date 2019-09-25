@@ -8,6 +8,7 @@ import { Component, OnInit, OnChanges, Input } from '@angular/core';
 })
 export class IconComponent implements OnInit, OnChanges {
   iconsType:string             = 'svg';
+  @Input() forceReload:boolean = false;
   @Input() iconCircle:boolean  = false;
   @Input() iconsSet:string     ;
   @Input() iconSize:string     ;
@@ -17,6 +18,7 @@ export class IconComponent implements OnInit, OnChanges {
   @Input() iconBg:string       ;
   @Input() iconColor:string    ;
   @Input() iconTitle:string    ;
+  @Input() iconSubTitle:string ;
   @Input() cardText:string     ;
   @Input() cardMarker:string   ;
   iconCircleClass:string       ='';
@@ -25,14 +27,16 @@ export class IconComponent implements OnInit, OnChanges {
   iconWithoutColorClass:string ='';
   cardWithTextClass:string     ='';
   cardWithMarkerClass:string   ='';
-
+  
   constructor() { }
 
-  imgExists(url, callback) {
-    var img = new Image();
-    img.onload = function() { callback(true); };
-    img.onerror = function() { callback(false); };
+  imgExists(url) {
+    let exists:boolean;
+    let img = new Image();
     img.src = url;
+    img.onload = function() { exists = true };
+    img.onerror = function() { exists = false };
+    return exists;
   }
 
   setIconsSet(){
@@ -67,12 +71,9 @@ export class IconComponent implements OnInit, OnChanges {
 
   setClasses(){
     if(this.iconBg){
-      this.imgExists('http://localhost:4200/'+this.iconBgFolder+this.iconBg+'.png', function(exists) {
-        console.log(exists);
-        if(exists == false){
-          this.iconBgNotFoundClass = 'icon-backg-not-found';
-        }
-      });
+      if(this.imgExists('http://localhost:4200/'+this.iconBgFolder+this.iconBg+'.png') == false) {
+        this.iconBgNotFoundClass = 'icon-backg-not-found';
+      }
     }
     else{
       this.iconWithoutBgClass = 'icon-without-backg';
@@ -123,9 +124,13 @@ export class IconComponent implements OnInit, OnChanges {
     this.setIconsSet();
     this.setIconBgFolder();
   }
-  counterOnChanger = 0; // only on second time of OnCange (when data is ready)
+  
+  counterOnChanges = 0; // OnChanges only on second time (when data is ready), or when force reload (first time before OnInit)
   ngOnChanges() {
-    if(this.counterOnChanger == 1){
+    if(this.forceReload){
+      this.counterOnChanges = 1;
+    }
+    if(this.counterOnChanges == 1){
       this.setIconBg();
       this.setClasses();
       //console.log('iconsType: '+this.iconsType);
@@ -144,7 +149,7 @@ export class IconComponent implements OnInit, OnChanges {
       //console.log('cardWithMarkerClass: '+this.cardWithMarkerClass);
       //console.log('---------------------------------');
     }
-    this.counterOnChanger ++;
+    this.counterOnChanges ++;
   }
 
 }

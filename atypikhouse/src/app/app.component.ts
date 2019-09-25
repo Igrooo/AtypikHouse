@@ -1,8 +1,7 @@
 import * as $ from 'jquery';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
 import { Router, Event, NavigationStart, NavigationEnd, NavigationError } from "@angular/router";
 import { MatSnackBar } from "@angular/material";
-
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',

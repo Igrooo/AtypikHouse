@@ -12,9 +12,11 @@
 <section class="ah-section ah-container-primary top">
     <h2 class="ah-title">{{ listTitle }}</h2>
     <ul class="ah-list-icons ah-flex-list">
-      <li *ngFor="let house of list">
-          <app-icon routerLink="/house/{{ house.ID }}" [iconSize]="iconsSize" [iconsSet]="iconsSet" [iconGroup]="icons[house.ID_category - 1].group" [iconName]="icons[house.ID_category - 1].name" [iconBgFolder]="iconsBgFolder" [iconBg]="house.ID" [iconColor]="iconsColor" [iconTitle]="house.title" [cardText]="house.description" [cardMarker]="math.round(house.price + ((house.price/100) * house.tax))"></app-icon>
-      </li>
+      <ng-container *ngFor="let house of list">
+        <li *ngIf="filterCategory === house.ID_category ">
+          <app-icon routerLink="/house/{{ house.ID }}" [iconSize]="iconsSize" [iconsSet]="iconsSet" [iconGroup]="icons[house.ID_category - 1].group" [iconName]="icons[house.ID_category - 1].name" [iconBgFolder]="iconsBgFolder" [iconBg]="house.ID" [iconColor]="iconsColor" [iconTitle]="house.title" [iconSubTitle]="house.zipcode+', '+house.city" [cardText]="house.description" [cardMarker]="math.round(house.price + ((house.price/100) * house.tax))"></app-icon>
+        </li>
+      </ng-container>
     </ul>
 </section>
 

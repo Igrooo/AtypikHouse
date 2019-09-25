@@ -6,7 +6,7 @@ import { GeolocationService } from "src/app/geolocation.service";
 import { DataService } from "src/app/data.service";
 
 @Component({
-  selector: 'app-house',
+  selector: 'app-form-house',
   templateUrl: './form-house.component.html',
   styles: []
 })
@@ -16,8 +16,8 @@ export class FormHouseComponent implements OnInit {
   types = [Category];
 
   constructor(private route: ActivatedRoute,
-              private geolocation: GeolocationService,
               private router: Router,
+              private geolocation: GeolocationService,
               private data: DataService
               ) { }
 

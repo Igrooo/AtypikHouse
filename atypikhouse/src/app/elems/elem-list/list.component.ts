@@ -12,8 +12,7 @@ import { Icons } from "src/app/elems/elem-icon/icons-categories"
 })
 export class ListComponent implements OnInit {
   @Input() listTitle:string = 'Locations disponibles pour vos critères';
-  @Input() filterCategory:number = 1;
-  @Input() allCategories:boolean = true;
+  @Input() filterCategory:number = 0;
 
   math = Math;
   
@@ -54,9 +53,10 @@ export class ListComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.data.getList("showProducts", list => {
+    this.data.getList("showProduct", list => {
       this.list = list;
-    })
+    });
+    console.log('filterCategory: '+this.filterCategory);
   }
 
 }

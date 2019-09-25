@@ -1,6 +1,5 @@
 import * as $ from 'jquery';
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from "@angular/router";
 
 // EXT Server URL for external pages
 const EXTsecure:string  = ""; // s > activate https

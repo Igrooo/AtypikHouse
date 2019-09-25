@@ -1,7 +1,7 @@
 <a class="ah-icon icon-{{ iconSize }} {{ iconCircleClass }} {{ iconBgNotFoundClass }} {{ iconWithoutBgClass }} {{ iconWithoutColorClass }} {{ cardWithTextClass }} {{ cardWithMarkerClass }}" [ngStyle]="styles()">
     <img class="ah-icon-asset" src="{{ iconsSet }}{{ iconGroup }}/{{ iconName }}.{{ iconsType }}" alt="{{ iconName }}">
     <div *ngIf="iconSize == 'card' || 'banner'; else onlyTitle" class="ah-card-content" [ngStyle]="stylesCardContent()">
-        <span *ngIf="iconTitle" class="icon-title">{{ iconTitle }}</span>
+        <span *ngIf="iconTitle" class="icon-title">{{ iconTitle }}<br><span class="icon-subtitle">{{ iconSubTitle }}</span></span>
         <p *ngIf="cardText" class="ah-card-text ah-tiny">{{ cardText }}</p>
     </div>
     <p *ngIf="cardMarker && iconColor; else markerWithoutColor" class="ah-card-marker" [ngStyle]="stylesMarker()">à partir de <span class="price">{{ cardMarker }}&thinsp;€</span> /nuit</p>
