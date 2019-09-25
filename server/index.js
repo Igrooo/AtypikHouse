@@ -1,19 +1,48 @@
 // IMPORT ROUTES
-//import bodyparser from 'body-parser'
+
 import signup from './routes/users';
 import login from './routes/connection';
-//import house from './routes/houses';
 import auth from './routes/middleware/token';
-import addProduct from './routes/addproduct';
-import updateProduct from './routes/updateproduct';
-import showProduct from './routes/showproduct';
-import categorie from './routes/categories';
-import router from './routes/booking';
 
-/*import insertbooking from './routes/booking';
-import updatebooking from './routes/booking';
-import deletebooking from './routes/booking';
-import fetchbooking from './routes/booking';*/
+// ADD IMPORTS ROUTES //
+import addActivity_type from './routes/addActivity_type';
+import addActivity from './routes/addActivity';
+import addBooking from './routes/addBooking';
+import addCategory from './routes/addCategory';
+import addComment from './routes/addComment';
+import addPayment from './routes/addPayment';
+import addPics from './routes/addPics';
+import addPost from './routes/addPost';
+import addProduct from './routes/addproduct';
+import addTag from './routes/addTag';
+import addUser from './routes/addUser';
+
+// UPDATE IMPORTS ROUTES //
+import updateActivity_type from './routes/updateActivity_type';
+import updateActivity from './routes/updateActivity';
+import updateBooking from './routes/updateBooking';
+import updateCategory from './routes/updateCategory';
+import updateComment from './routes/updateComment';
+import updatePayment from './routes/updatePayment';
+import updatePics from './routes/updatePics';
+import updatePost from './routes/updatePost';
+import updateProduct from './routes/updateProduct';
+import updateTag from './routes/updateTag';
+import updateUser from './routes/updateUser';
+
+// SHOW IMPORTS ROUTES //
+import showActivity from './routes/showActivity';
+import showActivity_types from './routes/showActivity_types';
+import showBooking from './routes/showBooking';
+import showCategory from './routes/showCategory';
+import showComment from './routes/showComment';
+import showPayment from './routes/showPayment';
+import showPics from './routes/showPics';
+import showPost from './routes/showPost';
+import showProduct from './routes/showproduct';
+import showTag from './routes/showTag';
+import showUser from './routes/showUser';
+
 
 
 
@@ -68,13 +97,50 @@ app.use(signup);
 
 app.use(login);
 
-// ROUTE SHOW PRODUCT//
+
+
+app.use(addActivity_type);
+app.use(addActivity);
+app.use(addBooking);
+app.use(addCategory);
+app.use(addComment);
+app.use(addPayment);
+app.use(addPics);
+app.use(addPost);
+app.use(addProduct);
+app.use(addTag);
+app.use(addUser);
+
+app.use(updateActivity_type);
+app.use(updateActivity);
+app.use(updateBooking);
+app.use(updateCategory);
+app.use(updateComment);
+app.use(updatePayment);
+app.use(updatePics);
+app.use(updatePost);
+app.use(updateProduct);
+app.use(updateTag);
+app.use(updateUser);
+
+
+app.use(showActivity);
+app.use(showActivity_types);
+app.use(showBooking);
+app.use(showCategory);
+app.use(showComment);
+app.use(showPayment);
+app.use(showPics);
+app.use(showPost);
 app.use(showProduct);
-//app.use(house);
+app.use(showTag);
+app.use(showUser);
 
-// ROUTE CATEGORIE // 
 
-app.use(categorie);
+
+
+
+
 
 // MIDDLEWARE D'AUTHENTIFICATION //////////////////////////
 
@@ -82,16 +148,8 @@ app.use(auth);
 
 // ROUTE ADD PRODUCT // 
 
-app.use(addProduct);
-
-// ROUTE UPDATE PRODUCT // 
-app.use(updateProduct);
 
 
-// ROUTE DELETE PRODUCT // 
-
-// ROUTE BOOKING // 
-app.use(router);
 /*
 app.use(insertbooking);
 app.use(updatebooking);
