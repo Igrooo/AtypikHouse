@@ -20,11 +20,10 @@ export class HouseComponent implements OnInit {
 
   
   icons = Icons;
-  iconsParams:any = {};
-  iconsSet      :string = 'assets/icons/travel-set/';
+  iconsSet      :string = 'travel';
   iconsSize     :string = 'banner';
   iconsColor    :string = '#9dc1bb';
-  iconsBgFolder :string = 'data/static/img/houses/';
+  iconsBgFolder :string = 'houses';
   
   house: House;
   booking: Booking;
@@ -113,6 +112,7 @@ export class HouseComponent implements OnInit {
   ngOnInit() {
     this.house   = new House();
     this.booking = new Booking();
+    this.priceTTC = 0;
 
     this.routingSubscription =
       this.route.params.subscribe(params => {
@@ -123,20 +123,6 @@ export class HouseComponent implements OnInit {
             this.byNightLabel = ' /nuit';
             this.priceTTC = this.math.round(this.house.price + ((this.house.price/100) * this.house.tax));
             this.totalPrice = this.priceTTC;
-
-            this.iconsParams = {
-              size: this.iconsSize,
-              set: this.iconsSet,
-              group: this.icons[this.house.ID_category - 1].group,
-              name: this.icons[this.house.ID_category - 1].name,
-              bgFolder: this.iconsBgFolder,
-              bg: this.house.ID,
-              color: this.iconsColor,
-              title: this.house.title,
-              subTitle: this.house.zipcode+','+this.house.city,
-              cardText: this.house.description,
-              cardMarker: this.priceTTC.toString()
-            }
           });
         }
       });

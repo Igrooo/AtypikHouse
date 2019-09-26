@@ -1,4 +1,2 @@
-<!--
-<app-icon *ngIf="category" [iconsParams.size]="iconSize" [iconsParams.set]="iconsSet" [iconsParams.group]="icons[category.ID - 1].group" [iconsParams.name]="icons[category.ID - 1].name" [iconsParams.bgFolder]="iconsBgFolder" [iconsParams.bg]="category.ID" [iconsParams.color]="iconsColor" [iconsParams.title]="category.title" [iconsParams.cardText]="category.description"></app-icon>
--->
+<app-icon *ngIf="category" [forceReload]="true"  [iconSize]="iconsSize" [iconsSet]="iconsSet" [iconGroup]="icons[category.ID - 1].group" [iconName]="icons[category.ID - 1].name" [iconBgFolder]="iconsBgFolder" [iconBg]="category.ID" [iconColor]="iconsColor" [iconTitle]="category.title" [cardText]="category.description"></app-icon>
 <app-list [listTitle]="listTitle" [filterCategory]="category.ID"></app-list>

@@ -1,10 +1,15 @@
-<section class="ah-section ah-container-primary lead">
+<section class="ah-section ah-container-primary lead ah-container-promote">
     <h2 class="ah-title"><i class="la la-sun-o"></i>Les plus beaux séjours<i class="la la-sun-o"></i></h2>
-    <ul class="ah-list-icons ah-flex-list">
-        <ng-container *ngFor="let house of list">
-            <li>
-              <app-icon routerLink="/house/{{ house.ID }}" [iconsParams.size]="iconsSize" [iconsParams.set]="iconsSet" [iconsParams.group]="icons[house.ID_category - 1].group" [iconsParams.name]="icons[house.ID_category - 1].name" [iconsParams.bgFolder]="iconsBgFolder" [iconsParams.bg]="house.ID" [iconsParams.color]="iconsColor" [iconsParams.title]="house.title" [iconsParams.subTitle]="house.zipcode+', '+house.city" [iconsParams.cardText]="house.description" [iconsParams.cardMarker]="math.round(house.price + ((house.price/100) * house.tax))"></app-icon>
-            </li>
-        </ng-container>
-    </ul>
+        <app-list [filterCategory]="0"></app-list>
 </section>
+
+
+  <!--
+    <mat-card-title>{{ house.title }}</mat-card-title>
+    <mat-card-subtitle>{{ house.address }}, {{ house.city }}</mat-card-subtitle>
+    <mat-card-actions>
+      <button (click)="goMap(house)" mat-button><mat-icon>map</mat-icon> Map</button>
+      <button (click)="share(house)" mat-button><mat-icon>share</mat-icon> Share</button>
+      <button (click)="goDetails(house)" mat-button><mat-icon>list</mat-icon> Details</button>
+    </mat-card-actions>
+  -->

@@ -55,8 +55,9 @@ export class ListComponent implements OnInit {
   ngOnInit() {
     this.data.getList("showProduct", list => {
       this.list = list;
+      this.icons = Icons;
     });
-    console.log('filterCategory: '+this.filterCategory);
+    //console.log('filterCategory: '+this.filterCategory);
   }
 
 }

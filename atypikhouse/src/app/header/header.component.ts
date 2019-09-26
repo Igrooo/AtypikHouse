@@ -54,8 +54,8 @@ export class HeaderComponent implements OnInit {
     
   }
 
-  search(location:any, type:number, thema:number, dateStart:Date, dateEnd:Date, NbPers:number) {
-    this.router.navigate(["/houses", location, type, thema, dateStart, dateEnd, NbPers]);
+  search() {
+    this.router.navigate(["/houses"]);
   }
 
   ngOnInit() {

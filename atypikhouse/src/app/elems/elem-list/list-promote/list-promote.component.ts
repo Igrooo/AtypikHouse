@@ -7,9 +7,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ListPromoteComponent implements OnInit {
 
+  listTitle: string;
+
   constructor() { }
 
   ngOnInit() {
+    this.listTitle = 'Les plus beaux séjours';
   }
 
 }
