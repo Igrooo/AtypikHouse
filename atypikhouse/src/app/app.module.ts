@@ -3,7 +3,7 @@ import { AppComponent } from './app.component';
 import { GeolocationService } from "./geolocation.service";
 import { DataService } from "./data.service";
 
-import { registerLocaleData } from '@angular/common';
+import { registerLocaleData, DatePipe } from '@angular/common';
 import localeFr from '@angular/common/locales/fr';
 registerLocaleData(localeFr, 'fr');
 
@@ -128,7 +128,7 @@ const routes : Routes = [
   //{ path: 'tag/:id/edit', component: FormTagComponent },            // Edit tag
 
   //{ path: 'booking', component: FormBookingComponent },             // New  booking
-  //{ path: 'booking/:id', component: BookingComponent },             // Show Booking
+  { path: 'booking/:id', component: BookingComponent },             // Show Booking
   //{ path: 'payment/:id', component: PaymentComponent },             // Show payment detail of a booking
   
   //{ path: 'booking/:id/comment', component: FormCommentComponent },          // New  comment
@@ -209,7 +209,7 @@ const routes : Routes = [
     MatToolbarModule, MatCardModule, MatSlideToggleModule, MatSnackBarModule, MatBadgeModule, MatNativeDateModule, MatDatepickerModule, ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
   ],
   providers: [
-    {provide: LOCALE_ID, useValue: 'fr' },
+    {provide: LOCALE_ID, useValue: 'fr' }, DatePipe,
     GeolocationService, DataService, MatDatepickerModule
   ],
   bootstrap: [AppComponent]

@@ -1,6 +1,80 @@
 
-    <p>booking</p>
-    <mat-card>
-        {{ booking | json }}
-    </mat-card>
+<section class="ah-container-primary ah-section" style="padding-left:30px; padding-right:30px; max-width:1050px; margin: auto;">
+    <h2>Confirmation de votre réservation<br> & Paiement</h2>
+    <h3 class="important">Réservation de <mark>{{ nbNights }} nuit(s)</mark> à <mark>{{ house.title }}</mark></h3>
+    <h5 class="important">{{ house.address }}, {{ house.zipcode }}, {{ house.city }}</h5>
+    <section class="ah-container ah-section ah-product-booking" style="max-width:700px; margin: auto;">
+        <hr>
+        <h6>Du <b>{{ dateStartLabel }}</b> au <b>{{ dateEndLabel }}</b></h6>
+        <hr>
+        <span>Au nom de : </span><h6><b>NOM Prénom</b></h6><span> pour {{ booking.nbPersons }} personne(s)</span>
+        <hr>
+        <p>Services inclus :</p>
+    </section>
+    <section class="ah-container ah-section ah-product-booking" style="max-width:700px; margin: auto;">
+        <table class="table">
+            <caption style="border:none;"><h4 class="important" style="margin: 0;">Détails du prix</h4></caption>
+            <tbody>
+                <tr>
+                    <td>Prix HT :</td>
+                    <td>{{ house.price }} €</td>
+                </tr>
+                <tr class="even">
+                    <td>Taxes :</td>
+                    <td>{{ house.tax }} %</td>
+                </tr>
+                <tr class="odd">
+                    <td>Prix TTC :</td>
+                    <td>{{ priceTTC }} €</td>
+                </tr>
+                <tr class="even">
+                    <td>Nuitées :</td>
+                    <td>x {{ nbNights }}</td>
+                </tr>
+                <tr class="odd">
+                    <td>Personnes :</td>
+                    <td>x {{ booking.nbPersons }}</td>
+                </tr>
+                <tr class="odd">
+                    <td style="border:none;"><h4 class="important" style="margin: 0;">TOTAL TTC:</h4></td>
+                    <td style="border:none;"><h4 class="important" style="margin: 0;margin-right:-6px;"><mark> {{ totalPrice }} € </mark></h4></td>
+                </tr>
+            </tbody>
+        </table>      
+    </section>
+    <section class="ah-container-tertiary ah-section ah-section-spaced ah-product-booking" style="max-width:700px; margin: auto;">
+        <h3 class="ah-product-booking-title">Paiement</h3>
+        <form (submit)="validBooking()" class="ah-form ah-form-product-booking">
+            <div>
+                <mat-form-field class="ah-form-fieldset-inline ah-form-booking-cardNumber">
+                  <mat-label>Numéro de la carte</mat-label>
+                  <input matInput type="number">
+                </mat-form-field>
+                <mat-form-field class="ah-form-fieldset-inline ah-form-booking-card-date-month">
+                  <mat-label>Expiration</mat-label>
+                  <input matInput type="number">
+                </mat-form-field>
+                <mat-form-field class="ah-form-fieldset-inline ah-form-booking-card-date-year">
+                  <input matInput type="number">
+                </mat-form-field>
+            </div>
+            <div>
+                <mat-form-field class="ah-form-fieldset-inline ah-form-booking-card-date-year">
+                  <mat-label>Nom Prénom</mat-label>
+                  <input matInput type="number" placeholder="Tel qu'indiqué sur votre carte de crédit">
+                </mat-form-field>
+                <mat-form-field class="ah-form-fieldset_inline ah-form-booking-card-date-year">
+                  <mat-label>CVC</mat-label>
+                  <input matInput type="number" placeholder="Code de sécurité au dos de la carte">
+                </mat-form-field>
+            </div>
+          <div style="text-align: center;"><a><img src="assets/img/paypal.png" alt="paypal" style="transform: scale(0.6);"></a></div>
+          <div style="text-align: center;"><button mat-button type="submit" class="ah-cta-primary" [disabled]="!complete" >Confirmer et payer <mat-icon>double_arrow</mat-icon></button></div>
+        </form>
+    </section>
+</section>
+<section class="ah-container-primary ah-section"></section>
+<section class="ah-container-primary ah-section"></section>
+
+
 

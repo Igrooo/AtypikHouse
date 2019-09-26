@@ -17,22 +17,29 @@ addBooking.post('/addBooking', function (req, res) {
     //var userInfo = req.decodedToken.payload;
    // console.log(userInfo);
     
-    var nb_persons = JSON.stringify(req.body.nb_persons);
-     var date = JSON.stringify(req.body.date);
-     var date_start = JSON.stringify(req.body.date_start);
-     var date_end = JSON.stringify(req.body.date_end);
-     var status = JSON.stringify(req.body.status);
-     var ID_user = JSON.stringify(req.body.ID_user);
-     var ID_house = JSON.stringify(req.body.ID_house);
+    var nbPersons = JSON.stringify(req.body.nbPersons);
+    var date = JSON.stringify(req.body.date);
+    var dateStart = JSON.stringify(req.body.dateStart);
+    var dateEnd = JSON.stringify(req.body.dateEnd);
+    var status = JSON.stringify(req.body.status);
+    var ID_user = JSON.stringify(req.body.ID_user);
+    var ID_house = JSON.stringify(req.body.ID_house);
  
    
 
-    if(req.body.nb_persons && req.body.date && req.body.date_start && req.body.date_end && req.body.status && req.body.ID_user && req.body.ID_house){
+    if(req.body.nbPersons && req.body.date && req.body.dateStart && req.body.dateEnd && req.body.status && req.body.ID_user && req.body.ID_house){
 
-        connection.query("INSERT INTO ah_booking (nb_persons, date, date_start, date_end, status, ID_user, ID_house) VALUES (" +nb_persons+ ", " +date+ ", " +date_start+ ", "+date_end+", "+status+", "+ID_user+","+ID_house+")");
-          res.status(200).send({
-            message: 'Votre réservation a été ajoutée avec succes !' 
-          })
+        connection.query("INSERT INTO ah_booking (nbPersons, date, dateStart, dateEnd, status, ID_user, ID_house) VALUES (" +nbPersons+ ", " +date+ ", " +dateStart+ ", "+dateEnd+", "+status+", "+ID_user+","+ID_house+")", (err, result) => {
+            if (err){
+                throw(err);
+            }
+            res.status(200).send({
+                status: true,
+                content: result
+            })
+        });
+
+        
         
     }else{
         res.status(500).send({

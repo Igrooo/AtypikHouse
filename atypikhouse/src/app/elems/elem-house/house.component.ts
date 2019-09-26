@@ -1,5 +1,6 @@
 import { Component, OnInit, Output } from '@angular/core';
 import { Router, ActivatedRoute } from "@angular/router";
+import { DatePipe } from '@angular/common';
 import { GeolocationService } from "src/app/geolocation.service";
 //import { APIroutes, DataService } from "src/app/data.service";
 import { DataService } from "src/app/data.service";
@@ -45,7 +46,8 @@ export class HouseComponent implements OnInit {
   constructor(private router: Router,
               private route: ActivatedRoute,
               private geolocation: GeolocationService,
-              private data: DataService
+              private data: DataService,
+              private datePipe: DatePipe
               ) { }
 
   routingSubscription: any;
@@ -54,8 +56,9 @@ export class HouseComponent implements OnInit {
     //console.log(this.dateStart, this.dateEnd, this.nbPersons);
     if(this.dateStart && this.dateEnd && this.nbPersons){
       this.nbNights = ( this.dateEnd.getTime() - this.dateStart.getTime() ) / (1000 * 3600 * 24);
-      console.log(this.nbNights);
+      //console.log(this.nbNights);
       if(this.nbNights < 1){
+        this.byNightLabel = ' /nuit';
         this.totalPrice = this.priceTTC;
         this.complete = false;
       }
@@ -66,6 +69,7 @@ export class HouseComponent implements OnInit {
       }
     }
     else{
+      this.byNightLabel = ' /nuit';
       this.totalPrice = this.priceTTC;
       this.complete = false;
     }
@@ -86,23 +90,24 @@ export class HouseComponent implements OnInit {
     this.nbPersons = event.value;
     this.updatePrice();
   }
-  
+
   newBooking(){
-    
     this.booking.status     = 1;
-    this.booking.date       = new Date();
-    this.booking.dateStart  = this.dateStart;
-    this.booking.dateEnd    = this.dateEnd;
+    this.booking.date       = this.datePipe.transform(new Date(),"yyyy-MM-dd");
+    this.booking.dateStart  = this.datePipe.transform(this.dateStart,"yyyy-MM-dd");
+    this.booking.dateEnd    = this.datePipe.transform(this.dateEnd,"yyyy-MM-dd");
     this.booking.nbPersons =  this.nbPersons;
     this.booking.ID_user    = 1;
     this.booking.ID_house   = this.house.ID;
-    /*
+    
+    //console.log(this.booking);
+
     this.data.save("addBooking", this.booking, result => {
       if (result) {
-        this.router.navigate(["/booking", this.booking.ID]);
+        this.router.navigate(["/booking", result.insertId]);
       }
     });
-    */
+
   }
 
   ngOnInit() {

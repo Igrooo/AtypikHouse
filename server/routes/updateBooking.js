@@ -5,31 +5,31 @@ import jwt from 'jsonwebtoken';
 
 let express = require('express');
 
-let addBooking = express.Router();
+let updateBooking = express.Router();
 
    
 
 
 
-addBooking.post('/addBooking', function (req, res) {
+updateBooking.post('/updateBooking', function (req, res) {
 
     
     //var userInfo = req.decodedToken.payload;
    // console.log(userInfo);
     
-    var nb_persons = JSON.stringify(req.body.nb_persons);
+    var nbPersons = JSON.stringify(req.body.nbPersons);
      var date = JSON.stringify(req.body.date);
-     var date_start = JSON.stringify(req.body.date_start);
-     var date_end = JSON.stringify(req.body.date_end);
+     var dateStart = JSON.stringify(req.body.dateStart);
+     var dateEnd = JSON.stringify(req.body.dateEnd);
      var status = JSON.stringify(req.body.status);
      var ID_user = JSON.stringify(req.body.ID_user);
      var ID_house = JSON.stringify(req.body.ID_house);
  
    
 
-    if(req.body.nb_persons && req.body.date && req.body.date_start && req.body.date_end && req.body.status && req.body.ID_user && req.body.ID_house){
+    if(req.body.nbPersons && req.body.date && req.body.dateStart && req.body.dateEnd && req.body.status && req.body.ID_user && req.body.ID_house){
 
-        connection.query("UPDATE ah_booking SET nb_persons=" +nb_persons+ ", date=" +date+ ", date_start=" +date_start+ ", date_end="+date_end+", status="+status+", ID_user="+ID_user+", ID_house="+ID_house+"");
+        connection.query("UPDATE ah_booking SET nbPersons=" +nbPersons+ ", date=" +date+ ", dateStart=" +dateStart+ ", dateEnd="+dateEnd+", status="+status+", ID_user="+ID_user+", ID_house="+ID_house+"");
           res.status(200).send({
             message: 'Votre réservation a été modifiée avec succes !' 
           })
@@ -44,4 +44,4 @@ addBooking.post('/addBooking', function (req, res) {
 });
 
 
-export default addBooking;
+export default updateBooking;
