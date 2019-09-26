@@ -1,15 +1,15 @@
 <h2>Connectez-vous!</h2>
-<div class="login-container"> 
+<form [formGroup]="loginForm" class="login-container"> 
         <mat-form-field>
                 <mat-label>E-mail</mat-label>
-                <input matInput name="email" type="email">
+                <input formControlName="email" matInput name="email" type="email">
             </mat-form-field>
             
             <mat-form-field>
                 <mat-label>Mot de passe</mat-label>
-                <input matInput name="password" type="password">
+                <input formControlName="password" matInput name="password" type="password">
             </mat-form-field>
     
             <button mat-raised-button type="submit">Valider</button>
-            <p>Vous n'avez pas compte! <span><a href="/login">Clickez ici!</a></span>/p>
-</div>
+            <p>Vous n'avez pas de compte! <span><a href="/login">Clickez ici!</a></span>/p>
+</form>

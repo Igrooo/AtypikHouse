@@ -13,6 +13,7 @@ import 'hammerjs';
 import { Routes, RouterModule } from "@angular/router";
 
 import { FormsModule } from "@angular/forms";
+import { ReactiveFormsModule } from "@angular/forms";
 import { HttpClientModule } from "@angular/common/http";
 
 
@@ -197,7 +198,7 @@ const routes : Routes = [
     FormsModule, HttpClientModule,
     BrowserModule, BrowserAnimationsModule,
     MatButtonModule, MatIconModule, MatFormFieldModule, MatInputModule, MatSelectModule, MatSliderModule,
-    MatToolbarModule, MatCardModule, MatSlideToggleModule, MatSnackBarModule, MatBadgeModule
+    MatToolbarModule, MatCardModule, MatSlideToggleModule, MatSnackBarModule, MatBadgeModule, ReactiveFormsModule
   ],
   providers: [GeolocationService, DataService],
   bootstrap: [AppComponent]

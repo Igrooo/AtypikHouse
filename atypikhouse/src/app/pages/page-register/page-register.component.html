@@ -1,48 +1,51 @@
 
 <h2>Créez Votre Compte</h2>
-<div class="register-container">
+    <form [formGroup]="signupForm" class="register-container">
+        
         <mat-form-field>
                 <mat-label>E-mail</mat-label>
-                <input matInput name="email" type="email">
+                <input formControlName="email" matInput name="email" type="email">
             </mat-form-field>
         
             <mat-form-field>
                 <mat-label>Nom</mat-label>
-                <input matInput  name="name">
+                <input formControlName="firstname" matInput  name="name">
             </mat-form-field>
         
             <mat-form-field>
                 <mat-label>Prénom</mat-label>
-                <input matInput  name="prenom">
+                <input formControlName="lastname" matInput  name="prenom">
             </mat-form-field>
         
             <mat-form-field>
                 <mat-label>Adresse</mat-label>
-                <input matInput name="adresse">
+                <input formControlName="address" matInput name="adresse">
             </mat-form-field>
             
             <mat-form-field>
                 <mat-label>Code postale</mat-label>
-                <input matInput  name="codePostale">
+                <input formControlName="zip" matInput  name="codePostale">
             </mat-form-field>
         
             <mat-form-field>
                 <mat-label>Ville</mat-label>
-                <input matInput  name="ville">
+                <input formControlName="city" matInput  name="ville">
             </mat-form-field>
             
             <mat-form-field>
                 <mat-label>Mot de passe</mat-label>
-                <input matInput name="password" type="password">
+                <input formControlName="password" matInput name="password" type="password">
             </mat-form-field>
         
             <mat-form-field>
                 <mat-label>Vérification du mot de passe</mat-label>
-                <input matInput  name="verifPassword" type="password">
+                <input formControlName="verifPassword" matInput  name="verifPassword" type="password">
             </mat-form-field>
         
-            <button mat-raised-button type="submit">Valider</button>
+            <button mat-raised-button (click)="submit()">Valider</button>
         
-            <p>Vous avez compte! <span><a href="/login">Clickez ici!</a></span>/p>
-</div>
+            <p>Vous avez un compte! <span><a href="/login">Clickez ici!</a></span>/p>
+    </form>
+
+
 
