@@ -1,8 +1,9 @@
 
-<section class="ah-container-primary ah-section" style="padding-left:30px; padding-right:30px; max-width:1050px; margin: auto;">
+<section class="ah-container-primary ah-section {{ payed }}" style="padding-left:30px; padding-right:30px; max-width:1050px; margin: auto;">
     <h2>Confirmation de votre réservation<br> & Paiement</h2>
     <h3 class="important">Réservation de <mark>{{ nbNights }} nuit(s)</mark> à <mark>{{ house.title }}</mark></h3>
     <h5 class="important">{{ house.address }}, {{ house.zipcode }}, {{ house.city }}</h5>
+    <h4 class="payed-confirm ah-title important"><span class="ah-title-text"><i class="ah-title-icon-left la la-leaf"></i>Paiement effectué, Réservation confirmée !<i class="ah-title-icon-right la la-leaf"></i></span></h4>
     <section class="ah-container ah-section ah-product-booking" style="max-width:700px; margin: auto;">
         <hr>
         <h6>Du <b>{{ dateStartLabel }}</b> au <b>{{ dateEndLabel }}</b></h6>
@@ -47,21 +48,22 @@
         <form (submit)="validBooking()" class="ah-form ah-form-product-booking">
             <div>
                 <mat-form-field class="ah-form-fieldset-inline ah-form-booking-cardNumber">
+                   <mat-icon class="ah-form-icon" matPrefix>credit_card</mat-icon>
                   <mat-label>Numéro de la carte</mat-label>
-                  <input matInput type="number">
+                  <input matInput >
                 </mat-form-field>
                 <mat-form-field class="ah-form-fieldset-inline ah-form-booking-card-date-month">
                   <mat-label>Expiration</mat-label>
-                  <input matInput type="number">
+                    <input matInput>
                 </mat-form-field>
                 <mat-form-field class="ah-form-fieldset-inline ah-form-booking-card-date-year">
-                  <input matInput type="number">
+                  <input matInput >
                 </mat-form-field>
             </div>
             <div>
                 <mat-form-field class="ah-form-fieldset-inline ah-form-booking-card-date-year">
                   <mat-label>Nom Prénom</mat-label>
-                  <input matInput type="number" placeholder="Tel qu'indiqué sur votre carte de crédit">
+                  <input matInput placeholder="Tel qu'indiqué sur votre carte de crédit">
                 </mat-form-field>
                 <mat-form-field class="ah-form-fieldset_inline ah-form-booking-card-date-year">
                   <mat-label>CVC</mat-label>
@@ -69,7 +71,7 @@
                 </mat-form-field>
             </div>
           <div style="text-align: center;"><a><img src="assets/img/paypal.png" alt="paypal" style="transform: scale(0.6);"></a></div>
-          <div style="text-align: center;"><button mat-button type="submit" class="ah-cta-primary" [disabled]="!complete" >Confirmer et payer <mat-icon>double_arrow</mat-icon></button></div>
+          <div style="text-align: center; font-size:120%; padding:10px;"><button mat-button type="submit" style="padding-top:5px;padding-bottom:5px;" class="ah-cta-primary">Payer <mat-icon>double_arrow</mat-icon></button></div>
         </form>
     </section>
 </section>
