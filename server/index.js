@@ -90,9 +90,9 @@ app.use(updateProduct);
 
 // ROUTE BOOKING // 
 
-app.use(insertbooking);
-app.use(updatebooking);
-app.use(deletebooking);
-app.use(fetchbooking);
+// app.use(insertbooking);
+// app.use(updatebooking);
+// app.use(deletebooking);
+// app.use(fetchbooking);
 
 

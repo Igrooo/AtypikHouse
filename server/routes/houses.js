@@ -3,10 +3,12 @@ import connection from './../modules/dbConnection';
 import jwt from 'jsonwebtoken';
 
 
-
-let express = require('express');
 let showProducts = express.Router();
 let addProduct = express.Router();
+let updateProduct = express.Router();
+let showProduct = express.Router();
+
+
 
    
 
@@ -47,7 +49,8 @@ addProduct.post('/addProduct', function (req, res) {
 
 });
 
-export default addProduct;
+// export default addProduct;
+module.exports = addProduct;
 
 updateProduct.post('/updateProduct', function (req, res) {
 
@@ -85,8 +88,8 @@ updateProduct.post('/updateProduct', function (req, res) {
 
 });
 
-export default updateProduct;
-
+// export default updateProduct;
+module.exports = updateProduct;
 
 showProduct.get('/showProduct', function (req, res) {
         connection.query("SELECT * FROM ah_houses", (err, result) => {
@@ -113,5 +116,6 @@ showProduct.get('/showProduct/:id', function (req, res) {
         });
 });
 
-export default showProduct;
+// export default showProduct;
+module.exports = showProduct;
 
