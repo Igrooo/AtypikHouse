@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.3
+-- version 4.8.5
 -- https://www.phpmyadmin.net/
 --
--- Hôte : 127.0.0.1
--- Généré le :  jeu. 26 sep. 2019 à 13:04
--- Version du serveur :  10.1.36-MariaDB
--- Version de PHP :  7.2.11
+-- Hôte : 127.0.0.1:3306
+-- Généré le :  mar. 12 nov. 2019 à 17:50
+-- Version du serveur :  5.7.26
+-- Version de PHP :  7.2.18
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -28,15 +28,18 @@ SET time_zone = "+00:00";
 -- Structure de la table `ah_activities`
 --
 
-CREATE TABLE `ah_activities` (
-  `ID` int(10) NOT NULL,
+DROP TABLE IF EXISTS `ah_activities`;
+CREATE TABLE IF NOT EXISTS `ah_activities` (
+  `ID` int(10) NOT NULL AUTO_INCREMENT,
   `title` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
   `description` text COLLATE utf8_unicode_ci NOT NULL,
   `locationLat` float NOT NULL,
   `locationLng` float NOT NULL,
   `listID_tags` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `ID_type` int(10) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+  `ID_type` int(10) NOT NULL,
+  PRIMARY KEY (`ID`),
+  KEY `ID_type` (`ID_type`) USING BTREE
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Déchargement des données de la table `ah_activities`
@@ -54,10 +57,12 @@ INSERT INTO `ah_activities` (`ID`, `title`, `description`, `locationLat`, `locat
 -- Structure de la table `ah_activities_types`
 --
 
-CREATE TABLE `ah_activities_types` (
-  `ID` int(10) NOT NULL,
-  `titre` varchar(50) COLLATE utf8_unicode_ci NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+DROP TABLE IF EXISTS `ah_activities_types`;
+CREATE TABLE IF NOT EXISTS `ah_activities_types` (
+  `ID` int(10) NOT NULL AUTO_INCREMENT,
+  `titre` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
+  PRIMARY KEY (`ID`)
+) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Déchargement des données de la table `ah_activities_types`
@@ -88,16 +93,20 @@ INSERT INTO `ah_activities_types` (`ID`, `titre`) VALUES
 -- Structure de la table `ah_booking`
 --
 
-CREATE TABLE `ah_booking` (
-  `ID` int(10) NOT NULL,
+DROP TABLE IF EXISTS `ah_booking`;
+CREATE TABLE IF NOT EXISTS `ah_booking` (
+  `ID` int(10) NOT NULL AUTO_INCREMENT,
   `status` tinyint(1) NOT NULL,
   `nbPersons` int(2) NOT NULL,
   `date` date NOT NULL,
   `dateStart` date NOT NULL,
   `dateEnd` date NOT NULL,
   `ID_user` int(10) NOT NULL,
-  `ID_house` int(10) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+  `ID_house` int(10) NOT NULL,
+  PRIMARY KEY (`ID`),
+  KEY `ah_booking_id_house` (`ID_house`),
+  KEY `ah_booking_id_user` (`ID_user`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Déchargement des données de la table `ah_booking`
@@ -107,7 +116,8 @@ INSERT INTO `ah_booking` (`ID`, `status`, `nbPersons`, `date`, `dateStart`, `dat
 (1, 1, 3, '2019-08-06', '2019-09-26', '2019-09-29', 3, 1),
 (2, 2, 4, '2019-08-20', '2019-09-10', '2019-09-13', 4, 1),
 (3, 0, 2, '2019-07-11', '2019-08-14', '2019-08-16', 5, 1),
-(4, 2, 3, '2019-09-15', '2019-09-18', '2019-09-22', 5, 1);
+(4, 2, 3, '2019-09-15', '2019-09-18', '2019-09-22', 5, 1),
+(5, 1, 2, '2019-09-26', '2019-10-10', '2019-10-13', 1, 3);
 
 -- --------------------------------------------------------
 
@@ -115,11 +125,13 @@ INSERT INTO `ah_booking` (`ID`, `status`, `nbPersons`, `date`, `dateStart`, `dat
 -- Structure de la table `ah_categories`
 --
 
-CREATE TABLE `ah_categories` (
-  `ID` int(10) NOT NULL,
+DROP TABLE IF EXISTS `ah_categories`;
+CREATE TABLE IF NOT EXISTS `ah_categories` (
+  `ID` int(10) NOT NULL AUTO_INCREMENT,
   `title` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
-  `description` text COLLATE utf8_unicode_ci NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+  `description` text COLLATE utf8_unicode_ci NOT NULL,
+  PRIMARY KEY (`ID`)
+) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Déchargement des données de la table `ah_categories`
@@ -153,14 +165,18 @@ INSERT INTO `ah_categories` (`ID`, `title`, `description`) VALUES
 -- Structure de la table `ah_comments`
 --
 
-CREATE TABLE `ah_comments` (
-  `ID` int(10) NOT NULL,
+DROP TABLE IF EXISTS `ah_comments`;
+CREATE TABLE IF NOT EXISTS `ah_comments` (
+  `ID` int(10) NOT NULL AUTO_INCREMENT,
   `comment` text COLLATE utf8_unicode_ci NOT NULL,
   `rating` int(1) NOT NULL,
   `date` date NOT NULL,
   `ID_user` int(11) NOT NULL,
-  `ID_booking` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+  `ID_booking` int(11) NOT NULL,
+  PRIMARY KEY (`ID`),
+  KEY `ah_comment_id_user` (`ID_user`),
+  KEY `ah_comment_id_booking` (`ID_booking`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Déchargement des données de la table `ah_comments`
@@ -176,8 +192,9 @@ INSERT INTO `ah_comments` (`ID`, `comment`, `rating`, `date`, `ID_user`, `ID_boo
 -- Structure de la table `ah_houses`
 --
 
-CREATE TABLE `ah_houses` (
-  `ID` int(10) NOT NULL,
+DROP TABLE IF EXISTS `ah_houses`;
+CREATE TABLE IF NOT EXISTS `ah_houses` (
+  `ID` int(10) NOT NULL AUTO_INCREMENT,
   `title` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
   `description` text COLLATE utf8_unicode_ci NOT NULL,
   `address` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
@@ -191,8 +208,11 @@ CREATE TABLE `ah_houses` (
   `listID_tags` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `listID_pics` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `ID_user` int(11) NOT NULL,
-  `ID_category` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+  `ID_category` int(11) NOT NULL,
+  PRIMARY KEY (`ID`),
+  KEY `ah_house_id_user` (`ID_user`),
+  KEY `ah_house_id_category` (`ID_category`)
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Déchargement des données de la table `ah_houses`
@@ -216,14 +236,18 @@ INSERT INTO `ah_houses` (`ID`, `title`, `description`, `address`, `zipcode`, `ci
 -- Structure de la table `ah_payments`
 --
 
-CREATE TABLE `ah_payments` (
-  `ID` int(10) NOT NULL,
+DROP TABLE IF EXISTS `ah_payments`;
+CREATE TABLE IF NOT EXISTS `ah_payments` (
+  `ID` int(10) NOT NULL AUTO_INCREMENT,
   `status` tinyint(1) NOT NULL,
   `amount` float NOT NULL,
   `date` date NOT NULL,
   `ID_user` int(10) NOT NULL,
-  `ID_booking` int(10) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+  `ID_booking` int(10) NOT NULL,
+  PRIMARY KEY (`ID`),
+  KEY `ah_payment_id_user` (`ID_user`),
+  KEY `ah_payment_id_booking` (`ID_booking`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Déchargement des données de la table `ah_payments`
@@ -239,12 +263,15 @@ INSERT INTO `ah_payments` (`ID`, `status`, `amount`, `date`, `ID_user`, `ID_book
 -- Structure de la table `ah_pics`
 --
 
-CREATE TABLE `ah_pics` (
-  `ID` int(10) NOT NULL,
+DROP TABLE IF EXISTS `ah_pics`;
+CREATE TABLE IF NOT EXISTS `ah_pics` (
+  `ID` int(10) NOT NULL AUTO_INCREMENT,
   `title` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `date` date NOT NULL,
-  `ID_house` int(10) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+  `ID_house` int(10) NOT NULL,
+  PRIMARY KEY (`ID`),
+  KEY `ah_pic_id_house` (`ID_house`)
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Déchargement des données de la table `ah_pics`
@@ -262,14 +289,19 @@ INSERT INTO `ah_pics` (`ID`, `title`, `date`, `ID_house`) VALUES
 -- Structure de la table `ah_posts`
 --
 
-CREATE TABLE `ah_posts` (
-  `ID` int(10) NOT NULL,
+DROP TABLE IF EXISTS `ah_posts`;
+CREATE TABLE IF NOT EXISTS `ah_posts` (
+  `ID` int(10) NOT NULL AUTO_INCREMENT,
   `date` datetime NOT NULL,
   `message` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `ID_house` int(10) NOT NULL,
   `ID_userFrom` int(11) NOT NULL,
-  `ID_userTo` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+  `ID_userTo` int(11) NOT NULL,
+  PRIMARY KEY (`ID`),
+  KEY `ah_post_id_user_from` (`ID_userFrom`),
+  KEY `ah_post_id_user_to` (`ID_userTo`),
+  KEY `ah_post_id_house` (`ID_house`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Déchargement des données de la table `ah_posts`
@@ -285,11 +317,13 @@ INSERT INTO `ah_posts` (`ID`, `date`, `message`, `ID_house`, `ID_userFrom`, `ID_
 -- Structure de la table `ah_tags`
 --
 
-CREATE TABLE `ah_tags` (
-  `ID` int(10) NOT NULL,
+DROP TABLE IF EXISTS `ah_tags`;
+CREATE TABLE IF NOT EXISTS `ah_tags` (
+  `ID` int(10) NOT NULL AUTO_INCREMENT,
   `type` tinyint(1) NOT NULL,
-  `tag` varchar(255) COLLATE utf8_unicode_ci NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+  `tag` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  PRIMARY KEY (`ID`)
+) ENGINE=InnoDB AUTO_INCREMENT=34 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Déchargement des données de la table `ah_tags`
@@ -321,8 +355,9 @@ INSERT INTO `ah_tags` (`ID`, `type`, `tag`) VALUES
 -- Structure de la table `ah_users`
 --
 
-CREATE TABLE `ah_users` (
-  `ID` int(10) NOT NULL,
+DROP TABLE IF EXISTS `ah_users`;
+CREATE TABLE IF NOT EXISTS `ah_users` (
+  `ID` int(10) NOT NULL AUTO_INCREMENT,
   `type` tinyint(1) NOT NULL,
   `email` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `password` varchar(12) COLLATE utf8_unicode_ci NOT NULL,
@@ -330,8 +365,9 @@ CREATE TABLE `ah_users` (
   `firstname` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `address` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `zipcode` int(5) NOT NULL,
-  `city` varchar(255) COLLATE utf8_unicode_ci NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+  `city` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  PRIMARY KEY (`ID`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Déchargement des données de la table `ah_users`
@@ -343,159 +379,6 @@ INSERT INTO `ah_users` (`ID`, `type`, `email`, `password`, `name`, `firstname`, 
 (3, 1, 'user2@atypikhouse.com', 'pass', '2', 'User', '12 avenue des Jardins', 60350, 'Pierrefonds'),
 (4, 1, 'user3@atypikhouse.com', 'pass', '3', 'User', '12 avenue des Jardins', 60350, 'Pierrefonds'),
 (5, 1, 'user4@atypikhouse.com', 'pass', '4', 'User', '12 avenue des Jardins', 60350, 'Pierrefonds');
-
---
--- Index pour les tables déchargées
---
-
---
--- Index pour la table `ah_activities`
---
-ALTER TABLE `ah_activities`
-  ADD PRIMARY KEY (`ID`),
-  ADD KEY `ID_type` (`ID_type`) USING BTREE;
-
---
--- Index pour la table `ah_activities_types`
---
-ALTER TABLE `ah_activities_types`
-  ADD PRIMARY KEY (`ID`);
-
---
--- Index pour la table `ah_booking`
---
-ALTER TABLE `ah_booking`
-  ADD PRIMARY KEY (`ID`),
-  ADD KEY `ah_booking_id_house` (`ID_house`),
-  ADD KEY `ah_booking_id_user` (`ID_user`);
-
---
--- Index pour la table `ah_categories`
---
-ALTER TABLE `ah_categories`
-  ADD PRIMARY KEY (`ID`);
-
---
--- Index pour la table `ah_comments`
---
-ALTER TABLE `ah_comments`
-  ADD PRIMARY KEY (`ID`),
-  ADD KEY `ah_comment_id_user` (`ID_user`),
-  ADD KEY `ah_comment_id_booking` (`ID_booking`);
-
---
--- Index pour la table `ah_houses`
---
-ALTER TABLE `ah_houses`
-  ADD PRIMARY KEY (`ID`),
-  ADD KEY `ah_house_id_user` (`ID_user`),
-  ADD KEY `ah_house_id_category` (`ID_category`);
-
---
--- Index pour la table `ah_payments`
---
-ALTER TABLE `ah_payments`
-  ADD PRIMARY KEY (`ID`),
-  ADD KEY `ah_payment_id_user` (`ID_user`),
-  ADD KEY `ah_payment_id_booking` (`ID_booking`);
-
---
--- Index pour la table `ah_pics`
---
-ALTER TABLE `ah_pics`
-  ADD PRIMARY KEY (`ID`),
-  ADD KEY `ah_pic_id_house` (`ID_house`);
-
---
--- Index pour la table `ah_posts`
---
-ALTER TABLE `ah_posts`
-  ADD PRIMARY KEY (`ID`),
-  ADD KEY `ah_post_id_user_from` (`ID_userFrom`),
-  ADD KEY `ah_post_id_user_to` (`ID_userTo`),
-  ADD KEY `ah_post_id_house` (`ID_house`);
-
---
--- Index pour la table `ah_tags`
---
-ALTER TABLE `ah_tags`
-  ADD PRIMARY KEY (`ID`);
-
---
--- Index pour la table `ah_users`
---
-ALTER TABLE `ah_users`
-  ADD PRIMARY KEY (`ID`);
-
---
--- AUTO_INCREMENT pour les tables déchargées
---
-
---
--- AUTO_INCREMENT pour la table `ah_activities`
---
-ALTER TABLE `ah_activities`
-  MODIFY `ID` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
-
---
--- AUTO_INCREMENT pour la table `ah_activities_types`
---
-ALTER TABLE `ah_activities_types`
-  MODIFY `ID` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
-
---
--- AUTO_INCREMENT pour la table `ah_booking`
---
-ALTER TABLE `ah_booking`
-  MODIFY `ID` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
-
---
--- AUTO_INCREMENT pour la table `ah_categories`
---
-ALTER TABLE `ah_categories`
-  MODIFY `ID` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
-
---
--- AUTO_INCREMENT pour la table `ah_comments`
---
-ALTER TABLE `ah_comments`
-  MODIFY `ID` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
-
---
--- AUTO_INCREMENT pour la table `ah_houses`
---
-ALTER TABLE `ah_houses`
-  MODIFY `ID` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
-
---
--- AUTO_INCREMENT pour la table `ah_payments`
---
-ALTER TABLE `ah_payments`
-  MODIFY `ID` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
-
---
--- AUTO_INCREMENT pour la table `ah_pics`
---
-ALTER TABLE `ah_pics`
-  MODIFY `ID` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
-
---
--- AUTO_INCREMENT pour la table `ah_posts`
---
-ALTER TABLE `ah_posts`
-  MODIFY `ID` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
-
---
--- AUTO_INCREMENT pour la table `ah_tags`
---
-ALTER TABLE `ah_tags`
-  MODIFY `ID` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
-
---
--- AUTO_INCREMENT pour la table `ah_users`
---
-ALTER TABLE `ah_users`
-  MODIFY `ID` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- Contraintes pour les tables déchargées
