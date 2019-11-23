@@ -126,7 +126,7 @@
         margin: @ah-container-margin-tertiary;
     }
     .ah-container-promote{
-        .ah-section .top{
+        .ah-section.top{
             .ah-title{
                 display: none;
             }
@@ -227,14 +227,19 @@
         .icon-banner{
             &:before,
             &:after{
+                display: block;
                 position: absolute;
-                top: 0;
+                top: calc( 200px - 42px);
+                width: 42px;
+                height: 42px;
+                font-size: 2em;
             }
             &:before{
                 content: '<';
             }
             &:after{
                 content: '>';
+                right: 0;
             }
         }
     }
@@ -822,6 +827,13 @@
         text-align: right;
     }
 
+    .houses-list{
+        .ah-icon.icon-card{
+            padding-top: 120px;
+            padding-bottom: 5px;
+    }
+    }
+
 /*********************/
 /******* LOADER ******/
 /*********************/
@@ -886,7 +898,9 @@
 /*********************/
 /*** MEDIA QUERIES ***/
 /*********************/
-    .hide,
+    .hide{
+        display: none !important;
+    }
     .not-desktop{
         display: none;
     }

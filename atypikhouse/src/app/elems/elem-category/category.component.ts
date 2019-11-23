@@ -19,7 +19,8 @@ export class CategoryComponent implements OnInit {
   iconsSet      :string = 'travel';
   iconsSize     :string = 'banner';
   iconsColor    :string = '#ba9077';
-  iconsBgFolder :string = 'categories';
+  iconsBgFolder :string = '';
+  //iconsBgFolder :string = 'categories';
 
   constructor(private route: ActivatedRoute,
               private data: DataService

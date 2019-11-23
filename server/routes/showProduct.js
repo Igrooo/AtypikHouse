@@ -1,4 +1,4 @@
-import connection from './../modules/dbConnection';
+import connection from '../modules/dbConnection';
 import jwt from 'jsonwebtoken';
 
 

@@ -21,12 +21,12 @@ export class IconComponent implements OnInit, OnChanges {
   @Input() iconSubTitle:string ;
   @Input() cardText:string     ;
   @Input() cardMarker:string   ;
-  iconCircleClass:string       ='';
-  iconBgNotFoundClass:string   ='';
-  iconWithoutBgClass:string    ='';
-  iconWithoutColorClass:string ='';
-  cardWithTextClass:string     ='';
-  cardWithMarkerClass:string   ='';
+  iconCircleClass:string       = '';
+  iconBgNotFoundClass:string   = '';
+  iconWithoutBgClass:string    = '';
+  iconWithoutColorClass:string = '';
+  cardWithTextClass:string     = '';
+  cardWithMarkerClass:string   = '';
   
   constructor() { }
 
@@ -73,7 +73,9 @@ export class IconComponent implements OnInit, OnChanges {
   setClasses(){
     if(this.iconBg){
       if(this.imgExists('http://localhost:4200/'+this.iconBgFolder+this.iconBg+'.png') == false) {
+        console.log('background image http://localhost:4200/'+this.iconBgFolder+this.iconBg+'.png not found');
         this.iconBgNotFoundClass = 'icon-backg-not-found';
+        this.iconWithoutBgClass = 'icon-without-backg';
       }
     }
     else{
@@ -124,6 +126,8 @@ export class IconComponent implements OnInit, OnChanges {
   ngOnInit() {
     this.setIconsSet();
     this.setIconBgFolder();
+    this.setIconBg();
+    this.setClasses();
   }
   
   counterOnChanges = 0; // OnChanges only on second time (when data is ready), or when force reload (first time before OnInit)
@@ -136,15 +140,15 @@ export class IconComponent implements OnInit, OnChanges {
       this.setClasses();
       //console.log('iconsType: '+this.iconsType);
       //console.log('iconsSet: '+this.iconsSet);
-      //console.log('iconBgFolder: '+this.iconBgFolder);
-      //console.log('iconBg: '+this.iconBg);
+      console.log('iconBgFolder: '+this.iconBgFolder);
+      console.log('iconBg: '+this.iconBg);
       //console.log('iconColor: '+this.iconColor);
       //console.log('iconTitle: '+this.iconTitle);
       //console.log('cardText: '+this.cardText);
       //console.log('cardMarker: '+this.cardMarker);
       //console.log('iconCircleClass: '+this.iconCircleClass);
-      //console.log('iconBgNotFoundClass: '+this.iconBgNotFoundClass);
-      //console.log('iconWithoutBgClass: '+this.iconWithoutBgClass);
+      console.log('iconBgNotFoundClass: '+this.iconBgNotFoundClass);
+      console.log('iconWithoutBgClass: '+this.iconWithoutBgClass);
       //console.log('iconWithoutColorClass: '+this.iconWithoutColorClass);
       //console.log('cardWithTextClass: '+this.cardWithTextClass);
       //console.log('cardWithMarkerClass: '+this.cardWithMarkerClass);

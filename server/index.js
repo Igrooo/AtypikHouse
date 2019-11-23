@@ -39,7 +39,7 @@ import showComment from './routes/showComment';
 import showPayment from './routes/showPayment';
 import showPics from './routes/showPics';
 import showPost from './routes/showPost';
-import showProduct from './routes/showproduct';
+import showProduct from './routes/showProduct';
 import showTag from './routes/showTag';
 import showUser from './routes/showUser';
 
