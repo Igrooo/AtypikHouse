@@ -44,6 +44,10 @@
         }
     }
 
+    p:last-child{
+        margin-bottom: 0;
+    }
+
 /*********************/
 /**** CONTAINERS *****/
 /*********************/
@@ -62,10 +66,14 @@
             }
         }
         &.ah-page-home,
-        &.ah-page-houses,
         &.open-searchbox{
             .ah-container-main{
                 margin-top: calc(430px + @ah-mat-toolbar-height);
+            }
+        }
+        &.ah-page-houses{
+            .ah-container-main{
+                margin-top: calc(97px + @ah-mat-toolbar-height);
             }
         }
     }
@@ -79,6 +87,7 @@
     .ah-footer-wrap{
         padding: 0 @ah-padding-primary;
     }
+
     .ah-header-wrap,
     .ah-footer-wrap,
     .ah-content-wrap{
@@ -94,16 +103,30 @@
         margin-top: @ah-mat-toolbar-height;
         margin-bottom: @ah-mat-toolbar-height;
         padding: 0 @ah-padding-primary;
-        min-height: calc(100vh - @ah-mat-toolbar-height - @ah-mat-toolbar-height - @ah-padding-primary * 2);
+        min-height: calc(100vh - @ah-mat-toolbar-height - @ah-mat-toolbar-height);
         z-index: 2;
     }
     .ah-section,
     .ah-container,
     .ah-container-primary{
         padding-top: @ah-container-paddin-primary;
-        margin-bottom: @ah-margin-primary * 2;
+        margin-bottom: @ah-margin-primary;
         &:first-child:not(.lead):not(.top){
             margin-top: @ah-container-margin-primary;
+        }
+        &:last-child{
+            margin-bottom: @ah-margin-primary * 4;
+        }
+    }
+    .ah-section,
+    .ah-container,
+    .ah-container-primary{
+        .ah-section,
+        .ah-container,
+        .ah-container-primary{
+            &:last-child{
+                margin-bottom: 0;
+            }
         }
     }
     .ah-container-primary.lead{
@@ -131,7 +154,14 @@
                 display: none;
             }
         }
-
+        .houses-list{
+            .house:not(.status-2){
+                display: none;
+            }
+        }
+    }
+    .ah-container-admin-header {
+        margin: 0;
     }
     .ah-child-primary{
         padding: @ah-child-paddin-primary;
@@ -148,6 +178,9 @@
     .ah-section-spaced,
     .ah-section-demo{
         margin-bottom: @ah-margin-primary * 2;
+    }
+    .ah-section-spaced:last-child{
+        margin-bottom: @ah-margin-primary * 4;
     }
     .ah-header-sup{
         position: absolute;
@@ -172,8 +205,48 @@
     .open-searchbox{
         .ah-header-sup{
             visibility: visible;
-            height: calc(430px + @ah-mat-toolbar-height);
             opacity: 1;
+        }
+    }
+    .ah-page-home,
+    .open-searchbox{
+        .ah-header-sup{
+            height: calc(430px + @ah-mat-toolbar-height);
+        }
+    }
+    .ah-page-houses{
+        .ah-header-sup{
+            height: calc(97px + @ah-mat-toolbar-height);
+            .ah-suptitle{
+                display: none;
+            }
+        }
+        .ah-section-search{
+            padding-top: 0;
+        }
+    }
+    .ah-cta-search-home,
+    .ah-cta-search-close{
+        display: none !important;
+    }
+    .ah-page-home.open-searchbox,
+    .ah-page-houses.open-searchbox,
+    .ah-page-home,
+    .ah-page-houses{
+        .ah-cta-search-home{
+            display: block !important;
+        }
+        .ah-cta-search-close,
+        .ah-cta-search-open{
+            display: none !important;
+        }
+    }
+    .open-searchbox{
+        .ah-cta-search-close{
+            display: block !important;
+        }
+        .ah-cta-search-open{
+            display: none !important;
         }
     }
     .ah-banner{
@@ -215,6 +288,30 @@
         margin: 0;
         padding: 0;
     }
+    .ah-slide{
+        .icon-banner{
+            &:before,
+            &:after{
+                display: block;
+                position: absolute;
+                top: calc( 200px - 42px / 2);
+                width: 42px;
+                height: 42px;
+                font-size: 2em;
+                border-radius: 50%;
+                font-weight: bold;
+                text-align: center;
+            }
+            &:before{
+                content: '<';
+                left: 10px;
+            }
+            &:after{
+                content: '>';
+                right: 10px;
+            }
+        }
+    }
     .ah-product-info.lead{
         margin-top: -100px;
         padding-top: 100px;
@@ -222,39 +319,28 @@
         padding-right: 35px;
         padding-bottom: 20px;
     }
-
-    .ah-slide{
-        .icon-banner{
-            &:before,
-            &:after{
-                display: block;
-                position: absolute;
-                top: calc( 200px - 42px);
-                width: 42px;
-                height: 42px;
-                font-size: 2em;
-            }
-            &:before{
-                content: '<';
-            }
-            &:after{
-                content: '>';
-                right: 0;
-            }
+    .ah-house-supinfo{
+        position: relative;
+        margin-top: 10px;
+        .ah-house-share{
+            position: absolute;
+            top: 0;
+            right: 0;
         }
     }
-
-    .payed-confirm{
-        display:none !important;
+    .ah-product-details-map,
+    .ah-product-details-activities{
+        display: inline-block;
+        vertical-align: top;
     }
-    .payed{
-        .payed-confirm{
-        display: block !important;
-        }
-        .ah-product-booking{
-            display: none;
-        }
-    } 
+    .ah-product-details-map{
+        width: 70%;
+    }
+    .ah-product-details-activities{
+        width: calc(30% - 20px);
+        text-align: right;
+        margin-left: 20px;
+    }
 
 /*********************/
 /****** HEADER *******/
@@ -265,7 +351,19 @@
     .ah-header-title{
         display: none;
     }
-
+    .ah-header-title{
+        margin-right: 5px;
+    }
+    .user-type-admin {
+        .only-user {
+            display: none;
+        }
+    }
+    .user-type-user {
+        .only-admin {
+            display: none;
+        }
+    }
 
 /*********************/
 /*** HEADING & TEXT **/
@@ -410,7 +508,7 @@
 /*********************/
 /***** NAV & LIST ****/
 /*********************/
-
+    .ah-list,
     .ah-nav-primary .list-menu,
     .ah-nav-primary .list-inline,
     .ah-nav-secondary .list-menu,
@@ -429,7 +527,11 @@
         }
         */
     }
-    
+    .ah-list-tags.list-inline{
+        li{
+            margin: 0;
+        }
+    }
     .ah-nav-primary,
     .ah-nav-secondary {
         display: inline-block;
@@ -445,11 +547,13 @@
             width: calc(100% - @ah-padding-primary * 2)
         }
     }
-    .ah-header-nav-primary,
+    .ah-header-nav-user,
     .ah-footer-nav-secondary {
         margin-left: auto;
     }
-
+    .ah-header-nav-content{
+        margin-left: 20px;
+    }
     .ah-nav-sticky{
         position: sticky;
         top: 0;
@@ -483,10 +587,8 @@
         opacity: 0.8;
         filter: blur(8px);
     }
-
     .ah-cta-group{
-        .mat-button{
-            background-color: fade(@ah-cta-back-color-tertiary,50%);
+        .ah-cta-group-child{
             &:first-child{
                 border-top-right-radius: 0;
                 border-bottom-right-radius: 0;
@@ -497,7 +599,6 @@
             }
         }
     }
-
 // Flex & Grid
     .ah-flex-list{
         display: flex;
@@ -508,6 +609,43 @@
         }
         &.ah-footer-list{
             justify-content: space-between;
+        }
+    }
+    .ah-list-order{
+        display: flex;
+        flex-direction: column;
+        .ah-list-order-child{
+            flex-shrink: 0;
+            &.order-0{
+                order: 2;
+            }
+            &.order-1{
+                order: 1;
+            }
+            &.order-2{
+                order: 0;
+            }
+        }
+    }
+
+    .ah-list-activities{
+        margin-top: 20px;
+        .ah-activity{
+            padding: 10px;
+            margin-bottom: 20px;
+            .ah-activity-title{
+                margin-bottom: 0;
+                text-transform: none;
+                font-size: 1.3em;
+            }
+            .ah-activity-text{
+                font-size: 0.9em;
+            }
+            .ah-list-tags{
+                li:not([data]){
+                    display: none;
+                }
+            }
         }
     }
 
@@ -526,7 +664,8 @@
         padding: @ah-padding-primary calc(@ah-padding-primary * 2);
     }
     .ah-form-search{
-        
+        box-sizing: border-box;
+        height: 90px;
         .ah-form-icon{
             margin-right: 5px;
         }
@@ -537,30 +676,47 @@
         .ah-form-search-nb{
             max-width: 180px;
         }
-
         .ah-form-fieldset-inline:not(.ah-form-search-date-start):not(.ah-form-search-date-end){
             .mat-form-field-infix{
                 padding-top: 10px;
             }
         }
-            /*
-            .mat-form-field-prefix{
-                padding-bottom: 10px;
-            }*/
-        
-        /*
-        .ah-form-label{
-            padding-left: calc(24px + 5px);
-            font-size: 1rem;
-        }
-        .ah-form-select{
-            width:calc(100% - 24px - 5px); //material icon size 24px + margin 5px
-        }
-        */
         .mat-form-field-appearance-legacy .mat-form-field-prefix .mat-datepicker-toggle-default-icon{
             width: 21px;
         }
-        
+    }
+    .ah-form-search-location-user:before,
+    .ah-form-search-location-city:before{
+        margin-right: 16px;
+        vertical-align: middle;
+        background-repeat: no-repeat;
+        fill: currentColor;
+        height: 24px;
+        width: 24px;
+        font-family: 'Material Icons';
+        font-weight: normal;
+        font-style: normal;
+        font-size: 24px;
+        line-height: 1;
+        letter-spacing: normal;
+        text-transform: none;
+        display: inline-block;
+        white-space: nowrap;
+        word-wrap: normal;
+        direction: ltr;
+        -moz-font-feature-settings: 'liga';
+        font-feature-settings: 'liga';
+    }
+    .ah-form-search-location-user:before{
+        content: 'person_pin';
+    }
+    .ah-form-search-location-city:before{
+        content: 'location_city';
+    }
+    .ah-form-login{
+        margin: auto;;
+        max-width: 300px;
+        text-align: center;
     }
     .ah-product-booking-title{
         margin-bottom: 0;
@@ -568,6 +724,7 @@
     .ah-form-booking-nb{
         min-width: 215px;
     }
+
 /*********************/
 /*** ASIDE & FOOTER **/
 /*********************/
@@ -592,25 +749,27 @@
         position: absolute;
         bottom: 0; 
         //bottom: calc(-120px + -@ah-padding-primary * 2); //closed sub footer
-        &:before,
-        &:after{
-            content: '';
-            position: absolute;
-            display: block;
-            width: 600px;
-            height: 600px;
-            top: 0;
-            z-index: -1;
-            opacity: 0.4;
-        }
-        &::before{
-            left: -170px;
-            transform: rotate(25deg) scale(1.4);
-        }
-        &:after{
-            right: -100px;
-            top: -130px;
-            transform: rotate(-40deg);
+        &.square-decoration{
+            &:before,
+            &:after{
+                content: '';
+                position: absolute;
+                display: block;
+                width: 600px;
+                height: 600px;
+                top: 0;
+                z-index: -1;
+                opacity: 0.4;
+            }
+            &:before{
+                left: -170px;
+                transform: rotate(25deg) scale(1.4);
+            }
+            &:after{
+                right: -100px;
+                top: -130px;
+                transform: rotate(-40deg);
+            }
         }
         .ah-footer-sub{
             height: 120px;
@@ -655,7 +814,6 @@
         border: 2px transparent solid;
         border-radius: 4px;
     }
-
     .ah-icon-asset{
         display: block;
         height: 100%;
@@ -765,6 +923,7 @@
             width: 100%;
             text-align: center;
             box-sizing: border-box;
+            padding-top: 10px;
         }
         .ah-card-text{
             visibility: hidden;
@@ -818,20 +977,262 @@
     }
     .ah-icon-inline-toolbar{
         vertical-align: text-bottom;
+        margin-right: 3px;
     }
     .ah-icon-inline{
         vertical-align: baseline;
+        margin-right: 5px;
     }
-
-    td + td{
-        text-align: right;
-    }
-
     .houses-list{
         .ah-icon.icon-card{
-            padding-top: 120px;
-            padding-bottom: 5px;
+            padding-top: 146px;
+            padding-bottom: 0;
+            padding-left: 2px;
+            padding-right: 264px;
+            .ah-icon-asset{
+                position: absolute;
+                height: 50px;
+                width: 50px;
+                z-index: 1;
+                opacity: 0.6;
+            }
+        }
     }
+    .ah-tab-icon {
+        margin-right: 5px;
+    }
+
+/*********************/
+/******* ADMIN *******/
+/*********************/
+    .ah-admin-table-edit-container{
+        position: relative;
+        width: 65px;
+    }
+    .ah-admin-table-edit{
+        display: none;
+        position: absolute;
+        top: 3px;
+        right: 3px;
+    }
+    .ah-admin-cta{
+        margin-right: 3px;
+    }
+    .ah-admin-table-tr{
+        &.focused,
+        &:hover{
+            .ah-admin-table-edit{
+                display: block;
+            }
+        }
+    }
+    .edit-on{
+        .ah-admin-table-tr{
+            &:not(.focused){
+                opacity: 0.6;
+                &:hover{
+                    .ah-admin-table-edit{
+                        display: none;
+                    }
+                }
+            }
+        }
+    }
+    .ah-admin-table-tr.focused .ah-cta-edit-focus,
+    .ah-admin-table-tr.focused .ah-cta-delete-focus,
+    .ah-cta-cancel,
+    .ah-cta-edit-submit,
+    .ah-cta-delete-confirm{
+        display: none;
+    }
+    .ah-admin-table-tr.focused{
+        &.delete{
+            .ah-cta-cancel-delete,
+            .ah-cta-delete-confirm{
+                display:inline-block;
+            }
+        }
+        &.edit{
+            .ah-cta-cancel-edit,
+            .ah-cta-edit-submit{
+                display:inline-block;
+            }
+        }
+    }
+    .ah-admin-form{
+        display:inline-block;
+    }
+    .ah-admin-table{
+        width: calc(100% - 40px);
+        table-layout: fixed;
+        margin: 20px;
+        th,td{
+            &.ah-admin-table-col-ID{
+                padding-left: 15px;
+                padding-right:10px;
+                width: 20px;
+            }
+        }
+        th{
+            padding-left: 10px;
+            padding-right: 10px;
+
+        }
+        td {
+            padding-left: 5px;
+            padding-right: 5px;
+        }
+        .ah-admin-table-col-ID{
+            padding-left: 15px;
+            padding-right:10px;
+        }
+    }
+    .ah-admin-table-col-200{
+        width: 200px;
+    }
+    .ah-admin-table-col-400{
+        width: 400px;
+    }
+    .ah-admin-table-col-60{
+        width: 60px;
+    }
+
+    .ah-admin-table-col-ID + th{
+        padding-left: 15px;
+    }
+    .ah-admin-table-col-ID + td{
+        padding-left: 10px;
+    }
+
+    .ah-admin-input{
+        width: calc(100% - 10px);
+    }
+    .ah-admin-input{
+        text-overflow: ellipsis;
+        padding: 0 5px;
+    }
+    .ah-admin-field{
+        width: 100%;
+        margin-bottom: -19px;
+        .mat-form-field-infix{
+            border-width: 0;
+        }
+    }
+    select.mat-input-element.ah-admin-input-select{
+        position: static;
+        margin-bottom: 0;
+        &:disabled{
+            color: currentColor;
+        }
+    }
+/*********************/
+/****** BOOKING ******/
+/*********************/
+    .ah-container-product-booking{
+        max-width:1050px;
+        margin-left: auto;
+        margin-right: auto;
+        padding-left: 30px;
+        padding-right:30px;
+    }
+    .ah-product-booking{
+        max-width:700px;
+        margin-left: auto;
+        margin-right: auto;
+        &:not(:last-child){
+            margin-bottom: 0;
+        }
+    }
+    .ah-product-booking-subtitle{
+        margin: 0;
+    }
+    .ah-product-booking-price{
+        margin-right: -6px;
+    }
+    .ah-booking-table-caption,
+    .ah-booking-table-price{
+        border:none;
+    }
+    .ah-booking-table{
+        td + td{
+            text-align: right;
+        }
+    }
+    .ah-product-booking-payment{
+        text-align: center;
+        padding: 10px;
+    }
+    .ah-product-booking-payment-cta{
+        padding-top:5px;
+        padding-bottom:5px;
+        font-size: 120%;
+        width: 200px;
+    }
+    .ah-product-booking-payment-paypal{
+        transform: scale(0.6);
+    }
+    .payed-confirm{
+        display:none !important;
+    }
+    .payed{
+        .payed-confirm{
+        display: block !important;
+        }
+        .ah-product-booking{
+            display: none;
+        }
+    } 
+/*********************/
+/*** BOOKING LIST ****/
+/*********************/
+    .ah-booking-title{
+        position: relative;
+        margin-bottom: 1rem;
+        &:after{
+            position:absolute;
+            right: 0;
+            text-transform: none;
+            padding: 5px;
+            font-style: italic;
+            font-size: 1.2rem;
+        }
+    }
+    .ah-booking-container{
+        display: inline-block;
+        vertical-align: top;
+    }
+    .ah-booking-details,
+    .ah-booking-actions{
+        margin-top: 15px;
+    }
+    .ah-booking-details{
+        width: calc(100% - 110px - 220px);
+    }
+    .ah-booking-actions{
+        width: 220px;
+        text-align: right;
+    }
+    .ah-booking-cta{
+        width: 100%;
+        padding: 20px 35px;
+    }
+    .ah-booking{
+        &.status-0{
+            opacity: 0.7;
+            .ah-booking-title:after{
+                content: 'Annulée';
+            }
+        }
+        &.status-1{
+            .ah-booking-title:after{
+                content: 'En attente de paiement';
+            }
+        }
+        &.status-2{
+            .ah-booking-title:after{
+                content: 'Validée';
+            }
+        }
     }
 
 /*********************/
@@ -895,6 +1296,10 @@
         height: 100%;
     }
 
+    table {
+        width: 100%;
+    }
+
 /*********************/
 /*** MEDIA QUERIES ***/
 /*********************/
@@ -907,7 +1312,12 @@
     .not-mobile{
         display: inline-block;
     }
-    @media screen and (max-width: 800px) {
+    @media screen and (max-width: 1060px) {
+        &.ah-mat{
+            .mat-button .mat-icon{
+                margin-right: 0;
+            }
+        }
         .not-mobile{
             display: none;
         }
@@ -917,6 +1327,52 @@
         .ah-section-spaced,
         .ah-section-demo{
             border-width: @ah-margin-primary / 2;
+        }
+        .ah-title{
+            font-size: 1.5rem;
+        }
+    }
+    @media  screen and (max-width: 599px) {
+        .ah-page{
+            &.ah-page-home,
+            &.open-searchbox{
+                .ah-container-main{
+                    margin-top: calc(430px + @ah-mat-toolbar-height-compact);
+                }
+            }
+            &.ah-page-houses{
+                .ah-container-main{
+                    margin-top: calc(97px + @ah-mat-toolbar-height-compact);
+                }
+            }
+        }
+        .ah-header-sup{
+            padding-top: @ah-mat-toolbar-height-compact;
+        }
+        .ah-nav-sidenav,
+        .ah-container-main{
+            margin-top: @ah-mat-toolbar-height-compact;
+            margin-bottom: @ah-mat-toolbar-height-compact;
+            min-height: calc(100vh - @ah-mat-toolbar-height-compact - @ah-mat-toolbar-height-compact);
+        }
+        
+        .ah-section,
+        .ah-container,
+        .ah-container-primary{
+            &:last-child{
+                margin-bottom: @ah-margin-primary;
+            }
+        }
+    }
+    @media  screen and (max-width: 535px) {
+        .ah-header-logo{
+            display: none;
+        }
+        .ah-header-nav-content{
+            margin-left: 0;
+        }
+        .ah-footer-primary{
+            font-size: 70%;
         }
     }
 

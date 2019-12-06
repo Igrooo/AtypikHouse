@@ -1,0 +1,3 @@
+<agm-map #AgmMap [latitude]="latitude" [longitude]="longitude" [fitBounds]="true">
+    <agm-marker *ngFor="let marker of markers" [latitude]="marker.lat" [longitude]="marker.lng" [iconUrl]="marker.icon" [agmFitBounds]="true"></agm-marker>
+</agm-map>

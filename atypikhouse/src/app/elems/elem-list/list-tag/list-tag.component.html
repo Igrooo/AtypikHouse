@@ -1,1 +1,7 @@
-<p>list-tag</p>
+<ul class="ah-list-tags list-inline">
+    <ng-container *ngFor="let tag of tags">
+        <li *ngIf="tag.type === tagGroupFilter;">
+            <app-tag [tagText]="tag.tag"></app-tag>
+        </li>
+    </ng-container>
+</ul>

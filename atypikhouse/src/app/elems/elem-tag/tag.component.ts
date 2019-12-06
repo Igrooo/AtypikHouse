@@ -23,7 +23,7 @@ export class TagComponent implements OnInit {
   }
   styles(){
     if(this.tagColor) {
-      return {'background-color' : '#'+this.tagColor};
+      return {'background-color': this.tagColor};
     }
   }
 

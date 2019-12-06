@@ -2,7 +2,6 @@ import { Component, OnInit, Input } from '@angular/core';
 import { DataService} from "src/app/data.service";
 import { House } from "src/app/logic/House";
 import { Router } from "@angular/router";
-import { GeolocationService } from "src/app/geolocation.service";
 import { Icons } from "src/app/elems/elem-icon/icons-categories"
 
 @Component({
@@ -25,37 +24,17 @@ export class ListComponent implements OnInit {
   iconsBgFolder :string = 'houses';
 
   constructor(private data: DataService,
-              private router: Router,
-              private geolocation: GeolocationService
+              private router: Router
               ) { }
 
   goDetails(house: House) {
     this.router.navigate(["/house", house.ID]);
   }
 
-  goMap(house: House) {
-    const mapURL = this.geolocation.getMapLink(house.location);
-    location.href = mapURL;
-  }
-
-  share(house: House) {
-    if ('share' in navigator) {
-      (navigator as any).share({
-        title: house.title + ` - ` + house.city + "," + house.address,
-        text: house.description,
-        url: window.location.href
-      }).then( () => console.log("shared")).catch( () =>  console.log("error sharing"));
-    } else {
-      const shareTxt = house.title + ` - ` + house.city + "," + house.address + ` - ` + house.description;
-      const shareURL = `whatsapp://send?text=${encodeURIComponent(shareTxt)}`;
-      location.href = shareURL;
-    }
-  }
-
   ngOnInit() {
-    this.data.getList("showProduct", list => {
+    this.icons = Icons;
+    this.data.getList("houses", list => {
       this.list = list;
-      this.icons = Icons;
     });
     //console.log('filterCategory: '+this.filterCategory);
   }

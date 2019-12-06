@@ -4,33 +4,67 @@
         <mat-toolbar color="background">
             <button id="sidenav-cta" (click)="UItoggleSidenav()" class="not-desktop" mat-button><mat-icon>menu</mat-icon><mat-icon>menu_open</mat-icon></button>
             <a class="ah-title ah-header-title ah-link ah-link-primary" routerLink="/"><h1  class="ah-header-title">AtypikHouse</h1><img class="ah-header-logo" src="assets/img/logo.png" alt="AtypikHouse Logo"></a>
-            <nav class="ah-nav-primary ah-header-nav-primary">
-            <ul class="list-inline">
-                <!-- need hide in production -->
-                <li class="not-mobile ah-tiny hide"><a class="ah-header-link ah-link ah-link-secondary" routerLink="/all">all</a></li>
-                <li class="not-mobile ah-tiny hide"><a class="ah-header-link ah-link ah-link-secondary" routerLink="/demo">demo</a></li>
-                <li class="not-mobile ah-tiny hide"><a class="ah-header-link ah-link ah-link-secondary" routerLink="/demo-typo">demo-typo</a></li>
-                <li class="not-mobile ah-tiny hide"><a class="ah-header-link ah-link ah-link-secondary" routerLink="/demo-icons">demo-icons</a></li>
-                <!---->
-                <li class="not-mobile"><a class="ah-header-link ah-link ah-link-secondary" routerLink="/categories"><mat-icon class="ah-icon-inline-toolbar">landscape</mat-icon><span>Explorer</span></a></li>
-                <li><button (click)="searchbox()" class="ah-header-link ah-cta-secondary ah-cta-search-top current" mat-button><mat-icon>search</mat-icon><span class="not-mobile">Chercher</span></button></li>
-                <li>
-                    <ul class="list-inline only-public">
-                        <li><button (click)="login()" class="ah-cta-primary" mat-button><mat-icon>person</mat-icon><span class="not-mobile">Se connecter</span></button></li>
-                    </ul>
-                    <ul class="list-inline only-logged">
-                        <li class="ah-cta-group">
-                            <button (click)="open('loyalty')" mat-button><mat-icon>loyalty</mat-icon></button>
-                            <button (click)="open('notifications')" mat-button><mat-icon matBadge="2" matBadgeOverlap="false">notifications</mat-icon></button>
-                        </li>
-                        <li><button (click)="user()" class="ah-cta-primary" mat-button><mat-icon>person</mat-icon><span class="not-mobile">Mon compte</span></button></li>
-                    </ul>
-                </li>
-            </ul>
+            <nav class="ah-nav-primary ah-header-nav-primary ah-header-nav-content">
+                <ul class="list-inline">
+                    <li>
+                        <button mat-button class="ah-header-link ah-cta-secondary ah-cta-search-top ah-cta-search-home"  (click)="searchbox('top')" ><mat-icon>search</mat-icon><span class="not-mobile">Chercher</span></button>
+                        <button mat-button class="ah-header-link ah-cta-secondary ah-cta-search-top ah-cta-search-open"  (click)="searchbox('open')" ><mat-icon>search</mat-icon><span class="not-mobile">Chercher</span></button>
+                        <button mat-button class="ah-header-link ah-cta-secondary ah-cta-search-top ah-cta-search-close" (click)="searchbox('close')"><mat-icon>expand_less</mat-icon><span class="not-mobile">Chercher</span></button>
+                    </li>
+                    <li class="not-mobile"><a class="ah-header-link ah-link ah-link-secondary" routerLink="/categories"><mat-icon class="ah-icon-inline-toolbar">landscape</mat-icon><span>Explorer</span></a></li>                    
+                    <!-- need hide in production -->
+                    <li class="not-mobile ah-tiny hide"><a class="ah-header-link ah-link ah-link-secondary" routerLink="/all">all</a></li>
+                    <li class="not-mobile ah-tiny hide"><a class="ah-header-link ah-link ah-link-secondary" routerLink="/demo">demo</a></li>
+                    <li class="not-mobile ah-tiny hide"><a class="ah-header-link ah-link ah-link-secondary" routerLink="/demo-typo">demo-typo</a></li>
+                    <li class="not-mobile ah-tiny hide"><a class="ah-header-link ah-link ah-link-secondary" routerLink="/demo-icons">demo-icons</a></li>
+                    <!---->
+                </ul>
+            </nav>
+            <nav class="ah-nav-primary ah-header-nav-primary ah-header-nav-user">
+                <ul class="list-inline">
+                    <li>
+                        <ul class="list-inline only-public">
+                            <li><button (click)="login()" class="ah-cta-primary" mat-button><mat-icon>person</mat-icon><span class="not-mobile">Se connecter</span></button></li>
+                        </ul>
+                        <ul class="list-inline only-logged user-type-{{ userType }}">
+                            <li class="not-mobile only-user"><button (click)="userHouses()" class="ah-cta-primary" mat-button><mat-icon>house</mat-icon><span class="not-mobile">Mes annonces</span></button></li>
+                            <li class="not-mobile only-user"><button (click)="userBooking()" class="ah-cta-primary" mat-button><mat-icon>hotel</mat-icon><span class="not-mobile">Mes séjours</span></button></li>
+                            <li class="only-admin"><button (click)="admin()" class="ah-cta-tertiary" mat-button><mat-icon>build</mat-icon><span class="not-mobile">Administration</span></button></li>
+                            <li class="ah-cta-group only-user">
+                                <button class="ah-cta-group-child" (click)="posts()" mat-button><mat-icon>messages</mat-icon></button>
+                                <mat-menu #notifications="matMenu">
+                                    <button mat-menu-item>
+                                    <span>Notification 1</span>
+                                    </button>
+                                    <button mat-menu-item>
+                                    <span>Notification 2</span>
+                                    </button>
+                                </mat-menu>
+                                <button class="ah-cta-group-child" mat-button [matMenuTriggerFor]="notifications" aria-label="Notifications"><mat-icon matBadge="2" matBadgeOverlap="false">notifications</mat-icon></button>
+                            </li>
+                            <li>
+                                <button class="ah-cta-primary" mat-button [matMenuTriggerFor]="user" aria-label="Mon compte"><mat-icon>person</mat-icon><span class="not-mobile">Mon compte</span></button>
+                                <mat-menu #user="matMenu">
+                                    <button mat-menu-item (click)="userAccount()">
+                                    <mat-icon>person</mat-icon>
+                                    <span>Mon profil</span>
+                                    </button>
+                                    <button mat-menu-item (click)="logout()">
+                                    <mat-icon>exit_to_app</mat-icon>
+                                    <span>Se déconnecter</span>
+                                    </button>
+                                </mat-menu>
+                            </li>
+                        </ul>
+
+                    </li>
+                </ul>
             </nav>
         </mat-toolbar>
         <nav id="sidenav" class="ah-nav-sidenav ah-nav-secondary not-desktop">
             <ul class="list-menu">
+                <li><a class="ah-sidenav-link ah-link ah-link-secondary" routerLink="/user/{{ user.ID }}/houses">  <mat-icon class="ah-icon-inline">house</mat-icon><span>Mes annonces</span></a></li>
+                <li><a class="ah-sidenav-link ah-link ah-link-secondary" routerLink="/user/{{ user.ID }}/bookings"><mat-icon class="ah-icon-inline">hotel</mat-icon><span>Mes séjours</span></a></li>
                 <li><a class="ah-sidenav-link ah-link ah-link-secondary" routerLink="/categories"><mat-icon class="ah-icon-inline">landscape</mat-icon><span>Explorer</span></a></li>
                 <li><a class="ah-sidenav-link ah-link ah-link-secondary" routerLink="/news">      <mat-icon class="ah-icon-inline">new_releases</mat-icon><span>Actualités</span></a></li>
             </ul>
@@ -53,28 +87,30 @@
         </section>
         <section role="search" class="ah-section-search">
         <div class="ah-header-wrap">
-            <h2 class="ah-suptitle"><i class="ah-title-icon-left la la-leaf"></i><span class="ah-suptitle-text">Offrez-vous une nuit insolite</span><i class="ah-title-icon-right la la-leaf"></i></h2> 
+            <h2 class="ah-suptitle"><i class="ah-title-icon-left la la-leaf"></i><span class="ah-suptitle-text">Offrez-vous un séjour insolite</span><i class="ah-title-icon-right la la-leaf"></i></h2> 
             <form class="ah-form ah-form-search">
-                <mat-form-field class="ah-form-fieldset-inline ah-form-search-type">
+                <mat-form-field class="ah-form-fieldset-inline ah-form-search-location">
                     <mat-icon class="ah-form-icon" matPrefix>room</mat-icon>
                     <mat-label>Destination</mat-label>
-                    <mat-select matNativeControl>
-                        <mat-option value="location-user" selected><mat-icon class="ah-form-icon" matPrefix>person_pin</mat-icon> Autours de moi</mat-option>
-                        <mat-option value="location-city"><mat-icon class="ah-form-icon" matPrefix>location_city</mat-icon> Saisir l'adresse</mat-option>
+                    <mat-select matNativeControl (selectionChange)="searchboxLocation($event)">
+                        <mat-option class="ah-form-search-location-user" value="location-user">Autours de moi</mat-option>
+                        <mat-option class="ah-form-search-location-city" value="location-city">Saisir l'adresse</mat-option>
                     </mat-select>
                 </mat-form-field>
                 <mat-form-field class="ah-form-fieldset-inline ah-form-search-type">
                     <mat-icon class="ah-form-icon" matPrefix>home</mat-icon>
                     <mat-label>Type d'hébergement</mat-label>
                     <mat-select>
-                        <mat-option value="null">list type</mat-option>
+                        <mat-option *ngFor="let category of categories" [value]="category.ID">{{category.title}}</mat-option>
                     </mat-select>
                 </mat-form-field>
                 <mat-form-field class="ah-form-fieldset-inline ah-form-search-thema">
                     <mat-icon class="ah-form-icon" matPrefix>local_florist</mat-icon>
                     <mat-label>Thématique</mat-label>
                     <mat-select>
-                        <mat-option value="null">list themes</mat-option>
+                        <ng-container *ngFor="let tag of tags">
+                            <mat-option *ngIf="tag.type == 0" [value]="tag.ID">{{tag.tag}}</mat-option>
+                        </ng-container>
                     </mat-select>
                 </mat-form-field>
                 <mat-form-field class="ah-form-fieldset-inline ah-form-search-date-start">
@@ -93,16 +129,7 @@
                     <mat-icon class="ah-form-icon" matPrefix>people_alt</mat-icon>
                     <mat-label>Nombre de personnes</mat-label>
                     <mat-select>
-                        <mat-option value="1">1</mat-option>
-                        <mat-option value="2">2</mat-option>
-                        <mat-option value="3">3</mat-option>
-                        <mat-option value="4">4</mat-option>
-                        <mat-option value="5">5</mat-option>
-                        <mat-option value="6">6</mat-option>
-                        <mat-option value="7">7</mat-option>
-                        <mat-option value="8">8</mat-option>
-                        <mat-option value="9">9</mat-option>
-                        <mat-option value="10">10</mat-option>
+                        <mat-option *ngFor="let item of arrayNbPersons(nbPersonsMax); let i = index;" [value]="i+1">{{i+1}}</mat-option>
                     </mat-select>
                 </mat-form-field>
                 <!--<mat-slider min="1" max="10" step="1" value="2"></mat-slider>-->

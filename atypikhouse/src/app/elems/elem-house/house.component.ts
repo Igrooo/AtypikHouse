@@ -1,13 +1,16 @@
 import { Component, OnInit, Output } from '@angular/core';
 import { Router, ActivatedRoute } from "@angular/router";
 import { DatePipe } from '@angular/common';
+import { MatDatepickerInputEvent } from '@angular/material/datepicker';
 import { GeolocationService } from "src/app/geolocation.service";
-//import { APIroutes, DataService } from "src/app/data.service";
 import { DataService } from "src/app/data.service";
+import { CookieService } from "ngx-cookie-service";
 import { House } from "src/app/logic/House";
 import { Booking } from 'src/app/logic/Booking';
+import { Tag } from "src/app/logic/Tag";
+import { Activity } from "src/app/logic/Activity";
+import { ActivityType } from "src/app/logic/ActivityType";
 import { Icons } from "src/app/elems/elem-icon/icons-categories";
-import { MatDatepickerInputEvent } from '@angular/material/datepicker';
 
 @Component({
   selector: 'app-house',
@@ -17,7 +20,6 @@ import { MatDatepickerInputEvent } from '@angular/material/datepicker';
 
 export class HouseComponent implements OnInit {
   math = Math;
-
   
   icons = Icons;
   iconsSet      :string = 'travel';
@@ -27,6 +29,19 @@ export class HouseComponent implements OnInit {
   
   house: House;
   booking: Booking;
+
+  tagsList:string[] = [];
+  tags:Tag[]= [];
+
+  activitiesList:string[] = [];
+  activities:Activity[]= [];
+
+  activitiesType:ActivityType[]= [];
+
+  tagsActivityList:string[] = [];
+  tagsActivity = [];
+
+  markers = [];
 
   bookingMinDate = new Date();
   priceTTC:number;
@@ -42,14 +57,40 @@ export class HouseComponent implements OnInit {
 
   complete:boolean;
 
+  nbPersonsMax:number;
+
   constructor(private router: Router,
               private route: ActivatedRoute,
               private geolocation: GeolocationService,
               private data: DataService,
-              private datePipe: DatePipe
+              private datePipe: DatePipe,
+              private cookieService: CookieService
               ) { }
 
   routingSubscription: any;
+
+  arrayNbPersons(max:number): any[]{
+    return Array(max);
+  }
+
+  goMap(house: House) {
+    const mapURL = this.geolocation.getMapLink(house.address,house.city);
+    window.open(mapURL, "_blank");
+  }
+
+  share(house: House) {
+    if ('share' in navigator) {
+      (navigator as any).share({
+        title: house.title + ` - ` + house.city + "," + house.address,
+        text: house.description,
+        url: window.location.href
+      }).then( () => console.log("shared")).catch( () =>  console.log("error sharing"));
+    } else {
+      const shareTxt = house.title + ` - ` + house.city + "," + house.address + ` - ` + house.description;
+      const shareURL = `whatsapp://send?text=${encodeURIComponent(shareTxt)}`;
+      window.open(shareURL, "_blank");
+    }
+  }
 
   updatePrice(){
     //console.log(this.dateStart, this.dateEnd, this.nbPersons);
@@ -85,7 +126,6 @@ export class HouseComponent implements OnInit {
   }
 
   onChange(event) {
-    //console.log(event.value);
     this.nbPersons = event.value;
     this.updatePrice();
   }
@@ -95,15 +135,13 @@ export class HouseComponent implements OnInit {
     this.booking.date       = this.datePipe.transform(new Date(),"yyyy-MM-dd");
     this.booking.dateStart  = this.datePipe.transform(this.dateStart,"yyyy-MM-dd");
     this.booking.dateEnd    = this.datePipe.transform(this.dateEnd,"yyyy-MM-dd");
-    this.booking.nbPersons =  this.nbPersons;
-    this.booking.ID_user    = 1;
+    this.booking.nbPersons  = this.nbPersons;
+    this.booking.ID_user    = +this.cookieService.get('userID');
     this.booking.ID_house   = this.house.ID;
-    
-    //console.log(this.booking);
 
-    this.data.save("addBooking", this.booking, result => {
-      if (result) {
-        this.router.navigate(["/booking", result.insertId]);
+    this.data.save("booking", this.booking, booking => {
+      if (booking) {
+        this.router.navigate(["/booking", booking.insertId]);
       }
     });
 
@@ -117,24 +155,69 @@ export class HouseComponent implements OnInit {
     this.routingSubscription =
       this.route.params.subscribe(params => {
         if(params["id"]) {
-          this.data.get("showProduct", params["id"], response => {
-            this.house = response;
+          this.data.get("houses", params["id"], house => {
+            if (house) {
+              this.house = house;
+              
+              if(this.house.listID_tags != ''){
+                this.tagsList = this.house.listID_tags.split(',');
+                this.tagsList.forEach((tagID) => {
+                  this.data.get("tags", tagID, tag => {
+                    if(tag){
+                      this.tags.push(tag);
+                    }
+                  });
+                });
+              }
 
-            this.byNightLabel = ' /nuit';
-            this.priceTTC = this.math.round(this.house.price + ((this.house.price/100) * this.house.tax));
-            this.totalPrice = this.priceTTC;
+              this.nbPersonsMax = this.house.nbBeds;
+              this.byNightLabel = ' /nuit';
+              this.priceTTC = this.math.round(this.house.price + ((this.house.price/100) * this.house.tax));
+              this.totalPrice = this.priceTTC;
+
+              let location = this.house.address+' ,'+this.house.city;
+              this.data.getLatLng(location, response =>{
+                if(response){
+                  this.house.locationLat  = response.results[0].geometry.location.lat;
+                  this.house.locationLng = response.results[0].geometry.location.lng;
+                  this.markers.push({lat: this.house.locationLat, lng: this.house.locationLng, icon: '/assets/img/marker-green.png'});
+                }
+              });
+
+              if(this.house.listID_activities != ''){
+                this.activitiesList = this.house.listID_activities.split(',');
+                this.activitiesList.forEach((activityID) => {
+                  this.data.get("activities", activityID, activity => {
+                    if(activity){
+                      this.activities.push(activity);
+                      this.markers.push({lat: activity.locationLat, lng: activity.locationLng, icon: '/assets/img/marker-grey.png'});
+
+                      this.data.get("activities_types", activity.ID_type, activity_type => {
+                        if(activity_type){
+                          this.activitiesType.push(activity_type);
+                        }
+                      });
+
+                      if(activity.listID_tags != ''){
+                        let tags:Tag[]= [];
+                        this.tagsActivityList = activity.listID_tags.split(',');
+                        this.tagsActivityList.forEach((tagID) => {
+                          this.data.get("tags", tagID, tag => {
+                            if(tag){
+                              tags.push(tag.tag);
+                            }
+                          });
+                        });
+                        this.tagsActivity.push(tags);
+                      }
+                    }
+                  });
+                });
+              }
+            }
           });
         }
       });
-      /*
-    this.geolocation.requestLocation(location => {
-      if (location) {
-        this.house.location.latitude = location.latitude;
-        this.house.location.longitude = location.longitude;
-      }
-    });
-     */
-
   }
 
   ngOnDestroy() {

@@ -1,14 +1,23 @@
 
 <section class="ah-container-primary ah-section ah-product-banner ah-slide">
     <!--
-    <app-icon *ngIf="house" [forceReload]="true" (click)="slide()" [iconSize]="iconsSize" [iconsSet]="iconsSet" [iconGroup]="icons[house.ID_category - 1].group" [iconName]="icons[house.ID_category - 1].name" [iconBgFolder]="iconsBgFolder" [iconBg]="house.ID" [iconColor]="iconsColor" [iconTitle]="house.title" [iconSubTitle]="house.zipcode+', '+house.city" [cardText]="house.description" [cardMarker]="math.round(house.price + ((house.price/100) * house.tax)).toString()"></app-icon>
+    <app-icon *ngIf="house" [forceReload]="true" (click)="slide()" [iconSize]="iconsSize" [iconsSet]="iconsSet" [iconGroup]="icons[house.ID_category - 1].group" [iconName]="icons[house.ID_category - 1].name" [iconBgFolder]="iconsBgFolder" [iconBg]="house.ID" [iconColor]="iconsColor" [iconTitle]="house.title" [iconSubTitle]="house.zipcode+', '+house.city" [cardText]="house.description" [cardMarker]="priceTTC.toString()"></app-icon>
     -->
     <app-icon *ngIf="house" [forceReload]="true" [iconSize]="iconsSize" [iconsSet]="iconsSet" [iconGroup]="icons[house.ID_category - 1].group" [iconName]="icons[house.ID_category - 1].name" [iconBgFolder]="iconsBgFolder" [iconBg]="house.ID" [iconColor]="iconsColor" [iconTitle]="house.title" [iconSubTitle]="house.zipcode+', '+house.city" [cardText]="house.description" [cardMarker]="priceTTC.toString()"></app-icon>
   </section>
 <section class="ah-container-primary lead ah-section ah-product-info">
   <h2 class="ah-title hide">{{house.title}}</h2>
-    <p>Icon tag list thema (tags type 0)</p>
-    <section class="ah-container-tertiary ah-section ah-product-booking">
+    <div class="ah-house-supinfo">
+      <ul class="ah-list-tags list-inline">
+          <ng-container *ngFor="let tag of tags">
+              <li *ngIf="tag.type === 0;">
+                  <app-tag [tagText]="tag.tag"></app-tag>
+              </li>
+          </ng-container>
+      </ul>
+      <button (click)="share(house)" mat-button class="ah-house-share ah-cta-tertiary"><mat-icon>share</mat-icon> Partager</button>    
+    </div>
+    <section class="ah-container-tertiary ah-section ah-product-prebooking">
       <h3 class="ah-product-booking-title">Réservation</h3>
       <form (submit)="newBooking()" class="ah-form ah-form-product-booking">
         <mat-form-field class="ah-form-fieldset-inline ah-form-booking-date-start">
@@ -27,21 +36,11 @@
             <mat-icon class="ah-form-icon" matPrefix>people_alt</mat-icon>
             <mat-label>Nombre de personnes</mat-label>
             <mat-select (selectionChange)="onChange($event)">
-                <mat-option [value]="1"> 1</mat-option>
-                <mat-option [value]="2"> 2</mat-option>
-                <mat-option [value]="3"> 3</mat-option>
-                <mat-option [value]="4"> 4</mat-option>
-                <mat-option [value]="5"> 5</mat-option>
-                <mat-option [value]="6"> 6</mat-option>
-                <mat-option [value]="7"> 7</mat-option>
-                <mat-option [value]="8"> 8</mat-option>
-                <mat-option [value]="9"> 9</mat-option>
-                <mat-option [value]="10"> 10</mat-option>
+                <mat-option *ngFor="let item of arrayNbPersons(nbPersonsMax); let i = index;" [value]="i+1">{{i+1}}</mat-option>
             </mat-select>
         </mat-form-field>
-        <!--<mat-slider min="1" max="10" step="1" value="2"></mat-slider>-->
         <span class="ah-product-price"><span class="from">à partir de </span><span class="price">{{ totalPrice }}&thinsp;€</span> <span class="bynight"> {{ byNightLabel }}</span></span>
-        <button mat-button type="submit" class="ah-cta-primary" [disabled]="!complete" >Réserver <mat-icon>double_arrow</mat-icon></button>
+        <button mat-button type="submit" class="ah-cta ah-cta-primary" [disabled]="!complete" >Réserver <mat-icon>double_arrow</mat-icon></button>
       </form>
     </section>
 </section>
@@ -50,14 +49,36 @@
   <h2 class="ah-title ah-title-separator important"><span class="ah-title-text"><i class="ah-title-icon-left la la-leaf"></i>Détails<i class="ah-title-icon-right la la-leaf"></i></span></h2>
   <section class="ah-container ah-section ah-product-details-tags">
     <h3>Services & équipements</h3>
-    <p>Icon tags list (tags type 1)</p>
-    <app-list-tag></app-list-tag>
+    <ul class="ah-list-tags list-inline">
+        <ng-container *ngFor="let tag of tags">
+            <li *ngIf="tag.type === 1;">
+                <app-tag [tagText]="tag.tag"></app-tag>
+            </li>
+        </ng-container>
+    </ul>
   </section>
-  <section class="ah-container ah-section ah-product-details-activity">
+  <section class="ah-container ah-section ah-product-details-activities-map">
       <h3>Localisation & Activités à proximité</h3>
-      <p>{{ house.address }}, {{ house.zipcode }}, {{ house.city }}<a>localiser</a></p> 
-      <p>map activities</p>
-      <p>activities list</p>
+      <div class="ah-product-details-map">
+        <app-map [latitude]="house.locationLat" [longitude]="house.locationLng" [markers]="markers"></app-map>
+      </div>
+      <div class="ah-product-details-activities">
+          <button (click)="goMap(house)" mat-button class="ah-cta-secondary"><mat-icon>map</mat-icon> {{ house.address }}, {{ house.zipcode }}, {{ house.city }} <mat-icon>launch</mat-icon></button>
+          <ul class="ah-list ah-list-activities">
+            <li *ngFor="let activity of activities; let i = index;" class="text-left ah-activity">
+              <h5 class="ah-activity-title">{{activity.title}}</h5>
+              <ul class="ah-list-tags list-inline">
+                <li class="ah-activity-type" [attr.data]="activitiesType[i].title">
+                  <app-tag [tagText]="activitiesType[i].title"></app-tag>
+                </li>
+                <li *ngFor="let tag of tagsActivity[i];" [attr.data]="tag">
+                  <app-tag [tagText]="tag"></app-tag>
+                </li>
+              </ul>
+              <p class="ah-activity-text text-justify">{{activity.description}}</p>
+            </li>
+          </ul>
+      </div>
   </section>
 </section>
 <section class="ah-container-primary ah-section ah-product-comments">
@@ -66,32 +87,5 @@
 </section>
 
 <!--
-<section class="ah-product-info">
-  <mat-card>
-    <mat-card-title>{{ house.title }}</mat-card-title>
-  </mat-card>
-
-  <mat-card>
-    <h3>{{ house.location.address }}</h3>
-  </mat-card>
-  <mat-card>
-    <h4>{{ house.location.city }}</h4>
-  </mat-card>
-
-  <mat-card>
-    <h4>{{ house.type }}</h4>
-  </mat-card>
-
-  <mat-card>
-    <p>{{ house.description }}</p>
-  </mat-card>
-
-  <mat-card>
-    
-  </mat-card>
-</section>
 <a class="ah-overlay-cta-primary" mat-fab routerLink="/house/{{ house.ID }}/edit"><mat-icon>edit</mat-icon></a>
 -->
-<div class="hide">
-  {{ house | json }}
-</div>

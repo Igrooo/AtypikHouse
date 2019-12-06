@@ -1,0 +1,24 @@
+<section class="ah-section ah-container-primary top">
+        <h2 class="ah-title">{{ listTitle }}</h2>
+        <ul class="ah-list ah-booking-list ah-list-order">
+          <ng-container *ngFor="let booking of list; let i = index">
+            <li *ngIf="filterUser == booking.ID_user" class="ah-list-order-child ah-booking ah-container-tertiary status-{{ booking.status }} order-{{ booking.status }}">
+                <h3 class="ah-booking-title">Réservation de <mark> {{ nbNights(booking.dateStart,booking.dateEnd)}} nuit(s)</mark> à <mark>{{ houseTitles[i] }}</mark></h3>
+                <div class="ah-booking-container ah-booking-house-link">
+                    <app-icon routerLink="/house/{{ booking.ID_house }}" [iconSize]="'mid'" [iconsSet]="'travel'" [iconGroup]="icons[houseCategories[i] - 1].group" [iconName]="icons[houseCategories[i] - 1].name" [iconBgFolder]="'houses'" [iconBg]="booking.ID_house" [iconColor]="'#15a08c'"></app-icon>
+                </div>
+                <div class="ah-booking-container ah-booking-details">
+                    <h6 class="ah-booking-period">Du <b class="ah-booking-start">{{ dateLabel(booking.dateStart) }}</b> au <b class="ah-booking-end">{{ dateLabel(booking.dateEnd) }}</b></h6>
+                    <p class="ah-booking-subdetails">
+                        <span class="ah-booking-date">Réservé le: <b>{{ dateLabel(booking.date) }}</b></span><br>
+                        <span class="ah-booking-nbpersons">Pour {{ booking.nbPersons }} personne(s)</span>
+                    </p>
+                </div>
+                <div class="ah-booking-container ah-booking-actions">
+                    <button mat-button routerLink="/booking/{{ booking.ID }}" class="ah-booking-cta ah-cta-primary"  *ngIf="booking.status == 2"><mat-icon>info</mat-icon> Voir le détail du prix</button>
+                    <button mat-button routerLink="/booking/{{ booking.ID }}" class="ah-booking-cta ah-cta-tertiary" *ngIf="booking.status == 1"><mat-icon>euro</mat-icon> Payer</button>
+                </div>
+            </li>
+          </ng-container>
+        </ul>
+    </section>

@@ -21,7 +21,7 @@ export class ListCategoryComponent implements OnInit {
     ) { }
 
   ngOnInit() {
-    this.data.getList("categorie", list => {
+    this.data.getList("categories", list => {
       this.list = list;
     })
   }

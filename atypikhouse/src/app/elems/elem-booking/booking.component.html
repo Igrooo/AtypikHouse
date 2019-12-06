@@ -1,10 +1,12 @@
 
-<section class="ah-container-primary ah-section {{ payed }}" style="padding-left:30px; padding-right:30px; max-width:1050px; margin: auto;">
-    <h2>Confirmation de votre réservation<br> & Paiement</h2>
+<section class="ah-container-primary ah-section {{ payed }} ah-container-product-booking">
+    <h2 *ngIf="booking.status == 1">Confirmation de votre réservation<br> & Paiement</h2>
+    <h2 *ngIf="booking.status == 2">Détail de votre réservation</h2>
     <h3 class="important">Réservation de <mark>{{ nbNights }} nuit(s)</mark> à <mark>{{ house.title }}</mark></h3>
     <h5 class="important">{{ house.address }}, {{ house.zipcode }}, {{ house.city }}</h5>
-    <h4 class="payed-confirm ah-title important"><span class="ah-title-text"><i class="ah-title-icon-left la la-leaf"></i>Paiement effectué, Réservation confirmée !<i class="ah-title-icon-right la la-leaf"></i></span></h4>
-    <section class="ah-container ah-section ah-product-booking" style="max-width:700px; margin: auto;">
+    <h4 class="payed-confirm ah-title important"><span class="ah-title-text"><i class="ah-title-icon-left la la-leaf"></i>Paiement effectué<i class="ah-title-icon-right la la-leaf"></i></span></h4>
+    <h4 class="payed-confirm ah-title important"><span class="ah-title-text"><i class="ah-title-icon-left la la-leaf"></i>Réservation confirmée !<i class="ah-title-icon-right la la-leaf"></i></span></h4>
+    <section class="ah-container ah-section ah-product-booking">
         <hr>
         <h6>Du <b>{{ dateStartLabel }}</b> au <b>{{ dateEndLabel }}</b></h6>
         <hr>
@@ -12,9 +14,9 @@
         <hr>
         <p>Services inclus :</p>
     </section>
-    <section class="ah-container ah-section ah-product-booking" style="max-width:700px; margin: auto;">
-        <table class="table">
-            <caption style="border:none;"><h4 class="important" style="margin: 0;">Détails du prix</h4></caption>
+    <section class="ah-container ah-section ah-section-spaced ah-product-booking">
+        <table class="ah-booking-table table">
+            <caption class="ah-booking-table-caption"><h4 class="important ah-product-booking-subtitle">Détails du prix</h4></caption>
             <tbody>
                 <tr>
                     <td>Prix HT :</td>
@@ -36,14 +38,14 @@
                     <td>Personnes :</td>
                     <td>x {{ booking.nbPersons }}</td>
                 </tr>
-                <tr class="odd">
-                    <td style="border:none;"><h4 class="important" style="margin: 0;">TOTAL TTC:</h4></td>
-                    <td style="border:none;"><h4 class="important" style="margin: 0;margin-right:-6px;"><mark> {{ totalPrice }} € </mark></h4></td>
+                <tr class="even">
+                    <td class="ah-booking-table-price"><h4 class="important ah-product-booking-subtitle">TOTAL TTC:</h4></td>
+                    <td class="ah-booking-table-price"><h4 class="important ah-product-booking-subtitle ah-product-booking-price"><mark> {{ totalPrice }} € </mark></h4></td>
                 </tr>
             </tbody>
         </table>      
     </section>
-    <section class="ah-container-tertiary ah-section ah-section-spaced ah-product-booking" style="max-width:700px; margin: auto;">
+    <section *ngIf="booking.status == 1" class="ah-container-tertiary ah-section ah-section-spaced ah-product-booking">
         <h3 class="ah-product-booking-title">Paiement</h3>
         <form (submit)="validBooking()" class="ah-form ah-form-product-booking">
             <div>
@@ -70,13 +72,11 @@
                   <input matInput type="number" placeholder="Code de sécurité au dos de la carte">
                 </mat-form-field>
             </div>
-          <div style="text-align: center;"><a><img src="assets/img/paypal.png" alt="paypal" style="transform: scale(0.6);"></a></div>
-          <div style="text-align: center; font-size:120%; padding:10px;"><button mat-button type="submit" style="padding-top:5px;padding-bottom:5px;" class="ah-cta-primary">Payer <mat-icon>double_arrow</mat-icon></button></div>
+            <div class="ah-product-booking-payment"><button mat-button type="submit" class="ah-cta-primary ah-product-booking-payment-cta">Payer <mat-icon>double_arrow</mat-icon></button></div>
         </form>
+        <div class="ah-product-booking-payment"><a><img class="ah-product-booking-payment-paypal" src="assets/img/paypal.png" alt="paypal"></a></div>
     </section>
 </section>
-<section class="ah-container-primary ah-section"></section>
-<section class="ah-container-primary ah-section"></section>
 
 
 

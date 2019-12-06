@@ -34,9 +34,11 @@ export class CategoryComponent implements OnInit {
     this.routingSubscription =
       this.route.params.subscribe(params => {
         if(params["id"]) {
-          this.data.get("categorie", params["id"], response => {
-            this.category = response;
-            this.listTitle = 'Locations de '+ this.category.title;
+          this.data.get("categories", params["id"], category => {
+            if (category) {
+              this.category = category;
+              this.listTitle = 'Locations de '+ this.category.title;
+            }
           });
         }
       });

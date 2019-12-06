@@ -1,9 +1,12 @@
 import * as $ from 'jquery';
 import { Component, OnInit } from '@angular/core';
+import { DataService} from "src/app/data.service";
 import { Router } from "@angular/router";
+import { CookieService } from "ngx-cookie-service";
 import { GeolocationService } from "src/app/geolocation.service";
 import { Category } from "src/app/logic/Category";
 import { Tag } from "src/app/logic/Tag";
+import { User } from "src/app/logic/User";
 
 @Component({
   selector: 'app-header',
@@ -13,11 +16,24 @@ import { Tag } from "src/app/logic/Tag";
 export class HeaderComponent implements OnInit {
   public randomBanner: number = Math.floor((Math.random() * 7) + 1);
 
-  listSearchType: [Category];
-  listSearchThema: [Tag];
+  categories: [Category];
+  tags: [Tag];
 
-  constructor(private geolocation: GeolocationService,
-              private router: Router) { }
+  user:     User;
+
+  userType:string = 'none';
+
+  nbPersonsMax:number;
+
+  constructor(private data: DataService,
+              private geolocation: GeolocationService,
+              private router: Router,
+              private cookieService: CookieService
+              ) { }
+
+  arrayNbPersons(max:number): any[]{
+    return Array(max);
+  }
 
   UItoggleSidenav(){
     $('#sidenav').toggleClass('open');
@@ -25,37 +41,72 @@ export class HeaderComponent implements OnInit {
     $('#searchbox, main, aside').toggleClass('sidenav-overlay');
   }
 
-  open(target:string){
-    
-  }
   login(){
     this.router.navigate(["/login"]);
   }
-  user(){
+  logout(){
+    this.cookieService.delete('logged');
+    this.router.navigate(["/logout"]);
+  }
+  userAccount(){
     //this.router.navigate(["/user", user.ID]);
   }
-  searchbox(){
-    $('.ah-page').addClass('open-searchbox');
-    $('html, body').animate({ scrollTop: 0 }, 500);
+  userHouses(){
+    this.router.navigate(["/user/"+this.user.ID+"/houses"]);
+  }
+  userBooking(){
+    this.router.navigate(["/user/"+this.user.ID+"/bookings"]);
+  }
+  admin(){
+    this.router.navigate(["/admin"]);
   }
 
-  searchboxLocation(location){
-    
+  searchbox(mode:string){
+    if(mode == 'open'){
+      $('.ah-page').addClass('open-searchbox');
+      $('html, body').animate({ scrollTop: 0 }, 500);
+    }
+    else if (mode == 'top'){
+      $('html, body').animate({ scrollTop: 0 }, 500);
+    }
+    else{
+      $('.ah-page').removeClass('open-searchbox');
+    }
   }
-
+  searchboxLocation(locationMode){
+    if(locationMode.value == 'location-user'){
+      this.geolocation.requestLocation(location => {
+        if (location) {
+          console.log('User Location: '+location.latitude,location.longitude);
+        }
+      });
+    }
+  }
   search() {
     this.router.navigate(["/houses"]);
   }
 
   ngOnInit() {
-
-    this.geolocation.requestLocation(location => {
-      if (location) {
-        this.searchboxLocation(location);
-        //console.log('User Location: '+location.latitude,location.longitude);
+    this.user = new User;
+    if(this.cookieService.get('logged')){
+      this.user.ID = +this.cookieService.get('userID');
+      this.user.type = !!+this.cookieService.get('userType');
+      if(this.user.type){
+        this.userType = 'user';
       }
-    });
+      else{
+        this.userType = 'admin';
+      }
+    }
 
+    this.nbPersonsMax = 10;
+
+    this.data.getList("categories", categories => {
+      this.categories = categories;
+    });
+    this.data.getList("tags", tags => {
+      this.tags = tags;
+    });
   }
 
 }

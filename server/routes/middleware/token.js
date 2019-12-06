@@ -5,9 +5,9 @@ let auth = express.Router();
 let secretkey = 'AJ2I';
 
 auth.use(function (req, res, next) {
-    var token = req.headers.token;
+    let token = req.headers.token;
 
-    var decoded_token = jwt.verify(token, secretkey, function (err) {
+    let decoded_token = jwt.verify(token, secretkey, function (err) {
         if(err){
             res.status(500).send({
                 status: false,
@@ -15,14 +15,14 @@ auth.use(function (req, res, next) {
             })
             return;
         }else{
-            var decoded = jwt.decode(token, {
+            let decoded = jwt.decode(token, {
                 complete: true 
             });
         
-         var firstnameInToken = decoded.payload.firstname;
-         var lastnameInToken = decoded.payload.lastname;
-         var IdInToken = decoded.payload.Id;
-         var emailInToken = decoded.payload.email;
+         let firstnameInToken = decoded.payload.firstname;
+         let lastnameInToken = decoded.payload.lastname;
+         let IdInToken = decoded.payload.Id;
+         let emailInToken = decoded.payload.email;
 
          console.log(firstnameInToken, lastnameInToken, emailInToken, IdInToken);
 
@@ -32,7 +32,7 @@ auth.use(function (req, res, next) {
             // req.usernameInToken = usernameInToken
             
         
-            // var verifyUSer = users.includes(usernameInToken);
+            // let verifyUSer = users.includes(usernameInToken);
 
             next();
         }

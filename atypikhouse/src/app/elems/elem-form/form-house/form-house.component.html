@@ -1,3 +1,72 @@
+
+<section class="ah-container-primary ah-section ah-product-banner ah-slide">
+    <!--
+    <app-icon *ngIf="house" [forceReload]="true" (click)="slide()" [iconSize]="iconsSize" [iconsSet]="iconsSet" [iconGroup]="icons[house.ID_category - 1].group" [iconName]="icons[house.ID_category - 1].name" [iconBgFolder]="iconsBgFolder" [iconBg]="house.ID" [iconColor]="iconsColor" [iconTitle]="house.title" [iconSubTitle]="house.zipcode+', '+house.city" [cardText]="house.description" [cardMarker]="priceTTC.toString()"></app-icon>
+    -->
+    <app-icon *ngIf="house" [forceReload]="true" [iconSize]="iconsSize" [iconsSet]="iconsSet" [iconGroup]="icons[house.ID_category - 1].group" [iconName]="icons[house.ID_category - 1].name" [iconBgFolder]="iconsBgFolder" [iconBg]="house.ID" [iconColor]="iconsColor" [iconTitle]="house.title" [iconSubTitle]="house.zipcode+', '+house.city" [cardText]="house.description" [cardMarker]="priceTTC.toString()"></app-icon>
+  </section>
+<section class="ah-container-primary lead ah-section ah-product-info">
+  <h2 class="ah-title hide">{{house.title}}</h2>
+    <p>Icon tag list thema (tags type 0)</p>
+    <section class="ah-container-tertiary ah-section ah-product-booking">
+      <h3 class="ah-product-booking-title">Réservation</h3>
+      <form (submit)="newBooking()" class="ah-form ah-form-product-booking">
+        <mat-form-field class="ah-form-fieldset-inline ah-form-booking-date-start">
+            <mat-label>Date d'arrivée</mat-label>
+            <mat-datepicker-toggle class="ah-form-icon" matPrefix [for]="bookingDateStart"></mat-datepicker-toggle>
+            <input matInput [min]="bookingMinDate" [matDatepicker]="bookingDateStart"  (dateInput)="onInput('start', $event)" (dateChange)="onInput('start', $event)">
+            <mat-datepicker #bookingDateStart></mat-datepicker>
+        </mat-form-field>
+        <mat-form-field class="ah-form-fieldset-inline ah-form-booking-date-end">
+            <mat-label>Date de départ</mat-label>
+            <mat-datepicker-toggle class="ah-form-icon" matPrefix [for]="bookingDateEnd"></mat-datepicker-toggle>
+            <input matInput [min]="bookingMinDate" [matDatepicker]="bookingDateEnd"  (dateInput)="onInput('end', $event)" (dateChange)="onInput('end', $event)">
+            <mat-datepicker #bookingDateEnd></mat-datepicker>
+        </mat-form-field>
+        <mat-form-field class="ah-form-fieldset-inline ah-form-booking-nb">
+            <mat-icon class="ah-form-icon" matPrefix>people_alt</mat-icon>
+            <mat-label>Nombre de personnes</mat-label>
+            <mat-select (selectionChange)="onChange($event)">
+                <mat-option [value]="1"> 1</mat-option>
+                <mat-option [value]="2"> 2</mat-option>
+                <mat-option [value]="3"> 3</mat-option>
+                <mat-option [value]="4"> 4</mat-option>
+                <mat-option [value]="5"> 5</mat-option>
+                <mat-option [value]="6"> 6</mat-option>
+                <mat-option [value]="7"> 7</mat-option>
+                <mat-option [value]="8"> 8</mat-option>
+                <mat-option [value]="9"> 9</mat-option>
+                <mat-option [value]="10"> 10</mat-option>
+            </mat-select>
+        </mat-form-field>
+        <!--<mat-slider min="1" max="10" step="1" value="2"></mat-slider>-->
+        <span class="ah-product-price"><span class="from">à partir de </span><span class="price">{{ totalPrice }}&thinsp;€</span> <span class="bynight"> {{ byNightLabel }}</span></span>
+        <button mat-button type="submit" class="ah-cta-primary" [disabled]="!complete" >Réserver <mat-icon>double_arrow</mat-icon></button>
+      </form>
+    </section>
+</section>
+
+<section class="ah-container-primary ah-section ah-product-details">
+  <h2 class="ah-title ah-title-separator important"><span class="ah-title-text"><i class="ah-title-icon-left la la-leaf"></i>Détails<i class="ah-title-icon-right la la-leaf"></i></span></h2>
+  <section class="ah-container ah-section ah-product-details-tags">
+    <h3>Services & équipements</h3>
+    <p>Icon tags list (tags type 1)</p>
+    <app-list-tag></app-list-tag>
+  </section>
+  <section class="ah-container ah-section ah-product-details-activity">
+      <h3>Localisation & Activités à proximité</h3>
+      <p>{{ house.address }}, {{ house.zipcode }}, {{ house.city }}<a>localiser</a></p> 
+      <p>map activities</p>
+      <p>activities list</p>
+  </section>
+</section>
+<section class="ah-container-primary ah-section ah-product-comments">
+    <h2 class="ah-title ah-title-separator important"><span class="ah-title-text"><i class="ah-title-icon-left la la-leaf"></i>Commentaires<i class="ah-title-icon-right la la-leaf"></i></span></h2>
+  <p>list comments</p>
+</section>
+
+
+
 <mat-card>
     <form>
         <fieldset class="ah-form-fieldset">
@@ -8,10 +77,10 @@
 
         <fieldset class="ah-form-fieldset">
         <mat-form-field>
-            <input matInput placeholder="Address" name="address" [(ngModel)]="house.location.address">
+            <input matInput placeholder="Address" name="address" [(ngModel)]="house.address">
         </mat-form-field>
         <mat-form-field>
-            <input matInput placeholder="City" name="city" [(ngModel)]="house.location.city">
+            <input matInput placeholder="City" name="city" [(ngModel)]="house.city">
         </mat-form-field>
         </fieldset>
         <!--

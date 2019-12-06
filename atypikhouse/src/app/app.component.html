@@ -5,27 +5,89 @@
   <main [id]='pageid' role="main" class="ah-container-main ah-loading ah-loading-overlay {{ page }}-content">
     <div class="ah-content-wrap">
       <router-outlet></router-outlet>
-      <!--
-        <div class="ah-loader">
-          <div class="ah-loader-container">
-            <i class="ah-loader-icon la la-leaf"></i>
-          </div>
-        </div>
-      -->
-      <!--
-        <div class="ah-loader">
-          <div class="ah-loader-container">
-            <div class="ah-loader-triangle ah-loader-triangle-border"></div>
-            <div class="ah-loader-triangle ah-loader-triangle-back"></div>
-            <div class="ah-loader-logo"></div>
-          </div>
-        </div>
-      -->
+      <section class="ah-section ah-container-primary ah-container-admin ah-container-admin-content lead" *ngIf="userType == 'admin' && this.page == 'admin'">
+        <mat-tab-group>
+          <mat-tab>
+            <ng-template mat-tab-label>
+              <mat-icon class="ah-tab-icon">local_activity</mat-icon>
+              Activités
+            </ng-template>
+            <app-admin-activities></app-admin-activities>
+          </mat-tab>
+          <mat-tab>
+            <ng-template mat-tab-label>
+              <mat-icon class="ah-tab-icon">layers</mat-icon>
+              Types d'activités
+            </ng-template>
+            <app-admin-activities-type></app-admin-activities-type>
+          </mat-tab>
+          <mat-tab>
+            <ng-template mat-tab-label>
+              <mat-icon class="ah-tab-icon">shopping_cart</mat-icon>
+              Réservations
+            </ng-template>
+            <app-admin-booking></app-admin-booking>
+          </mat-tab>
+          <mat-tab>
+            <ng-template mat-tab-label>
+              <mat-icon class="ah-tab-icon">home_work</mat-icon>
+              Catégories (types d'hébergements)
+            </ng-template>
+            <app-admin-categories></app-admin-categories>
+          </mat-tab>
+          <mat-tab>
+            <ng-template mat-tab-label>
+              <mat-icon class="ah-tab-icon">comment</mat-icon>
+              Commentaires
+            </ng-template>
+            <app-admin-comments></app-admin-comments>
+          </mat-tab>
+          <mat-tab>
+            <ng-template mat-tab-label>
+              <mat-icon class="ah-tab-icon">house</mat-icon>
+              Annonces
+            </ng-template>
+            <app-admin-houses></app-admin-houses>
+          </mat-tab>
+          <mat-tab>
+            <ng-template mat-tab-label>
+              <mat-icon class="ah-tab-icon">euro</mat-icon>
+              Paiements
+            </ng-template>
+            <app-admin-payments></app-admin-payments>
+          </mat-tab>
+          <mat-tab>
+            <ng-template mat-tab-label>
+              <mat-icon class="ah-tab-icon">photo_library</mat-icon>
+              Photos
+            </ng-template>
+            <app-admin-pics></app-admin-pics>
+          </mat-tab>
+          <mat-tab>
+            <ng-template mat-tab-label>
+              <mat-icon class="ah-tab-icon">forum</mat-icon>
+              Messages
+            </ng-template>
+            <app-admin-posts></app-admin-posts>
+          </mat-tab>
+          <mat-tab>
+            <ng-template mat-tab-label>
+              <mat-icon class="ah-tab-icon">local_offer</mat-icon>
+              Tags
+            </ng-template>
+            <app-admin-tags></app-admin-tags>
+          </mat-tab>
+          <mat-tab>
+            <ng-template mat-tab-label>
+              <mat-icon class="ah-tab-icon">people_alt</mat-icon>
+              Utilisateurs
+            </ng-template>
+            <app-admin-users></app-admin-users>
+          </mat-tab>
+        </mat-tab-group>
+    </section>
     </div>
   </main>
-
   <app-aside></app-aside>
-
   <app-footer></app-footer>
-
 </div>

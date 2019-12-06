@@ -109,11 +109,15 @@
         .mat-badge-primary .mat-badge-content{
             background-color: @ah-green !important;
         }
+
+        .mat-tab-label, .mat-tab-link{
+            color: inherit;
+        }
+
     }
    
     // Variants
     // Toggle in body to switch theme dark to light
-    
     &.ah-theme-dark {
         color: @ah-font-color-primary;
         background-color: @ah-background-color-primary;
@@ -121,6 +125,8 @@
             color: @ah-font-color-primary;
             background-color: @ah-background-color-primary;
         }
+        .ah-list-activities .ah-activity,
+        .ah-admin-table-col-ID,
         .ah-container-primary.lead{
             background-color: fade(@ah-font-color-primary, 5%);
         }
@@ -139,6 +145,17 @@
         .ah-aside{
             background-image: url('../img/bg-invert.png');
         }
+        .ah-admin-table-tr{
+            &:hover{
+                background-color: fade(@ah-font-color-primary, 5%);
+            }
+            &.focused.edit{
+                background-color: @ah-background-color-primary;
+                .mat-form-field-infix{
+                    background-color: #424242;
+                }
+            }
+        }
     }
     // Revert white & black on light theme
     &.ah-theme-light {
@@ -148,6 +165,8 @@
             color: @ah-background-color-primary;
             background-color: @ah-font-color-primary;
         }
+        .ah-list-activities .ah-activity,
+        .ah-admin-table-col-ID,
         .ah-container-primary.lead{
             background-color: fade(@ah-background-color-primary, 5%);
         }
@@ -166,11 +185,52 @@
         .ah-aside{
             background-image: url(../img/bg.png);
         }
+        .ah-admin-table-tr{
+            &:hover{
+                background-color: fade(@ah-background-color-primary, 5%);
+            }
+            &.focused.edit{
+                background-color: @ah-font-color-primary;
+                .mat-form-field-infix{
+                    background-color: #fff;
+                }
+            }
+        }
+        .ah-admin-field{
+            .mat-form-field-underline{
+                background-color: rgba(0,0,0,.7);
+            }
+            
+        }
+        .ah-admin-input-select{
+            .mat-select-value{
+                color: currentColor;
+            }
+            .mat-select-arrow{
+                color:rgba(0,0,0,.7);
+            }
+        }
+        .mat-tab-header, .mat-tab-nav-bar{
+            border-color: lighten(@ah-background-color-primary, 60%);
+        }
+        .mat-table{
+            background-color: #fff;
+        }
+        .mat-cell, .mat-footer-cell{
+            color: #424242;
+        }
+        .mat-header-cell {
+            color: rgba(0,0,0,.7);
+        }
+        mat-footer-row, mat-header-row, mat-row, td.mat-cell, td.mat-footer-cell, th.mat-header-cell {
+            border-bottom-color:  rgba(0,0,0,.12);
+        }
+        
     }
+
     // Icons colors variants //
     &.ah-theme-dark{
         .ah-icon:not(.icon-banner){
-            &:hover{
                 &.icon-card{
                     .ah-card-content{
                         background-color: fade(@ah-background-color-primary,50%);
@@ -181,7 +241,6 @@
                         background-color: fade(@ah-background-color-primary,50%);
                     }
                 }
-            }
         }
         .ah-icon:not(.icon-without-backg):not(.icon-backg-not-found):not(.icon-banner){
             &:before{ // img overlay
@@ -226,19 +285,16 @@
             background-color: @ah-background-color-primary;
         }
     }
-
     &.ah-theme-light{
-        .ah-icon{
-            &:hover:not(.icon-banner){
-                &.icon-card{
-                    .ah-card-content{
-                        background-color: fade(@ah-font-color-primary,60%);
-                    }
+        .ah-icon:not(.icon-banner){
+            &.icon-card{
+                .ah-card-content{
+                    background-color: fade(@ah-font-color-primary,60%);
                 }
-                &:not(.icon-card){
-                    .icon-title{
-                        background-color: fade(@ah-font-color-primary,60%);
-                    }
+            }
+            &:not(.icon-card){
+                .icon-title{
+                    background-color: fade(@ah-font-color-primary,60%);
                 }
             }
         }
@@ -320,6 +376,14 @@
             color: @ah-link-font-color-tertiary;
         }
     }
+    .ah-slide{
+        .icon-banner{
+            &:before,
+            &:after{
+                background-color: fade(darken(@ah-container-back-color-tertiary, 20%),80%);;
+            }
+        }
+    }
     //
     .ah-loader-triangle{
         &.ah-loader-triangle-back{
@@ -370,21 +434,67 @@
     .important.ah-title-separator:after{
         color: darken(@ah-cta-back-color-primary, 10%);
     }
+    .ah-admin-table-edit .ah-cta-primary.mat-mini-fab,
     .ah-cta-primary {
+        color: @ah-cta-font-color-primary;
         background-color: @ah-cta-back-color-primary;
     }
     .ah-cta-secondary {
+        color: @ah-cta-font-color-secondary;
         background-color: darken(@ah-cta-back-color-secondary,10%);
     }
     .ah-cta-tertiary {
+        color: @ah-cta-font-color-tertiary;
         background-color: @ah-cta-back-color-tertiary;
     }
-    :disabled,
-    .disabled{
-        opacity: 0.3;
+    .ah-booking.status-0 .ah-booking-title:after{
+        background-color: @ah-cta-back-color-secondary;
+    }
+    .ah-booking.status-1 .ah-booking-title:after{
+        background-color: @ah-cta-back-color-tertiary;
+    }
+    .ah-booking.status-2 .ah-booking-title:after{
+        background-color: @ah-cta-back-color-primary;
+    }
+    .ah-admin-table-edit .ah-cta-delete.mat-mini-fab,
+    .ah-cta-delete,
+    .ah-admin-table-edit .ah-cta-delete.mat-mini-fab,
+    .ah-cta-delete {
+        background-color: rgb(236, 83, 83);
+    }
+    .ah-admin-table-tr.focused.delete td:not(.ah-admin-table-edit-container) *{
+        color:rgb(236, 83, 83);
+        text-decoration: line-through;
+        font-style: italic;
+    }
+    .ah-admin-table-edit *{
+        color: @ah-font-color-primary;
+    }
+    .ah-admin-table-tr{
+        .mat-form-field-underline{
+            opacity: 0;
+        }
+        &.focused.edit{
+            .mat-form-field-underline{
+                opacity: 1;
+            }
+        }
+    }
+    .mat-form-field .ah-admin-input-select.mat-select.mat-select-disabled .mat-select-arrow{
+        visibility: hidden;
+    }
+    .ah-cta-group{
+        .mat-button{
+            background-color: fade(@ah-cta-back-color-tertiary,50%);
+        }
+    }
+    .ah-cta:disabled,
+    .ah-cta.disabled{
+        opacity: 0.6;
     }
     .ah-form {
         background-color: fade(@ah-background-color-primary,60%);
+        color: @ah-font-color-primary;
     }
     .ah-nav-sticky{
         background-color: @ah-cta-back-color-primary;

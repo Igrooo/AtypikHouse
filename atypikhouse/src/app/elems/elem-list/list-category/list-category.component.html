@@ -1,8 +1,8 @@
 <section class="ah-section ah-container-primary lead">
-        <h2 class="ah-title">Les types d'hébergements</h2>
-        <ul class="ah-list-icons ah-flex-list categories-list">
-            <li *ngFor="let category of list">
-                <app-icon routerLink="/category/{{ category.ID }}" [forceReload]="true" [iconSize]="iconsSize" [iconsSet]="iconsSet" [iconGroup]="icons[category.ID - 1].group" [iconName]="icons[category.ID - 1].name" [iconBgFolder]="iconsBgFolder" [iconBg]="category.ID" [iconColor]="iconsColor" [iconTitle]="category.title" [cardText]="category.description"></app-icon>
-            </li>
-        </ul>
-    </section>
+    <h2 class="ah-title">Les types d'hébergements</h2>
+    <ul class="ah-list-icons ah-flex-list categories-list">
+        <li *ngFor="let category of list">
+            <app-icon routerLink="/category/{{ category.ID }}" [forceReload]="true" [iconSize]="iconsSize" [iconsSet]="iconsSet" [iconGroup]="icons[category.ID - 1].group" [iconName]="icons[category.ID - 1].name" [iconBgFolder]="iconsBgFolder" [iconBg]="category.ID" [iconColor]="iconsColor" [iconTitle]="category.title" [cardText]="category.description"></app-icon>
+        </li>
+    </ul>
+</section>

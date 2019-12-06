@@ -48,7 +48,6 @@ export class IconComponent implements OnInit, OnChanges {
   }
   setIconBgFolder(){
     switch (this.iconBgFolder) {
-      
       case 'placeholder': this.iconBgFolder = 'assets/img/bg/'
           break;
       case 'houses':      this.iconBgFolder = 'data/static/img/houses/'
@@ -140,15 +139,15 @@ export class IconComponent implements OnInit, OnChanges {
       this.setClasses();
       //console.log('iconsType: '+this.iconsType);
       //console.log('iconsSet: '+this.iconsSet);
-      console.log('iconBgFolder: '+this.iconBgFolder);
-      console.log('iconBg: '+this.iconBg);
+      //console.log('iconBgFolder: '+this.iconBgFolder);
+      //console.log('iconBg: '+this.iconBg);
       //console.log('iconColor: '+this.iconColor);
       //console.log('iconTitle: '+this.iconTitle);
       //console.log('cardText: '+this.cardText);
       //console.log('cardMarker: '+this.cardMarker);
       //console.log('iconCircleClass: '+this.iconCircleClass);
-      console.log('iconBgNotFoundClass: '+this.iconBgNotFoundClass);
-      console.log('iconWithoutBgClass: '+this.iconWithoutBgClass);
+      //console.log('iconBgNotFoundClass: '+this.iconBgNotFoundClass);
+      //console.log('iconWithoutBgClass: '+this.iconWithoutBgClass);
       //console.log('iconWithoutColorClass: '+this.iconWithoutColorClass);
       //console.log('cardWithTextClass: '+this.cardWithTextClass);
       //console.log('cardWithMarkerClass: '+this.cardWithMarkerClass);

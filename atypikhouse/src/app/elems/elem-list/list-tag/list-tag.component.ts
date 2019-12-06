@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { DataService} from "src/app/data.service";
+import { Tag } from "src/app/logic/Tag";
 
 @Component({
   selector: 'app-list-tag',
@@ -6,10 +8,17 @@ import { Component, OnInit } from '@angular/core';
   styles: []
 })
 export class ListTagComponent implements OnInit {
+  @Input() tagGroupFilter:number;
 
-  constructor() { }
+  tags: [Tag];
+
+  constructor(private data: DataService) { }
 
   ngOnInit() {
+    this.data.getList("tags", tags => {
+      this.tags = tags;
+    });
+    
   }
 
 }

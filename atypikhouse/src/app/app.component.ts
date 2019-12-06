@@ -1,7 +1,10 @@
 import * as $ from 'jquery';
 import { Component, OnInit, Inject } from '@angular/core';
 import { Router, Event, NavigationStart, NavigationEnd, NavigationError } from "@angular/router";
+import { CookieService } from "ngx-cookie-service";
 import { MatSnackBar } from "@angular/material";
+import { User } from "src/app/logic/User";
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -13,25 +16,38 @@ export class AppComponent implements OnInit {
   public pageid:string = "";
   public page:string = "";
   public pagetype:string;
-  public logged:boolean = true;
+  public logged:boolean;
+  private cookieLogged: string;
+
+  user:     User;
+
+  userType:string = 'none';
 
   constructor(private snackBar: MatSnackBar,
-              private router: Router) {
-
+              private router: Router,
+              private cookieService: CookieService
+              ) {
                 this.router.events.subscribe((event: Event) => {
-                if (event instanceof NavigationStart) {
-                    // Show loading indicator
-                    if(this.logged){
+                  if (event instanceof NavigationStart) {
+                    this.cookieLogged = this.cookieService.get('logged');
+                    if(this.cookieLogged == 'true'){
+                      this.logged = true;
                       this.pagetype = 'private';
+                      console.log(this.pagetype);
                     }
                     else{
+                      this.logged = false;
                       this.pagetype = 'public';
+                      console.log(this.pagetype);
                     }
-                }
-                if (event instanceof NavigationEnd) {
-                    // Hide loading indicator
-                    //Update pageid 
+                  }
+                  if (event instanceof NavigationEnd) {
                     this.href = window.location.pathname.substring(1); // remove '/'
+                    //Reload page on login/logout
+                    if(this.href == 'logged' || this.href == 'logout'){
+                      window.location.href = '';
+                    }
+                    //Update pageid 
                     if(this.href == ''){
                       this.pageid = 'home-'+this.title;
                       this.page = 'home';
@@ -46,16 +62,25 @@ export class AppComponent implements OnInit {
                       }
                     }
                     console.log('Current page: '+this.page);
-                }
-                if (event instanceof NavigationError) {
-                    // Hide loading indicator
-                    // Present error to user
-                    console.log(event.error);
-                }
+                  }
+                  if (event instanceof NavigationError) {
+                      console.log(event.error);
+                  }
                 });
               }
 
   ngOnInit() {
+    this.user = new User;
+    if(this.cookieService.get('logged')){
+      this.user.ID = +this.cookieService.get('userID');
+      this.user.type = !!+this.cookieService.get('userType');
+      if(this.user.type){
+        this.userType = 'user';
+      }
+      else{
+        this.userType = 'admin';
+      }
+    }
 
     if ((navigator as any).standalone == false) {
       // This is an iOS device and we are in the browser
