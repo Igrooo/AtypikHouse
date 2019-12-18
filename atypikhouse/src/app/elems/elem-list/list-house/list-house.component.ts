@@ -12,7 +12,7 @@ import { Icons } from "src/app/elems/elem-icon/icons-categories"
   styles: []
 })
 export class ListHouseComponent implements OnInit {
-  @Input() listTitle:string = 'Mes annonces';
+  @Input() listTitle:string;
   @Input() filterUser:number;
 
   math = Math;
@@ -37,7 +37,20 @@ export class ListHouseComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.filterUser = +this.cookieService.get('userID')
+
+    this.user = new User;
+    if(this.cookieService.get('logged')){
+      this.user.ID = +this.cookieService.get('userID');
+      this.user.type = !!+this.cookieService.get('userType');
+      if(this.user.type){
+        this.filterUser = +this.cookieService.get('userID');
+        this.listTitle = 'Mes annonces';
+      }
+      else{
+        this.filterUser = 0;
+        this.listTitle = 'Annonces';
+      }
+    }
     this.icons = Icons;
     this.data.getList("houses", list => {
       this.list = list;

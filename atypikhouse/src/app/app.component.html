@@ -4,8 +4,8 @@
   <app-header></app-header>
   <main [id]='pageid' role="main" class="ah-container-main ah-loading ah-loading-overlay {{ page }}-content">
     <div class="ah-content-wrap">
-      <router-outlet></router-outlet>
       <section class="ah-section ah-container-primary ah-container-admin ah-container-admin-content lead" *ngIf="userType == 'admin' && this.page == 'admin'">
+            <h2 class="ah-title">Administration</h2>
         <mat-tab-group>
           <mat-tab>
             <ng-template mat-tab-label>
@@ -85,7 +85,8 @@
             <app-admin-users></app-admin-users>
           </mat-tab>
         </mat-tab-group>
-    </section>
+      </section>
+      <router-outlet *ngIf="this.page != 'admin'"></router-outlet>
     </div>
   </main>
   <app-aside></app-aside>

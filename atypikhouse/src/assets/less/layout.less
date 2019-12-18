@@ -69,11 +69,13 @@
         &.open-searchbox{
             .ah-container-main{
                 margin-top: calc(430px + @ah-mat-toolbar-height);
+                min-height: calc(100vh - 430px - @ah-mat-toolbar-height - @ah-mat-toolbar-height);
             }
         }
         &.ah-page-houses{
             .ah-container-main{
                 margin-top: calc(97px + @ah-mat-toolbar-height);
+                min-height: calc(100vh - 97px - @ah-mat-toolbar-height - @ah-mat-toolbar-height);
             }
         }
     }
@@ -648,6 +650,56 @@
             }
         }
     }
+    .houses-list{
+        .houses-list-item{
+            position: relative;
+            padding: @ah-child-paddin-secondary;
+            margin: @ah-child-margin-secondary 100px;
+            z-index: 1;
+            .houses-list-details{
+                display: inline-block;
+                vertical-align: top;
+                margin: 5px 10px;
+            }
+            &:hover{
+                .houses-list-actions{
+                    &.left{
+                        left: -115px;
+                    }
+                    &.right{
+                        right: -115px;
+                    }
+                }
+                .houses-list-details{
+                opacity: 1;
+                }
+            }
+        }
+        .houses-list-booking{
+            opacity:0.6;
+        }
+        .houses-list-actions{
+            position: absolute;
+            transition: all 200ms ease-in-out;
+            opacity: 0;
+            &.left{
+                left: 0;
+            }
+            &.right{
+                right: 0;
+            }
+            .icon-promote{
+                font-size: 2em;
+            }
+        }
+        .ah-house-cta{
+            height: 90px;
+            width: 125px;
+            &:first-child{
+                margin-bottom: 20px;
+            }
+        }
+    }
 
 /*********************/
 /******* FORMS *******/
@@ -655,10 +707,12 @@
     .ah-form-fieldset {
         border: none;
         margin-top: @ah-margin-primary;
+        &.large{
+            display: block;
+        }
     }
     .ah-form-fieldset-inline{
         margin-right: @ah-padding-primary + 5px;
-        vertical-align: middle;
     }
     .ah-form {
         padding: @ah-padding-primary calc(@ah-padding-primary * 2);
@@ -995,6 +1049,11 @@
                 width: 50px;
                 z-index: 1;
                 opacity: 0.6;
+            }
+            &:hover{
+                .ah-icon-asset{
+                    opacity: 0.4;
+                }
             }
         }
     }
@@ -1338,11 +1397,13 @@
             &.open-searchbox{
                 .ah-container-main{
                     margin-top: calc(430px + @ah-mat-toolbar-height-compact);
+                    min-height: calc(100vh - 430px - @ah-mat-toolbar-height-compact - @ah-mat-toolbar-height-compact);
                 }
             }
             &.ah-page-houses{
                 .ah-container-main{
                     margin-top: calc(97px + @ah-mat-toolbar-height-compact);
+                    min-height: calc(100vh - 97px - @ah-mat-toolbar-height-compact - @ah-mat-toolbar-height-compact);
                 }
             }
         }

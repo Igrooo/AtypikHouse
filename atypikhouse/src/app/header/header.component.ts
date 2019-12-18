@@ -48,14 +48,14 @@ export class HeaderComponent implements OnInit {
     this.cookieService.delete('logged');
     this.router.navigate(["/logout"]);
   }
-  userAccount(){
-    //this.router.navigate(["/user", user.ID]);
+  goAccount(){
+    this.router.navigate(["/user", this.user.ID]);
   }
-  userHouses(){
-    this.router.navigate(["/user/"+this.user.ID+"/houses"]);
+  goHouses(ID){
+    this.router.navigate(["/user/"+ID+"/houses"]);
   }
-  userBooking(){
-    this.router.navigate(["/user/"+this.user.ID+"/bookings"]);
+  goBooking(ID){
+    this.router.navigate(["/user/"+ID+"/bookings"]);
   }
   admin(){
     this.router.navigate(["/admin"]);

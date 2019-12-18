@@ -447,6 +447,10 @@
         color: @ah-cta-font-color-tertiary;
         background-color: @ah-cta-back-color-tertiary;
     }
+    .ah-cta-special {
+        color: @ah-cta-font-color-special;
+        background-color: @ah-cta-back-color-special;
+    }
     .ah-booking.status-0 .ah-booking-title:after{
         background-color: @ah-cta-back-color-secondary;
     }
@@ -456,10 +460,18 @@
     .ah-booking.status-2 .ah-booking-title:after{
         background-color: @ah-cta-back-color-primary;
     }
+
+    .houses-list{
+        .houses-list-item{
+            background-color: fade(@ah-background-color-secondary,10%);
+        }
+    }
+
     .ah-admin-table-edit .ah-cta-delete.mat-mini-fab,
     .ah-cta-delete,
     .ah-admin-table-edit .ah-cta-delete.mat-mini-fab,
     .ah-cta-delete {
+        color: @ah-cta-font-color-primary;
         background-color: rgb(236, 83, 83);
     }
     .ah-admin-table-tr.focused.delete td:not(.ah-admin-table-edit-container) *{

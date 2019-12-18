@@ -2,16 +2,9 @@
     <h2 class="ah-title">{{ listTitle }}</h2>
     <ul class="ah-list-icons ah-flex-list houses-list">
       <ng-container *ngFor="let house of list">
-        <li *ngIf="filterCategory === house.ID_category;" class="house status-{{ house.status }}">
-          <app-icon routerLink="/house/{{ house.ID }}" [forceReload]="true" [iconSize]="iconsSize" [iconsSet]="iconsSet" [iconGroup]="icons[house.ID_category - 1].group" [iconName]="icons[house.ID_category - 1].name" [iconBgFolder]="iconsBgFolder" [iconBg]="house.ID" [iconColor]="iconsColor" [iconTitle]="house.title" [iconSubTitle]="house.zipcode+', '+house.city" [cardText]="house.description" [cardMarker]="math.round(house.price + ((house.price/100) * house.tax))"></app-icon>
-        </li>
-        <li *ngIf="filterCategory === 0" class="house status-{{ house.status }}">
+        <li *ngIf="filterCategory === house.ID_category || filterCategory === 0;" class="house status-{{ house.status }}">
           <app-icon routerLink="/house/{{ house.ID }}" [forceReload]="true" [iconSize]="iconsSize" [iconsSet]="iconsSet" [iconGroup]="icons[house.ID_category - 1].group" [iconName]="icons[house.ID_category - 1].name" [iconBgFolder]="iconsBgFolder" [iconBg]="house.ID" [iconColor]="iconsColor" [iconTitle]="house.title" [iconSubTitle]="house.zipcode+', '+house.city" [cardText]="house.description" [cardMarker]="math.round(house.price + ((house.price/100) * house.tax))"></app-icon>
         </li>
       </ng-container>
     </ul>
 </section>
-
-<!--
-  <a class="ah-overlay-cta-primary" mat-fab routerLink="/house"><mat-icon>add</mat-icon></a>
--->

@@ -37,7 +37,6 @@ import { AsideComponent } from './aside/aside.component';
 
 // Imports all pages
 import { HomePage }       from './pages/page-home/home.component';
-import { AdminPage }      from './pages/page-admin/admin.component';
 import { DemoPage }       from './pages/page-demo/demo.component';
 import { DemoTypoPage }   from './pages/page-demo/demo-typo/demo-typo.component';
 import { DemoIconsPage }  from './pages/page-demo/demo-icons/demo-icons.component';
@@ -98,7 +97,7 @@ const routes : Routes = [
 
   /**** Global pages ****/
   { path: '',             component: HomePage },             // Home
-  { path: 'admin',        component: AdminPage },             // Home
+  { path: 'admin',        component: HomePage },             // Home
   //{ path: 'demo',       component: DemoPage },           // Angular Material components base
   //{ path: 'demo-typo',  component: DemoTypoPage },       // Fonts components base
   //{ path: 'demo-icons', component: DemoIconsPage },      // AtypikHouse icons base

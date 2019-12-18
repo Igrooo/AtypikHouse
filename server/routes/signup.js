@@ -32,7 +32,7 @@ signup.post('/signup', (req, res) =>{
             message: 'E-mail already use.'
           })
         }else{
-          db.query("INSERT INTO ah_users (type, email, password, name, firstname, address, zipcode, city) VALUES ("+type+"," +email+ ", "+password+", " +name+ ", " +firstname+ ", " +address+ ", " +zipcode+ ", " +city+ ")")
+          db.query("INSERT INTO ah_users (type, email, password, name, firstname, address, zipcode, city) VALUES ("+type+"," +email+ ", "+password+", " +name+ ", " +firstname+ ", " +address+ ", " +zipcode+ ", " +city+ ")");
           res.status(200).send({
             message: 'New user created.' 
           })
@@ -41,7 +41,6 @@ signup.post('/signup', (req, res) =>{
     }else{
         return res.status(500).send({
             message: "Missing data."
-          
         });
       }
   });

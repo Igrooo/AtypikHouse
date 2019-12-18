@@ -27,8 +27,10 @@
                             <li><button (click)="login()" class="ah-cta-primary" mat-button><mat-icon>person</mat-icon><span class="not-mobile">Se connecter</span></button></li>
                         </ul>
                         <ul class="list-inline only-logged user-type-{{ userType }}">
-                            <li class="not-mobile only-user"><button (click)="userHouses()" class="ah-cta-primary" mat-button><mat-icon>house</mat-icon><span class="not-mobile">Mes annonces</span></button></li>
-                            <li class="not-mobile only-user"><button (click)="userBooking()" class="ah-cta-primary" mat-button><mat-icon>hotel</mat-icon><span class="not-mobile">Mes séjours</span></button></li>
+                            <li class="not-mobile only-user"> <button (click)="goHouses(user.ID)"   class="ah-cta-primary" mat-button><mat-icon>house</mat-icon><span class="not-mobile">Mes annonces</span></button></li>
+                            <li class="not-mobile only-user"> <button (click)="goBooking(user.ID)"  class="ah-cta-primary" mat-button><mat-icon>hotel</mat-icon><span class="not-mobile">Mes séjours</span></button></li>
+                            <li class="not-mobile only-admin"><button (click)="goHouses(0)"  class="ah-cta-primary" mat-button><mat-icon>house</mat-icon><span class="not-mobile">Annonces</span></button></li>
+                            <li class="not-mobile only-admin"><button (click)="goBooking(0)" class="ah-cta-primary" mat-button><mat-icon>hotel</mat-icon><span class="not-mobile">Séjours</span></button></li>
                             <li class="only-admin"><button (click)="admin()" class="ah-cta-tertiary" mat-button><mat-icon>build</mat-icon><span class="not-mobile">Administration</span></button></li>
                             <li class="ah-cta-group only-user">
                                 <button class="ah-cta-group-child" (click)="posts()" mat-button><mat-icon>messages</mat-icon></button>
@@ -45,7 +47,7 @@
                             <li>
                                 <button class="ah-cta-primary" mat-button [matMenuTriggerFor]="user" aria-label="Mon compte"><mat-icon>person</mat-icon><span class="not-mobile">Mon compte</span></button>
                                 <mat-menu #user="matMenu">
-                                    <button mat-menu-item (click)="userAccount()">
+                                    <button mat-menu-item (click)="goAccount()">
                                     <mat-icon>person</mat-icon>
                                     <span>Mon profil</span>
                                     </button>
@@ -63,8 +65,10 @@
         </mat-toolbar>
         <nav id="sidenav" class="ah-nav-sidenav ah-nav-secondary not-desktop">
             <ul class="list-menu">
-                <li><a class="ah-sidenav-link ah-link ah-link-secondary" routerLink="/user/{{ user.ID }}/houses">  <mat-icon class="ah-icon-inline">house</mat-icon><span>Mes annonces</span></a></li>
-                <li><a class="ah-sidenav-link ah-link ah-link-secondary" routerLink="/user/{{ user.ID }}/bookings"><mat-icon class="ah-icon-inline">hotel</mat-icon><span>Mes séjours</span></a></li>
+                <li class="only-user"> <a class="ah-sidenav-link ah-link ah-link-secondary" routerLink="/user/{{ user.ID }}/houses">  <mat-icon class="ah-icon-inline">house</mat-icon><span>Mes annonces</span></a></li>
+                <li class="only-user"> <a class="ah-sidenav-link ah-link ah-link-secondary" routerLink="/user/{{ user.ID }}/bookings"><mat-icon class="ah-icon-inline">hotel</mat-icon><span>Mes séjours</span></a></li>
+                <li class="only-admin"><a class="ah-sidenav-link ah-link ah-link-secondary" routerLink="/user/0/houses">  <mat-icon class="ah-icon-inline">house</mat-icon><span>Annonces</span></a></li>
+                <li class="only-admin"><a class="ah-sidenav-link ah-link ah-link-secondary" routerLink="/user/0/bookings"><mat-icon class="ah-icon-inline">hotel</mat-icon><span>Séjours</span></a></li>
                 <li><a class="ah-sidenav-link ah-link ah-link-secondary" routerLink="/categories"><mat-icon class="ah-icon-inline">landscape</mat-icon><span>Explorer</span></a></li>
                 <li><a class="ah-sidenav-link ah-link ah-link-secondary" routerLink="/news">      <mat-icon class="ah-icon-inline">new_releases</mat-icon><span>Actualités</span></a></li>
             </ul>
