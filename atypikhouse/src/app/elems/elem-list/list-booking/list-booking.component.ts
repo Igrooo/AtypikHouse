@@ -9,14 +9,13 @@ import { Icons } from "src/app/elems/elem-icon/icons-categories"
 
 @Component({
   selector: 'app-list-booking',
-  templateUrl: './list-booking.component.html',
-  styles: []
+  templateUrl: './list-booking.component.html'
 })
 export class ListBookingComponent implements OnInit {
-  listTitle:string = 'Mes réservations de séjours';
+  listTitle:string;
   filterUser:number;
 
-  list: [Booking];
+  bookings: [Booking];
   house: House;
   user: User;
 
@@ -52,12 +51,23 @@ export class ListBookingComponent implements OnInit {
     {}
 
   ngOnInit() {
-    this.filterUser = +this.cookieService.get('userID');
-    this.icons = Icons;
-    this.data.getList("booking", list => {
-      if(list){
-        this.list = list;
-        this.list.forEach((booking, index) => {
+    this.user = new User;
+    if(this.cookieService.get('logged')){
+      this.user.ID = +this.cookieService.get('userID');
+      this.user.type = !!+this.cookieService.get('userType');
+      if(this.user.type){
+        this.filterUser = this.user.ID;
+        this.listTitle = 'Mes réservations de séjours';
+      }
+      else{
+        this.filterUser = 0;
+        this.listTitle = 'Réservations de séjours';
+      }
+    }
+    this.data.getList("booking", bookings => {
+      if(bookings){
+        this.bookings = bookings;
+        this.bookings.forEach((booking, index) => {
           this.data.get("houses", booking.ID_house.toString(), house => {
             if(house){
               this.houseTitles[index] = house.title;

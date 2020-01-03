@@ -156,6 +156,15 @@
                 }
             }
         }
+        .ah-list-houses-user{
+            .ah-list-houses-container{
+                background-color: #282b2a;
+            }
+        }
+        .ah-admin-table-edit-container,
+        .ah-admin-table-col-ID{
+            background-color: #535353;
+        }
     }
     // Revert white & black on light theme
     &.ah-theme-light {
@@ -166,7 +175,6 @@
             background-color: @ah-font-color-primary;
         }
         .ah-list-activities .ah-activity,
-        .ah-admin-table-col-ID,
         .ah-container-primary.lead{
             background-color: fade(@ah-background-color-primary, 5%);
         }
@@ -213,7 +221,9 @@
         .mat-tab-header, .mat-tab-nav-bar{
             border-color: lighten(@ah-background-color-primary, 60%);
         }
+        .mat-dialog-container,
         .mat-table{
+            color: @ah-background-color-primary;
             background-color: #fff;
         }
         .mat-cell, .mat-footer-cell{
@@ -225,7 +235,16 @@
         mat-footer-row, mat-header-row, mat-row, td.mat-cell, td.mat-footer-cell, th.mat-header-cell {
             border-bottom-color:  rgba(0,0,0,.12);
         }
+        .ah-admin-table-edit-container,
+        .ah-admin-table-col-ID{
+            background-color: #f3f3f3;
+        }
         
+        .ah-list-houses-user{
+            .ah-list-houses-container{
+                background-color: @ah-grey-light;
+            }
+        }
     }
 
     // Icons colors variants //
@@ -460,11 +479,17 @@
     .ah-booking.status-2 .ah-booking-title:after{
         background-color: @ah-cta-back-color-primary;
     }
-
-    .houses-list{
-        .houses-list-item{
-            background-color: fade(@ah-background-color-secondary,10%);
-        }
+    .ah-admin-value-house-0,
+    .ah-admin-value-booking-0{
+        color: @ah-link-font-color-primary;
+    }
+    .ah-admin-value-house-2,
+    .ah-admin-value-booking-1{
+        color: @ah-link-font-color-secondary;
+    }
+    .ah-admin-value-house-1,
+    .ah-admin-value-booking-2{
+        color: @ah-cta-back-color-primary;
     }
 
     .ah-admin-table-edit .ah-cta-delete.mat-mini-fab,

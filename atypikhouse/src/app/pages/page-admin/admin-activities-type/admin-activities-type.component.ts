@@ -1,14 +1,14 @@
+import * as $ from 'jquery';
 import { Component, OnInit } from '@angular/core';
 import { DataService} from "src/app/data.service";
 import { ActivityType } from "src/app/logic/ActivityType";
 
 @Component({
   selector: 'app-admin-activities-type',
-  templateUrl: './admin-activities-type.component.html',
-  styles: []
+  templateUrl: './admin-activities-type.component.html'
 })
 export class AdminActivitiesTypeComponent implements OnInit {
-  list: [ActivityType];
+  activitiesTypes: [ActivityType];
 
   displayedColumns: string[] = ['ID', 'title', 'tools'];
 
@@ -53,27 +53,27 @@ export class AdminActivitiesTypeComponent implements OnInit {
     input.val(value);
   }
 
-  edit(activity_type){
-    this.data.save("activities_types", activity_type, result => {
-      console.log(activity_type);
+  edit(activityType){
+    this.data.save("activities_types", activityType, result => {
+      console.log(activityType);
       if (result) {
         
       }
     });
   }
 
-  delete(activity_typeID){
-    this.data.delete("activities_types", activity_typeID, result => {
+  delete(activityTypeID){
+    this.data.delete("activities_types", activityTypeID, result => {
       if (result) {
-        let tr = $('#'+activity_typeID).parents('tr');
+        let tr = $('#'+activityTypeID).parents('tr');
         tr.remove();
       }
     });
   }
   
   ngOnInit() {
-    this.data.getList("activities_types", list => {
-      this.list = list;
+    this.data.getList("activities_types", activitiesTypes => {
+      this.activitiesTypes = activitiesTypes;
     });
   }
 

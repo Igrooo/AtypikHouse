@@ -8,8 +8,7 @@ import { House } from "src/app/logic/House";
 
 @Component({
   selector: 'app-booking',
-  templateUrl: './booking.component.html',
-  styles: []
+  templateUrl: './booking.component.html'
 })
 
 export class BookingComponent implements OnInit {

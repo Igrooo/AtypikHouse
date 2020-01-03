@@ -7,8 +7,7 @@ import { User } from "src/app/logic/User";
 
 @Component({
   selector: 'app-form-login',
-  templateUrl: './form-login.component.html',
-  styles: []
+  templateUrl: './form-login.component.html'
 })
 export class FormLoginComponent implements OnInit {
   user: User;

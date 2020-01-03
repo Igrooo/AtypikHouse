@@ -2,8 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Comment } from "src/app/logic/Comment";
 @Component({
   selector: 'app-comment',
-  templateUrl: './comment.component.html',
-  styles: []
+  templateUrl: './comment.component.html'
 })
 export class CommentComponent implements OnInit {
   comment: Comment;

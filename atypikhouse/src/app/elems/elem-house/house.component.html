@@ -15,7 +15,12 @@
               </li>
           </ng-container>
       </ul>
-      <button (click)="share(house)" mat-button class="ah-house-share ah-cta-tertiary"><mat-icon>share</mat-icon> Partager</button>    
+      <button mat-button [matMenuTriggerFor]="share" aria-label="Partager" class="ah-house-share ah-cta-tertiary"><mat-icon>share</mat-icon> Partager</button>    
+      <mat-menu #share="matMenu">
+          <button mat-menu-item (click)="share('whatsapp',house)">
+            <i class="lab la-whatsapp"></i> <span>WhatsApp</span>
+          </button>
+      </mat-menu>
     </div>
     <section class="ah-container-tertiary ah-section ah-product-prebooking">
       <h3 class="ah-product-booking-title">Réservation</h3>
@@ -68,8 +73,8 @@
             <li *ngFor="let activity of activities; let i = index;" class="text-left ah-activity">
               <h5 class="ah-activity-title">{{activity.title}}</h5>
               <ul class="ah-list-tags list-inline">
-                <li class="ah-activity-type" [attr.data]="activitiesType[i].title">
-                  <app-tag [tagText]="activitiesType[i].title"></app-tag>
+                <li class="ah-activity-type" [attr.data]="activity-type">
+                  <app-tag [tagID]="activity.ID_type"></app-tag>
                 </li>
                 <li *ngFor="let tag of tagsActivity[i];" [attr.data]="tag">
                   <app-tag [tagText]="tag"></app-tag>

@@ -1,9 +1,9 @@
+import * as $ from 'jquery';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-admin-users',
-  templateUrl: './admin-users.component.html',
-  styles: []
+  templateUrl: './admin-users.component.html'
 })
 export class AdminUsersComponent implements OnInit {
 

@@ -60,7 +60,7 @@ export class DataService {
       // It's an insert
       this.http.post(`${this.endpoint}/insert/${route}`, elem)
         .subscribe(response => {
-          callback(response['content']); //insert ID
+          callback(response['content']); //insertID
         });
     }
     callback(true);

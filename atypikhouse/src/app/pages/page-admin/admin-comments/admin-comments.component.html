@@ -1,1 +1,89 @@
-<p>admin-comments works!</p>
+<table mat-table matSort [dataSource]="comments" class="mat-elevation-z8 ah-admin-table {{ editOn }}">
+    
+    <!--- Note that these columns can be defined in any order.
+            The actual rendered columns are set as a property on the row definition" -->
+
+    <ng-container matColumnDef="ID" sticky>
+        <th mat-header-cell *matHeaderCellDef mat-sort-header class="ah-admin-table-col-ID">ID</th>
+        <td mat-cell *matCellDef="let comment"class="ah-admin-table-col-ID"><span>{{comment.ID}}</span></td>
+    </ng-container>
+
+    <ng-container matColumnDef="comment">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header class="ah-admin-table-col-600">
+            <span class="ah-admin-head">Commentaire</span>
+         </th>
+        <td mat-cell *matCellDef="let comment" class="ah-admin-table-col-600">
+            <span class="ah-admin-value">{{comment.comment}}</span>
+            <mat-form-field class="ah-admin-field">
+                <input matInput type="text" (input)="update(comment.ID,'comment','input',$event)" class="ah-admin-input ah-admin-input-comment" [value]="comment.comment" [attr.data-prev-value]="comment.comment">
+            </mat-form-field>
+        </td>
+    </ng-container>
+
+    <ng-container matColumnDef="rating">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header class="ah-admin-table-col-80">
+            <span class="ah-admin-head">Note (1 à 5)</span>
+            </th>
+        <td mat-cell *matCellDef="let comment" class="ah-admin-table-col-80">
+            <span class="ah-admin-value">{{comment.rating}}</span>
+            <mat-form-field class="ah-admin-field">
+                <input matInput type="text" (input)="update(comment.ID,'rating','input',$event)" class="ah-admin-input ah-admin-input-number" [value]="comment.rating" [attr.data-prev-value]="comment.rating">
+            </mat-form-field>
+        </td>
+    </ng-container>
+
+    <ng-container matColumnDef="date">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header class="ah-admin-table-col">
+            <span class="ah-admin-head">Date</span>
+            </th>
+        <td mat-cell *matCellDef="let comment" class="ah-admin-table-col">
+            
+        </td>
+    </ng-container>
+
+    <ng-container matColumnDef="ID_user">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header class="ah-admin-table-col-60">
+            <span class="ah-admin-head">ID Utilisateur</span>
+         </th>
+        <td mat-cell *matCellDef="let comment" class="ah-admin-table-col-60">
+            <span class="ah-admin-value">{{comment.ID_user}}</span>
+            <mat-form-field class="ah-admin-field">
+                <input matInput type="text" (input)="update(comment.ID,'ID_user','input',$event)" class="ah-admin-input ah-admin-input-num" [value]="comment.ID_user" [attr.data-prev-value]="comment.ID_user">
+            </mat-form-field>
+        </td>
+    </ng-container>
+    
+    <ng-container matColumnDef="ID_booking">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header class="ah-admin-table-col-60">
+            <span class="ah-admin-head">ID Réservation</span>
+        </th>
+        <td mat-cell *matCellDef="let comment" class="ah-admin-table-col-60">
+            <span class="ah-admin-value">{{comment.ID_booking}}</span>
+            <mat-form-field class="ah-admin-field">
+                <input matInput type="text" (input)="update(comment.ID,'ID_booking','input',$event)" class="ah-admin-input ah-admin-input-num" [value]="comment.ID_booking" [attr.data-prev-value]="comment.ID_booking">
+            </mat-form-field>
+        </td>
+    </ng-container>
+
+    <ng-container matColumnDef="tools" stickyEnd>
+        <th mat-header-cell *matHeaderCellDef mat-sort-header class="ah-admin-table-edit-container"></th>
+        <td mat-cell *matCellDef="let comment" class="ah-admin-table-edit-container">
+            <div id="{{ comment.ID }}" class="ah-admin-table-edit">
+                <button mat-mini-fab class="ah-admin-cta ah-cta-edit ah-cta-edit-focus ah-cta-primary" (click)="focus(comment.ID,'edit')" color="primary"><mat-icon>edit</mat-icon></button>
+                <button mat-mini-fab class="ah-admin-cta ah-cta-delete ah-cta-delete-focus" (click)="focus(comment.ID,'delete')"><mat-icon>delete</mat-icon></button>
+                <button mat-mini-fab class="ah-admin-cta ah-cta-cancel ah-cta-cancel-delete" (click)="cancel(comment.ID,'delete')"><mat-icon>close</mat-icon></button>
+                <button mat-mini-fab class="ah-admin-cta ah-cta-delete ah-cta-delete-confirm" (click)="delete(comment.ID)"><mat-icon>delete</mat-icon></button>
+                <form id="form-edit-{{ comment.ID }}" class="ah-admin-form" (submit)="edit(comment)">
+                    <input type="text" name="comment" [value]="comment.comment"       hidden>
+                    <input type="text" name="rating"  [value]="comment.rating" hidden>
+                    <button mat-mini-fab class="ah-admin-cta ah-cta-cancel ah-cta-cancel-edit" (click)="cancel(comment.ID,'edit')" type="reset"><mat-icon>close</mat-icon></button>
+                    <button mat-mini-fab class="ah-admin-cta ah-cta-edit ah-cta-edit-submit ah-cta-primary" type="submit"><mat-icon>done</mat-icon></button>
+                </form>
+            </div>
+        </td>
+    </ng-container>
+    
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;" class="ah-admin-table-tr"></tr>
+</table>
+      

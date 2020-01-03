@@ -5,11 +5,10 @@ import { Icons } from "src/app/elems/elem-icon/icons-categories";
 
 @Component({
   selector: 'app-list-category',
-  templateUrl: './list-category.component.html',
-  styles: []
+  templateUrl: './list-category.component.html'
 })
 export class ListCategoryComponent implements OnInit {
-  list: [Category];
+  categories: [Category];
   
   icons = Icons;
   iconsSet      :string = 'travel';
@@ -21,8 +20,8 @@ export class ListCategoryComponent implements OnInit {
     ) { }
 
   ngOnInit() {
-    this.data.getList("categories", list => {
-      this.list = list;
+    this.data.getList("categories", categories => {
+      this.categories = categories;
     })
   }
 

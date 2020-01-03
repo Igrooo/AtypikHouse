@@ -11,8 +11,7 @@ import { MatDatepickerInputEvent } from '@angular/material/datepicker';
 
 @Component({
   selector: 'app-form-house',
-  templateUrl: './form-house.component.html',
-  styles: []
+  templateUrl: './form-house.component.html'
 })
 
 export class FormHouseComponent implements OnInit {
@@ -51,29 +50,6 @@ export class FormHouseComponent implements OnInit {
 
   routingSubscription: any;
 
-  updatePrice(){
-    //console.log(this.dateStart, this.dateEnd, this.nbPersons);
-    if(this.dateStart && this.dateEnd && this.nbPersons){
-      this.nbNights = ( this.dateEnd.getTime() - this.dateStart.getTime() ) / (1000 * 3600 * 24);
-      //console.log(this.nbNights);
-      if(this.nbNights < 1){
-        this.byNightLabel = ' /nuit';
-        this.totalPrice = this.priceTTC;
-        this.complete = false;
-      }
-      else{
-        this.byNightLabel = ' pour '+this.math.round(this.nbNights).toString()+' nuit(s)';
-        this.totalPrice = this.math.round(this.priceTTC * this.nbNights * this.nbPersons);
-        this.complete = true;
-      }
-    }
-    else{
-      this.byNightLabel = ' /nuit';
-      this.totalPrice = this.priceTTC;
-      this.complete = false;
-    }
-  }
-
   onInput(dateInput :string, event: MatDatepickerInputEvent<Date>){
     if(dateInput == 'start'){
       this.dateStart = event.value;
@@ -81,33 +57,15 @@ export class FormHouseComponent implements OnInit {
     if(dateInput == 'end'){
       this.dateEnd = event.value;
     }
-    this.updatePrice()
+
   }
 
   onChange(event) {
     //console.log(event.value);
     this.nbPersons = event.value;
-    this.updatePrice();
-  }
-
-  newBooking(){
-    this.booking.status     = 1;
-    this.booking.date       = this.datePipe.transform(new Date(),"yyyy-MM-dd");
-    this.booking.dateStart  = this.datePipe.transform(this.dateStart,"yyyy-MM-dd");
-    this.booking.dateEnd    = this.datePipe.transform(this.dateEnd,"yyyy-MM-dd");
-    this.booking.nbPersons =  this.nbPersons;
-    this.booking.ID_user    = 1;
-    this.booking.ID_house   = this.house.ID;
-    
-    //console.log(this.booking);
-
-    this.data.save("booking", this.booking, booking => {
-      if (booking) {
-        this.router.navigate(["/booking", booking.insertId]);
-      }
-    });
 
   }
+
 
   ngOnInit() {
     this.house   = new House();

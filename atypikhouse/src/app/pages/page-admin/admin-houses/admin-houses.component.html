@@ -1,1 +1,240 @@
-<p>admin-houses works!</p>
+<table mat-table matSort [dataSource]="houses" class="mat-elevation-z8 ah-admin-table {{ editOn }}">
+    
+    <!--- Note that these columns can be defined in any order.
+            The actual rendered columns are set as a property on the row definition" -->
+
+    <ng-container matColumnDef="ID" sticky>
+        <th mat-header-cell *matHeaderCellDef mat-sort-header class="ah-admin-table-col-ID">ID</th>
+        <td mat-cell *matCellDef="let house"class="ah-admin-table-col-ID"><span>{{house.ID}}</span></td>
+    </ng-container>
+
+    <ng-container matColumnDef="status">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header class="ah-admin-table-col-100">
+            <span class="ah-admin-head">Statut</span>
+         </th>
+        <td mat-cell *matCellDef="let house" class="ah-admin-table-col-100">
+            <span class="ah-admin-value ah-admin-value-house-{{house.status}}">{{getLabel(house.status)}}</span>
+            <mat-form-field class="ah-admin-field">
+                <mat-select matNativeControl (selectionChange)="update(house.ID,'status','change',$event)" class="ah-admin-input ah-admin-input-select" [(value)]="house.status" [attr.data-prev-value]="house.status">
+                    <mat-option [value]="0">{{getLabel(0)}}</mat-option>
+                    <mat-option [value]="1">{{getLabel(1)}}</mat-option>
+                    <mat-option [value]="2">{{getLabel(2)}}</mat-option>
+                </mat-select>
+            </mat-form-field>
+        </td>
+    </ng-container>
+
+    <ng-container matColumnDef="ID_user">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header class="ah-admin-table-col-60">
+            <span class="ah-admin-head">ID Utilisateur</span>
+         </th>
+        <td mat-cell *matCellDef="let house" class="ah-admin-table-col-60">
+            <span class="ah-admin-value">{{house.ID_user}}</span>
+            <mat-form-field class="ah-admin-field">
+                <input matInput type="text" (input)="update(house.ID,'ID_user','input',$event)" class="ah-admin-input ah-admin-input-num" [value]="house.ID_user" [attr.data-prev-value]="house.ID_user">
+            </mat-form-field>
+        </td>
+    </ng-container>
+
+    <ng-container matColumnDef="ID_category">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header class="ah-admin-table-col-100">
+            <span class="ah-admin-head">Type</span>
+         </th>
+        <td mat-cell *matCellDef="let house" class="ah-admin-table-col-100">
+            <ng-container *ngFor="let category of categories">
+                <span *ngIf="house.ID_category == category.ID" class="ah-admin-value">{{category.title}}</span>
+            </ng-container>
+            <mat-form-field class="ah-admin-field">
+                <mat-select matNativeControl (selectionChange)="update(house.ID,'ID_category','change',$event)" class="ah-admin-input ah-admin-input-select" [(value)]="house.ID_category" [attr.data-prev-value]="house.ID_category">
+                    <mat-option *ngFor="let category of categories" [value]="category.ID">{{category.title}}</mat-option>
+                </mat-select>
+            </mat-form-field>
+        </td>
+    </ng-container>
+
+    <ng-container matColumnDef="title">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header class="ah-admin-table-col-200">
+            <span class="ah-admin-head">Titre</span>
+         </th>
+        <td mat-cell *matCellDef="let house" class="ah-admin-table-col-200">
+            <span class="ah-admin-value">{{house.title}}</span>
+            <mat-form-field class="ah-admin-field">
+                <input matInput type="text" (input)="update(house.ID,'title','input',$event)" class="ah-admin-input ah-admin-input-title" [value]="house.title" [attr.data-prev-value]="house.title">
+            </mat-form-field>
+        </td>
+    </ng-container>
+    
+    <ng-container matColumnDef="description">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header class="ah-admin-table-col-400">
+            <span class="ah-admin-head">Description</span>
+         </th>
+        <td mat-cell *matCellDef="let house" class="ah-admin-table-col-400">
+            <span class="ah-admin-value">{{house.description}}</span>
+            <mat-form-field class="ah-admin-field">
+                <input matInput type="text" (input)="update(house.ID,'description','input',$event)" class="ah-admin-input ah-admin-input-desc" [value]="house.description" [attr.data-prev-value]="house.description">
+            </mat-form-field>
+        </td>
+    </ng-container>
+
+    <ng-container matColumnDef="address">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header class="ah-admin-table-col-200">
+            <span class="ah-admin-head">Adresse</span>
+         </th>
+        <td mat-cell *matCellDef="let house" class="ah-admin-table-col-200">
+            <span class="ah-admin-value">{{house.address}}</span>
+            <mat-form-field class="ah-admin-field">
+                <input matInput type="text" (input)="update(house.ID,'address','input',$event)" class="ah-admin-input ah-admin-input-address" [value]="house.address" [attr.data-prev-value]="house.address">
+            </mat-form-field>
+        </td>
+    </ng-container>
+    
+    <ng-container matColumnDef="zipcode">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header class="ah-admin-table-col-60">
+            <span class="ah-admin-head">Code Postal</span>
+         </th>
+        <td mat-cell *matCellDef="let house" class="ah-admin-table-col-60">
+            <span class="ah-admin-value">{{house.zipcode}}</span>
+            <mat-form-field class="ah-admin-field">
+                <input matInput type="text" (input)="update(house.ID,'zipcode','input',$event)" class="ah-admin-input ah-admin-input-num" [value]="house.zipcode" [attr.data-prev-value]="house.zipcode">
+            </mat-form-field>
+        </td>
+    </ng-container>
+
+    <ng-container matColumnDef="city">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header class="ah-admin-table-col-100">
+            <span class="ah-admin-head">Ville</span>
+         </th>
+        <td mat-cell *matCellDef="let house" class="ah-admin-table-col-100">
+            <span class="ah-admin-value">{{house.city}}</span>
+            <mat-form-field class="ah-admin-field">
+                <input matInput type="text" (input)="update(house.ID,'city','input',$event)" class="ah-admin-input ah-admin-input-num" [value]="house.city" [attr.data-prev-value]="house.city">
+            </mat-form-field>
+        </td>
+    </ng-container>
+    
+    <ng-container matColumnDef="nbBeds">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header class="ah-admin-table-col-60">
+            <span class="ah-admin-head">Nombre de lits</span>
+        </th>
+        <td mat-cell *matCellDef="let house" class="ah-admin-table-col-60">
+            <span class="ah-admin-value">{{house.nbBeds}}</span>
+            <mat-form-field class="ah-admin-field">
+                <input matInput type="text" (input)="update(house.ID,'nbBeds','input',$event)" class="ah-admin-input ah-admin-input-num" [value]="house.nbBeds" [attr.data-prev-value]="house.nbBeds">
+            </mat-form-field>
+        </td>
+    </ng-container>
+
+    <ng-container matColumnDef="price">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header class="ah-admin-table-col-60">
+            <span class="ah-admin-head">Prix HT</span>
+        </th>
+        <td mat-cell *matCellDef="let house" class="ah-admin-table-col-60">
+            <span class="ah-admin-value">{{house.price}}</span>
+            <mat-form-field class="ah-admin-field">
+                <input matInput type="text" (input)="update(house.ID,'price','input',$event)" class="ah-admin-input ah-admin-input-num" [value]="house.price" [attr.data-prev-value]="house.price">
+            </mat-form-field>
+        </td>
+    </ng-container>
+
+    <ng-container matColumnDef="tax">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header class="ah-admin-table-col-60">
+            <span class="ah-admin-head">Taxe (%)</span>
+        </th>
+        <td mat-cell *matCellDef="let house" class="ah-admin-table-col-60">
+            <span class="ah-admin-value">{{house.tax}}</span>
+            <mat-form-field class="ah-admin-field">
+                <input matInput type="text" (input)="update(house.ID,'tax','input',$event)" class="ah-admin-input ah-admin-input-num" [value]="house.tax" [attr.data-prev-value]="house.tax">
+            </mat-form-field>
+        </td>
+    </ng-container>
+
+    <ng-container matColumnDef="listID_tags">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header class="ah-admin-table-col-100">
+            <span class="ah-admin-head">Tags (thématiques)</span>
+         </th>
+        <td mat-cell *matCellDef="let house" class="ah-admin-table-col-100">
+            <span class="ah-admin-value"></span>
+            <mat-form-field class="ah-admin-field">
+                <mat-select multiple class="ah-admin-input ah-admin-input-select" [formControl]="tagsForm">
+                    <ng-container *ngFor="let tag of tags">
+                        <mat-option *ngIf="tag.type == 0" [value]="tag.ID">{{tag.tag}}</mat-option>
+                    </ng-container>
+                </mat-select>
+            </mat-form-field>
+        </td>
+    </ng-container>
+
+    <ng-container matColumnDef="listID_tags_services">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header class="ah-admin-table-col-100">
+            <span class="ah-admin-head">Tags (services & équipements)</span>
+         </th>
+        <td mat-cell *matCellDef="let house" class="ah-admin-table-col-100">
+            <span class="ah-admin-value"></span>
+            <mat-form-field class="ah-admin-field">
+                <mat-select multiple class="ah-admin-input ah-admin-input-select" [formControl]="tags2Form">
+                    <ng-container *ngFor="let tag of tags">
+                        <mat-option *ngIf="tag.type == 1" [value]="tag.ID">{{tag.tag}}</mat-option>
+                    </ng-container>
+                </mat-select>
+            </mat-form-field>
+        </td>
+    </ng-container>
+
+    <ng-container matColumnDef="listID_pics">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header class="ah-admin-table-col-100">
+            <span class="ah-admin-head">Photos</span>
+         </th>
+        <td mat-cell *matCellDef="let house" class="ah-admin-table-col-100">
+            <span class="ah-admin-value"></span>
+            <mat-form-field class="ah-admin-field">
+                <mat-select multiple class="ah-admin-input ah-admin-input-select" [formControl]="picsForm">
+                    <ng-container *ngFor="let pic of pics">
+                        <mat-option [value]="pic.ID">{{pic.ID}} ({{pic.title}})</mat-option>
+                    </ng-container>
+                </mat-select>
+            </mat-form-field>
+        </td>
+    </ng-container>
+
+    <ng-container matColumnDef="listID_activities">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header class="ah-admin-table-col-100">
+            <span class="ah-admin-head">Activités</span>
+         </th>
+        <td mat-cell *matCellDef="let house" class="ah-admin-table-col-100">
+            <span class="ah-admin-value"></span>
+            <mat-form-field class="ah-admin-field">
+                <mat-select multiple class="ah-admin-input ah-admin-input-select" [formControl]="activitiesForm">
+                    <ng-container *ngFor="let activity of activities">
+                        <mat-option [value]="activity.ID">{{activity.title}}</mat-option>
+                    </ng-container>
+                </mat-select>
+            </mat-form-field>
+        </td>
+    </ng-container>
+
+    <ng-container matColumnDef="tools" stickyEnd>
+        <th mat-header-cell *matHeaderCellDef mat-sort-header class="ah-admin-table-edit-container"></th>
+        <td mat-cell *matCellDef="let house" class="ah-admin-table-edit-container">
+            <div id="{{ house.ID }}" class="ah-admin-table-edit">
+                <button mat-mini-fab class="ah-admin-cta ah-cta-edit ah-cta-edit-focus ah-cta-primary" (click)="focus(house.ID,'edit')" color="primary"><mat-icon>edit</mat-icon></button>
+                <button mat-mini-fab class="ah-admin-cta ah-cta-delete ah-cta-delete-focus" (click)="focus(house.ID,'delete')"><mat-icon>delete</mat-icon></button>
+                <button mat-mini-fab class="ah-admin-cta ah-cta-cancel ah-cta-cancel-delete" (click)="cancel(house.ID,'delete')"><mat-icon>close</mat-icon></button>
+                <button mat-mini-fab class="ah-admin-cta ah-cta-delete ah-cta-delete-confirm" (click)="delete(house.ID)"><mat-icon>delete</mat-icon></button>
+                <form id="form-edit-{{ house.ID }}" class="ah-admin-form" (submit)="edit(house)">
+                    <input type="text" name="title"       [value]="house.title"       hidden>
+                    <input type="text" name="description" [value]="house.description" hidden>
+                    <input type="text" name="locationLat" [value]="house.locationLat" hidden>
+                    <input type="text" name="locationLng" [value]="house.locationLng" hidden>
+                    <input type="text" name="listID_tags" [value]="house.listID_tags" hidden>
+                    <input type="text" name="ID_type"     [value]="house.ID_type"     hidden>
+                    <button mat-mini-fab class="ah-admin-cta ah-cta-cancel ah-cta-cancel-edit" (click)="cancel(house.ID,'edit')" type="reset"><mat-icon>close</mat-icon></button>
+                    <button mat-mini-fab class="ah-admin-cta ah-cta-edit ah-cta-edit-submit ah-cta-primary" type="submit"><mat-icon>done</mat-icon></button>
+                </form>
+            </div>
+        </td>
+    </ng-container>
+    
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;" class="ah-admin-table-tr"></tr>
+</table>
+      

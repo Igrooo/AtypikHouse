@@ -1,10 +1,8 @@
-import * as $ from 'jquery';
 import { Component, OnInit, OnChanges, Input } from '@angular/core';
 
 @Component({
   selector: 'app-icon',
-  templateUrl: './icon.component.html',
-  styles: []
+  templateUrl: './icon.component.html'
 })
 export class IconComponent implements OnInit, OnChanges {
   iconsType:string             = 'svg';

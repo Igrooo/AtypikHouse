@@ -1,4 +1,3 @@
-import * as $ from 'jquery';
 import { Component, OnInit, Inject } from '@angular/core';
 import { Router, Event, NavigationStart, NavigationEnd, NavigationError } from "@angular/router";
 import { CookieService } from "ngx-cookie-service";
@@ -7,8 +6,7 @@ import { User } from "src/app/logic/User";
 
 @Component({
   selector: 'app-root',
-  templateUrl: './app.component.html',
-  styles: []
+  templateUrl: './app.component.html'
 })
 export class AppComponent implements OnInit {
   public title:string = 'atypikhouse';

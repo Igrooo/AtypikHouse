@@ -4,8 +4,7 @@ import { Tag } from "src/app/logic/Tag";
 
 @Component({
   selector: 'app-list-tag',
-  templateUrl: './list-tag.component.html',
-  styles: []
+  templateUrl: './list-tag.component.html'
 })
 export class ListTagComponent implements OnInit {
   @Input() tagGroupFilter:number;
@@ -18,7 +17,5 @@ export class ListTagComponent implements OnInit {
     this.data.getList("tags", tags => {
       this.tags = tags;
     });
-    
   }
-
 }

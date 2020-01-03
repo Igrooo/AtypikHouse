@@ -1,26 +1,27 @@
-<table mat-table [dataSource]="list" class="mat-elevation-z8 ah-admin-table {{ editOn }}">
+<table mat-table matSort [dataSource]="activitiesTypes" class="mat-elevation-z8 ah-admin-table {{ editOn }}">
     
         <!--- Note that these columns can be defined in any order.
                 The actual rendered columns are set as a property on the row definition" -->
     
-        <ng-container matColumnDef="ID">
-            <th mat-header-cell *matHeaderCellDef class="ah-admin-table-col-ID">ID</th>
+        <ng-container matColumnDef="ID" sticky>
+            <th mat-header-cell *matHeaderCellDef mat-sort-header class="ah-admin-table-col-ID">ID</th>
             <td mat-cell *matCellDef="let activity_type"class="ah-admin-table-col-ID"><span>{{activity_type.ID}}</span></td>
         </ng-container>
     
         <ng-container matColumnDef="title">
-            <th mat-header-cell *matHeaderCellDef class="ah-admin-table-col">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header class="ah-admin-table-col">
                 <span class="ah-admin-head">Titre</span>
              </th>
             <td mat-cell *matCellDef="let activity_type" class="ah-admin-table-col">
-                <mat-form-field class="ah-admin-field">
-                    <input matInput type="text" (input)="update(activity_type.ID,'title','input',$event)" [readonly]="isReadonly" class="ah-admin-input ah-admin-input-title" [value]="activity_type.title" [attr.data-prev-value]="activity_type.title">
+                <span class="ah-admin-value">{{activity_type.title}}</span>
+            <mat-form-field class="ah-admin-field">
+                    <input matInput type="text" (input)="update(activity_type.ID,'title','input',$event)" class="ah-admin-input ah-admin-input-title" [value]="activity_type.title" [attr.data-prev-value]="activity_type.title">
                 </mat-form-field>
             </td>
         </ng-container>
 
-        <ng-container matColumnDef="tools">
-            <th mat-header-cell *matHeaderCellDef class="ah-admin-table-edit-container"></th>
+        <ng-container matColumnDef="tools" stickyEnd>
+            <th mat-header-cell *matHeaderCellDef mat-sort-header class="ah-admin-table-edit-container"></th>
             <td mat-cell *matCellDef="let activity_type" class="ah-admin-table-edit-container">
                 <div id="{{ activity_type.ID }}" class="ah-admin-table-edit">
                     <button mat-mini-fab class="ah-admin-cta ah-cta-edit ah-cta-edit-focus ah-cta-primary" (click)="focus(activity_type.ID,'edit')" color="primary"><mat-icon>edit</mat-icon></button>

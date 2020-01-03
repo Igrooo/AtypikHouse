@@ -8,22 +8,21 @@ import { Tag } from "src/app/logic/Tag";
 
 @Component({
   selector: 'app-admin-activities',
-  templateUrl: './admin-activities.component.html',
-  styles: []
+  templateUrl: './admin-activities.component.html'
 })
 export class AdminActivitiesComponent implements OnInit {
-  list: [Activity];
-  typelist: [ActivityType];
-  taglist: [Tag];
+  activities: [Activity];
+  activitiesTypes: [ActivityType];
+  tags: [Tag];
   selectedTags: string[];
 
   displayedColumns: string[] = ['ID', 'ID_type', 'title', 'description', 'locationLat', 'locationLng', 'listID_tags', 'tools'];
 
-  editOn:string;
+  editOn:string = 'edit-off';
 
   isReadonly:boolean = true;
 
-  tags = new FormControl();
+  tagsForm = new FormControl();
 
   constructor(private data: DataService) {
 
@@ -47,7 +46,7 @@ export class AdminActivitiesComponent implements OnInit {
         $(input).val(prevValue);
       });
     }
-    this.editOn = '';
+    this.editOn = 'edit-off';
   }
 
   update(ID, name:string, eventType:string, event){
@@ -80,15 +79,14 @@ export class AdminActivitiesComponent implements OnInit {
   }
   
   ngOnInit() {
-    this.data.getList("activities", list => {
-      this.list = list;
+    this.data.getList("activities", activities => {
+      this.activities = activities;
     });
-    this.data.getList("activities_types", typelist => {
-      this.typelist = typelist;
+    this.data.getList("activities_types", activitiesTypes => {
+      this.activitiesTypes = activitiesTypes;
     });
-    this.data.getList("tags", taglist => {
-      this.taglist = taglist;
-      this.tags
+    this.data.getList("tags", tags => {
+      this.tags = tags;
     });
   }
 

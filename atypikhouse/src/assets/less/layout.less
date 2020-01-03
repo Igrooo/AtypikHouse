@@ -1,7 +1,7 @@
 ////////////////////////////////////////////////////
 ////////////////////////// ATYPIKHOUSE LAYOUT
 ////////////////////////////////////////////////////
-// Body // remove global class .ah in html to disable theme layout
+// Body // re-move global class .ah in html to disable theme layout
 .ah {
     margin: 0;
     font-family: @ah-font-family-text;
@@ -10,7 +10,7 @@
 /*********************/
 /** MATERIAL STYLES **/
 /*********************/
-    // Body // remove global class .ah-mat to disable replacements
+    // Body // re-move global class .ah-mat to disable replacements
     &.ah-mat{
         .mat-toolbar{
             padding: 0 !important;
@@ -62,6 +62,16 @@
         }
         &.private{
             .only-public{
+                display: none;
+            }
+        }
+        &.user-type-admin {
+            .only-user {
+                display: none;
+            }
+        }
+        &.user-type-user {
+            .only-admin {
                 display: none;
             }
         }
@@ -142,6 +152,9 @@
             padding-bottom: 5px;
         }
     }
+    .ah-container-promote.lead{
+        font-size: 100%;
+    }
     .ah-container-secondary{
         padding: @ah-container-paddin-secondary;
         margin-bottom: @ah-container-margin-secondary;
@@ -156,14 +169,11 @@
                 display: none;
             }
         }
-        .houses-list{
+        .ah-list-houses{
             .house:not(.status-2){
                 display: none;
             }
         }
-    }
-    .ah-container-admin-header {
-        margin: 0;
     }
     .ah-child-primary{
         padding: @ah-child-paddin-primary;
@@ -294,7 +304,7 @@
         .icon-banner{
             &:before,
             &:after{
-                display: block;
+                display: none;
                 position: absolute;
                 top: calc( 200px - 42px / 2);
                 width: 42px;
@@ -324,6 +334,7 @@
     .ah-house-supinfo{
         position: relative;
         margin-top: 10px;
+        min-height: 45px;
         .ah-house-share{
             position: absolute;
             top: 0;
@@ -355,16 +366,6 @@
     }
     .ah-header-title{
         margin-right: 5px;
-    }
-    .user-type-admin {
-        .only-user {
-            display: none;
-        }
-    }
-    .user-type-user {
-        .only-admin {
-            display: none;
-        }
     }
 
 /*********************/
@@ -426,7 +427,7 @@
         font-size: @ah-font-size-subtitle;
         font-weight: lighter;
         border-bottom: 2px transparent solid;
-        margin-bottom: 1em;
+        margin-bottom: @ah-font-size-text;
     }
     h4,
     .ah-subtitle-h4{
@@ -435,17 +436,17 @@
     h5,
     .ah-subtitle-h5{
         font-size: @ah-font-size-subtitle-h5;
-        text-transform: capitalize;
+        text-transform: none;
     }
     h6,
     .ah-subtitle-h6{
         font-size: @ah-font-size-subtitle-h6;
-        text-transform: capitalize;
+        text-transform: none;
         font-weight: normal;
         margin-bottom: 0;
-        padding-left: 1rem;
+        padding-left: @ah-font-size-text;
         & + * {
-            padding-left: 1rem;
+            padding-left: @ah-font-size-text;
         }
     }
 
@@ -525,7 +526,7 @@
         /*
         .list-inline{
             border-right: 1px solid @ah-background-color-secondary;
-            padding-right: 1em;
+            padding-right: @ah-font-size-text;
         }
         */
     }
@@ -601,6 +602,7 @@
             }
         }
     }
+    //
 // Flex & Grid
     .ah-flex-list{
         display: flex;
@@ -650,43 +652,59 @@
             }
         }
     }
-    .houses-list{
-        .houses-list-item{
-            position: relative;
+    .ah-list-houses-user{
+        max-width: 1000px;
+        margin: auto;
+        .ah-list-houses-container{
             padding: @ah-child-paddin-secondary;
             margin: @ah-child-margin-secondary 100px;
+        }
+        .ah-list-houses-header{
+            display: flex;
+        }
+        .ah-list-houses-item{
+            position: relative;
             z-index: 1;
-            .houses-list-details{
-                display: inline-block;
+            .ah-list-houses-details{
                 vertical-align: top;
                 margin: 5px 10px;
             }
             &:hover{
-                .houses-list-actions{
+                .ah-list-houses-actions{
                     &.left{
-                        left: -115px;
+                        left: -35px;
                     }
                     &.right{
-                        right: -115px;
+                        right: -35px;
                     }
                 }
-                .houses-list-details{
+                .ah-list-houses-details{
                 opacity: 1;
                 }
             }
         }
-        .houses-list-booking{
+        .ah-list-houses-booking{
+            width: 100%;
             opacity:0.6;
         }
-        .houses-list-actions{
+        .ah-list-houses-booking-calendar{
+            margin-left: 340px;
+            background-color:white;
+            padding: 10px;
+            margin-right: 10px;
+            margin-top: -136px;
+        }
+        .ah-list-houses-actions{
             position: absolute;
             transition: all 200ms ease-in-out;
             opacity: 0;
+            top: 5px;
+            z-index: -1;
             &.left{
-                left: 0;
+                left: 100px;
             }
             &.right{
-                right: 0;
+                right: 100px;
             }
             .icon-promote{
                 font-size: 2em;
@@ -694,13 +712,32 @@
         }
         .ah-house-cta{
             height: 90px;
-            width: 125px;
+            width: 130px;
             &:first-child{
                 margin-bottom: 20px;
             }
         }
+        .status-0{
+            .ah-house-disable{
+                display: none;
+            }
+        }
+        .status-1,
+        .status-2{
+            .ah-house-enable{
+                display: none;
+            }
+        }
     }
-
+    .ah-list-booking{
+        min-height: 2em;
+        .ah-list-booking-item{
+            margin-bottom: 5px;
+        }
+    }
+    .ah-house-add{
+        height: 100px;
+    }
 /*********************/
 /******* FORMS *******/
 /*********************/
@@ -719,7 +756,6 @@
     }
     .ah-form-search{
         box-sizing: border-box;
-        height: 90px;
         .ah-form-icon{
             margin-right: 5px;
         }
@@ -916,7 +952,7 @@
             }
             .ah-card-text{
                 height: auto !important;
-                font-size:1rem;
+                font-size:@ah-font-size-text;
             }
             .icon-title{
                 margin: 0;
@@ -927,7 +963,7 @@
                 white-space: nowrap;
             }
             .icon-subtitle{
-                font-size: @ah-font-size-text !important;
+                font-size: 1rem !important;
                 line-height: @ah-font-size-text;
             }
             .ah-card-marker{
@@ -988,7 +1024,7 @@
             transition: height 450ms ease-out, opacity 250ms ease-out;
         }
         .icon-subtitle{
-            font-size: 0.8em;           
+            font-size: @ah-font-size-tiny;           
         }
         &.icon-banner,
         &:hover{
@@ -1009,9 +1045,9 @@
     }
     .ah-card-marker,
     .ah-product-price{
-        font-size: 0.8rem;
+        font-size: 0.9em;
         .price{
-            font-size: 1rem;
+            font-size: 1.4em;
             font-weight: bold;
         }
     }
@@ -1037,7 +1073,7 @@
         vertical-align: baseline;
         margin-right: 5px;
     }
-    .houses-list{
+    .ah-list-houses{
         .ah-icon.icon-card{
             padding-top: 146px;
             padding-bottom: 0;
@@ -1084,6 +1120,14 @@
                 display: block;
             }
         }
+        &.focused.edit{
+            .ah-admin-field{
+                display: inline-block;
+            }
+            .ah-admin-value{
+                display: none;
+            }
+        }
     }
     .edit-on{
         .ah-admin-table-tr{
@@ -1127,9 +1171,10 @@
         margin: 20px;
         th,td{
             &.ah-admin-table-col-ID{
-                padding-left: 15px;
+                padding-left: 10px;
                 padding-right:10px;
-                width: 20px;
+                width: 30px;
+                text-align: right;
             }
         }
         th{
@@ -1140,11 +1185,23 @@
         td {
             padding-left: 5px;
             padding-right: 5px;
+            overflow: hidden;
+            text-overflow: ellipsis;
         }
         .ah-admin-table-col-ID{
             padding-left: 15px;
             padding-right:10px;
         }
+    }
+
+    .ah-admin-table-col-60{
+        width: 60px;
+    }
+    .ah-admin-table-col-80{
+        width: 80px;
+    }
+    .ah-admin-table-col-100{
+        width: 100px;
     }
     .ah-admin-table-col-200{
         width: 200px;
@@ -1152,8 +1209,8 @@
     .ah-admin-table-col-400{
         width: 400px;
     }
-    .ah-admin-table-col-60{
-        width: 60px;
+    .ah-admin-table-col-600{
+        width: 600px;
     }
 
     .ah-admin-table-col-ID + th{
@@ -1162,15 +1219,19 @@
     .ah-admin-table-col-ID + td{
         padding-left: 10px;
     }
-
+    .ah-admin-value,
     .ah-admin-input{
-        width: calc(100% - 10px);
-    }
-    .ah-admin-input{
-        text-overflow: ellipsis;
         padding: 0 5px;
     }
+    .ah-admin-input{
+        width: calc(100% - 10px);
+        text-overflow: ellipsis;
+    }
+    .ah-admin-value{
+        white-space: nowrap;
+    }
     .ah-admin-field{
+        display: none;
         width: 100%;
         margin-bottom: -19px;
         .mat-form-field-infix{
@@ -1244,16 +1305,23 @@
 /*********************/
 /*** BOOKING LIST ****/
 /*********************/
+    .ah-booking-list{
+        max-width: 800px;
+        margin: auto;
+    }
     .ah-booking-title{
         position: relative;
-        margin-bottom: 1rem;
+        margin-bottom: @ah-font-size-text;
         &:after{
             position:absolute;
-            right: 0;
+            top: -44px;
+            right: -20px;
             text-transform: none;
-            padding: 5px;
+            padding: 0 10px;
             font-style: italic;
-            font-size: 1.2rem;
+            font-size: @ah-font-size-text;
+            font-weight: normal;
+            border-radius: 10px 10px 0 0;
         }
     }
     .ah-booking-container{
@@ -1388,8 +1456,11 @@
             border-width: @ah-margin-primary / 2;
         }
         .ah-title{
-            font-size: 1.5rem;
+            font-size: 1.5em;
         }
+    }
+    @media screen and (max-width: 800px) {
+        font-size: @ah-font-size-root-medium;
     }
     @media  screen and (max-width: 599px) {
         .ah-page{

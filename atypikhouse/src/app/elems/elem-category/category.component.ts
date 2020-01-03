@@ -6,8 +6,7 @@ import { Icons } from "src/app/elems/elem-icon/icons-categories";
 
 @Component({
   selector: 'app-category',
-  templateUrl: './category.component.html',
-  styles: []
+  templateUrl: './category.component.html'
 })
 
 export class CategoryComponent implements OnInit {

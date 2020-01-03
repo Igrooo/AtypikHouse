@@ -1,14 +1,14 @@
+import * as $ from 'jquery';
 import { Component, OnInit } from '@angular/core';
 import { DataService} from "src/app/data.service";
 import { Category } from "src/app/logic/Category";
 
 @Component({
   selector: 'app-admin-categories',
-  templateUrl: './admin-categories.component.html',
-  styles: []
+  templateUrl: './admin-categories.component.html'
 })
 export class AdminCategoriesComponent implements OnInit {
-  list: [Category];
+  categories: [Category];
 
   displayedColumns: string[] = ['ID', 'title', 'description', 'tools'];
 
@@ -71,8 +71,8 @@ export class AdminCategoriesComponent implements OnInit {
   }
   
   ngOnInit() {
-    this.data.getList("categories", list => {
-      this.list = list;
+    this.data.getList("categories", categories => {
+      this.categories = categories;
     });
   }
 }

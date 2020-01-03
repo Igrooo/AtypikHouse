@@ -10,8 +10,7 @@ import { User } from "src/app/logic/User";
 
 @Component({
   selector: 'app-header',
-  templateUrl: './header.component.html',
-  styles: []
+  templateUrl: './header.component.html'
 })
 export class HeaderComponent implements OnInit {
   public randomBanner: number = Math.floor((Math.random() * 7) + 1);
@@ -20,8 +19,6 @@ export class HeaderComponent implements OnInit {
   tags: [Tag];
 
   user:     User;
-
-  userType:string = 'none';
 
   nbPersonsMax:number;
 
@@ -46,16 +43,12 @@ export class HeaderComponent implements OnInit {
   }
   logout(){
     this.cookieService.delete('logged');
+    this.cookieService.delete('userID');
+    this.cookieService.delete('userType');
     this.router.navigate(["/logout"]);
   }
   goAccount(){
     this.router.navigate(["/user", this.user.ID]);
-  }
-  goHouses(ID){
-    this.router.navigate(["/user/"+ID+"/houses"]);
-  }
-  goBooking(ID){
-    this.router.navigate(["/user/"+ID+"/bookings"]);
   }
   admin(){
     this.router.navigate(["/admin"]);
@@ -87,17 +80,6 @@ export class HeaderComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.user = new User;
-    if(this.cookieService.get('logged')){
-      this.user.ID = +this.cookieService.get('userID');
-      this.user.type = !!+this.cookieService.get('userType');
-      if(this.user.type){
-        this.userType = 'user';
-      }
-      else{
-        this.userType = 'admin';
-      }
-    }
 
     this.nbPersonsMax = 10;
 

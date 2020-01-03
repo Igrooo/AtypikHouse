@@ -6,8 +6,7 @@ import { Icons } from "src/app/elems/elem-icon/icons-categories"
 
 @Component({
   selector: 'app-list',
-  templateUrl: './list.component.html',
-  styles: []
+  templateUrl: './list.component.html'
 })
 export class ListComponent implements OnInit {
   @Input() listTitle:string = 'Locations disponibles pour vos critères';
@@ -15,7 +14,7 @@ export class ListComponent implements OnInit {
 
   math = Math;
   
-  list: [House];
+  houses: [House];
 
   icons =  Icons;
   iconsSet      :string = 'travel';
@@ -26,15 +25,10 @@ export class ListComponent implements OnInit {
   constructor(private data: DataService,
               private router: Router
               ) { }
-
-  goDetails(house: House) {
-    this.router.navigate(["/house", house.ID]);
-  }
-
   ngOnInit() {
     this.icons = Icons;
-    this.data.getList("houses", list => {
-      this.list = list;
+    this.data.getList("houses", houses => {
+      this.houses = houses;
     });
     //console.log('filterCategory: '+this.filterCategory);
   }

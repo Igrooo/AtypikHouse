@@ -1,17 +1,34 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { Payment } from 'src/app/logic/Payment';
+import { DataService } from "src/app/data.service";
 
 @Component({
   selector: 'app-payment',
-  templateUrl: './payment.component.html',
-  styles: []
+  templateUrl: './payment.component.html'
 })
 export class PaymentComponent implements OnInit {
+  payments : [Payment];
   payment : Payment;
 
-  constructor() { }
+  @Input() bookingID: number;
+
+  constructor(private data: DataService) { }
 
   ngOnInit() {
+    this.payment = new Payment();
+    this.data.getList("payments", payments => {
+      if(payments){
+        this.payments = payments;
+        payments.forEach((payment, index) => {
+          if(payment.ID_booking == this.bookingID){
+            this.payment.status = payment.status;
+            this.payment.amount = payment.amount;
+            console.log(payment.amount);
+          }
+        });
+      }
+    });
+
   }
 
 }

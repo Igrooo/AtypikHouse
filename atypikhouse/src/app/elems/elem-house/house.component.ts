@@ -7,18 +7,18 @@ import { DataService } from "src/app/data.service";
 import { CookieService } from "ngx-cookie-service";
 import { House } from "src/app/logic/House";
 import { Booking } from 'src/app/logic/Booking';
+import { Payment } from 'src/app/logic/Payment';
 import { Tag } from "src/app/logic/Tag";
 import { Activity } from "src/app/logic/Activity";
-import { ActivityType } from "src/app/logic/ActivityType";
 import { Icons } from "src/app/elems/elem-icon/icons-categories";
 
 @Component({
   selector: 'app-house',
-  templateUrl: './house.component.html',
-  styles: []
+  templateUrl: './house.component.html'
 })
 
 export class HouseComponent implements OnInit {
+  isDataLoaded:boolean = false;
   math = Math;
   
   icons = Icons;
@@ -29,14 +29,13 @@ export class HouseComponent implements OnInit {
   
   house: House;
   booking: Booking;
+  payment: Payment;
 
   tagsList:string[] = [];
   tags:Tag[]= [];
 
   activitiesList:string[] = [];
   activities:Activity[]= [];
-
-  activitiesType:ActivityType[]= [];
 
   tagsActivityList:string[] = [];
   tagsActivity = [];
@@ -78,7 +77,8 @@ export class HouseComponent implements OnInit {
     window.open(mapURL, "_blank");
   }
 
-  share(house: House) {
+  share(target:string, house: House) {
+    let url = '';
     if ('share' in navigator) {
       (navigator as any).share({
         title: house.title + ` - ` + house.city + "," + house.address,
@@ -86,9 +86,12 @@ export class HouseComponent implements OnInit {
         url: window.location.href
       }).then( () => console.log("shared")).catch( () =>  console.log("error sharing"));
     } else {
-      const shareTxt = house.title + ` - ` + house.city + "," + house.address + ` - ` + house.description;
-      const shareURL = `whatsapp://send?text=${encodeURIComponent(shareTxt)}`;
-      window.open(shareURL, "_blank");
+        if(target == 'whatsapp'){
+          url = 'whatsapp://send?text=';
+        }
+        const shareTxt = house.title + ` - ` + house.city + "," + house.address + ` - ` + house.description;
+        const shareURL = url + encodeURIComponent(shareTxt);
+        window.open(shareURL, "_blank");
     }
   }
 
@@ -130,7 +133,18 @@ export class HouseComponent implements OnInit {
     this.updatePrice();
   }
 
+  newPayment(booking, ID){
+    this.payment = new Payment();
+    this.payment.status = booking.status;
+    this.payment.amount = this.totalPrice;
+    this.payment.date   = booking.date;
+    this.payment.ID_user = booking.ID_user;
+    this.payment.ID_booking = ID;
+    this.data.save("payments", this.payment, payment => {});
+  }
+
   newBooking(){
+    this.booking = new Booking();
     this.booking.status     = 1;
     this.booking.date       = this.datePipe.transform(new Date(),"yyyy-MM-dd");
     this.booking.dateStart  = this.datePipe.transform(this.dateStart,"yyyy-MM-dd");
@@ -139,19 +153,17 @@ export class HouseComponent implements OnInit {
     this.booking.ID_user    = +this.cookieService.get('userID');
     this.booking.ID_house   = this.house.ID;
 
-    this.data.save("booking", this.booking, booking => {
-      if (booking) {
-        this.router.navigate(["/booking", booking.insertId]);
+    this.data.save("booking", this.booking, insertID => {
+      if (Number.isInteger(insertID)) {
+        this.newPayment(this.booking,insertID)
+        this.router.navigate(["/booking", insertID]);
       }
     });
-
   }
 
   ngOnInit() {
     this.house   = new House();
-    this.booking = new Booking();
     this.priceTTC = 0;
-
     this.routingSubscription =
       this.route.params.subscribe(params => {
         if(params["id"]) {
@@ -191,13 +203,6 @@ export class HouseComponent implements OnInit {
                     if(activity){
                       this.activities.push(activity);
                       this.markers.push({lat: activity.locationLat, lng: activity.locationLng, icon: '/assets/img/marker-grey.png'});
-
-                      this.data.get("activities_types", activity.ID_type, activity_type => {
-                        if(activity_type){
-                          this.activitiesType.push(activity_type);
-                        }
-                      });
-
                       if(activity.listID_tags != ''){
                         let tags:Tag[]= [];
                         this.tagsActivityList = activity.listID_tags.split(',');

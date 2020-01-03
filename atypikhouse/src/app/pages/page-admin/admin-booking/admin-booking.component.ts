@@ -1,14 +1,14 @@
+import * as $ from 'jquery';
 import { Component, OnInit } from '@angular/core';
 import { DataService} from "src/app/data.service";
 import { Booking } from "src/app/logic/Booking";
 
 @Component({
   selector: 'app-admin-booking',
-  templateUrl: './admin-booking.component.html',
-  styles: []
+  templateUrl: './admin-booking.component.html'
 })
 export class AdminBookingComponent implements OnInit {
-  list: [Booking];
+  bookings: [Booking];
 
   displayedColumns: string[] = ['ID', 'status', 'nbPersons', 'date', 'dateStart', 'dateEnd', 'ID_user', 'ID_house', 'tools'];
 
@@ -69,10 +69,25 @@ export class AdminBookingComponent implements OnInit {
       }
     });
   }
+
+  getLabel(value) {
+    switch (value){
+      case 0:
+        value = 'Annulée';
+        break;
+      case 1:
+        value = 'En attente';
+        break;
+      case 2:
+        value = 'Validée';
+        break;
+    }
+    return value;
+  }
   
   ngOnInit() {
-    this.data.getList("booking", list => {
-      this.list = list;
+    this.data.getList("booking", bookings => {
+      this.bookings = bookings;
     });
   }
 
