@@ -20,7 +20,9 @@ import { Icons } from "src/app/elems/elem-icon/icons-categories";
 export class HouseComponent implements OnInit {
   isDataLoaded:boolean = false;
   math = Math;
-  
+
+  editable:boolean = false;
+
   icons = Icons;
   iconsSet      :string = 'travel';
   iconsSize     :string = 'banner';
@@ -170,7 +172,13 @@ export class HouseComponent implements OnInit {
           this.data.get("houses", params["id"], house => {
             if (house) {
               this.house = house;
-              
+
+              if(!!this.cookieService.get('logged') == true) {
+                /*Display cta overlay editor button if logged user is admin or house user*/
+                if((+this.cookieService.get('userType') == 0) || (+this.cookieService.get('userID') == this.house.ID)){
+                  this.editable = true;
+                }
+              }
               if(this.house.listID_tags != ''){
                 this.tagsList = this.house.listID_tags.split(',');
                 this.tagsList.forEach((tagID) => {

@@ -1,1 +1,94 @@
-<p>admin-payments works!</p>
+<table mat-table matSort [dataSource]="payments" class="mat-elevation-z8 ah-admin-table {{ editOn }}">
+
+    <!--- Note that these columns can be defined in any order.
+            The actual rendered columns are set as a property on the row definition" -->
+
+    <ng-container matColumnDef="ID" sticky>
+        <th mat-header-cell *matHeaderCellDef mat-sort-header class="ah-admin-table-col-ID">ID</th>
+        <td mat-cell *matCellDef="let payment"class="ah-admin-table-col-ID"><span>{{payment.ID}}</span></td>
+    </ng-container>
+
+    <ng-container matColumnDef="status">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header class="ah-admin-table-col-100">
+            <span class="ah-admin-head">Statut</span>
+            </th>
+        <td mat-cell *matCellDef="let payment" class="ah-admin-table-col-100">
+            <span class="ah-admin-value ah-admin-value-payment-{{payment.status}}">{{getLabel(payment.status)}}</span>
+            <mat-form-field class="ah-admin-field">
+                <mat-select matNativeControl (selectionChange)="update(payment.ID,'status','change',$event)" class="ah-admin-input ah-admin-input-select" [(value)]="payment.status" [attr.data-prev-value]="payment.status">
+                    <mat-option [value]="0">{{getLabel(0)}}</mat-option>
+                    <mat-option [value]="1">{{getLabel(1)}}</mat-option>
+                    <mat-option [value]="2">{{getLabel(2)}}</mat-option>
+                </mat-select>
+            </mat-form-field>
+        </td>
+    </ng-container>
+
+    <ng-container matColumnDef="amount">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header class="ah-admin-table-col">
+            <span class="ah-admin-head">Montant</span>
+            </th>
+        <td mat-cell *matCellDef="let payment" class="ah-admin-table-col-60">
+            <span class="ah-admin-value">{{payment.amount}}</span>
+            <mat-form-field class="ah-admin-field">
+                <input matInput type="text" (input)="update(payment.ID,'amount','input',$event)" class="ah-admin-input ah-admin-input-num" [value]="payment.amount" [attr.data-prev-value]="payment.amount">
+            </mat-form-field>
+        </td>
+    </ng-container>
+
+    <ng-container matColumnDef="date">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header class="ah-admin-table-col">
+            <span class="ah-admin-head">Date de paiement</span>
+            </th>
+        <td mat-cell *matCellDef="let payment" class="ah-admin-table-col">
+            
+        </td>
+    </ng-container>
+    
+    <ng-container matColumnDef="ID_user">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header class="ah-admin-table-col-60">
+            <span class="ah-admin-head">ID Utilisateur</span>
+            </th>
+        <td mat-cell *matCellDef="let payment" class="ah-admin-table-col-60">
+            <span class="ah-admin-value">{{payment.ID_user}}</span>
+        <mat-form-field class="ah-admin-field">
+                <input matInput type="text" (input)="update(payment.ID,'ID_user','input',$event)" class="ah-admin-input ah-admin-input-num" [value]="payment.ID_user" [attr.data-prev-value]="payment.ID_user">
+            </mat-form-field>
+        </td>
+    </ng-container>
+    
+    <ng-container matColumnDef="ID_booking">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header class="ah-admin-table-col-60">
+            <span class="ah-admin-head">ID Annonce</span>
+        </th>
+        <td mat-cell *matCellDef="let payment" class="ah-admin-table-col-60">
+            <span class="ah-admin-value">{{payment.ID_booking}}</span>
+        <mat-form-field class="ah-admin-field">
+                <input matInput type="text" (input)="update(payment.ID,'ID_booking','input',$event)" class="ah-admin-input ah-admin-input-num" [value]="payment.ID_booking" [attr.data-prev-value]="payment.ID_booking">
+            </mat-form-field>
+        </td>
+    </ng-container>
+
+    <ng-container matColumnDef="tools" stickyEnd>
+        <th mat-header-cell *matHeaderCellDef mat-sort-header class="ah-admin-table-edit-container"></th>
+        <td mat-cell *matCellDef="let payment" class="ah-admin-table-edit-container">
+            <div id="{{ payment.ID }}" class="ah-admin-table-edit">
+                <button mat-mini-fab class="ah-admin-cta ah-cta-edit ah-cta-edit-focus ah-cta-primary" (click)="focus(payment.ID,'edit')" color="primary"><mat-icon>edit</mat-icon></button>
+                <button mat-mini-fab class="ah-admin-cta ah-cta-delete ah-cta-delete-focus" (click)="focus(payment.ID,'delete')"><mat-icon>delete</mat-icon></button>
+                <button mat-mini-fab class="ah-admin-cta ah-cta-cancel ah-cta-cancel-delete" (click)="cancel(payment.ID,'delete')"><mat-icon>close</mat-icon></button>
+                <button mat-mini-fab class="ah-admin-cta ah-cta-delete ah-cta-delete-confirm" (click)="delete(payment.ID)"><mat-icon>delete</mat-icon></button>
+                <form id="form-edit-{{ payment.ID }}" class="ah-admin-form" (submit)="edit(payment)">
+                    <input type="text" name="status"    [value]="payment.status"    hidden>
+                    <input type="text" name="amount" [value]="payment.amount" hidden>
+                    <input type="text" name="ID_user"   [value]="payment.ID_user"   hidden>
+                    <input type="text" name="ID_booking"  [value]="payment.ID_booking"  hidden>
+                    <button mat-mini-fab class="ah-admin-cta ah-cta-cancel ah-cta-cancel-edit" (click)="cancel(payment.ID,'edit')" type="reset"><mat-icon>close</mat-icon></button>
+                    <button mat-mini-fab class="ah-admin-cta ah-cta-edit ah-cta-edit-submit ah-cta-primary" type="submit"><mat-icon>done</mat-icon></button>
+                </form>
+            </div>
+        </td>
+    </ng-container>
+    
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;" class="ah-admin-table-tr"></tr>
+</table>

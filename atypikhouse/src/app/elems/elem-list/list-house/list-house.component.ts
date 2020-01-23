@@ -39,18 +39,34 @@ export class ListHouseComponent implements OnInit {
               public dialog: MatDialog
               ) { }
 
-  openCalendar(): void {
+  openCalendar(houseID): void {
     const dialogRef = this.dialog.open(BookingCalendarComponent, {
       width: '1000px',
-      data: {}
+      data: {houseID}
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
-      
+      //console.log('The dialog was closed');
     });
   }
-            
+  
+  getTotalBooking(houseID){
+    //console.log('booking: ' +houseID);
+    /*
+    this.data.getTotalBooking(houseID, total => {
+      return total["COUNT(*)"];
+    });
+    */
+  }
+
+  getTotalWaitingBooking(houseID){
+    /*
+    this.data.getTotalWaitingBooking(houseID, total => {
+      console.log('wait booking: ' +total["COUNT(*)"]);
+      return total["COUNT(*)"];
+    });
+    */
+  }
 
   ngOnInit() {
     this.user = new User;
@@ -70,9 +86,5 @@ export class ListHouseComponent implements OnInit {
     this.data.getList("houses", houses => {
       this.houses = houses;
     });
-    this.data.getList("booking", bookings => {
-      this.bookings = bookings;
-    });
   }
-
 }

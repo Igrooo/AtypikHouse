@@ -1,5 +1,6 @@
 
 <section class="ah-container-primary ah-section ah-product-banner ah-slide">
+  <a *ngIf="editable" class="ah-cta-overlay ah-cta-primary" mat-fab routerLink="/house/{{ house.ID }}/edit"><mat-icon>edit</mat-icon></a>
     <!--
     <app-icon *ngIf="house" [forceReload]="true" (click)="slide()" [iconSize]="iconsSize" [iconsSet]="iconsSet" [iconGroup]="icons[house.ID_category - 1].group" [iconName]="icons[house.ID_category - 1].name" [iconBgFolder]="iconsBgFolder" [iconBg]="house.ID" [iconColor]="iconsColor" [iconTitle]="house.title" [iconSubTitle]="house.zipcode+', '+house.city" [cardText]="house.description" [cardMarker]="priceTTC.toString()"></app-icon>
     -->
@@ -90,7 +91,3 @@
     <h2 class="ah-title ah-title-separator important"><span class="ah-title-text"><i class="ah-title-icon-left la la-leaf"></i>Commentaires<i class="ah-title-icon-right la la-leaf"></i></span></h2>
   <p>list comments</p>
 </section>
-
-<!--
-<a class="ah-overlay-cta-primary" mat-fab routerLink="/house/{{ house.ID }}/edit"><mat-icon>edit</mat-icon></a>
--->

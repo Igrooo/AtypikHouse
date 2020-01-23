@@ -1,1 +1,120 @@
-<p>admin-users works!</p>
+<table mat-table matSort [dataSource]="users" class="mat-elevation-z8 ah-admin-table {{ editOn }}">
+    
+    <!--- Note that these columns can be defined in any order.
+            The actual rendered columns are set as a property on the row definition" -->
+
+    <ng-container matColumnDef="ID" sticky>
+        <th mat-header-cell *matHeaderCellDef mat-sort-header class="ah-admin-table-col-ID">ID</th>
+        <td mat-cell *matCellDef="let user"class="ah-admin-table-col-ID"><span>{{user.ID}}</span></td>
+    </ng-container>
+
+    <ng-container matColumnDef="type">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header class="ah-admin-table-col">
+            <span class="ah-admin-head">Type</span>
+         </th>
+        <td mat-cell *matCellDef="let user" class="ah-admin-table-col">
+            <span class="ah-admin-value ah-admin-value-user-{{user.type}}">{{getLabel(user.type)}}</span>
+            <mat-form-field class="ah-admin-field">
+                <mat-select matNativeControl (selectionChange)="update(user.ID,'type','change',$event)" class="ah-admin-input ah-admin-input-select" [(value)]="user.type" [attr.data-prev-value]="user.type">
+                    <mat-option [value]="0">{{getLabel(0)}}</mat-option>
+                    <mat-option [value]="1">{{getLabel(1)}}</mat-option>
+                </mat-select>
+            </mat-form-field>
+        </td>
+    </ng-container>
+
+    <ng-container matColumnDef="email">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header class="ah-admin-table-col">
+            <span class="ah-admin-head">E-mail</span>
+         </th>
+        <td mat-cell *matCellDef="let user" class="ah-admin-table-col">
+            <span class="ah-admin-value">{{user.email}}</span>
+        <mat-form-field class="ah-admin-field">
+            <input matInput type="text" (input)="update(user.ID,'email','input',$event)" class="ah-admin-input ah-admin-input-title" [value]="user.email" [attr.data-prev-value]="user.email">
+        </mat-form-field>
+        </td>
+    </ng-container>
+
+    <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header class="ah-admin-table-col">
+            <span class="ah-admin-head">Nom</span>
+         </th>
+        <td mat-cell *matCellDef="let user" class="ah-admin-table-col">
+            <span class="ah-admin-value">{{user.name}}</span>
+        <mat-form-field class="ah-admin-field">
+            <input matInput type="text" (input)="update(user.ID,'name','input',$event)" class="ah-admin-input ah-admin-input-title" [value]="user.name" [attr.data-prev-value]="user.name">
+        </mat-form-field>
+        </td>
+    </ng-container>
+
+    <ng-container matColumnDef="firstname">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header class="ah-admin-table-col">
+            <span class="ah-admin-head">Prénom</span>
+         </th>
+        <td mat-cell *matCellDef="let user" class="ah-admin-table-col">
+            <span class="ah-admin-value">{{user.firstname}}</span>
+        <mat-form-field class="ah-admin-field">
+            <input matInput type="text" (input)="update(user.ID,'firstname','input',$event)" class="ah-admin-input ah-admin-input-title" [value]="user.firstname" [attr.data-prev-value]="user.firstname">
+        </mat-form-field>
+        </td>
+    </ng-container>
+
+    <ng-container matColumnDef="address">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header class="ah-admin-table-col">
+            <span class="ah-admin-head">Adresse</span>
+         </th>
+        <td mat-cell *matCellDef="let user" class="ah-admin-table-col">
+            <span class="ah-admin-value">{{user.address}}</span>
+        <mat-form-field class="ah-admin-field">
+            <input matInput type="text" (input)="update(user.ID,'address','input',$event)" class="ah-admin-input ah-admin-input-title" [value]="user.address" [attr.data-prev-value]="user.address">
+        </mat-form-field>
+        </td>
+    </ng-container>
+
+    <ng-container matColumnDef="zipcode">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header class="ah-admin-table-col">
+            <span class="ah-admin-head">Code postal</span>
+         </th>
+        <td mat-cell *matCellDef="let user" class="ah-admin-table-col">
+            <span class="ah-admin-value">{{user.zipcode}}</span>
+        <mat-form-field class="ah-admin-field">
+            <input matInput type="text" (input)="update(user.ID,'zipcode','input',$event)" class="ah-admin-input ah-admin-input-title" [value]="user.zipcode" [attr.data-prev-value]="user.zipcode">
+        </mat-form-field>
+        </td>
+    </ng-container>
+
+    <ng-container matColumnDef="city">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header class="ah-admin-table-col">
+            <span class="ah-admin-head">Ville</span>
+         </th>
+        <td mat-cell *matCellDef="let user" class="ah-admin-table-col">
+            <span class="ah-admin-value">{{user.city}}</span>
+        <mat-form-field class="ah-admin-field">
+            <input matInput type="text" (input)="update(user.ID,'city','input',$event)" class="ah-admin-input ah-admin-input-title" [value]="user.city" [attr.data-prev-value]="user.city">
+        </mat-form-field>
+        </td>
+    </ng-container>
+
+
+    <ng-container matColumnDef="tools" stickyEnd>
+        <th mat-header-cell *matHeaderCellDef mat-sort-header class="ah-admin-table-edit-container"></th>
+        <td mat-cell *matCellDef="let user" class="ah-admin-table-edit-container">
+            <div id="{{ user.ID }}" class="ah-admin-table-edit">
+                <button mat-mini-fab class="ah-admin-cta ah-cta-edit ah-cta-edit-focus ah-cta-primary" (click)="focus(user.ID,'edit')" color="primary"><mat-icon>edit</mat-icon></button>
+                <button mat-mini-fab class="ah-admin-cta ah-cta-delete ah-cta-delete-focus" (click)="focus(user.ID,'delete')"><mat-icon>delete</mat-icon></button>
+                <button mat-mini-fab class="ah-admin-cta ah-cta-cancel ah-cta-cancel-delete" (click)="cancel(user.ID,'delete')"><mat-icon>close</mat-icon></button>
+                <button mat-mini-fab class="ah-admin-cta ah-cta-delete ah-cta-delete-confirm" (click)="delete(user.ID)"><mat-icon>delete</mat-icon></button>
+                <form id="form-edit-{{ user.ID }}" class="ah-admin-form" (submit)="edit(user)">
+                    <input type="text" name="type"      [value]="user.type"       hidden>
+                    <input type="text" name="user"       [value]="user.email"       hidden>
+                    <button mat-mini-fab class="ah-admin-cta ah-cta-cancel ah-cta-cancel-edit" (click)="cancel(user.ID,'edit')" type="reset"><mat-icon>close</mat-icon></button>
+                    <button mat-mini-fab class="ah-admin-cta ah-cta-edit ah-cta-edit-submit ah-cta-primary" type="submit"><mat-icon>done</mat-icon></button>
+                </form>
+            </div>
+        </td>
+    </ng-container>
+    
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;" class="ah-admin-table-tr"></tr>
+</table>
+      

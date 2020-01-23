@@ -1,6 +1,26 @@
-<h2 mat-dialog-title>Calendrier des réservations</h2>
+<h1 mat-dialog-title class="ah-booking-calendar-title">Calendrier des réservations</h1>
 <div mat-dialog-content>
   <div class="ah-booking-calendar">
-    <full-calendar defaultView="dayGridMonth" [plugins]="calendarPlugins"></full-calendar>
+    <full-calendar locale="fr" firstDay="1" defaultView="dayGridMonth"  [plugins]="calendarPlugins"
+    [header]="{
+      left:   'dayGridMonth,timeGridWeek',
+      center: 'title',
+      right:  'today prev,next'
+    }"
+    [buttonText]="{
+      today:    'Aujourd\'hui',
+      month:    'Mois',
+      week:     'Semaine',
+      list:     'Liste'
+    }"
+    [events]="[
+      { title: 'X nuit(s) pour X p.', start: '2020-01-11', end: '2020-01-12', backgroundColor:'#15a08c', borderColor:'#15a08c'},
+      { title: 'X nuit(s) pour X p.', start: '2020-01-27', end: '2020-01-30', backgroundColor:'#15a08c', borderColor:'#15a08c'},
+      { title: 'X nuit(s) pour X p.', start: '2020-02-11', end: '2020-02-20', backgroundColor:'#15a08c', borderColor:'#15a08c'},
+      { title: 'X nuit(s) pour X p.', start: '2020-02-21', end: '2020-02-28', backgroundColor:'#15a08c', borderColor:'#15a08c'},
+      { title: 'X nuit(s) pour X p.', start: '2020-03-20', end: '2020-03-22', backgroundColor:'#15a08c', borderColor:'#15a08c'},
+      { title: 'X nuit(s) pour X p.', start: '2020-03-26', end: '2020-03-26', backgroundColor:'#15a08c', borderColor:'#15a08c'}
+    ]"
+    ></full-calendar>
   </div>
 </div>

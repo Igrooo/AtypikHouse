@@ -15,7 +15,7 @@ export class AppComponent implements OnInit {
   public page:string = "";
   public pagetype:string;
   public logged:boolean;
-  private cookieLogged: string;
+  private cookieLogged: boolean;
 
   user:     User;
 
@@ -27,8 +27,8 @@ export class AppComponent implements OnInit {
               ) {
                 this.router.events.subscribe((event: Event) => {
                   if (event instanceof NavigationStart) {
-                    this.cookieLogged = this.cookieService.get('logged');
-                    if(this.cookieLogged == 'true'){
+                    this.cookieLogged = !!this.cookieService.get('logged');
+                    if(this.cookieLogged == true){
                       this.logged = true;
                       this.pagetype = 'private';
                       console.log(this.pagetype);

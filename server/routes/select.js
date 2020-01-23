@@ -24,4 +24,24 @@ select.get('/select/:tablename/:ID', function (req, res) {
     });
 });
 
+select.get('/totalbooking/:houseID', function (req, res) {
+    db.query("SELECT COUNT(*) FROM " + tableprefix + "booking" + " WHERE status=2 AND ID_house=" + req.params.houseID, (err, result) => {
+        if (err) throw(err);
+        res.status(200).send({
+            status: true,
+            content: result[0]
+        })
+    });
+});
+
+select.get('/totalwaitingbooking/:houseID', function (req, res) {
+    db.query("SELECT COUNT(*) FROM " + tableprefix + "booking" + " WHERE status=1 AND ID_house=" + req.params.houseID, (err, result) => {
+        if (err) throw(err);
+        res.status(200).send({
+            status: true,
+            content: result[0]
+        })
+    });
+});
+
 export default select;

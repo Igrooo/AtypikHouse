@@ -297,6 +297,7 @@
         background-image: url(../img/bg-invert.png);
     }
     .ah-product-banner{
+        position: relative;
         margin: 0;
         padding: 0;
     }
@@ -474,6 +475,9 @@
         transform: rotate(55deg);
         margin-left: 20px;
     }
+
+    .ah-booking-calendar-title{margin-top: 0 !important;}
+    .ah-booking-calendar h2{margin: 5px;font-size: 2em;}
     
 /*********************/
 /**** CTA & LINKS ****/
@@ -485,27 +489,32 @@
         text-decoration: underline;
     }
 
-    /* CTA in overlay (fixed position to bottom)*/
-    .ah-overlay-cta-primary {
-        position: fixed;
-        right: @ah-padding-primary;
-        bottom: @ah-padding-primary;
+    /* CTA in overlay */
+    .ah-cta-overlay {
+        position: absolute;
+        top: @ah-padding-primary;
+        left: @ah-padding-primary;
+        z-index: 1;
     }
     /*
-    .ah-overlay-cta-primary-edit {
+    .ah-cta-overlay-edit {
 
     }
-    .ah-overlay-cta-primary-valid {
+    .ah-cta-overlay-valid {
     }
-    */
-    .ah-overlay-cta-primary-cancel {
+
+    .ah-cta-overlay-cancel {
         left: @ah-padding-primary;
         right: auto;
     }
+    */
     .ah-cta-search-top{
         padding-bottom: 20px;
         padding-top: 20px;
         z-index: 1000;
+    }
+    .ah-cta-text{
+        line-height: 1.5;
     }
 
 /*********************/
@@ -679,8 +688,17 @@
                     }
                 }
                 .ah-list-houses-details{
-                opacity: 1;
+                    opacity: 1;
                 }
+                .ah-cta-calendar{
+                    visibility: visible;
+                    opacity: 1;
+                }
+            }
+            .ah-cta-calendar{
+                visibility: hidden;
+                opacity: 0;
+                transition: opacity ease-out 250ms
             }
         }
         .ah-list-houses-booking{
@@ -754,6 +772,9 @@
     .ah-form {
         padding: @ah-padding-primary calc(@ah-padding-primary * 2);
     }
+    .ah-form-house .ah-form-fieldset{
+        margin-top: 0;
+    }
     .ah-form-search{
         box-sizing: border-box;
         .ah-form-icon{
@@ -808,11 +829,15 @@
         max-width: 300px;
         text-align: center;
     }
+    .ah-form-house-title,
     .ah-product-booking-title{
         margin-bottom: 0;
     }
     .ah-form-booking-nb{
         min-width: 215px;
+    }
+    .ah-form-house{
+        margin-bottom: 20px;
     }
 
 /*********************/

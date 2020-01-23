@@ -1,2 +1,46 @@
-
+                <!--
+                <h6>Réservations à confirmer (Transactions en attente)</h6>
+                <ul class="ah-list list-inline ah-list-booking">
+                  <ng-container *ngFor="let booking of bookings">
+                    <li *ngIf="booking.ID_house == house.ID && booking.status == 1" class="ah-list-booking-item">
+                      <button class="ah-cta-primary" mat-button [matMenuTriggerFor]="booking"><app-payment [bookingID]="booking.ID"></app-payment></button>
+                        <mat-menu #booking="matMenu">
+                            <button mat-menu-item routerLink="">
+                              <mat-icon>info</mat-icon>
+                              <span>Voir les détails de la réservation</span>
+                            </button>
+                            <button mat-menu-item (click)="bookingConfirm()">
+                              <mat-icon>done</mat-icon>
+                              <span>Confirmer</span>
+                            </button>
+                            <button mat-menu-item (click)="bookingCancel()">
+                              <mat-icon>clear</mat-icon>
+                              <span>Refuser</span>
+                            </button>
+                        </mat-menu>
+                    </li>
+                  </ng-container>
+                </ul>
+                <h6>Réservations validées (Transactions effectuées)</h6>
+                <ul class="ah-list list-inline ah-list-booking">
+                  <ng-container *ngFor="let booking of bookings">
+                    <li *ngIf="booking.ID_house == house.ID && booking.status == 2"  class="ah-list-booking-item">
+                      <button class="ah-cta-secondary" mat-button [matMenuTriggerFor]="booking"><app-payment [bookingID]="booking.ID"></app-payment></button>
+                        <mat-menu #booking="matMenu">
+                            <button mat-menu-item routerLink="">
+                              <mat-icon>info</mat-icon>
+                              <span>Voir les détails de la réservation</span>
+                            </button>
+                            <button mat-menu-item (click)="bookingConfirm()">
+                              <mat-icon>done</mat-icon>
+                              <span>Confirmer</span>
+                            </button>
+                            <button mat-menu-item (click)="bookingCancel()">
+                              <mat-icon>clear</mat-icon>
+                              <span>Refuser</span>
+                            </button>
+                        </mat-menu>
+                    </li>
+                  </ng-container>
+                </ul>-->
 <span class="ah-payment payment-status-{{ payment.status }}">{{ payment.amount }} €</span>

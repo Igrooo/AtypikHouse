@@ -103,10 +103,10 @@ const routes : Routes = [
   /**** Global pages ****/
   { path: '',             component: HomePage },             // Home
   { path: 'admin',        component: HomePage },             // Home
-  //{ path: 'demo',       component: DemoPage },           // Angular Material components base
-  //{ path: 'demo-typo',  component: DemoTypoPage },       // Fonts components base
-  //{ path: 'demo-icons', component: DemoIconsPage },      // AtypikHouse icons base
-  //{ path: 'all',        component: AllPage },            // AtypikHouse components base
+  { path: 'demo',       component: DemoPage },           // Angular Material components base
+  { path: 'demo-typo',  component: DemoTypoPage },       // Fonts components base
+  { path: 'demo-icons', component: DemoIconsPage },      // AtypikHouse icons base
+  { path: 'all',        component: AllPage },            // AtypikHouse components base
   { path: 'categories', component: CategoriesPage },     // List all categories, all activities, all tags
 //
   { path: 'login',      component: FormLoginComponent },
