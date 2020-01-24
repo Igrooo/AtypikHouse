@@ -1,6 +1,10 @@
 <section class="ah-container-primary lead ah-section ah-product-add">
     <h2 class="important">{{ title }}</h2>
     <form (submit)="submit()" class="ah-container-tertiary ah-section">
+        <h3 class="ah-form-house-title">Photo</h3>
+        <div class="ah-form ah-form-house">
+            <img src="data/static/img/houses/{{ house.ID }}-banner.png" alt="house">
+        </div>
         <h3 class="ah-form-house-title">Description</h3>
         <div class="ah-form ah-form-house">
             <mat-form-field class="ah-form-fieldset large ah-form-house-title">
@@ -43,19 +47,21 @@
             <mat-form-field class="ah-form-fieldset ah-form-house-address">
                 <mat-label>Thématiques</mat-label>
                 <mat-select>
-                    <mat-option *ngFor="let category of categories" [value]="category.ID">{{category.title}}</mat-option>
+                    <ng-container *ngFor="let tag of tags">
+                        <mat-option [value]="tag.ID" multiple>{{tag.tag}}</mat-option>
+                    </ng-container>
                 </mat-select>
             </mat-form-field>
             <mat-form-field class="ah-form-fieldset ah-form-house-address">
                 <mat-label>Services & équipements</mat-label>
                 <mat-select>
-                    <mat-option *ngFor="let category of categories" [value]="category.ID">{{category.title}}</mat-option>
+                    <mat-option *ngFor="let tag of tags" [value]="tag.ID" multiple>{{tag.tag}}</mat-option>
                 </mat-select>
             </mat-form-field>
             <mat-form-field class="ah-form-fieldset ah-form-house-address">
                 <mat-label>Activités</mat-label>
                 <mat-select>
-                    <mat-option *ngFor="let category of categories" [value]="category.ID">{{category.title}}</mat-option>
+                    <mat-option *ngFor="let activity of activities" [value]="activity.ID" multiple>{{activity.title}}</mat-option>
                 </mat-select>
             </mat-form-field>
         </div>
@@ -75,6 +81,3 @@
         <div class="ah-house-submit"><button mat-button type="submit" class="ah-cta-primary ah-house-add-cta"><mat-icon>add</mat-icon> Publier</button></div>
     </form>
 </section>
-<div>
-    {{ house | json }}
-</div>

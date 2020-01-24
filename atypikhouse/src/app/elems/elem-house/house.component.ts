@@ -175,7 +175,7 @@ export class HouseComponent implements OnInit {
 
               if(!!this.cookieService.get('logged') == true) {
                 /*Display cta overlay editor button if logged user is admin or house user*/
-                if((+this.cookieService.get('userType') == 0) || (+this.cookieService.get('userID') == this.house.ID)){
+                if((+this.cookieService.get('userType') == 0) || (+this.cookieService.get('userID') == this.house.ID_user)){
                   this.editable = true;
                 }
               }
