@@ -18,7 +18,7 @@ export class HeaderComponent implements OnInit {
   categories: [Category];
   tags: [Tag];
 
-  user:     User;
+  user: User;
 
   nbPersonsMax:number;
 
@@ -80,6 +80,11 @@ export class HeaderComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.user = new User;
+    
+    if(this.cookieService.get('logged')){
+      this.user.ID = +this.cookieService.get('userID');
+    }
 
     this.nbPersonsMax = 10;
 

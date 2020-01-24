@@ -1,1 +1,45 @@
-<p>form-user</p>
+ <form class="ah-form ah-form-user">
+    <mat-form-field>
+        <mat-label>Nom</mat-label>
+        <input matInput name="name" [value]="user.name">
+    </mat-form-field>
+
+    <mat-form-field>
+        <mat-label>Prénom</mat-label>
+        <input matInput name="firstname" [value]="user.firstname">
+    </mat-form-field>
+
+    <mat-form-field>
+        <mat-label>Adresse</mat-label>
+        <input matInput name="address" [value]="user.address">
+    </mat-form-field>
+    
+    <mat-form-field>
+        <mat-label>Code postal</mat-label>
+        <input matInput name="zipcode" [value]="user.zipcode">
+    </mat-form-field>
+
+    <mat-form-field>
+        <mat-label>Ville</mat-label>
+        <input matInput name="city" [value]="user.city">
+    </mat-form-field>
+    
+    <mat-form-field>
+        <mat-label>E-mail</mat-label>
+        <input matInput name="email" type="email" [value]="user.email">
+    </mat-form-field>
+
+    <mat-form-field>
+        <mat-label>Mot de passe</mat-label>
+        <input matInput name="password" type="password">
+    </mat-form-field>
+
+    <mat-form-field>
+        <mat-label>Vérification du mot de passe</mat-label>
+        <input matInput name="checkpassword" type="password">
+    </mat-form-field>
+
+    <div class="ah-form-fieldset">
+        <button class="ah-cta-primary" mat-raised-button type="submit">Valider</button>
+    </div>
+</form>

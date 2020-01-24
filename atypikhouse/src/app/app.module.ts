@@ -101,8 +101,8 @@ const routes : Routes = [
   ////// BOOTSTRAPED PAGES (HOME,CATEGORIES)
 
   /**** Global pages ****/
-  { path: '',             component: HomePage },             // Home
-  { path: 'admin',        component: HomePage },             // Home
+  { path: '',           component: HomePage },           // Home
+  { path: 'admin',      component: HomePage },           // Home
   { path: 'demo',       component: DemoPage },           // Angular Material components base
   { path: 'demo-typo',  component: DemoTypoPage },       // Fonts components base
   { path: 'demo-icons', component: DemoIconsPage },      // AtypikHouse icons base

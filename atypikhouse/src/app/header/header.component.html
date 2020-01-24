@@ -27,8 +27,8 @@
                             <li><button (click)="login()" class="ah-cta-primary" mat-button><mat-icon>person</mat-icon><span class="not-mobile">Se connecter</span></button></li>
                         </ul>
                         <ul class="list-inline only-logged">
-                            <li class="not-mobile only-user"> <button routerLink="/user/{{user.ID}}/houses"   class="ah-cta-primary" mat-button><mat-icon>house</mat-icon><span class="not-mobile">Mes annonces</span></button></li>
-                            <li class="not-mobile only-user"> <button routerLink="/user/{{user.ID}}/bookings"  class="ah-cta-primary" mat-button><mat-icon>hotel</mat-icon><span class="not-mobile">Mes séjours</span></button></li>
+                            <li class="not-mobile only-user"> <button [routerLink]="'/user/'+ user.ID +'/houses'"   class="ah-cta-primary" mat-button><mat-icon>house</mat-icon><span class="not-mobile">Mes annonces</span></button></li>
+                            <li class="not-mobile only-user"> <button [routerLink]="'/user/'+ user.ID +'/bookings'"  class="ah-cta-primary" mat-button><mat-icon>hotel</mat-icon><span class="not-mobile">Mes séjours</span></button></li>
                             <li class="not-mobile only-admin"><button routerLink="/user/0/houses"    class="ah-cta-primary" mat-button><mat-icon>house</mat-icon><span class="not-mobile">Annonces</span></button></li>
                             <li class="not-mobile only-admin"><button routerLink="/user/0/bookings" class="ah-cta-primary" mat-button><mat-icon>hotel</mat-icon><span class="not-mobile">Séjours</span></button></li>
                             <li class="only-admin"><button (click)="admin()" class="ah-cta-tertiary" mat-button><mat-icon>build</mat-icon><span class="not-mobile">Administration</span></button></li>

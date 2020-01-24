@@ -39,24 +39,65 @@ export class ListHouseComponent implements OnInit {
               public dialog: MatDialog
               ) { }
 
+  nbNights(dateStart, dateEnd){
+    return ( new Date(dateEnd).getTime() - new Date(dateStart).getTime() ) / (1000 * 3600 * 24);
+  }
+
   openCalendar(houseID): void {
-    const dialogRef = this.dialog.open(BookingCalendarComponent, {
-      width: '1000px',
-      data: {houseID}
+
+    this.data.getList("booking", bookings => {
+      if(bookings){
+        let bookingsdata = [];
+        this.bookings = bookings;
+        this.bookings.forEach((booking, index) => {
+          if(booking.ID_house == houseID){
+            let color = '#15a08c';
+            switch(booking.status){
+              case 0: color = '#bcd5d1';
+              case 1: color = '#ba9077';
+              case 2: color = '#15a08c';
+            }
+            //T12:00:00Z
+            let title = this.nbNights(booking.dateStart, booking.dateEnd)+' nuit(s) pour '+booking.nbPersons.toString()+' p.';
+            console.log(booking.dateStart);
+            console.log(booking.dateEnd);
+            bookingsdata.push({title: title, start: booking.dateStart, end: booking.dateEnd, backgroundColor:color, borderColor:color});
+          }
+        });
+
+        console.log(bookingsdata);
+
+        if(bookingsdata.length != 0){
+          const dialogRef = this.dialog.open(BookingCalendarComponent, {
+            width: '1000px',
+            data: bookingsdata
+          });
+          dialogRef.afterClosed().subscribe(result => {
+            //console.log('The dialog was closed');
+          });
+        }
+      }
     });
 
-    dialogRef.afterClosed().subscribe(result => {
-      //console.log('The dialog was closed');
-    });
+
   }
   
+  totalBooking = 0;
+  totalWaitingBooking = 0;
+  
+  counter:number = 0;
   getTotalBooking(houseID){
     //console.log('booking: ' +houseID);
-    /*
-    this.data.getTotalBooking(houseID, total => {
-      return total["COUNT(*)"];
-    });
-    */
+    if(this.counter < 1){
+      /*
+      this.data.getTotalBooking(houseID, total => {
+        console.log(total["COUNT(*)"]);
+        this.totalBooking = total["COUNT(*)"];
+        return total["COUNT(*)"];
+      });
+      */
+      this.counter++;
+    }
   }
 
   getTotalWaitingBooking(houseID){

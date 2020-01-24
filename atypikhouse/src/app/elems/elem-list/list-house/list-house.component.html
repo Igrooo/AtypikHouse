@@ -9,7 +9,7 @@
   <ul class="ah-list-icons ah-list ah-list-houses ah-list-houses-user">
     <h3>Annonces mises en avant</h3>
     <ng-container *ngFor="let house of houses">
-      <li *ngIf="filterUser === house.ID_user || filterUser === 0 && house.status == 2"
+      <li *ngIf="( filterUser === house.ID_user || filterUser === 0 ) && house.status == 2"
         class="ah-list-houses-item status-{{ house.status }}">
         <div class="ah-list-houses-details ah-list-houses-actions left">
           <button mat-raised-button routerLink="/house/{{ house.ID }}/edit"
@@ -32,8 +32,10 @@
             <div class="ah-list-houses-details ah-list-houses-booking">
               <h5 class="ah-house-title">{{ house.title }}</h5>
               <p>
-                <span class="ah-booking-info">{{ getTotalWaitingBooking(house.ID)}} réservations à confirmer (Paiements en attente)</span><br>
-                <span class="ah-booking-info">{{ getTotalBooking(house.ID)}} réservations validées (Paiements effectués)</span>
+                <span class="ah-booking-info">{{ getTotalWaitingBooking(house.ID)}} réservations à confirmer (Paiements
+                  en attente)</span><br>
+                <span class="ah-booking-info">{{ getTotalBooking(house.ID)}} réservations validées (Paiements
+                  effectués)</span>
               </p>
               <button class="ah-cta-primary ah-cta-calendar" mat-raised-button (click)="openCalendar(house.ID)">
                 <mat-icon>calendar_today</mat-icon> Voir le calendrier des réservations
@@ -42,8 +44,10 @@
           </div>
         </div>
         <div class="ah-list-houses-details ah-list-houses-actions right">
-          <button mat-raised-button (click)="removePromoteHouse()" class="ah-house-cta ah-cta-special ah-house-promote only-admin">
-            <mat-icon>close</mat-icon><br><p class="ah-cta-text">Ne plus mettre<br>en avant</p>
+          <button mat-raised-button (click)="removePromoteHouse()"
+            class="ah-house-cta ah-cta-special ah-house-promote only-admin">
+            <mat-icon>close</mat-icon><br>
+            <p class="ah-cta-text">Ne plus mettre<br>en avant</p>
           </button><br>
           <button mat-raised-button (click)="deleteHouse()" class="ah-house-cta ah-cta-delete ah-house-delete">
             <mat-icon>delete</mat-icon><br>Supprimer
@@ -56,7 +60,7 @@
   <ul class="ah-list-icons ah-list ah-list-houses ah-list-houses-user">
     <h3>Annonces publiées</h3>
     <ng-container *ngFor="let house of houses">
-      <li *ngIf="filterUser === house.ID_user || filterUser === 0 && house.status == 1"
+      <li *ngIf="( filterUser === house.ID_user || filterUser === 0 ) && house.status == 1"
         class="ah-list-houses-item status-{{ house.status }}">
         <div class="ah-list-houses-details ah-list-houses-actions left">
           <button mat-raised-button routerLink="/house/{{ house.ID }}/edit"
@@ -79,8 +83,10 @@
             <div class="ah-list-houses-details ah-list-houses-booking">
               <h5 class="ah-house-title">{{ house.title }}</h5>
               <p>
-                <span class="ah-booking-info">{{ getTotalWaitingBooking(house.ID)}} réservations à confirmer (Paiements en attente)</span><br>
-                <span class="ah-booking-info">{{ getTotalBooking(house.ID)}} réservations validées (Paiements effectués)</span>
+                <span class="ah-booking-info">{{ getTotalWaitingBooking(house.ID)}} réservations à confirmer (Paiements
+                  en attente)</span><br>
+                <span class="ah-booking-info">{{ getTotalBooking(house.ID)}} réservations validées (Paiements
+                  effectués)</span>
               </p>
               <button class="ah-cta-primary ah-cta-calendar" mat-raised-button (click)="openCalendar(house.ID)">
                 <mat-icon>calendar_today</mat-icon> Voir le calendrier des réservations
@@ -89,7 +95,8 @@
           </div>
         </div>
         <div class="ah-list-houses-details ah-list-houses-actions right">
-          <button mat-raised-button (click)="promoteHouse()" class="ah-house-cta ah-cta-special ah-house-promote only-admin">
+          <button mat-raised-button (click)="promoteHouse()"
+            class="ah-house-cta ah-cta-special ah-house-promote only-admin">
             <i class="icon-promote la la-sun-o"></i><br>Mettre en avant
           </button><br>
           <button mat-raised-button (click)="deleteHouse()" class="ah-house-cta ah-cta-delete ah-house-delete">
@@ -104,7 +111,7 @@
   <ul class="ah-list-icons ah-list ah-list-houses ah-list-houses-user">
     <h3>Annonces dépubliées</h3>
     <ng-container *ngFor="let house of houses">
-      <li *ngIf="filterUser === house.ID_user || filterUser === 0 && house.status == 0"
+      <li *ngIf="( filterUser === house.ID_user || filterUser === 0 ) && house.status == 0"
         class="ah-list-houses-item status-{{ house.status }}">
         <div class="ah-list-houses-details ah-list-houses-actions left">
           <button mat-raised-button routerLink="/house/{{ house.ID }}/edit"
@@ -127,8 +134,10 @@
             <div class="ah-list-houses-details ah-list-houses-booking">
               <h5 class="ah-house-title">{{ house.title }}</h5>
               <p>
-                <span class="ah-booking-info">{{ getTotalWaitingBooking(house.ID)}} réservations à confirmer (Paiements en attente)</span><br>
-                <span class="ah-booking-info">{{ getTotalBooking(house.ID)}} réservations validées (Paiements effectués)</span>
+                <span class="ah-booking-info">{{ getTotalWaitingBooking(house.ID)}} réservations à confirmer (Paiements
+                  en attente)</span><br>
+                <span class="ah-booking-info">{{ getTotalBooking(house.ID)}} réservations validées (Paiements
+                  effectués)</span>
               </p>
               <button class="ah-cta-primary ah-cta-calendar" mat-raised-button (click)="openCalendar(house.ID)">
                 <mat-icon>calendar_today</mat-icon> Voir le calendrier des réservations
@@ -137,7 +146,8 @@
           </div>
         </div>
         <div class="ah-list-houses-details ah-list-houses-actions right">
-          <button mat-raised-button (click)="promoteHouse()" class="ah-house-cta ah-cta-special ah-house-promote only-admin">
+          <button mat-raised-button (click)="promoteHouse()"
+            class="ah-house-cta ah-cta-special ah-house-promote only-admin">
             <i class="icon-promote la la-sun-o"></i><br>Mettre en avant
           </button><br>
           <button mat-raised-button (click)="deleteHouse()" class="ah-house-cta ah-cta-delete ah-house-delete">
