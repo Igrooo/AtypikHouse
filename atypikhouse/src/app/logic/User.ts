@@ -6,8 +6,9 @@ export class User {
                 public name:      string = '', 
                 public firstname: string = '', 
                 public address:   string = '',
-                public zipcode:   number = 0,
-                public city:      string = ''
+                public zipcode:   number = null,
+                public city:      string = '',
+                public siret:     string = null
                 )
     {
 

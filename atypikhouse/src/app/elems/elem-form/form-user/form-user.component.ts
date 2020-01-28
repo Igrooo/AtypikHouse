@@ -12,6 +12,9 @@ export class FormUserComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+    if(this.user == undefined){
+      this.user = new User;
+    }
   }
 
 }

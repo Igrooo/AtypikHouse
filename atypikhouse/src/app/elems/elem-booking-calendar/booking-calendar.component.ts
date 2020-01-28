@@ -9,7 +9,7 @@ export interface DialogData {
 @Component({
   selector: 'app-booking-calendar',
   templateUrl: './booking-calendar.component.html',
-  styles: ['.ah-booking-calendar h2{margin: 0;font-size: 2em;} .mat-dialog-content{max-height: 80vh;} .fc-time{display:none;}']
+  styles: ['.ah-booking-calendar h2{margin: 0;font-size: 2em;} .mat-dialog-content{max-height: 80vh;} .fc-time{display:none !important;}']
 })
 export class BookingCalendarComponent implements OnInit {
 

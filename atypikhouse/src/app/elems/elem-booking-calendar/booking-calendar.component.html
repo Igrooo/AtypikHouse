@@ -2,9 +2,7 @@
 <div mat-dialog-content>
   <div class="ah-booking-calendar">
     <full-calendar locale="fr" firstDay="1" defaultView="dayGridMonth"  [plugins]="calendarPlugins"
-    [buttonText]="{
-      today:    'Aujourd\'hui'
-    }"
+    [buttonText]="{today: 'Aujourd\'hui'}"
     [events]="data"
     ></full-calendar>
   </div>

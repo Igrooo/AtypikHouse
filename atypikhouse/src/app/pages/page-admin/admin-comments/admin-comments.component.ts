@@ -2,6 +2,7 @@ import * as $ from 'jquery';
 import { Component, OnInit } from '@angular/core';
 import { DataService} from "src/app/data.service";
 import { Comment } from "src/app/logic/Comment";
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-admin-comments',
@@ -10,13 +11,14 @@ import { Comment } from "src/app/logic/Comment";
 export class AdminCommentsComponent implements OnInit {
   comments: [Comment];
 
-  displayedColumns: string[] = ['ID', 'comment', 'rating', 'date', 'ID_user', 'ID_booking'];
+  displayedColumns: string[] = ['ID', 'comment', 'rating', 'date', 'ID_user', 'ID_booking', 'tools'];
 
   editOn:string;
 
   isReadonly:boolean = true;
 
-  constructor(private data: DataService) {
+  constructor(private data: DataService,
+    private datePipe: DatePipe) {
 
   }
 

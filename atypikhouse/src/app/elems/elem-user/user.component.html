@@ -1,7 +1,22 @@
-<section class="ah-container ah-section ah-container-user">
+<section *ngIf="!edit" class="ah-container ah-section ah-container-user">
     <h2>Mon profil</h2>
-    <div class="text-center ah-form-fieldset">
-        
+    <div class="text-center">
+        <h5>{{user.firstname}} {{user.name}}</h5>
+        <p>
+            SIRET {{ user.siret }}
+        </p>
+        <p>
+            {{ user.address}}<br>
+            {{ user.zipcode }} {{ user.city }}
+        </p>
+        <p>
+            {{ user.email }}
+        </p>
+        <button mat-raised-button class="ah-cta-primary" routerLink="/user/edit">Modifier mon profil</button>
     </div>
+</section>
+
+<section *ngIf="edit" class="ah-container ah-section ah-container-user">
+    <h2>Editer mon profil</h2>
     <app-form-user [user]="user"></app-form-user>
 </section>

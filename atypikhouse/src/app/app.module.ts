@@ -19,7 +19,7 @@ import { FormsModule, FormBuilder, ReactiveFormsModule } from "@angular/forms";
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatButtonModule, MatIconModule, MatFormFieldModule, MatInputModule, MatSelectModule, MatSliderModule, MatAutocompleteModule,
-         MatToolbarModule, MatCardModule, MatSlideToggleModule, MatSnackBarModule, MatNativeDateModule, MatDatepickerModule } from '@angular/material';
+         MatToolbarModule, MatCardModule, MatSlideToggleModule, MatSnackBarModule, MatNativeDateModule, MatDatepickerModule, MatCheckboxModule } from '@angular/material';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatTabsModule, MatSortModule } from '@angular/material';
 import { MatTableModule } from '@angular/material/table'; 
@@ -167,9 +167,8 @@ const routes : Routes = [
   { path: 'house/:id/pic',          component: FormPicComponent },   // New  pic
   { path: 'house/:id/Pic/:id/edit', component: FormPicComponent },   // Edit pic
 
-  { path: 'user', component: FormUserComponent },                    // New  user
-  { path: 'user/:id', component: UserComponent },                    // Show user
-  { path: 'user/:id/edit', component: FormUserComponent },           // Edit user
+  { path: 'user/:id', component: UserComponent },                // Show user
+  { path: 'user/edit', component: UserComponent },           // Edit user
 
     // Redirect to editorial content
     {path: 'faq',     component: ExternalPage},
@@ -247,7 +246,7 @@ const routes : Routes = [
     BrowserModule, BrowserAnimationsModule,
     MatButtonModule, MatIconModule, MatFormFieldModule, MatInputModule, MatSelectModule, MatSliderModule, MatAutocompleteModule,
     MatToolbarModule, MatCardModule, MatSlideToggleModule, MatSnackBarModule, MatMenuModule, MatTabsModule, MatSortModule, MatTableModule, MatBadgeModule,
-    MatNativeDateModule, MatDatepickerModule, MatDialogModule,
+    MatNativeDateModule, MatDatepickerModule, MatDialogModule, MatCheckboxModule,
     FullCalendarModule,
     ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
     AgmCoreModule.forRoot({

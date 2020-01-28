@@ -2,6 +2,7 @@ import * as $ from 'jquery';
 import { Component, OnInit } from '@angular/core';
 import { DataService} from "src/app/data.service";
 import { Pic } from "src/app/logic/Pic";
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-admin-pics',
@@ -16,7 +17,9 @@ export class AdminPicsComponent implements OnInit {
 
   isReadonly:boolean = true;
 
-  constructor(private data: DataService) {
+  constructor(
+    private data: DataService,
+    private datePipe: DatePipe,) {
 
   }
 

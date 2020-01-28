@@ -1,7 +1,7 @@
 <section class="ah-section ah-container-primary top">
   <h2 class="ah-title">{{ listTitle }}</h2>
   <p class="text-center">
-    <button mat-raised-button routerLink="/house" class="ah-cta-primary ah-house-add">
+    <button mat-raised-button routerLink="/house" class="ah-cta-primary ah-cta-new">
       <mat-icon>add</mat-icon><br>Créer une nouvelle annonce
     </button>
   </p>
@@ -31,10 +31,10 @@
             </app-icon>
             <div class="ah-list-houses-details ah-list-houses-booking">
               <h5 class="ah-house-title">{{ house.title }}</h5>
-              <p>
-                <span class="ah-booking-info">{{ getTotalWaitingBooking(house.ID)}} réservations à confirmer (Paiements
+              <p *ngIf="house">
+                <span class="ah-booking-info">{{ getTotalWaitingBooking(house.ID) }} réservations à confirmer (Paiements
                   en attente)</span><br>
-                <span class="ah-booking-info">{{ getTotalBooking(house.ID)}} réservations validées (Paiements
+                <span class="ah-booking-info">{{ getTotalBooking(house.ID) }} réservations validées (Paiements
                   effectués)</span>
               </p>
               <button class="ah-cta-primary ah-cta-calendar" mat-raised-button (click)="openCalendar(house.ID)">
@@ -83,9 +83,9 @@
             <div class="ah-list-houses-details ah-list-houses-booking">
               <h5 class="ah-house-title">{{ house.title }}</h5>
               <p>
-                <span class="ah-booking-info">{{ getTotalWaitingBooking(house.ID)}} réservations à confirmer (Paiements
+                <span class="ah-booking-info">{{ getTotalWaitingBooking(house.ID) }} réservations à confirmer (Paiements
                   en attente)</span><br>
-                <span class="ah-booking-info">{{ getTotalBooking(house.ID)}} réservations validées (Paiements
+                <span class="ah-booking-info">{{ getTotalBooking(house.ID) }} réservations validées (Paiements
                   effectués)</span>
               </p>
               <button class="ah-cta-primary ah-cta-calendar" mat-raised-button (click)="openCalendar(house.ID)">
@@ -134,9 +134,9 @@
             <div class="ah-list-houses-details ah-list-houses-booking">
               <h5 class="ah-house-title">{{ house.title }}</h5>
               <p>
-                <span class="ah-booking-info">{{ getTotalWaitingBooking(house.ID)}} réservations à confirmer (Paiements
+                <span class="ah-booking-info">{{ getTotalWaitingBooking(house.ID) }} réservations à confirmer (Paiements
                   en attente)</span><br>
-                <span class="ah-booking-info">{{ getTotalBooking(house.ID)}} réservations validées (Paiements
+                <span class="ah-booking-info">{{ getTotalBooking(house.ID) }} réservations validées (Paiements
                   effectués)</span>
               </p>
               <button class="ah-cta-primary ah-cta-calendar" mat-raised-button (click)="openCalendar(house.ID)">

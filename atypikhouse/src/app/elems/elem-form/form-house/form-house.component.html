@@ -1,15 +1,15 @@
 <section class="ah-container-primary lead ah-section ah-product-add">
     <h2 class="important">{{ title }}</h2>
-    <form (submit)="submit()" class="ah-container-tertiary ah-section">
-        <h3 class="ah-form-house-title">Photo</h3>
-        <div class="ah-form ah-form-house">
+    <form (submit)="submit()" class="ah-container-tertiary ah-section ah-form-house-container">
+        <h3 *ngIf="!new" class="ah-form-house-title">Photo</h3>
+        <div *ngIf="!new" class="ah-form ah-form-house">
             <img src="data/static/img/houses/{{ house.ID }}-banner.png" alt="house">
         </div>
         <h3 class="ah-form-house-title">Description</h3>
         <div class="ah-form ah-form-house">
             <mat-form-field class="ah-form-fieldset large ah-form-house-title">
                 <mat-label>Catégorie (type d'hébergement)</mat-label>
-                <mat-select>
+                <mat-select [(value)]="house.ID_category">
                     <mat-option *ngFor="let category of categories" [value]="category.ID">{{category.title}}</mat-option>
                 </mat-select>
             </mat-form-field>
@@ -29,38 +29,40 @@
                 <input matInput [value]="house.address">
             </mat-form-field>
             <mat-form-field class="ah-form-fieldset-inline ah-form-house-zipcode">
-                <mat-label type="number">Code postal</mat-label>
+                <mat-label>Code postal</mat-label>
                 <input matInput [value]="house.zipcode">
             </mat-form-field>
-            <mat-form-field class="ah-form-fieldset_inline ah-form-house-city">
+            <mat-form-field class="ah-form-fieldset-inline ah-form-house-city">
                 <mat-label>Ville</mat-label>
                 <input matInput [value]="house.city">
             </mat-form-field>
         </div>
         <h3 class="ah-form-house-title">Détails</h3>
         <div class="ah-form ah-form-house">
-            <mat-form-field class="ah-form-fieldset ah-form-house-address">
+            <mat-form-field class="ah-form-fieldset large ah-form-house-nbbeds">
                 <mat-label>Nombre de places</mat-label>
-                <input matInput [value]="house.nbBeds" type="number">
-                <mat-hint><span class="small"><i>Pour un lit deux places comptez 2<br> (Par exemple pour deux lits 2 places le nombre total de places est de 4.)</i></span></mat-hint>
-            </mat-form-field>
-            <mat-form-field class="ah-form-fieldset ah-form-house-address">
+                <input matInput [value]="house.nbBeds">
+                <mat-hint><i>Pour un lit deux places comptez 2<br> (Par exemple pour deux lits 2 places le nombre total de places est de 4.)</i></mat-hint>
+            </mat-form-field><br>
+            <mat-form-field class="ah-form-fieldset-inline ah-form-house-tags">
                 <mat-label>Thématiques</mat-label>
-                <mat-select>
+                <mat-select multiple>
                     <ng-container *ngFor="let tag of tags">
-                        <mat-option [value]="tag.ID" multiple>{{tag.tag}}</mat-option>
+                        <mat-option *ngIf="tag.type === 0" [value]="tag.ID" multiple>{{tag.tag}}</mat-option>
                     </ng-container>
                 </mat-select>
             </mat-form-field>
-            <mat-form-field class="ah-form-fieldset ah-form-house-address">
+            <mat-form-field class="ah-form-fieldset-inline ah-form-house-tags">
                 <mat-label>Services & équipements</mat-label>
-                <mat-select>
-                    <mat-option *ngFor="let tag of tags" [value]="tag.ID" multiple>{{tag.tag}}</mat-option>
+                <mat-select multiple>
+                    <ng-container *ngFor="let tag of tags">
+                        <mat-option  *ngIf="tag.type === 1" [value]="tag.ID" multiple>{{tag.tag}}</mat-option>
+                    </ng-container>
                 </mat-select>
             </mat-form-field>
-            <mat-form-field class="ah-form-fieldset ah-form-house-address">
+            <mat-form-field class="ah-form-fieldset-inline ah-form-house-tags">
                 <mat-label>Activités</mat-label>
-                <mat-select>
+                <mat-select multiple>
                     <mat-option *ngFor="let activity of activities" [value]="activity.ID" multiple>{{activity.title}}</mat-option>
                 </mat-select>
             </mat-form-field>
@@ -69,15 +71,24 @@
         <div class="ah-form ah-form-house">
             <mat-form-field class="ah-form-fieldset-inline ah-form-house-zipcode">
                 <mat-label>Prix HT</mat-label>
-                <input matInput [value]="house.price" type="number">
+                <input matInput [value]="house.price">
                 <mat-icon matSuffix>euro</mat-icon>
             </mat-form-field>
             <mat-form-field class="ah-form-fieldset-inline ah-form-house-city">
                 <mat-label>Taxe</mat-label>
-                <input matInput [value]="house.tax" type="number">
+                <input matInput [value]="house.tax">
                 <mat-icon matSuffix>%</mat-icon>
             </mat-form-field>
         </div>
-        <div class="ah-house-submit"><button mat-button type="submit" class="ah-cta-primary ah-house-add-cta"><mat-icon>add</mat-icon> Publier</button></div>
+        <div class="ah-house-submit text-center">
+            <button mat-button type="submit" class="ah-cta-primary ah-cta-submit">
+                <ng-container *ngIf="new; else update">
+                    <mat-icon>add</mat-icon><br>Publier
+                </ng-container>
+                <ng-template #update>
+                    <mat-icon>check</mat-icon><br>Mettre à jour
+                </ng-template>
+            </button>
+        </div>
     </form>
 </section>

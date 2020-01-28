@@ -2,6 +2,7 @@ import * as $ from 'jquery';
 import { Component, OnInit } from '@angular/core';
 import { DataService} from "src/app/data.service";
 import { Post } from "src/app/logic/Post";
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-admin-posts',
@@ -16,7 +17,9 @@ export class AdminPostsComponent implements OnInit {
 
   isReadonly:boolean = true;
 
-  constructor(private data: DataService) {
+  constructor(
+    private data: DataService,
+    private datePipe: DatePipe) {
 
   }
 

@@ -22,6 +22,8 @@ export class HeaderComponent implements OnInit {
 
   nbPersonsMax:number;
 
+  logged:boolean = false;
+
   constructor(private data: DataService,
               private geolocation: GeolocationService,
               private router: Router,
@@ -81,9 +83,10 @@ export class HeaderComponent implements OnInit {
 
   ngOnInit() {
     this.user = new User;
-    
+
     if(this.cookieService.get('logged')){
       this.user.ID = +this.cookieService.get('userID');
+      this.logged = true;
     }
 
     this.nbPersonsMax = 10;

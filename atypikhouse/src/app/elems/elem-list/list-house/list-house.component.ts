@@ -57,15 +57,10 @@ export class ListHouseComponent implements OnInit {
               case 1: color = '#ba9077';
               case 2: color = '#15a08c';
             }
-            //T12:00:00Z
             let title = this.nbNights(booking.dateStart, booking.dateEnd)+' nuit(s) pour '+booking.nbPersons.toString()+' p.';
-            console.log(booking.dateStart);
-            console.log(booking.dateEnd);
             bookingsdata.push({title: title, start: booking.dateStart, end: booking.dateEnd, backgroundColor:color, borderColor:color});
           }
         });
-
-        console.log(bookingsdata);
 
         if(bookingsdata.length != 0){
           const dialogRef = this.dialog.open(BookingCalendarComponent, {
@@ -87,17 +82,16 @@ export class ListHouseComponent implements OnInit {
   
   counter:number = 0;
   getTotalBooking(houseID){
-    //console.log('booking: ' +houseID);
+    /*
     if(this.counter < 1){
-      /*
       this.data.getTotalBooking(houseID, total => {
-        console.log(total["COUNT(*)"]);
         this.totalBooking = total["COUNT(*)"];
+        console.log(this.totalBooking);
         return total["COUNT(*)"];
       });
-      */
       this.counter++;
     }
+    */
   }
 
   getTotalWaitingBooking(houseID){

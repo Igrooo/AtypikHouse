@@ -15,15 +15,12 @@ export class PaymentComponent implements OnInit {
   constructor(private data: DataService) { }
 
   ngOnInit() {
-    this.payment = new Payment();
     this.data.getList("payments", payments => {
       if(payments){
         this.payments = payments;
         payments.forEach((payment, index) => {
           if(payment.ID_booking == this.bookingID){
-            this.payment.status = payment.status;
-            this.payment.amount = payment.amount;
-            console.log(payment.amount);
+            this.payment = payment;
           }
         });
       }

@@ -21,44 +21,39 @@
                 </ul>
             </nav>
             <nav class="ah-nav-primary ah-header-nav-primary ah-header-nav-user">
-                <ul class="list-inline">
+                <ul class="list-inline only-public">
+                    <li><button (click)="login()" class="ah-cta-primary" mat-button><mat-icon>person</mat-icon><span class="not-mobile">Se connecter</span></button></li>
+                </ul>
+                <ul class="list-inline only-logged">
+                    <li class="not-mobile only-user"> <button *ngIf="logged" [routerLink]="'/user/'+ user.ID +'/houses'" class="ah-cta-primary" mat-button><mat-icon>house</mat-icon><span class="not-mobile">Mes annonces</span></button></li>
+                    <li class="not-mobile only-user"> <button *ngIf="logged" [routerLink]="'/user/'+ user.ID +'/bookings'" class="ah-cta-primary" mat-button><mat-icon>hotel</mat-icon><span class="not-mobile">Mes séjours</span></button></li>
+                    <li class="not-mobile only-admin"><button routerLink="/user/0/houses"    class="ah-cta-primary" mat-button><mat-icon>house</mat-icon><span class="not-mobile">Annonces</span></button></li>
+                    <li class="not-mobile only-admin"><button routerLink="/user/0/bookings" class="ah-cta-primary" mat-button><mat-icon>hotel</mat-icon><span class="not-mobile">Séjours</span></button></li>
+                    <li class="only-admin"><button (click)="admin()" class="ah-cta-tertiary" mat-button><mat-icon>build</mat-icon><span class="not-mobile">Administration</span></button></li>
+                    <li class="ah-cta-group only-user">
+                        <button class="ah-cta-group-child" (click)="posts()" mat-button><mat-icon>messages</mat-icon></button>
+                        <mat-menu #notifications="matMenu">
+                            <button mat-menu-item>
+                            <span>Notification 1</span>
+                            </button>
+                            <button mat-menu-item>
+                            <span>Notification 2</span>
+                            </button>
+                        </mat-menu>
+                        <button class="ah-cta-group-child" mat-button [matMenuTriggerFor]="notifications" aria-label="Notifications"><mat-icon matBadge="2" matBadgeOverlap="false">notifications</mat-icon></button>
+                    </li>
                     <li>
-                        <ul class="list-inline only-public">
-                            <li><button (click)="login()" class="ah-cta-primary" mat-button><mat-icon>person</mat-icon><span class="not-mobile">Se connecter</span></button></li>
-                        </ul>
-                        <ul class="list-inline only-logged">
-                            <li class="not-mobile only-user"> <button [routerLink]="'/user/'+ user.ID +'/houses'"   class="ah-cta-primary" mat-button><mat-icon>house</mat-icon><span class="not-mobile">Mes annonces</span></button></li>
-                            <li class="not-mobile only-user"> <button [routerLink]="'/user/'+ user.ID +'/bookings'"  class="ah-cta-primary" mat-button><mat-icon>hotel</mat-icon><span class="not-mobile">Mes séjours</span></button></li>
-                            <li class="not-mobile only-admin"><button routerLink="/user/0/houses"    class="ah-cta-primary" mat-button><mat-icon>house</mat-icon><span class="not-mobile">Annonces</span></button></li>
-                            <li class="not-mobile only-admin"><button routerLink="/user/0/bookings" class="ah-cta-primary" mat-button><mat-icon>hotel</mat-icon><span class="not-mobile">Séjours</span></button></li>
-                            <li class="only-admin"><button (click)="admin()" class="ah-cta-tertiary" mat-button><mat-icon>build</mat-icon><span class="not-mobile">Administration</span></button></li>
-                            <li class="ah-cta-group only-user">
-                                <button class="ah-cta-group-child" (click)="posts()" mat-button><mat-icon>messages</mat-icon></button>
-                                <mat-menu #notifications="matMenu">
-                                    <button mat-menu-item>
-                                    <span>Notification 1</span>
-                                    </button>
-                                    <button mat-menu-item>
-                                    <span>Notification 2</span>
-                                    </button>
-                                </mat-menu>
-                                <button class="ah-cta-group-child" mat-button [matMenuTriggerFor]="notifications" aria-label="Notifications"><mat-icon matBadge="2" matBadgeOverlap="false">notifications</mat-icon></button>
-                            </li>
-                            <li>
-                                <button class="ah-cta-primary" mat-button [matMenuTriggerFor]="user" aria-label="Mon compte"><mat-icon>person</mat-icon><span class="not-mobile">Mon compte</span></button>
-                                <mat-menu #user="matMenu">
-                                    <button mat-menu-item (click)="goAccount()">
-                                    <mat-icon>person</mat-icon>
-                                    <span>Mon profil</span>
-                                    </button>
-                                    <button mat-menu-item (click)="logout()">
-                                    <mat-icon>exit_to_app</mat-icon>
-                                    <span>Se déconnecter</span>
-                                    </button>
-                                </mat-menu>
-                            </li>
-                        </ul>
-
+                        <button class="ah-cta-primary" mat-button [matMenuTriggerFor]="user" aria-label="Mon compte"><mat-icon>person</mat-icon><span class="not-mobile">Mon compte</span></button>
+                        <mat-menu #user="matMenu">
+                            <button mat-menu-item (click)="goAccount()">
+                            <mat-icon>person</mat-icon>
+                            <span>Mon profil</span>
+                            </button>
+                            <button mat-menu-item (click)="logout()">
+                            <mat-icon>exit_to_app</mat-icon>
+                            <span>Se déconnecter</span>
+                            </button>
+                        </mat-menu>
                     </li>
                 </ul>
             </nav>

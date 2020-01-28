@@ -31,12 +31,13 @@
             </mat-form-field>
         </td>
     </ng-container>
-
+    
     <ng-container matColumnDef="date">
         <th mat-header-cell *matHeaderCellDef mat-sort-header class="ah-admin-table-col">
             <span class="ah-admin-head">Date</span>
-            </th>
+        </th>
         <td mat-cell *matCellDef="let comment" class="ah-admin-table-col">
+            <span class="ah-admin-value">{{datePipe.transform(comment.date,"dd/MM/yyyy")}}</span>
             
         </td>
     </ng-container>

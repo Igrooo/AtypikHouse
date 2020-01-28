@@ -10,7 +10,7 @@ import { User } from "src/app/logic/User";
 export class AdminUsersComponent implements OnInit {
   users: [User];
 
-  displayedColumns: string[] = ['ID', 'type', 'email', 'name', 'firstname', 'address', 'zipcode', 'city', 'tools'];
+  displayedColumns: string[] = ['ID', 'type', 'email', 'name', 'firstname', 'address', 'zipcode', 'city', 'siret', 'tools'];
 
   editOn:string;
 

@@ -1,4 +1,12 @@
+<div class="ah-form ah-form-user top">
+    <mat-checkbox [(ngModel)]="pro">Je suis un professionnel</mat-checkbox>
+</div>
  <form class="ah-form ah-form-user">
+    <mat-form-field *ngIf="pro">
+        <mat-label>SIRET</mat-label>
+        <input matInput name="siret" [value]="user.siret">
+    </mat-form-field>
+
     <mat-form-field>
         <mat-label>Nom</mat-label>
         <input matInput name="name" [value]="user.name">

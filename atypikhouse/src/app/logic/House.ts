@@ -4,11 +4,11 @@ export class House {
               public title:             string = '',
               public description:       string = '',
               public address:           string = '',
-              public zipcode:           number = 0,
+              public zipcode:           number = null,
               public city:              string = '',
-              public nbBeds:            number = 1,
-              public price:             number = 1,
-              public tax:               number = 0,
+              public nbBeds:            number = null,
+              public price:             number = null,
+              public tax:               number = null,
               public listID_activities: string = '', // list of ID of activities
               public listID_tags:       string = '', // list of ID of tags
               public listID_pics:       string = '', // list of ID of pics

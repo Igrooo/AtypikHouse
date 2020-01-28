@@ -110,7 +110,7 @@ export class AdminHousesComponent implements OnInit {
     this.data.getList("tags", tags => {
       this.tags = tags;
     });
-    this.data.getList("tags", pics => {
+    this.data.getList("pics", pics => {
       this.pics = pics;
     });
   }

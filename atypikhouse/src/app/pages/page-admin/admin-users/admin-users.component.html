@@ -95,6 +95,17 @@
         </td>
     </ng-container>
 
+    <ng-container matColumnDef="siret">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header class="ah-admin-table-col">
+            <span class="ah-admin-head">SIRET</span>
+         </th>
+        <td mat-cell *matCellDef="let user" class="ah-admin-table-col">
+            <span class="ah-admin-value">{{user.siret}}</span>
+        <mat-form-field class="ah-admin-field">
+            <input matInput type="text" (input)="update(user.ID,'siret','input',$event)" class="ah-admin-input ah-admin-input-title" [value]="user.siret" [attr.data-prev-value]="user.siret">
+        </mat-form-field>
+        </td>
+    </ng-container>
 
     <ng-container matColumnDef="tools" stickyEnd>
         <th mat-header-cell *matHeaderCellDef mat-sort-header class="ah-admin-table-edit-container"></th>

@@ -478,6 +478,9 @@
 
     .ah-booking-calendar-title{margin-top: 0 !important;}
     .ah-booking-calendar h2{margin: 5px;font-size: 2em;}
+    .ah-booking-calendar .fc-time{
+        display:none !important;
+    }
     
 /*********************/
 /**** CTA & LINKS ****/
@@ -753,8 +756,10 @@
             margin-bottom: 5px;
         }
     }
-    .ah-house-add{
+    .ah-cta-submit,
+    .ah-cta-new{
         height: 100px;
+        min-width: 200px;
     }
 /*********************/
 /******* FORMS *******/
@@ -771,6 +776,10 @@
     }
     .ah-form {
         padding: @ah-padding-primary calc(@ah-padding-primary * 2);
+    }
+    .ah-form-house-container{
+        max-width: 800px;
+        margin: auto;
     }
     .ah-form-house .ah-form-fieldset{
         margin-top: 0;
@@ -826,10 +835,15 @@
     }
     .ah-form-login,
     .ah-form-user{
-        margin: auto;;
-        margin-bottom: 30px;
+        margin: auto;
         max-width: 300px;
         text-align: center;
+        &:not(.top){
+            margin-bottom: 30px;
+        }
+        &.top{
+            padding-top: 20px;
+        }
     }
     .ah-form-house-title,
     .ah-product-booking-title{
