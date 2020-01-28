@@ -3,8 +3,8 @@
 -- https://www.phpmyadmin.net/
 --
 -- Client :  localhost:3306
--- Généré le :  Jeu 23 Janvier 2020 à 17:09
--- Version du serveur :  5.7.28-0ubuntu0.18.04.4
+-- Généré le :  Mar 28 Janvier 2020 à 17:01
+-- Version du serveur :  5.7.29-0ubuntu0.18.04.1
 -- Version de PHP :  7.2.24-0ubuntu0.18.04.2
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
@@ -104,28 +104,13 @@ CREATE TABLE `ah_booking` (
 --
 
 INSERT INTO `ah_booking` (`ID`, `status`, `nbPersons`, `date`, `dateStart`, `dateEnd`, `ID_user`, `ID_house`) VALUES
-(1, 1, 3, '2019-08-06', '2019-09-26', '2019-09-29', 3, 1),
 (2, 2, 4, '2019-08-20', '2019-09-10', '2019-09-13', 4, 1),
-(3, 0, 2, '2019-07-11', '2019-08-14', '2019-08-16', 5, 1),
 (4, 2, 3, '2019-09-15', '2019-09-18', '2019-09-22', 5, 1),
-(5, 0, 2, '2019-09-26', '2019-10-10', '2019-10-13', 2, 3),
-(6, 2, 2, '2019-11-13', '2019-11-14', '2019-11-16', 2, 10),
-(7, 1, 2, '2019-11-27', '2019-12-20', '2019-12-23', 2, 3),
-(8, 1, 2, '2019-11-30', '2020-01-01', '2020-02-03', 4, 6),
-(11, 1, 2, '2019-11-30', '2020-01-01', '2020-02-03', 3, 8),
-(12, 1, 2, '2019-12-18', '2019-12-25', '2019-12-29', 1, 1),
-(13, 1, 2, '2019-12-18', '2019-12-23', '2019-12-29', 1, 1),
-(14, 1, 2, '2019-12-18', '2019-12-30', '2020-01-02', 1, 1),
+(12, 0, 2, '2019-12-18', '2019-12-25', '2019-12-29', 1, 1),
+(14, 0, 2, '2019-12-18', '2019-12-30', '2020-01-02', 1, 1),
 (15, 1, 3, '2019-12-18', '2020-01-16', '2020-01-17', 1, 1),
-(16, 1, 2, '2019-12-18', '2019-12-23', '2019-12-30', 1, 1),
-(17, 1, 2, '2019-12-18', '2019-12-29', '2019-12-31', 1, 1),
-(18, 1, 2, '2019-12-18', '2019-12-25', '2019-12-27', 1, 1),
-(19, 1, 2, '2019-12-18', '2019-12-30', '2019-12-31', 1, 1),
-(20, 1, 2, '2019-12-18', '2019-12-30', '2019-12-31', 1, 1),
-(21, 1, 3, '2019-12-18', '2019-12-30', '2019-12-31', 1, 1),
-(22, 1, 3, '2019-12-18', '2019-12-30', '2019-12-31', 1, 1),
-(23, 1, 2, '2019-12-18', '2019-12-30', '2019-12-31', 1, 1),
-(24, 1, 2, '2019-12-18', '2020-01-01', '2020-01-03', 1, 1);
+(24, 1, 2, '2019-12-18', '2020-01-01', '2020-01-03', 1, 1),
+(25, 1, 3, '2020-01-23', '2020-01-25', '2020-01-27', 2, 1);
 
 -- --------------------------------------------------------
 
@@ -251,9 +236,9 @@ INSERT INTO `ah_payments` (`ID`, `status`, `amount`, `date`, `ID_user`, `ID_book
 (1, 2, 937.2, '2019-08-20', 4, 2),
 (2, 2, 703.2, '2019-09-15', 5, 4),
 (4, 1, 1872, '2019-12-18', 1, 12),
-(6, 1, 2808, '2019-12-18', 1, 13),
 (8, 1, 1404, '2019-12-18', 1, 14),
-(9, 1, 936, '2019-12-18', 1, 24);
+(9, 1, 936, '2019-12-18', 1, 24),
+(10, 1, 1404, '2020-01-23', 2, 25);
 
 -- --------------------------------------------------------
 
@@ -351,19 +336,20 @@ CREATE TABLE `ah_users` (
   `firstname` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `address` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `zipcode` int(5) NOT NULL,
-  `city` varchar(255) COLLATE utf8_unicode_ci NOT NULL
+  `city` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `siret` bigint(14) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Contenu de la table `ah_users`
 --
 
-INSERT INTO `ah_users` (`ID`, `type`, `email`, `password`, `name`, `firstname`, `address`, `zipcode`, `city`) VALUES
-(1, 0, 'contact@atypikhouse.com', 'pass', 'Belle-Maison (Admin)', 'Géraldine', '12 avenue des Jardins', 60350, 'Pierrefonds'),
-(2, 1, 'user1@atypikhouse.com', 'pass', '1', 'User', '12 avenue des Jardins', 60350, 'Pierrefonds'),
-(3, 1, 'user2@atypikhouse.com', 'pass', '2', 'User', '12 avenue des Jardins', 60350, 'Pierrefonds'),
-(4, 1, 'user3@atypikhouse.com', 'pass', '3', 'User', '12 avenue des Jardins', 60350, 'Pierrefonds'),
-(5, 1, 'user4@atypikhouse.com', 'pass', '4', 'User', '12 avenue des Jardins', 60350, 'Pierrefonds');
+INSERT INTO `ah_users` (`ID`, `type`, `email`, `password`, `name`, `firstname`, `address`, `zipcode`, `city`, `siret`) VALUES
+(1, 0, 'contact@atypikhouse.com', 'pass', 'Belle-Maison (Admin)', 'Géraldine', '12 avenue des Jardins', 60350, 'Pierrefonds', 12349876465432),
+(2, 1, 'user1@atypikhouse.com', 'pass', '1', 'User', '12 avenue des Jardins', 60350, 'Pierrefonds', 98764654321234),
+(3, 1, 'user2@atypikhouse.com', 'pass', '2', 'User', '12 avenue des Jardins', 60350, 'Pierrefonds', 46543498763212),
+(4, 1, 'user3@atypikhouse.com', 'pass', '3', 'User', '12 avenue des Jardins', 60350, 'Pierrefonds', 0),
+(5, 1, 'user4@atypikhouse.com', 'pass', '4', 'User', '12 avenue des Jardins', 60350, 'Pierrefonds', 0);
 
 --
 -- Index pour les tables exportées
@@ -465,7 +451,7 @@ ALTER TABLE `ah_activities_types`
 -- AUTO_INCREMENT pour la table `ah_booking`
 --
 ALTER TABLE `ah_booking`
-  MODIFY `ID` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+  MODIFY `ID` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 --
 -- AUTO_INCREMENT pour la table `ah_categories`
 --
@@ -485,7 +471,7 @@ ALTER TABLE `ah_houses`
 -- AUTO_INCREMENT pour la table `ah_payments`
 --
 ALTER TABLE `ah_payments`
-  MODIFY `ID` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `ID` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 --
 -- AUTO_INCREMENT pour la table `ah_pics`
 --
