@@ -60,8 +60,8 @@
         </mat-toolbar>
         <nav id="sidenav" class="ah-nav-sidenav ah-nav-secondary not-desktop">
             <ul class="list-menu">
-                <li class="only-logged only-user"> <a class="ah-sidenav-link ah-link ah-link-secondary" routerLink="/user/{{ user.ID }}/houses">  <mat-icon class="ah-icon-inline">house</mat-icon><span>Mes annonces</span></a></li>
-                <li class="only-logged only-user"> <a class="ah-sidenav-link ah-link ah-link-secondary" routerLink="/user/{{ user.ID }}/bookings"><mat-icon class="ah-icon-inline">hotel</mat-icon><span>Mes séjours</span></a></li>
+                <li class="only-logged only-user"> <a class="ah-sidenav-link ah-link ah-link-secondary" [routerLink]="'/user/'+ user.ID +'/houses'">  <mat-icon class="ah-icon-inline">house</mat-icon><span>Mes annonces</span></a></li>
+                <li class="only-logged only-user"> <a class="ah-sidenav-link ah-link ah-link-secondary" [routerLink]="'/user/'+ user.ID +'/bookings'"><mat-icon class="ah-icon-inline">hotel</mat-icon><span>Mes séjours</span></a></li>
                 <li class="only-logged only-admin"><a class="ah-sidenav-link ah-link ah-link-secondary" routerLink="/user/0/houses">  <mat-icon class="ah-icon-inline">house</mat-icon><span>Annonces</span></a></li>
                 <li class="only-logged only-admin"><a class="ah-sidenav-link ah-link ah-link-secondary" routerLink="/user/0/bookings"><mat-icon class="ah-icon-inline">hotel</mat-icon><span>Séjours</span></a></li>
                 <li><a class="ah-sidenav-link ah-link ah-link-secondary" routerLink="/categories"><mat-icon class="ah-icon-inline">landscape</mat-icon><span>Explorer</span></a></li>
