@@ -4,6 +4,7 @@ import { DatePipe } from '@angular/common';
 import { DataService } from 'src/app/data.service';
 import { Booking } from "src/app/logic/Booking";
 import { House } from "src/app/logic/House";
+import { Payment } from 'src/app/logic/Payment';
 
 
 @Component({
@@ -14,8 +15,10 @@ import { House } from "src/app/logic/House";
 export class BookingComponent implements OnInit {
   math = Math;
 
-  booking: Booking;
   house: House;
+  booking: Booking;
+  payments: [Payment];
+  payment: Payment;
   
   priceTTC:number;
   totalPrice:number;
@@ -35,6 +38,28 @@ export class BookingComponent implements OnInit {
   routingSubscription: any;
 
   validBooking(){
+
+    this.data.getList("payments", payments => {
+      if(payments){
+        this.payments = payments;
+        //console.log(payments);
+        /*
+        this.payments.forEach((payment, index) => {
+          if(payment.ID_booking == this.booking.ID){
+            this.payment = payment;
+            console.log(this.payment);
+            this.payment.status = 2;
+            this.data.save("payments", this.payment, insertID =>{
+              if (Number.isInteger(insertID)) {
+                this.booking.status = 2;
+                this.data.save("booking", this.booking, insertID =>{});
+              }
+            });
+          }
+        });
+        */
+      }
+    });
     this.payed = 'payed';
   }
 

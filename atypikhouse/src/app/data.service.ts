@@ -62,6 +62,13 @@ export class DataService {
     });
   }
 
+  signup(user, callback) {
+    this.http.post(`${this.endpoint}/signup`, user)
+    .subscribe(response => {
+      callback(response['content']); //New User ID
+    });
+  }
+
   save(route:string, elem, callback) {
     if (elem.ID) {
       // It's an update

@@ -2,11 +2,11 @@
     <h2>Mon profil</h2>
     <div class="text-center">
         <h5>{{user.firstname}} {{user.name}}</h5>
-        <p>
+        <p *ngIf="userPro">
             SIRET {{ user.siret }}
         </p>
         <p>
-            {{ user.address}}<br>
+            {{ user.address }}<br>
             {{ user.zipcode }} {{ user.city }}
         </p>
         <p>

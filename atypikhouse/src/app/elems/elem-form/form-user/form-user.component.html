@@ -1,50 +1,50 @@
 <div class="ah-form ah-form-user top">
-    <mat-checkbox [(ngModel)]="pro">Je suis un professionnel</mat-checkbox>
+    <mat-checkbox [(ngModel)]="userPro">Je suis un professionnel</mat-checkbox>
 </div>
- <form class="ah-form ah-form-user">
-    <mat-form-field *ngIf="pro">
+ <form (submit)="submit()" class="ah-form ah-form-user">
+    <mat-form-field *ngIf="userPro">
         <mat-label>SIRET</mat-label>
-        <input matInput name="siret" [value]="user.siret">
+        <input matInput name="siret" [(ngModel)]="user.siret" [value]="user.siret">
     </mat-form-field>
 
     <mat-form-field>
         <mat-label>Nom</mat-label>
-        <input matInput name="name" [value]="user.name">
+        <input matInput name="name" [(ngModel)]="user.name" [value]="user.name" required>
     </mat-form-field>
 
     <mat-form-field>
         <mat-label>Prénom</mat-label>
-        <input matInput name="firstname" [value]="user.firstname">
+        <input matInput name="firstname" [(ngModel)]="user.firstname" [value]="user.firstname" required>
     </mat-form-field>
 
     <mat-form-field>
         <mat-label>Adresse</mat-label>
-        <input matInput name="address" [value]="user.address">
+        <input matInput name="address" [(ngModel)]="user.address" [value]="user.address" required>
     </mat-form-field>
     
     <mat-form-field>
         <mat-label>Code postal</mat-label>
-        <input matInput name="zipcode" [value]="user.zipcode">
+        <input matInput name="zipcode" [(ngModel)]="user.zipcode" [value]="user.zipcode" required>
     </mat-form-field>
 
     <mat-form-field>
         <mat-label>Ville</mat-label>
-        <input matInput name="city" [value]="user.city">
+        <input matInput name="city" [(ngModel)]="user.city" [value]="user.city" required>
     </mat-form-field>
     
     <mat-form-field>
         <mat-label>E-mail</mat-label>
-        <input matInput name="email" type="email" [value]="user.email">
+        <input matInput name="email" type="email" [(ngModel)]="user.email" [value]="user.email" required>
     </mat-form-field>
 
     <mat-form-field>
         <mat-label>Mot de passe</mat-label>
-        <input matInput name="password" type="password">
+        <input matInput name="password" [(ngModel)]="user.password" type="password" required>
     </mat-form-field>
 
     <mat-form-field>
         <mat-label>Vérification du mot de passe</mat-label>
-        <input matInput name="checkpassword" type="password">
+        <input matInput name="checkPassword" [(ngModel)]="user.checkPassword" type="password" required>
     </mat-form-field>
 
     <div class="ah-form-fieldset">

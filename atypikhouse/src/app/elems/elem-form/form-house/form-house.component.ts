@@ -4,6 +4,7 @@ import { DatePipe } from '@angular/common';
 import { GeolocationService } from "src/app/geolocation.service";
 //import { APIroutes, DataService } from "src/app/data.service";
 import { DataService } from "src/app/data.service";
+import { CookieService } from "ngx-cookie-service";
 import { House } from "src/app/logic/House";
 import { Category } from "src/app/logic/Category";
 import { Activity } from "src/app/logic/Activity";
@@ -23,8 +24,8 @@ export class FormHouseComponent implements OnInit {
   activities: [Activity];
   tags: [Tag];
 
+  ready:boolean = false;
   new:boolean;
-  complete:boolean;
 
   title:string;
 
@@ -32,20 +33,28 @@ export class FormHouseComponent implements OnInit {
               private route: ActivatedRoute,
               private geolocation: GeolocationService,
               private data: DataService,
+              private cookieService: CookieService,
               private datePipe: DatePipe
               ) { }
 
   routingSubscription: any;
 
   submit(){
-    console.log(this.house.ID);
-    /*
-    this.data.save("houses", this.house, insertID => {
-      if (Number.isInteger(insertID)) {
-        this.router.navigate(["/house", insertID]);
-      }
-    });
-    */
+    if(this.new){
+      console.log(this.house);
+      this.data.save("houses", this.house, insertID => {
+        if (Number.isInteger(insertID)) {
+          this.router.navigate(["/house", insertID]);
+        }
+      });
+    }
+    else{
+      this.data.save("houses", this.house, success => {
+        if (success) {
+          this.router.navigate(["/house", this.house.ID]);
+        }
+      });
+    }
   }
 
   ngOnInit() {
@@ -57,13 +66,20 @@ export class FormHouseComponent implements OnInit {
               this.new = false;
               this.house = house;
               this.title = 'Modifier "'+this.house.title+'"';
+              this.ready = true;
             }
           });
         }
         else{
           this.new = true;
           this.house   = new House();
+          this.house.status = 1;
+          this.house.ID_user = +this.cookieService.get('userID');
+          this.house.listID_activities = '0';
+          this.house.listID_pics = '0';
+          this.house.listID_tags = '0';
           this.title = 'Publier une nouvelle annonce';
+          this.ready = true;
         }
       });
 

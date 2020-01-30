@@ -81,7 +81,7 @@ update.put('/update/:tablename/:ID', function (req, res) {
                 let listID_pics       = JSON.stringify(req.body.listID_pics);
                 let ID_user           = JSON.stringify(req.body.ID_user);
                 let ID_category       = JSON.stringify(req.body.ID_category);
-                sets              = 'title='+title+', description='+description+', address='+address+', zipcode='+zipcode+', city='+city+', status='+status+' nbBeds='+nbBeds+', price='+price+', tax='+tax+', listID_activities='+listID_activities+', listID_tags='+listID_tags+', listID_pics='+listID_pics+', ID_user='+ID_user+', ID_category='+ID_category;
+                sets              = 'title='+title+', description='+description+', address='+address+', zipcode='+zipcode+', city='+city+', status='+status+', nbBeds='+nbBeds+', price='+price+', tax='+tax+', listID_activities='+listID_activities+', listID_tags='+listID_tags+', listID_pics='+listID_pics+', ID_user='+ID_user+', ID_category='+ID_category;
             }
             break;
         case 'payments':
@@ -124,17 +124,18 @@ update.put('/update/:tablename/:ID', function (req, res) {
             }
             break;
         case 'users':
-            if(req.body.type && req.body.name && req.body.prenom && req.body.prenom && req.body.zipcode && req.body.city && req.body.email && req.body.password){
+            if(req.body.type && req.body.email && req.body.password && req.body.name && req.body.firstname && req.body.address && req.body.city && req.body.siret){
                 complete = true;
-                let type        = JSON.stringify(req.body.type);
-                let name        = JSON.stringify(req.body.name);
-                let firstname   = JSON.stringify(req.body.prenom);
-                let address     = JSON.stringify(req.body.prenom);
-                let zipcode     = JSON.stringify(req.body.zipcode);
-                let city        = JSON.stringify(req.body.city);
-                let email       = JSON.stringify(req.body.email);
-                let password    = JSON.stringify(req.body.password);
-                sets        = 'type='+type+', name='+name+', firstname='+firstname+', address='+address+', zipcode='+zipcode+', city='+city+', email='+email+', password='+password;
+                let type      = JSON.stringify(req.body.type);
+                let email     = JSON.stringify(req.body.email);
+                let password  = JSON.stringify(req.body.password);
+                let name      = JSON.stringify(req.body.name);
+                let firstname = JSON.stringify(req.body.firstname);
+                let address   = JSON.stringify(req.body.address);
+                let zipcode   = JSON.stringify(req.body.zipcode);
+                let city      = JSON.stringify(req.body.city);
+                let siret     = JSON.stringify(req.body.siret);
+                sets        = 'type='+type+', email='+email+', password='+password+', name='+name+', firstname='+firstname+', address='+address+', zipcode='+zipcode+', city='+city+', siret='+siret;
             }
             break;
     }

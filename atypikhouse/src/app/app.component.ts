@@ -70,9 +70,9 @@ export class AppComponent implements OnInit {
   ngOnInit() {
     this.user = new User;
     if(this.cookieService.get('logged')){
-      this.user.ID = +this.cookieService.get('userID');
-      this.user.type = !!+this.cookieService.get('userType');
-      if(this.user.type){
+      this.user.ID   = +this.cookieService.get('userID');
+      this.user.type = +this.cookieService.get('userType');
+      if(this.user.type == 1){
         this.userType = 'user';
       }
       else{

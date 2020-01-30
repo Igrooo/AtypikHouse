@@ -24,6 +24,7 @@ export class ListHouseComponent implements OnInit {
   bookings: [Booking];
 
   user: User;
+  userPro:boolean = false;
 
   icons = Icons;
   iconsSet      :string = 'travel';
@@ -106,9 +107,9 @@ export class ListHouseComponent implements OnInit {
   ngOnInit() {
     this.user = new User;
     if(this.cookieService.get('logged')){
-      this.user.ID = +this.cookieService.get('userID');
-      this.user.type = !!+this.cookieService.get('userType');
-      if(this.user.type){
+      this.user.ID   = +this.cookieService.get('userID');
+      this.user.type = +this.cookieService.get('userType');
+      if(this.user.type == 1){
         this.filterUser = this.user.ID;
         this.listTitle = 'Mes annonces';
       }
@@ -116,6 +117,12 @@ export class ListHouseComponent implements OnInit {
         this.filterUser = 0;
         this.listTitle = 'Annonces';
       }
+      this.data.get("users",this.user.ID.toString(), user =>{
+        this.user = user;
+        if(this.user.siret != 0){
+          this.userPro = true;
+        }
+      });
     }
     this.icons = Icons;
     this.data.getList("houses", houses => {

@@ -12,7 +12,7 @@ export class House {
               public listID_activities: string = '', // list of ID of activities
               public listID_tags:       string = '', // list of ID of tags
               public listID_pics:       string = '', // list of ID of pics
-              public ID_category:       number = 1,  // Id of category
+              public ID_category:       number = null,  // Id of category
               public ID_user:           number = 1,  // Id of user
               public locationLat:       number = 0,      // not in db, get lat/lng location with address (geocoder)
               public locationLng:       number = 0

@@ -10,6 +10,7 @@ import { User } from 'src/app/logic/User';
 })
 export class UserComponent implements OnInit {
   user : User;
+  userPro:boolean = false;
   edit:boolean = false;
   constructor(private data: DataService,
     private cookieService: CookieService,
@@ -38,6 +39,9 @@ export class UserComponent implements OnInit {
       this.data.get("users", this.user.ID.toString(), user => {
         if (user) {
           this.user = user;
+          if(this.user.siret != 0){
+            this.userPro = true;
+          }
         }
       });
     }
