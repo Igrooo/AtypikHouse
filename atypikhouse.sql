@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Client :  localhost:3306
--- Généré le :  Mar 28 Janvier 2020 à 17:01
+-- Généré le :  Jeu 30 Janvier 2020 à 03:31
 -- Version du serveur :  5.7.29-0ubuntu0.18.04.1
 -- Version de PHP :  7.2.24-0ubuntu0.18.04.2
 
@@ -204,14 +204,14 @@ CREATE TABLE `ah_houses` (
 INSERT INTO `ah_houses` (`ID`, `title`, `description`, `address`, `zipcode`, `city`, `status`, `nbBeds`, `price`, `tax`, `listID_activities`, `listID_tags`, `listID_pics`, `ID_user`, `ID_category`) VALUES
 (1, 'Ferme aménagée', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent sed tortor nibh. Praesent scelerisque pellentesque velit, sit amet faucibus magna ultricies et. Nam enim dolor, pulvinar at arcu non, lobortis convallis nibh. Aenean accumsan auctor risus, sit amet eleifend tellus scelerisque vitae. Vestibulum rhoncus aliquet ligula, in maximus magna ullamcorper non. Pellentesque neque diam, tincidunt vel egestas nec, feugiat eget augue. Ut egestas lobortis dui quis efficitur. ', '10 Rue du 19 Mars 1962', 28160, 'Frazé', 2, 10, 213, 10, '1,2,3', '12,18,30,31,33', '4,5,6', 2, 16),
 (2, 'Tentes suspendues en pleine fôrét', 'Viverra vitae congue eu consequat. Metus vulputate eu scelerisque felis imperdiet. Ultrices in iaculis nunc sed augue lacus viverra. Nisi vitae suscipit tellus mauris a. Arcu odio ut sem nulla. Viverra vitae congue eu consequat ac felis donec et.', 'Champs de Beau', 58250, 'Fours', 2, 2, 85, 10, '7', '10,16', '7', 3, 12),
-(3, 'Cabane dans les arbres', 'Venez dormir suspendu', '48  avenue de Provence', 54500, 'Lorraine', 2, 2, 149, 10, '', '', '', 4, 1),
-(4, 'Maison bulle', 'Venez dormir sous les étoiles', '48  avenue de Provence', 54500, 'Vandoeuvre-Lès-Nancy\r\n', 2, 3, 75, 10, '', '', '', 2, 6),
-(5, 'Tipi', 'Venez apprendre la vie des peaux rouges', '119  Chemin Du Lavarin Sud', 62100, 'Calais', 2, 2, 250, 10, '', '', '', 2, 13),
-(6, 'Duplex les pieds dans l\'eau', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.', '38  rue Cazade', 59140, 'Dunkerque', 2, 6, 240, 10, '', '', '', 3, 8),
-(7, 'Roulotte aménagée', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.', '135  rue Beauvau', 13003, 'Marseille', 2, 2, 55, 10, '', '', '', 4, 5),
-(8, 'Tonneau aménagé', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.', '90  cours Jean Jaures', 33200, 'Bordeaux', 0, 2, 75, 10, '', '', '', 4, 14),
-(9, 'Maison troglodyte', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.', '87  rue des Chaligny', 6300, 'Nice', 1, 8, 100, 10, '', '', '', 2, 17),
-(10, 'Cabane sur pilotis ', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.', '61  rue des Chaligny', 6000, 'Nice', 2, 2, 120, 10, '', '', '', 4, 4);
+(3, 'Cabane dans les arbres', 'Venez dormir suspendu', '48  avenue de Provence', 54500, 'Lorraine', 2, 2, 149, 10, '0', '0', '0', 4, 1),
+(4, 'Maison bulle', 'Venez dormir sous les étoiles', '48  avenue de Provence', 54500, 'Vandoeuvre-Lès-Nancy\r\n', 2, 3, 75, 10, '0', '0', '0', 2, 6),
+(5, 'Tipi', 'Venez apprendre la vie des peaux rouges', '119  Chemin Du Lavarin Sud', 62100, 'Calais', 2, 2, 250, 10, '0', '0', '0', 2, 13),
+(6, 'Duplex les pieds dans l\'eau', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.', '38  rue Cazade', 59140, 'Dunkerque', 2, 6, 240, 10, '0', '0', '0', 3, 8),
+(7, 'Roulotte aménagée', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.', '135  rue Beauvau', 13003, 'Marseille', 2, 2, 55, 10, '0', '0', '0', 4, 5),
+(8, 'Tonneau aménagé', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.', '90  cours Jean Jaures', 33200, 'Bordeaux', 0, 2, 75, 10, '0', '0', '0', 4, 14),
+(9, 'Maison troglodyte', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.', '87  rue des Chaligny', 6300, 'Nice', 1, 8, 100, 10, '0', '0', '0', 2, 17),
+(10, 'Cabane sur pilotis ', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.', '61  rue des Chaligny', 6000, 'Nice', 2, 2, 120, 10, '0', '0', '0', 4, 4);
 
 -- --------------------------------------------------------
 
@@ -348,7 +348,7 @@ INSERT INTO `ah_users` (`ID`, `type`, `email`, `password`, `name`, `firstname`, 
 (1, 0, 'contact@atypikhouse.com', 'pass', 'Belle-Maison (Admin)', 'Géraldine', '12 avenue des Jardins', 60350, 'Pierrefonds', 12349876465432),
 (2, 1, 'user1@atypikhouse.com', 'pass', '1', 'User', '12 avenue des Jardins', 60350, 'Pierrefonds', 98764654321234),
 (3, 1, 'user2@atypikhouse.com', 'pass', '2', 'User', '12 avenue des Jardins', 60350, 'Pierrefonds', 46543498763212),
-(4, 1, 'user3@atypikhouse.com', 'pass', '3', 'User', '12 avenue des Jardins', 60350, 'Pierrefonds', 0),
+(4, 1, 'user3@atypikhouse.com', 'pass', '3', 'User', '12 avenue des Jardins', 60350, 'Pierrefonds', 87632124654349),
 (5, 1, 'user4@atypikhouse.com', 'pass', '4', 'User', '12 avenue des Jardins', 60350, 'Pierrefonds', 0);
 
 --
@@ -466,7 +466,7 @@ ALTER TABLE `ah_comments`
 -- AUTO_INCREMENT pour la table `ah_houses`
 --
 ALTER TABLE `ah_houses`
-  MODIFY `ID` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `ID` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 --
 -- AUTO_INCREMENT pour la table `ah_payments`
 --
