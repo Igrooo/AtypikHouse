@@ -5,14 +5,8 @@ let signup    = express.Router();
 
 signup.post('/signup', (req, res) =>{ 
   
-  if(req.body.type && req.body.email && req.body.password && req.body.checkPassword && req.body.name && req.body.firstname && req.body.address && req.body.city && req.body.siret){
+  if(req.body.type && req.body.email && req.body.password && req.body.name && req.body.firstname && req.body.address && req.body.city && req.body.siret){
 
-    if(req.body.password != req.body.checkPassword){
-      res.status(500).send({
-        message: 'Wrong password.'
-      })
-    }
-    else{
       let type      = JSON.stringify(req.body.type);
       let email     = JSON.stringify(req.body.email);
       let password  = JSON.stringify(req.body.password);
@@ -40,10 +34,9 @@ signup.post('/signup', (req, res) =>{
           })
         }
       })
-    }
   }else{
     return res.status(500).send({
-        message: "Missing data."
+        message: req.body.type +' - '+ req.body.email +' - '+ req.body.password +' - '+ req.body.checkPassword +' - '+ req.body.name +' - '+ req.body.firstname +' - '+ req.body.address +' - '+ req.body.city +' - '+ req.body.siret
     });
   }
 });

@@ -74,8 +74,10 @@ export class ListHouseComponent implements OnInit {
         }
       }
     });
+  }
 
-
+  openDeleteHouse(houseID): void {
+    
   }
   
   totalBooking = 0;
@@ -103,6 +105,7 @@ export class ListHouseComponent implements OnInit {
     });
     */
   }
+
 
   ngOnInit() {
     this.user = new User;

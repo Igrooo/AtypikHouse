@@ -16,7 +16,7 @@
             class="ah-house-cta ah-cta-primary ah-house-edit">
             <mat-icon>edit</mat-icon><br>Modifier
           </button><br>
-          <button mat-raised-button (click)="disableHouse()" class="ah-house-cta ah-cta-tertiary ah-house-disable">
+          <button mat-raised-button (click)="disableHouse(house.ID)" class="ah-house-cta ah-cta-tertiary ah-house-disable">
             <mat-icon>block</mat-icon><br>Dépublier
           </button>
         </div>
@@ -44,12 +44,12 @@
           </div>
         </div>
         <div class="ah-list-houses-details ah-list-houses-actions right">
-          <button mat-raised-button (click)="removePromoteHouse()"
+          <button mat-raised-button (click)="removePromoteHouse(house.ID)"
             class="ah-house-cta ah-cta-special ah-house-promote only-admin">
             <mat-icon>close</mat-icon><br>
             <p class="ah-cta-text">Ne plus mettre<br>en avant</p>
           </button><br>
-          <button mat-raised-button (click)="deleteHouse()" class="ah-house-cta ah-cta-delete ah-house-delete">
+          <button mat-raised-button (click)="deleteHouse(house.ID)" class="ah-house-cta ah-cta-delete ah-house-delete">
             <mat-icon>delete</mat-icon><br>Supprimer
           </button>
         </div>
@@ -67,7 +67,7 @@
             class="ah-house-cta ah-cta-primary ah-house-edit">
             <mat-icon>edit</mat-icon><br>Modifier
           </button><br>
-          <button mat-raised-button (click)="disableHouse()" class="ah-house-cta ah-cta-tertiary ah-house-disable">
+          <button mat-raised-button (click)="disableHouse(house.ID)" class="ah-house-cta ah-cta-tertiary ah-house-disable">
             <mat-icon>block</mat-icon><br>Dépublier
           </button>
         </div>
@@ -95,11 +95,11 @@
           </div>
         </div>
         <div class="ah-list-houses-details ah-list-houses-actions right">
-          <button mat-raised-button (click)="promoteHouse()"
+          <button mat-raised-button (click)="promoteHouse(house.ID)"
             class="ah-house-cta ah-cta-special ah-house-promote only-admin">
             <i class="icon-promote la la-sun-o"></i><br>Mettre en avant
           </button><br>
-          <button mat-raised-button (click)="deleteHouse()" class="ah-house-cta ah-cta-delete ah-house-delete">
+          <button mat-raised-button (click)="deleteHouse(house.ID)" class="ah-house-cta ah-cta-delete ah-house-delete">
             <mat-icon>delete</mat-icon><br>Supprimer
           </button>
         </div>
@@ -118,7 +118,7 @@
             class="ah-house-cta ah-cta-primary ah-house-edit">
             <mat-icon>edit</mat-icon><br>Modifier
           </button><br>
-          <button mat-raised-button (click)="enableHouse()" class="ah-house-cta ah-cta-primary ah-house-enable">
+          <button mat-raised-button (click)="enableHouse(house.ID)" class="ah-house-cta ah-cta-primary ah-house-enable">
             <mat-icon>check</mat-icon><br>Publier
           </button>
         </div>
@@ -146,11 +146,11 @@
           </div>
         </div>
         <div class="ah-list-houses-details ah-list-houses-actions right">
-          <button mat-raised-button (click)="promoteHouse()"
+          <button mat-raised-button (click)="promoteHouse(house.ID)"
             class="ah-house-cta ah-cta-special ah-house-promote only-admin">
             <i class="icon-promote la la-sun-o"></i><br>Mettre en avant
           </button><br>
-          <button mat-raised-button (click)="deleteHouse()" class="ah-house-cta ah-cta-delete ah-house-delete">
+          <button mat-raised-button (click)="deleteHouse(house.ID)" class="ah-house-cta ah-cta-delete ah-house-delete">
             <mat-icon>delete</mat-icon><br>Supprimer
           </button>
         </div>
