@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Client :  localhost:3306
--- Généré le :  Jeu 30 Janvier 2020 à 03:31
+-- Généré le :  Mer 12 Février 2020 à 15:37
 -- Version du serveur :  5.7.29-0ubuntu0.18.04.1
 -- Version de PHP :  7.2.24-0ubuntu0.18.04.2
 
@@ -349,7 +349,8 @@ INSERT INTO `ah_users` (`ID`, `type`, `email`, `password`, `name`, `firstname`, 
 (2, 1, 'user1@atypikhouse.com', 'pass', '1', 'User', '12 avenue des Jardins', 60350, 'Pierrefonds', 98764654321234),
 (3, 1, 'user2@atypikhouse.com', 'pass', '2', 'User', '12 avenue des Jardins', 60350, 'Pierrefonds', 46543498763212),
 (4, 1, 'user3@atypikhouse.com', 'pass', '3', 'User', '12 avenue des Jardins', 60350, 'Pierrefonds', 87632124654349),
-(5, 1, 'user4@atypikhouse.com', 'pass', '4', 'User', '12 avenue des Jardins', 60350, 'Pierrefonds', 0);
+(5, 1, 'user4@atypikhouse.com', 'pass', '4', 'User', '12 avenue des Jardins', 60350, 'Pierrefonds', 0),
+(6, 1, 'test@test.com', 'pass', 'test', 'test', 'test', 12000, 'test', 0);
 
 --
 -- Index pour les tables exportées
@@ -466,7 +467,7 @@ ALTER TABLE `ah_comments`
 -- AUTO_INCREMENT pour la table `ah_houses`
 --
 ALTER TABLE `ah_houses`
-  MODIFY `ID` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `ID` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 --
 -- AUTO_INCREMENT pour la table `ah_payments`
 --
@@ -491,7 +492,7 @@ ALTER TABLE `ah_tags`
 -- AUTO_INCREMENT pour la table `ah_users`
 --
 ALTER TABLE `ah_users`
-  MODIFY `ID` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `ID` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 --
 -- Contraintes pour les tables exportées
 --
