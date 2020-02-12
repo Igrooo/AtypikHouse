@@ -1,7 +1,7 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { Router, Event, NavigationStart, NavigationEnd, NavigationError } from "@angular/router";
 import { CookieService } from "ngx-cookie-service";
-import { MatSnackBar } from "@angular/material";
+import { MatSnackBar } from "@angular/material/snack-bar";
 import { User } from "src/app/logic/User";
 
 @Component({
