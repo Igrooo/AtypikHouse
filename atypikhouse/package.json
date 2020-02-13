@@ -24,7 +24,7 @@
     "@angular/platform-browser-dynamic": "~9.0.0-next.7",
     "@angular/router": "~9.0.0-next.7",
     "@angular/service-worker": "~9.0.0-next.7",
-    "@fullcalendar/angular": "^4.3.1",
+    "@fullcalendar/angular": "^4.4.5-beta",
     "@fullcalendar/core": "^4.3.1",
     "@fullcalendar/daygrid": "^4.3.0",
     "@types/jquery": "^3.3.31",
