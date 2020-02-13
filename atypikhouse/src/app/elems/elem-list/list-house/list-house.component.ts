@@ -32,6 +32,8 @@ export class ListHouseComponent implements OnInit {
   iconsColor    :string = '#9dc1bb';
   iconsBgFolder :string = 'houses';
 
+  deleteDialog:number = 0;
+
   viewDate: Date = new Date();
   events = [];
 
@@ -76,7 +78,15 @@ export class ListHouseComponent implements OnInit {
     });
   }
 
-  openDeleteHouse(houseID): void {
+  updateHouse(mode, houseID) {
+    
+  }
+
+  openDeleteHouse(houseID) {
+    this.deleteDialog = houseID;
+  }
+
+  deleteHouse(houseID) {
     
   }
   

@@ -81,6 +81,10 @@ export class HeaderComponent implements OnInit {
     this.router.navigate(["/houses"]);
   }
 
+  posts() {
+    
+  }
+
   ngOnInit() {
     this.user = new User;
 
