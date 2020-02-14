@@ -133,8 +133,8 @@ export class IconComponent implements OnInit, OnChanges {
       this.counterOnChanges = 1;
     }
     if(this.counterOnChanges == 1){
-      this.setIconBg();
-      this.setClasses();
+      //this.setIconBg();
+      //this.setClasses();
       //console.log('iconsType: '+this.iconsType);
       //console.log('iconsSet: '+this.iconsSet);
       //console.log('iconBgFolder: '+this.iconBgFolder);

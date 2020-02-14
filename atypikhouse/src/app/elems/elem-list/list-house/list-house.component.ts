@@ -19,6 +19,8 @@ export class ListHouseComponent implements OnInit {
   @Input() filterUser:number;
 
   math = Math;
+
+  house: House;
   
   houses: [House];
   bookings: [Booking];
@@ -32,7 +34,7 @@ export class ListHouseComponent implements OnInit {
   iconsColor    :string = '#9dc1bb';
   iconsBgFolder :string = 'houses';
 
-  deleteDialog:number = 0;
+  deleteDialogID:number = 0;
 
   viewDate: Date = new Date();
   events = [];
@@ -78,16 +80,35 @@ export class ListHouseComponent implements OnInit {
     });
   }
 
-  updateHouse(mode, houseID) {
-    
+  updateHouse(status, houseID) {
+    this.house = new House;
+    this.data.get("houses", houseID, house => {
+      if (house) {
+        this.house = house;
+        console.log(this.house);
+        this.house.status = status;
+        console.log(this.house);
+        this.data.save("houses", this.house, success => {
+          if (success) {
+            setTimeout(function() {
+              window.location.reload();
+            }, 500);
+          }
+        });
+      }
+    });
   }
 
   openDeleteHouse(houseID) {
-    this.deleteDialog = houseID;
+    this.deleteDialogID = houseID;
   }
 
   deleteHouse(houseID) {
-    
+    this.data.delete("houses", houseID, result => {
+      if (result) {
+        window.location.reload();
+      }
+    });
   }
   
   totalBooking = 0;

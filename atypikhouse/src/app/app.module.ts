@@ -142,10 +142,10 @@ const routes : Routes = [
   { path: 'house/:id/posts', component: ListPostComponent },    // List posts of an house (userFrom & userTo)
 //
   ////Locataires pages
-  { path: 'user/:id/bookings',  component: ListBookingComponent },  // List booking of an user
+  { path: 'user/bookings',  component: ListBookingComponent },  // List booking of an user
   //
   ////Loueurs pages
-  { path: 'user/:id/houses',    component: ListHouseComponent },    // List houses of an user
+  { path: 'user/houses',    component: ListHouseComponent },    // List houses of an user
   { path: 'house/:id/bookings', component: ListBookingComponent },  // List booking of an house
   { path: 'house/:id/comments', component: ListCommentComponent },  // List comments of a house
 //
