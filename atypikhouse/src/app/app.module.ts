@@ -4,7 +4,6 @@ import { GeolocationService } from "./geolocation.service";
 import { DataService } from "./data.service";
 import { CookieService } from "ngx-cookie-service";
 import { AgmCoreModule } from '@agm/core';
-
 import { registerLocaleData, DatePipe } from '@angular/common';
 import localeFr from '@angular/common/locales/fr';
 registerLocaleData(localeFr, 'fr');
@@ -13,7 +12,7 @@ import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
 
 import { HttpClientModule } from "@angular/common/http";
-import { Routes, ActivatedRoute, RouterModule } from "@angular/router";
+import { Routes, RouterModule } from "@angular/router";
 
 import { FormsModule, FormBuilder, ReactiveFormsModule } from "@angular/forms";
 import { BrowserModule } from '@angular/platform-browser';
@@ -38,7 +37,8 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { MatTableModule } from '@angular/material/table'; 
 import { MatBadgeModule } from '@angular/material/badge';
 import { MatDialogModule } from '@angular/material/dialog'; 
-import { from } from 'rxjs';
+import { MatListModule } from '@angular/material/list'; 
+//import { from } from 'rxjs';
 
 import { FullCalendarModule } from '@fullcalendar/angular';
 
@@ -258,7 +258,7 @@ const routes : Routes = [
     BrowserModule, BrowserAnimationsModule,
     MatButtonModule, MatIconModule, MatFormFieldModule, MatInputModule, MatSelectModule, MatSliderModule, MatAutocompleteModule,
     MatToolbarModule, MatCardModule, MatSlideToggleModule, MatSnackBarModule, MatMenuModule, MatTabsModule, MatSortModule, MatTableModule, MatBadgeModule,
-    MatNativeDateModule, MatDatepickerModule, MatDialogModule, MatCheckboxModule,
+    MatNativeDateModule, MatDatepickerModule, MatDialogModule, MatCheckboxModule, MatListModule,
     FullCalendarModule,
     ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
     AgmCoreModule.forRoot({

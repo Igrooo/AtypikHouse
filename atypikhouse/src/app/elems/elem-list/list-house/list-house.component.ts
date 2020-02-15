@@ -36,8 +36,7 @@ export class ListHouseComponent implements OnInit {
 
   deleteDialogID:number = 0;
 
-  viewDate: Date = new Date();
-  events = [];
+  isReady:boolean = false;
 
   constructor(private data: DataService,
               private cookieService: CookieService,
@@ -49,35 +48,56 @@ export class ListHouseComponent implements OnInit {
   }
 
   openCalendar(houseID): void {
+    let bookingsdata = this.getBookingsData(houseID);
+    if(bookingsdata.length != 0){
+      const dialogRef = this.dialog.open(BookingCalendarComponent, {
+        width: '1000px',
+        data: bookingsdata
+      });
+      dialogRef.afterClosed().subscribe(result => {
+        //console.log('The dialog was closed');
+      });
+    }
+  }
 
-    this.data.getList("booking", bookings => {
-      if(bookings){
-        let bookingsdata = [];
-        this.bookings = bookings;
-        this.bookings.forEach((booking, index) => {
-          if(booking.ID_house == houseID){
-            let color = '#15a08c';
-            switch(booking.status){
-              case 0: color = '#bcd5d1';
-              case 1: color = '#ba9077';
-              case 2: color = '#15a08c';
-            }
-            let title = this.nbNights(booking.dateStart, booking.dateEnd)+' nuit(s) pour '+booking.nbPersons.toString()+' p.';
-            bookingsdata.push({title: title, start: booking.dateStart, end: booking.dateEnd, backgroundColor:color, borderColor:color});
+  hasBookingData(houseID){
+    let bookingsdata = this.getBookingsData(houseID);
+    if(bookingsdata.length != 0){
+      return true;
+    }
+    else{
+      return false;
+    }
+  }
+
+  getBookingsData(houseID){
+    let bookingsdata = [];
+      this.bookings.forEach((booking, index) => {
+        if(booking.ID_house == houseID){
+          let color = '#15a08c';
+          switch(booking.status){
+            case 0: color = '#bcd5d1';
+            case 1: color = '#ba9077';
+            case 2: color = '#15a08c';
           }
-        });
-
-        if(bookingsdata.length != 0){
-          const dialogRef = this.dialog.open(BookingCalendarComponent, {
-            width: '1000px',
-            data: bookingsdata
-          });
-          dialogRef.afterClosed().subscribe(result => {
-            //console.log('The dialog was closed');
-          });
+          let title = this.nbNights(booking.dateStart, booking.dateEnd)+' nuit(s) pour '+booking.nbPersons.toString()+' p.';
+          bookingsdata.push({title: title, start: booking.dateStart, end: booking.dateEnd, backgroundColor:color, borderColor:color});
         }
+      });
+    return bookingsdata;
+  }
+
+  getTotalBooking(status,houseID){
+    let total = 0;
+    this.bookings.forEach((booking, index) => {
+      if(booking.ID_house == houseID && booking.status == status){
+        total++;
       }
     });
+    if (total == 0){
+      return 'Aucune'
+    }
+    return total.toString();
   }
 
   updateHouse(status, houseID) {
@@ -104,6 +124,7 @@ export class ListHouseComponent implements OnInit {
   }
 
   deleteHouse(houseID) {
+    //need delete linked bookings before (foreign key)
     this.data.delete("houses", houseID, result => {
       if (result) {
         window.location.reload();
@@ -111,33 +132,6 @@ export class ListHouseComponent implements OnInit {
     });
   }
   
-  totalBooking = 0;
-  totalWaitingBooking = 0;
-  
-  counter:number = 0;
-  getTotalBooking(houseID){
-    /*
-    if(this.counter < 1){
-      this.data.getTotalBooking(houseID, total => {
-        this.totalBooking = total["COUNT(*)"];
-        console.log(this.totalBooking);
-        return total["COUNT(*)"];
-      });
-      this.counter++;
-    }
-    */
-  }
-
-  getTotalWaitingBooking(houseID){
-    /*
-    this.data.getTotalWaitingBooking(houseID, total => {
-      console.log('wait booking: ' +total["COUNT(*)"]);
-      return total["COUNT(*)"];
-    });
-    */
-  }
-
-
   ngOnInit() {
     this.user = new User;
     if(this.cookieService.get('logged')){
@@ -162,5 +156,13 @@ export class ListHouseComponent implements OnInit {
     this.data.getList("houses", houses => {
       this.houses = houses;
     });
+
+    this.data.getList("booking", bookings => {
+      this.bookings = bookings;
+    });
+  }
+
+  ngAfterViewInit() {
+    this.isReady = true;
   }
 }

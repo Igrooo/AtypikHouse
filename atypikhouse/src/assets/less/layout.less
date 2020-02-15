@@ -701,6 +701,26 @@
             .ah-list-houses-details{
                 vertical-align: top;
                 margin: 5px 10px;
+                .ah-house-title{
+                    margin-bottom: 12px;
+                }
+                .ah-booking-info{
+                    line-height: 2em;
+                    margin-bottom: 5px;
+                    .ah-booking-info-label{
+                        margin-left: 5px;
+                        vertical-align: text-bottom;
+                        .ah-booking-counter{
+                            min-width: 60px;
+                            display: inline-block;
+                            text-align: center;
+                            padding: 0;
+                        }
+                    }
+                    .ah-cta-calendar{
+                        margin-top: 15px;
+                    }
+                }
             }
             &:hover{
                 .ah-list-houses-actions{
@@ -1408,15 +1428,20 @@
         margin-top: 15px;
     }
     .ah-booking-details{
-        width: calc(100% - 110px - 220px);
+        width: calc(100% - 110px - 300px);
     }
     .ah-booking-actions{
-        width: 220px;
+        width: 300px;
         text-align: right;
     }
     .ah-booking-cta{
-        width: 100%;
+        width: calc(100% - 80px);
         padding: 20px 35px;
+    }
+    .ah-booking-cta-cancel{
+        width: 60px;
+        padding: 20px 0;
+        margin-right: 10px;
     }
     .ah-booking{
         &.status-0{

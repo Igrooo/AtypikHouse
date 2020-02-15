@@ -24,6 +24,8 @@ export class ListBookingComponent implements OnInit {
 
   icons = Icons;
 
+  isReady:boolean = false;
+
   dateLabel(date){
     return this.datePipe.transform(date,"dd/MM/yyyy");
   }
@@ -77,6 +79,10 @@ export class ListBookingComponent implements OnInit {
         });
       }
     });
+  }
+
+  ngAfterViewInit() {
+    this.isReady = true;
   }
 
 }

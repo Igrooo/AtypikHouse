@@ -24,16 +24,16 @@
                 <ul class="list-inline only-public">
                     <li><button (click)="login()" class="ah-cta-primary" mat-button><mat-icon>person</mat-icon><span class="not-mobile">Se connecter</span></button></li>
                 </ul>
-                <ul class="list-inline only-logged">
+                <ul class="list-inline" *ngIf="logged">
                     <li class="not-mobile">
-                        <button *ngIf="logged" routerLink="/user/houses" class="ah-cta-primary" mat-button>
+                        <button routerLink="/user/houses" class="ah-cta-primary" mat-button>
                             <mat-icon>house</mat-icon>
                             <span class="only-user">Mes annonces</span>
                             <span class="only-admin">Annonces</span>
                         </button>
                     </li>
                     <li class="not-mobile">
-                        <button *ngIf="logged" routerLink="/user/bookings" class="ah-cta-primary" mat-button>
+                        <button routerLink="/user/bookings" class="ah-cta-primary" mat-button>
                             <mat-icon>hotel</mat-icon>
                             <span class="only-user">Mes séjours</span>
                             <span class="only-admin">Séjours</span>
@@ -69,11 +69,23 @@
             </nav>
         </mat-toolbar>
         <nav id="sidenav" class="ah-nav-sidenav ah-nav-secondary not-desktop">
+            <ul class="list-menu" *ngIf="logged">
+                <li>
+                    <a routerLink="/user/houses" class="ah-sidenav-link ah-link ah-link-secondary">
+                        <mat-icon class="ah-icon-inline">house</mat-icon>
+                        <span class="only-user">Mes annonces</span>
+                        <span class="only-admin">Annonces</span>
+                    </a>
+                </li>
+                <li>
+                    <a routerLink="/user/bookings" class="ah-sidenav-link ah-link ah-link-secondary">
+                        <mat-icon class="ah-icon-inline">hotel</mat-icon>
+                        <span class="only-user">Mes séjours</span>
+                        <span class="only-admin">Séjours</span>
+                    </a>
+                </li>
+            </ul>
             <ul class="list-menu">
-                <li class="only-logged only-user"> <a class="ah-sidenav-link ah-link ah-link-secondary" routerLink="/user/houses">  <mat-icon class="ah-icon-inline">house</mat-icon><span>Mes annonces</span></a></li>
-                <li class="only-logged only-user"> <a class="ah-sidenav-link ah-link ah-link-secondary" routerLink="/user/bookings"><mat-icon class="ah-icon-inline">hotel</mat-icon><span>Mes séjours</span></a></li>
-                <li class="only-logged only-admin"><a class="ah-sidenav-link ah-link ah-link-secondary" routerLink="/user/houses">  <mat-icon class="ah-icon-inline">house</mat-icon><span>Annonces</span></a></li>
-                <li class="only-logged only-admin"><a class="ah-sidenav-link ah-link ah-link-secondary" routerLink="/user/bookings"><mat-icon class="ah-icon-inline">hotel</mat-icon><span>Séjours</span></a></li>
                 <li><a class="ah-sidenav-link ah-link ah-link-secondary" routerLink="/categories"><mat-icon class="ah-icon-inline">landscape</mat-icon><span>Explorer</span></a></li>
                 <li><a class="ah-sidenav-link ah-link ah-link-secondary" routerLink="/news">      <mat-icon class="ah-icon-inline">new_releases</mat-icon><span>Actualités</span></a></li>
             </ul>

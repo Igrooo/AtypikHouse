@@ -1,5 +1,6 @@
 <div class="ah-form ah-form-user top">
     <mat-checkbox [(ngModel)]="userPro">Je suis un professionnel</mat-checkbox>
+    <input hidden name="siret" [(ngModel)]="user.siret" value="0" *ngIf="!userPro">
 </div>
  <form (submit)="submit()" class="ah-form ah-form-user">
     <mat-form-field *ngIf="userPro">
