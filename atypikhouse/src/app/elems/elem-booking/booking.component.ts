@@ -43,11 +43,10 @@ export class BookingComponent implements OnInit {
       if(payments){
         this.payments = payments;
         //console.log(payments);
-        /*
         this.payments.forEach((payment, index) => {
           if(payment.ID_booking == this.booking.ID){
             this.payment = payment;
-            console.log(this.payment);
+            //console.log(this.payment);
             this.payment.status = 2;
             this.data.save("payments", this.payment, insertID =>{
               if (Number.isInteger(insertID)) {
@@ -57,7 +56,6 @@ export class BookingComponent implements OnInit {
             });
           }
         });
-        */
       }
     });
     this.payed = 'payed';

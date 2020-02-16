@@ -2,8 +2,9 @@
     <h2 class="ah-title">{{ listTitle }}</h2>
     <ul class="ah-list ah-booking-list ah-list-order">
         <ng-container *ngFor="let booking of bookings; let i = index">
-        <li *ngIf="filterUser === booking.ID_user || filterUser === 0" class="ah-list-order-child ah-booking ah-container-tertiary status-{{ booking.status }} order-{{ booking.status }}">
-            <h5 class="ah-booking-title">Réservation de <mark> {{ nbNights(booking.dateStart,booking.dateEnd)}} nuit(s)</mark> à <mark>{{ houseTitles[i] }}</mark></h5>
+            <li *ngIf="filterUser === booking.ID_user || filterUser === 0" class="ah-list-order-child ah-booking ah-container-tertiary status-{{ booking.status }} order-{{ booking.status }}">
+                <h5 class="ah-booking-title">Réservation de <mark> {{ nbNights(booking.dateStart,booking.dateEnd)}} nuit(s)</mark> à <mark>{{ houseTitles[i] }}</mark></h5>
+                <hr>
             <div class="ah-booking-container ah-booking-house-link" *ngIf="isReady">
                 <app-icon routerLink="/house/{{ booking.ID_house }}" [forceReload]="true" [iconSize]="'mid'" [iconsSet]="'travel'" [iconGroup]="" [iconName]="" [iconBgFolder]="'houses'" [iconBg]="booking.ID_house" [iconColor]="'#15a08c'"></app-icon>
             </div>

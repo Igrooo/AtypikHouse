@@ -35,7 +35,7 @@
                 <ul class="ah-list">
                   <li class="ah-booking-info"><mat-icon>access_time</mat-icon><span class="ah-booking-info-label"><mark class="ah-booking-counter wait">{{ getTotalBooking(1,house.ID) }}</mark> réservation(s) à confirmer (Paiements en attente) </span></li>
                   <li class="ah-booking-info"><mat-icon>done</mat-icon><span class="ah-booking-info-label"><mark class="ah-booking-counter done">{{ getTotalBooking(2,house.ID) }}</mark> réservation(s) validée(s) (Paiements effectués) </span></li>
-                  <li class="ah-booking-info"><mat-icon>close</mat-icon><span class="ah-booking-info-label"><mark class="ah-booking-counter canc">{{ getTotalBooking(0,house.ID) }}</mark> réservation(s) annulée(s) (Paiements effectués) </span></li>
+                  <li class="ah-booking-info"><mat-icon>close</mat-icon><span class="ah-booking-info-label"><mark class="ah-booking-counter canc">{{ getTotalBooking(0,house.ID) }}</mark> réservation(s) annulée(s) </span></li>
                 </ul>
                 <button class="ah-cta-primary ah-cta-calendar" mat-raised-button (click)="openCalendar(house.ID)" *ngIf="hasBookingData(house.ID)">
                   <mat-icon>calendar_today</mat-icon> Voir le calendrier des réservations
@@ -45,7 +45,7 @@
             <div class="ah-list-houses-details delete-house" *ngIf="deleteDialogID == house.ID">
               <h5 class="ah-house-title">Confirmer la suppression de "{{ house.title }}"</h5>
               <button mat-raised-button (click)="openDeleteHouse(0)" class="ah-house-cta ah-cta-tertiary ah-house-cancel">
-                <mat-icon>remove</mat-icon><br>Annuler
+                <mat-icon>close</mat-icon><br>Annuler
               </button>
               <button mat-raised-button (click)="deleteHouse(house.ID)" class="ah-house-cta ah-cta-delete ah-house-delete">
                 <mat-icon>delete</mat-icon><br>Supprimer
@@ -93,9 +93,9 @@
               <h5 class="ah-house-title">{{ house.title }}</h5>
               <div class="ah-booking-info-container" *ngIf="isReady">
                 <ul class="ah-list">
-                  <li class="ah-booking-info"><mat-icon>access_time</mat-icon><span class="ah-booking-info-label"><mark class="ah-booking-counter wait">{{ getTotalBooking(1,house.ID) }}</mark> réservation(s) à confirmer (Paiements en attente) </span></li>
-                  <li class="ah-booking-info"><mat-icon>done</mat-icon><span class="ah-booking-info-label"><mark class="ah-booking-counter done">{{ getTotalBooking(2,house.ID) }}</mark> réservation(s) validée(s) (Paiements effectués) </span></li>
-                  <li class="ah-booking-info"><mat-icon>close</mat-icon><span class="ah-booking-info-label"><mark class="ah-booking-counter canc">{{ getTotalBooking(0,house.ID) }}</mark> réservation(s) annulée(s) (Paiements effectués) </span></li>
+                  <li class="ah-booking-info"><mat-icon>access_time</mat-icon><span class="ah-booking-info-label">   <mark class="ah-booking-counter wait">{{ getTotalBooking(1,house.ID) }}</mark> réservation(s) à confirmer (Paiements en attente) </span></li>
+                  <li class="ah-booking-info"><mat-icon>done</mat-icon>       <span class="ah-booking-info-label">   <mark class="ah-booking-counter done">{{ getTotalBooking(2,house.ID) }}</mark> réservation(s) validée(s) (Paiements effectués) </span></li>
+                  <li class="ah-booking-info"><mat-icon>close</mat-icon>      <span class="ah-booking-info-label"><i><mark class="ah-booking-counter canc">{{ getTotalBooking(0,house.ID) }}</mark> réservation(s) annulée(s)</i> </span></li>
                 </ul>
                 <button class="ah-cta-primary ah-cta-calendar" mat-raised-button (click)="openCalendar(house.ID)" *ngIf="hasBookingData(house.ID)">
                   <mat-icon>calendar_today</mat-icon> Voir le calendrier des réservations
@@ -105,7 +105,7 @@
             <div class="ah-list-houses-details delete-house" *ngIf="deleteDialogID == house.ID">
               <h5 class="ah-house-title">Confirmer la suppression de "{{ house.title }}"</h5>
               <button mat-raised-button (click)="openDeleteHouse(0)" class="ah-house-cta ah-cta-tertiary ah-house-cancel">
-                <mat-icon>remove</mat-icon><br>Annuler
+                <mat-icon>close</mat-icon><br>Annuler
               </button>
               <button mat-raised-button (click)="deleteHouse(house.ID)" class="ah-house-cta ah-cta-delete ah-house-delete">
                 <mat-icon>delete</mat-icon><br>Supprimer
@@ -155,7 +155,7 @@
                 <ul class="ah-list">
                   <li class="ah-booking-info"><mat-icon>access_time</mat-icon><span class="ah-booking-info-label"><mark class="ah-booking-counter wait">{{ getTotalBooking(1,house.ID) }}</mark> réservation(s) à confirmer (Paiements en attente) </span></li>
                   <li class="ah-booking-info"><mat-icon>done</mat-icon><span class="ah-booking-info-label"><mark class="ah-booking-counter done">{{ getTotalBooking(2,house.ID) }}</mark> réservation(s) validée(s) (Paiements effectués) </span></li>
-                  <li class="ah-booking-info"><mat-icon>close</mat-icon><span class="ah-booking-info-label"><mark class="ah-booking-counter canc">{{ getTotalBooking(0,house.ID) }}</mark> réservation(s) annulée(s) (Paiements effectués) </span></li>
+                  <li class="ah-booking-info"><mat-icon>close</mat-icon><span class="ah-booking-info-label"><mark class="ah-booking-counter canc">{{ getTotalBooking(0,house.ID) }}</mark> réservation(s) annulée(s) </span></li>
                 </ul>
                 <button class="ah-cta-primary ah-cta-calendar" mat-raised-button (click)="openCalendar(house.ID)" *ngIf="hasBookingData(house.ID)">
                   <mat-icon>calendar_today</mat-icon> Voir le calendrier des réservations
@@ -165,7 +165,7 @@
             <div class="ah-list-houses-details delete-house" *ngIf="deleteDialogID == house.ID">
               <h5 class="ah-house-title">Confirmer la suppression de "{{ house.title }}"</h5>
               <button mat-raised-button (click)="openDeleteHouse(0)" class="ah-house-cta ah-cta-tertiary ah-house-cancel">
-                <mat-icon>remove</mat-icon><br>Annuler
+                <mat-icon>close</mat-icon><br>Annuler
               </button>
               <button mat-raised-button (click)="deleteHouse(house.ID)" class="ah-house-cta ah-cta-delete ah-house-delete">
                 <mat-icon>delete</mat-icon><br>Supprimer

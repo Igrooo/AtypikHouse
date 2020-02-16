@@ -1,7 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 
+import { DatePipe } from '@angular/common';
 import { MatDialog } from '@angular/material/dialog';
-
 import { DataService} from "src/app/data.service";
 import { CookieService } from "ngx-cookie-service";
 import { House } from "src/app/logic/House";
@@ -40,7 +40,8 @@ export class ListHouseComponent implements OnInit {
 
   constructor(private data: DataService,
               private cookieService: CookieService,
-              public dialog: MatDialog
+              public dialog: MatDialog,
+              private datePipe: DatePipe
               ) { }
 
   nbNights(dateStart, dateEnd){
@@ -74,14 +75,22 @@ export class ListHouseComponent implements OnInit {
     let bookingsdata = [];
       this.bookings.forEach((booking, index) => {
         if(booking.ID_house == houseID){
-          let color = '#15a08c';
+          let color = '#222222';
+          let label = '<br>' ;
           switch(booking.status){
-            case 0: color = '#bcd5d1';
-            case 1: color = '#ba9077';
-            case 2: color = '#15a08c';
+            case 0: color = '#bcd5d1'; label = '||| Annulée ||| ';
+            break;
+            case 1: color = '#15a08c'; label = '||| En attente ||| ';
+            break;
+            case 2: color = '#ba9077'; label = '||| Validée ||| ';
+            break;
           }
-          let title = this.nbNights(booking.dateStart, booking.dateEnd)+' nuit(s) pour '+booking.nbPersons.toString()+' p.';
-          bookingsdata.push({title: title, start: booking.dateStart, end: booking.dateEnd, backgroundColor:color, borderColor:color});
+          console.log(booking.dateStart,  booking.dateEnd);
+          let url = 'http://localhost:4200/booking/'+booking.ID;
+          let title = label+this.nbNights(booking.dateStart, booking.dateEnd)+' nuit(s) pour '+booking.nbPersons.toString()+' p.';
+          let dateStartLabel = this.datePipe.transform(booking.dateStart,"yyyy-MM-ddT12:00:00.000Z");
+          let dateEndLabel = this.datePipe.transform(booking.dateEnd,"yyyy-MM-ddT12:00:00.000Z");
+          bookingsdata.push({title: title, start: dateStartLabel, end: dateEndLabel, backgroundColor:color, borderColor:color, url:url});
         }
       });
     return bookingsdata;
@@ -105,9 +114,7 @@ export class ListHouseComponent implements OnInit {
     this.data.get("houses", houseID, house => {
       if (house) {
         this.house = house;
-        console.log(this.house);
         this.house.status = status;
-        console.log(this.house);
         this.data.save("houses", this.house, success => {
           if (success) {
             setTimeout(function() {
@@ -162,7 +169,8 @@ export class ListHouseComponent implements OnInit {
     });
   }
 
-  ngAfterViewInit() {
+  ngAfterContentChecked() {
+    
     this.isReady = true;
   }
 }

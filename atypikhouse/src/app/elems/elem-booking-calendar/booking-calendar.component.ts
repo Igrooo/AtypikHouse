@@ -1,5 +1,6 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import dayGridPlugin from '@fullcalendar/daygrid';
+import listPlugin from '@fullcalendar/list';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 export interface DialogData {
@@ -13,7 +14,7 @@ export interface DialogData {
 })
 export class BookingCalendarComponent implements OnInit {
 
-  calendarPlugins = [dayGridPlugin];
+  calendarPlugins = [dayGridPlugin,listPlugin];
 
   constructor(
     public dialogRef: MatDialogRef<BookingCalendarComponent>,
