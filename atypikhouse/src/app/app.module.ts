@@ -107,6 +107,7 @@ import { FormSignupComponent }          from './elems/elem-form/form-signup/form
 import { IconComponent }                from './elems/elem-icon/icon.component';
 import { MapComponent }                 from './elems/elem-map/map.component';
 import { BookingCalendarComponent }     from './elems/elem-booking-calendar/booking-calendar.component';
+import { DocComponent }                 from './elems/elem-doc/doc.component';
 
 const routes : Routes = [
 
@@ -250,7 +251,8 @@ const routes : Routes = [
     AdminPostsComponent,
     AdminTagsComponent,
     AdminUsersComponent,
-    BookingCalendarComponent
+    BookingCalendarComponent,
+    DocComponent
   ],
   imports: [
     RouterModule.forRoot(routes),

@@ -26,6 +26,8 @@ export class ListBookingComponent implements OnInit {
 
   isReady:boolean = false;
 
+  cancelDialogID:number = 0;
+
   dateLabel(date){
     return this.datePipe.transform(date,"dd/MM/yyyy");
   }
@@ -81,8 +83,15 @@ export class ListBookingComponent implements OnInit {
     });
   }
 
-  ngAfterViewInit() {
+  ngAfterContentChecked() {
     this.isReady = true;
   }
 
+  openCancelBooking(bookingID) {
+    this.cancelDialogID = bookingID;
+  }
+
+  cancelBooking(bookingID){
+    
+  }
 }

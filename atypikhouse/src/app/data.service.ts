@@ -41,20 +41,6 @@ export class DataService {
     });
   }
 
-  getTotalBooking(houseID:string, callback) {
-    this.http.get(`${this.endpoint}/totalbooking/${houseID}`)
-      .subscribe(response => {
-      callback(response['content']);
-    });
-  }
-
-  getTotalWaitingBooking(houseID:string, callback) {
-    this.http.get(`${this.endpoint}/totalwaitingbooking/${houseID}`)
-      .subscribe(response => {
-      callback(response['content']);
-    });
-  }
-
   login(user, callback) {
     this.http.post(`${this.endpoint}/login`, user)
     .subscribe(response => {

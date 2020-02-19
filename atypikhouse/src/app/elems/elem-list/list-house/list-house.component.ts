@@ -23,7 +23,7 @@ export class ListHouseComponent implements OnInit {
   house: House;
   
   houses: [House];
-  bookings: [Booking];
+  bookings = [];
 
   user: User;
   userPro:boolean = false;
@@ -78,15 +78,14 @@ export class ListHouseComponent implements OnInit {
           let color = '#222222';
           let label = '<br>' ;
           switch(booking.status){
-            case 0: color = '#bcd5d1'; label = '||| Annulée ||| ';
+            case 0: color = '#bcd5d1'; label = '-  Annulée  - ';
             break;
-            case 1: color = '#15a08c'; label = '||| En attente ||| ';
+            case 1: color = '#15a08c'; label = '-  En attente  - ';
             break;
-            case 2: color = '#ba9077'; label = '||| Validée ||| ';
+            case 2: color = '#ba9077'; label = '-  Validée  - ';
             break;
           }
-          console.log(booking.dateStart,  booking.dateEnd);
-          let url = 'http://localhost:4200/booking/'+booking.ID;
+          let url = booking.ID;
           let title = label+this.nbNights(booking.dateStart, booking.dateEnd)+' nuit(s) pour '+booking.nbPersons.toString()+' p.';
           let dateStartLabel = this.datePipe.transform(booking.dateStart,"yyyy-MM-ddT12:00:00.000Z");
           let dateEndLabel = this.datePipe.transform(booking.dateEnd,"yyyy-MM-ddT12:00:00.000Z");
@@ -170,7 +169,6 @@ export class ListHouseComponent implements OnInit {
   }
 
   ngAfterContentChecked() {
-    
     this.isReady = true;
   }
 }

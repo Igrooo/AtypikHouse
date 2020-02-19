@@ -9,6 +9,8 @@ let complete    = false;
 let tablefields = '';
 let values      = '';
 
+let checkDates = false;
+
 insert.post('/insert/:tablename', function (req, res) {
 
     //let userInfo = req.decodedToken.payload;
@@ -39,6 +41,7 @@ insert.post('/insert/:tablename', function (req, res) {
         case 'booking':
             if(req.body.nbPersons && req.body.date && req.body.dateStart && req.body.dateEnd && req.body.status && req.body.ID_user && req.body.ID_house){
                 complete        = true;
+                checkDates      = true;
                 let status      = JSON.stringify(req.body.status);
                 let nbPersons   = JSON.stringify(req.body.nbPersons);
                 let date        = JSON.stringify(req.body.date);
@@ -154,13 +157,36 @@ insert.post('/insert/:tablename', function (req, res) {
     }
 
     if(complete){
-        db.query('INSERT INTO ' + tableprefix + req.params.tablename + ' (' + tablefields + ') VALUES (' + values + ')', (err, result) => {
-            if (err) throw(err);
-            res.status(200).send({
-                message: 'INSERT new data into ' + req.params.tablename + ', ID: '+ result.insertId,
-                content: result.insertId
-            })
-        });
+        // check dates for booking
+        if(checkDates){ 
+            db.query("SELECT * FROM " + tableprefix + req.params.tablename + " WHERE dateStart=" + dateStart, (err, result) => {
+                if (err){
+                    return res.status(200).send(err);
+                } 
+                if (result.length > 0) { 
+                    res.status(200).send({
+                      message: 'Booking date already use.'
+                    })
+                  }else{
+                    db.query('INSERT INTO ' + tableprefix + req.params.tablename + ' (' + tablefields + ') VALUES (' + values + ')', (err, result) => {
+                        if (err) throw(err);
+                        res.status(200).send({
+                            message: 'INSERT new data into ' + req.params.tablename + ', ID: '+ result.insertId,
+                            content: result.insertId
+                        })
+                    });
+                  }
+            });
+        }
+        else{
+            db.query('INSERT INTO ' + tableprefix + req.params.tablename + ' (' + tablefields + ') VALUES (' + values + ')', (err, result) => {
+                if (err) throw(err);
+                res.status(200).send({
+                    message: 'INSERT new data into ' + req.params.tablename + ', ID: '+ result.insertId,
+                    content: result.insertId
+                })
+            });
+        }
     
     }else{
         res.status(500).send({

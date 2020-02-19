@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { Router, ActivatedRoute } from "@angular/router";
 import { DatePipe } from '@angular/common';
 import { DataService } from 'src/app/data.service';
@@ -29,6 +29,11 @@ export class BookingComponent implements OnInit {
   dateStartLabel: string;
   dateEndLabel: string;
 
+  short:boolean = false;
+  bookingPageClasses:string = '';
+
+  @Input() bookingID = 0;
+
   constructor(private router: Router,
               private route: ActivatedRoute,
               private data: DataService,
@@ -38,7 +43,6 @@ export class BookingComponent implements OnInit {
   routingSubscription: any;
 
   validBooking(){
-
     this.data.getList("payments", payments => {
       if(payments){
         this.payments = payments;
@@ -61,6 +65,42 @@ export class BookingComponent implements OnInit {
     this.payed = 'payed';
   }
 
+  cancelBooking(){
+
+  }
+
+  getBooking(bookingID) {
+    this.data.get("booking", bookingID, booking => {
+      if (booking) {
+        this.booking = booking;
+        this.nbNights = ( new Date(this.booking.dateEnd).getTime() - new Date(this.booking.dateStart).getTime() ) / (1000 * 3600 * 24);
+        this.dateStartLabel = this.datePipe.transform(this.booking.dateStart,"dd/MM/yyyy");
+        this.dateEndLabel = this.datePipe.transform(this.booking.dateEnd,"dd/MM/yyyy");
+        this.data.get("houses", this.booking.ID_house.toString(), house => {
+          if (house) {
+            this.house = house;
+            this.priceTTC = this.math.round(this.house.price + ((this.house.price/100) * this.house.tax));
+            this.totalPrice = this.priceTTC * this.nbNights * this.booking.nbPersons;
+          }
+        });
+      }
+    });
+  }
+  getID(){
+    if(this.bookingID == 0){
+      this.routingSubscription =
+      this.route.params.subscribe(params => {
+        if(params["id"]) {
+          this.bookingID = params["id"];
+        }
+      });
+      this.bookingPageClasses = 'ah-container-primary ah-section ah-container-product-booking';
+    }
+    else{
+      this.short = true;
+    }
+  }
+
   ngOnInit() {
 
     this.booking = new Booking();
@@ -68,27 +108,15 @@ export class BookingComponent implements OnInit {
 
     this.payed = '';
 
-    this.routingSubscription =
-      this.route.params.subscribe(params => {
-        if(params["id"]) {
-          this.data.get("booking", params["id"], booking => {
-            if (booking) {
-              this.booking = booking;
-              this.nbNights = ( new Date(this.booking.dateEnd).getTime() - new Date(this.booking.dateStart).getTime() ) / (1000 * 3600 * 24);
-              this.dateStartLabel = this.datePipe.transform(this.booking.dateStart,"dd/MM/yyyy");
-              this.dateEndLabel = this.datePipe.transform(this.booking.dateEnd,"dd/MM/yyyy");
+    this.getID();
+    this.getBooking(this.bookingID);
 
-              this.data.get("houses", this.booking.ID_house.toString(), house => {
-                if (house) {
-                  this.house = house;
-                  this.priceTTC = this.math.round(this.house.price + ((this.house.price/100) * this.house.tax));
-                  this.totalPrice = this.priceTTC * this.nbNights * this.booking.nbPersons;
-                }
-              });
-            }
-          });
-        }
-      });
+  }
+
+  ngOnChanges(){
+    this.getID();
+    console.log(this.bookingID);
+    this.getBooking(this.bookingID);
   }
 
 }

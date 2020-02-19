@@ -16,12 +16,12 @@
           <button mat-raised-button routerLink="/house/{{ house.ID }}/edit"
             class="ah-house-cta ah-cta-primary ah-house-edit">
             <mat-icon>edit</mat-icon><br>Modifier
-          </button><br>
+          </button><br class="not-mobile">
           <button mat-raised-button disabled (click)="updateHouse(0, house.ID)" class="ah-house-cta ah-cta-tertiary ah-house-disable">
             <mat-icon>block</mat-icon><br>Dépublier
           </button>
         </div>
-        <div class="ah-list-houses-container">
+        <div class="ah-list-houses-container mat-elevation-z5">
           <div class="ah-list-houses-header">
             <app-icon routerLink="/house/{{ house.ID }}" [forceReload]="true" [iconSize]="iconsSize"
               [iconsSet]="iconsSet" [iconGroup]="icons[house.ID_category - 1].group"
@@ -58,7 +58,7 @@
             class="ah-house-cta ah-cta-special ah-house-promote only-admin">
             <mat-icon>remove</mat-icon><br>
             <p class="ah-cta-text">Ne plus mettre<br>en avant</p>
-          </button><br>
+          </button><br class="not-mobile">
           <button mat-raised-button (click)="openDeleteHouse(house.ID)" class="ah-house-cta ah-cta-delete ah-house-delete">
             <mat-icon>delete</mat-icon><br>Supprimer
           </button>
@@ -76,12 +76,12 @@
           <button mat-raised-button routerLink="/house/{{ house.ID }}/edit"
             class="ah-house-cta ah-cta-primary ah-house-edit">
             <mat-icon>edit</mat-icon><br>Modifier
-          </button><br>
+          </button><br class="not-mobile">
           <button mat-raised-button disabled (click)="updateHouse(0, house.ID)" class="ah-house-cta ah-cta-tertiary ah-house-disable">
             <mat-icon>block</mat-icon><br>Dépublier
           </button>
         </div>
-        <div class="ah-list-houses-container">
+        <div class="ah-list-houses-container mat-elevation-z5">
           <div class="ah-list-houses-header">
             <app-icon routerLink="/house/{{ house.ID }}" [forceReload]="true" [iconSize]="iconsSize"
               [iconsSet]="iconsSet" [iconGroup]="icons[house.ID_category - 1].group"
@@ -117,7 +117,7 @@
           <button mat-raised-button (click)="updateHouse(2, house.ID)"
             class="ah-house-cta ah-cta-special ah-house-promote only-admin">
             <i class="icon-promote la la-sun-o"></i><br>Mettre en avant
-          </button><br>
+          </button><br class="not-mobile">
           <button mat-raised-button (click)="openDeleteHouse(house.ID)" class="ah-house-cta ah-cta-delete ah-house-delete">
             <mat-icon>delete</mat-icon><br>Supprimer
           </button>
@@ -136,12 +136,12 @@
           <button mat-raised-button routerLink="/house/{{ house.ID }}/edit"
             class="ah-house-cta ah-cta-primary ah-house-edit">
             <mat-icon>edit</mat-icon><br>Modifier
-          </button><br>
+          </button><br class="not-mobile">
           <button mat-raised-button disabled (click)="updateHouse(1, house.ID)" class="ah-house-cta ah-cta-primary ah-house-enable">
             <mat-icon>check</mat-icon><br>Publier
           </button>
         </div>
-        <div class="ah-list-houses-container">
+        <div class="ah-list-houses-container mat-elevation-z5">
           <div class="ah-list-houses-header">
             <app-icon routerLink="/house/{{ house.ID }}" [forceReload]="true" [iconSize]="iconsSize"
               [iconsSet]="iconsSet" [iconGroup]="icons[house.ID_category - 1].group"
@@ -177,7 +177,7 @@
           <button mat-raised-button (click)="updateHouse(2, house.ID)"
             class="ah-house-cta ah-cta-special ah-house-promote only-admin">
             <i class="icon-promote la la-sun-o"></i><br>Mettre en avant
-          </button><br>
+          </button><br class="not-mobile">
           <button mat-raised-button (click)="openDeleteHouse(house.ID)" class="ah-house-cta ah-cta-delete ah-house-delete">
             <mat-icon>delete</mat-icon><br>Supprimer
           </button>
