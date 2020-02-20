@@ -1,7 +1,7 @@
 let mysql = require('mysql');
 
 const db = mysql.createConnection({
-    host: '37.59.61.46/phpmyadmin',
+    host: 'localhost',
     user: 'amine',
     password: 'aminou@14',
     port: "3306",
