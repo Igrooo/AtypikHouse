@@ -159,7 +159,7 @@ insert.post('/insert/:tablename', function (req, res) {
     if(complete){
         // check dates for booking
         if(checkDates){ 
-            db.query("SELECT * FROM " + tableprefix + req.params.tablename + " WHERE dateStart=" + dateStart, (err, result) => {
+            db.query("SELECT * FROM " + tableprefix + req.params.tablename + " WHERE dateStart=" + req.body.dateStart, (err, result) => {
                 if (err){
                     return res.status(200).send(err);
                 } 
