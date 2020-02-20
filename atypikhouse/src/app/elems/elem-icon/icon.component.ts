@@ -69,8 +69,8 @@ export class IconComponent implements OnInit, OnChanges {
 
   setClasses(){
     if(this.iconBg){
-      if(this.imgExists('http://localhost:4200/'+this.iconBgFolder+this.iconBg+'.png') == false) {
-        console.log('background image http://localhost:4200/'+this.iconBgFolder+this.iconBg+'.png not found');
+      if(this.imgExists('http://37.59.61.46:4200/'+this.iconBgFolder+this.iconBg+'.png') == false) {
+        console.log('background image http://37.59.61.46:4200/'+this.iconBgFolder+this.iconBg+'.png not found');
         this.iconBgNotFoundClass = 'icon-backg-not-found';
         this.iconWithoutBgClass = 'icon-without-backg';
       }
