@@ -5,7 +5,7 @@ import { HttpHeaders, HttpClient, HttpParams } from "@angular/common/http";
 
 //API Server URL 
 const secure:string = ""; // s > activate https
-const domain:string = "localhost";
+const domain:string = "37.59.61.47";
 
 // Production port  : 1407
 // Development port : 3000 (server-backup with static .db file)
