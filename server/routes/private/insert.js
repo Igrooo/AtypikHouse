@@ -1,13 +1,17 @@
-import db from '../modules/db';
+import db from '../../modules/db';
 
 let express     = require('express');
-let update      = express.Router();
+let insert      = express.Router();
 let tableprefix = 'ah_';
 
 let complete    = false;
-let sets        = '';
 
-update.put('/update/:tablename/:ID', function (req, res) {
+let tablefields = '';
+let values      = '';
+
+let checkDates = false;
+
+insert.post('/:level/insert/:tablename', function (req, res) {
 
     //let userInfo = req.decodedToken.payload;
     //console.log(userInfo);
@@ -22,19 +26,22 @@ update.put('/update/:tablename/:ID', function (req, res) {
                 let locationLng = JSON.stringify(req.body.locationLng);
                 let listID_tags = JSON.stringify(req.body.listID_tags);
                 let ID_type     = JSON.stringify(req.body.ID_type);
-                sets        = 'title='+title+', description='+description+', locationLat='+locationLat+', locationLng='+locationLng+', listID_tags='+listID_tags+', ID_type='+ID_type;
+                tablefields = 'title, description, locationLat, locationLng, listID_tags, ID_type';
+                values      = title+', '+description+', '+locationLat+', '+locationLng+', '+listID_tags+', '+ID_type;
             }
             break;
         case 'activities_types':
             if(req.body.title){
                 complete        = true;
                 let title       = JSON.stringify(req.body.title);
-                sets        = 'title='+title;
+                tablefields = 'title';
+                values      = title;
             }
             break;
         case 'booking':
             if(req.body.nbPersons && req.body.date && req.body.dateStart && req.body.dateEnd && req.body.status && req.body.ID_user && req.body.ID_house){
                 complete        = true;
+                checkDates      = true;
                 let status      = JSON.stringify(req.body.status);
                 let nbPersons   = JSON.stringify(req.body.nbPersons);
                 let date        = JSON.stringify(req.body.date);
@@ -42,7 +49,8 @@ update.put('/update/:tablename/:ID', function (req, res) {
                 let dateEnd     = JSON.stringify(req.body.dateEnd);
                 let ID_user     = JSON.stringify(req.body.ID_user);
                 let ID_house    = JSON.stringify(req.body.ID_house);
-                sets        = 'status='+status+', nbPersons='+nbPersons+', date='+date+', dateStart='+dateStart+', dateEnd='+dateEnd+', ID_user='+ID_user+', ID_house='+ID_house;
+                tablefields = 'status, nbPersons, date, dateStart, dateEnd, ID_user, ID_house';
+                values      = status+', '+nbPersons+', '+date+', '+dateStart+', '+dateEnd+', '+ID_user+', '+ID_house;
             }
             break;
         case 'categories':
@@ -50,7 +58,8 @@ update.put('/update/:tablename/:ID', function (req, res) {
                 complete        = true;
                 let title       = JSON.stringify(req.body.title);
                 let description = JSON.stringify(req.body.description);
-                sets        = 'title='+title+', description='+description;
+                tablefields = 'title, description';
+                values      = title+', '+description;
             }
             break;
         case 'comments':
@@ -61,7 +70,8 @@ update.put('/update/:tablename/:ID', function (req, res) {
                 let date        = JSON.stringify(req.body.date);
                 let ID_user     = JSON.stringify(req.body.ID_user);
                 let ID_booking  = JSON.stringify(req.body.ID_booking);
-                sets        = 'comment='+comment+', rating='+rating+', date='+date+', ID_user='+ID_user+', ID_booking='+ID_booking;
+                tablefields = 'comment, rating, date, ID_user, ID_booking';
+                values      = comment+', '+rating+', '+date+', '+ID_user+', '+ID_booking;
             }
             break;
         case 'houses':
@@ -81,7 +91,8 @@ update.put('/update/:tablename/:ID', function (req, res) {
                 let listID_pics       = JSON.stringify(req.body.listID_pics);
                 let ID_user           = JSON.stringify(req.body.ID_user);
                 let ID_category       = JSON.stringify(req.body.ID_category);
-                sets              = 'title='+title+', description='+description+', address='+address+', zipcode='+zipcode+', city='+city+', status='+status+', nbBeds='+nbBeds+', price='+price+', tax='+tax+', listID_activities='+listID_activities+', listID_tags='+listID_tags+', listID_pics='+listID_pics+', ID_user='+ID_user+', ID_category='+ID_category;
+                tablefields       = 'title, description, address, zipcode, city, status, nbBeds, price, tax, listID_activities, listID_tags, listID_pics, ID_user, ID_category';
+                values            = title+', '+description+', '+address+', '+zipcode+', '+city+', '+status+', '+nbBeds+', '+price+', '+tax+', '+listID_activities+', '+listID_tags+', '+listID_pics+', '+ID_user+', '+ID_category;
             }
             break;
         case 'payments':
@@ -92,7 +103,8 @@ update.put('/update/:tablename/:ID', function (req, res) {
                 let date        = JSON.stringify(req.body.date);
                 let ID_user     = JSON.stringify(req.body.ID_user);
                 let ID_booking  = JSON.stringify(req.body.ID_booking);
-                sets        = 'status='+status+', amount='+amount+', date='+date+', ID_user='+ID_user+', ID_booking='+ID_booking;
+                tablefields = 'status, amount, date, ID_user, ID_booking';
+                values      = status+', '+amount+', '+date+', '+ID_user+', '+ID_booking;
             }
             break;
         case 'pics':
@@ -101,7 +113,8 @@ update.put('/update/:tablename/:ID', function (req, res) {
                 let title       = JSON.stringify(req.body.title);    
                 let date        = JSON.stringify(req.body.date);
                 let ID_house    = JSON.stringify(req.body.ID_house);
-                sets        = 'title='+title+', date='+date+', ID_house='+ID_house;
+                tablefields = 'title, date, ID_house';
+                values      = title+', '+date+', '+ID_house;
             }
             break;
         case 'posts':
@@ -112,7 +125,8 @@ update.put('/update/:tablename/:ID', function (req, res) {
                 let ID_house    = JSON.stringify(req.body.ID_house);
                 let ID_userForm = JSON.stringify(req.body.ID_userForm);
                 let ID_userTo   = JSON.stringify(req.body.ID_userTo);
-                sets        = 'date='+date+', message='+message+', ID_house='+ID_house+', ID_userForm='+ID_userForm+', ID_userTo='+ID_userTo;
+                tablefields = 'date, message, ID_house, ID_userForm, ID_userTo';
+                values      = date+', '+message+', '+ID_house+', '+ID_userForm+', '+ID_userTo;
             }
             break;
         case 'tags':
@@ -120,7 +134,8 @@ update.put('/update/:tablename/:ID', function (req, res) {
                 complete = true;
                 let type        = JSON.stringify(req.body.type);    
                 let tag         = JSON.stringify(req.body.tag);
-                sets        = 'type='+type+', tag='+tag;
+                tablefields = 'type, tag';
+                values      = type+', '+tag;
             }
             break;
         case 'users':
@@ -134,27 +149,52 @@ update.put('/update/:tablename/:ID', function (req, res) {
                 let address   = JSON.stringify(req.body.address);
                 let zipcode   = JSON.stringify(req.body.zipcode);
                 let city      = JSON.stringify(req.body.city);
-                let siret     = JSON.stringify(req.body.siret);
-                sets        = 'type='+type+', email='+email+', password='+password+', name='+name+', firstname='+firstname+', address='+address+', zipcode='+zipcode+', city='+city+', siret='+siret;
+                let siret     = JSON.stringify(req.body.siret);            
+                tablefields = 'type, email, password, name, firstname, address, zipcode, city, siret';
+                values      = type+', '+email+', '+password+', '+name+', '+firstname+', '+address+', '+zipcode+', '+city+', '+siret;
             }
             break;
     }
 
     if(complete){
-        db.query('UPDATE ' + tableprefix + req.params.tablename + ' SET ' + sets + ' WHERE ID=' + req.params.ID, (err, result) => {
-            if (err) throw(err);
-            res.status(200).send({
-                status: true,
-                message: 'Update done: ID ' + req.params.ID + ' of ' + req.params.tablename
-              });
-        });
-
+        // check dates for booking
+        if(checkDates){ 
+            db.query("SELECT * FROM " + tableprefix + req.params.tablename + " WHERE dateStart=" + req.body.dateStart, (err, result) => {
+                if (err){
+                    res.status(500).send(err);
+                } 
+                if (result.length > 0) { 
+                    res.status(500).send({  
+                        status: false,
+                        message: 'Booking date already use.'
+                    })
+                  }else{
+                    db.query('INSERT INTO ' + tableprefix + req.params.tablename + ' (' + tablefields + ') VALUES (' + values + ')', (err, result) => {
+                        if (err) throw(err);
+                        res.status(200).send({
+                            message: 'INSERT new data into ' + req.params.tablename + ', ID: '+ result.insertId,
+                            content: result.insertId
+                        })
+                    });
+                  }
+            });
+        }
+        else{
+            db.query('INSERT INTO ' + tableprefix + req.params.tablename + ' (' + tablefields + ') VALUES (' + values + ')', (err, result) => {
+                if (err) throw(err);
+                res.status(200).send({
+                    message: 'INSERT new data into ' + req.params.tablename + ', ID: '+ result.insertId,
+                    content: result.insertId
+                })
+            });
+        }
+    
     }else{
         res.status(500).send({
             status: false,
-            message: 'Update error: data missing for ID ' + req.params.ID + ' of ' + req.params.tablename
+            message: 'INSERT error: data missing for ' + req.params.tablename
         })
     }
 });
 
-export default update;
+export default insert;

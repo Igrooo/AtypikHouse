@@ -1,6 +1,7 @@
 import * as $ from 'jquery';
 import { Component, OnInit } from '@angular/core';
 import { DataService} from "src/app/data.service";
+import { CookieService } from "ngx-cookie-service";
 import { Tag } from "src/app/logic/Tag";
 
 @Component({
@@ -8,6 +9,13 @@ import { Tag } from "src/app/logic/Tag";
   templateUrl: './admin-tags.component.html'
 })
 export class AdminTagsComponent implements OnInit {
+  
+  constructor(private data: DataService,
+    private cookieService: CookieService) { }
+
+  level = 'admin';
+  token = this.cookieService.get('token');
+  
   tags: [Tag];
 
   displayedColumns: string[] = ['ID', 'type', 'tag', 'tools'];
@@ -16,9 +24,6 @@ export class AdminTagsComponent implements OnInit {
 
   isReadonly:boolean = true;
 
-  constructor(private data: DataService) {
-
-  }
 
   focus(ID,focusedMode:string){
     let tr = $('#'+ID).parents('tr');
@@ -54,7 +59,7 @@ export class AdminTagsComponent implements OnInit {
   }
 
   edit(tag){
-    this.data.save("tags", tag, result => {
+    this.data.save(this.level,"tags", tag, this.token, result => {
       if (result) {
         
       }
@@ -62,7 +67,7 @@ export class AdminTagsComponent implements OnInit {
   }
 
   delete(tagID){
-    this.data.delete("tags", tagID, result => {
+    this.data.delete(this.level,"tags", tagID, this.token, result => {
       if (result) {
         let tr = $('#'+tagID).parents('tr');
         tr.remove();
@@ -83,7 +88,7 @@ export class AdminTagsComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.data.getList("tags", tags => {
+    this.data.getList(this.level,"tags", this.token, tags => {
       this.tags = tags;
     });
   }

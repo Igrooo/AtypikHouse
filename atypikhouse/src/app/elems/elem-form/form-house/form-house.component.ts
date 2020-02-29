@@ -1,8 +1,6 @@
 import { Component, OnInit, Output } from '@angular/core';
 import { Router, ActivatedRoute } from "@angular/router";
 import { DatePipe } from '@angular/common';
-import { GeolocationService } from "src/app/geolocation.service";
-//import { APIroutes, DataService } from "src/app/data.service";
 import { DataService } from "src/app/data.service";
 import { CookieService } from "ngx-cookie-service";
 import { House } from "src/app/logic/House";
@@ -16,6 +14,19 @@ import { Tag } from "src/app/logic/Tag";
 })
 
 export class FormHouseComponent implements OnInit {
+
+  constructor(private router: Router,
+              private route: ActivatedRoute,
+              private data: DataService,
+              private datePipe: DatePipe,
+              private cookieService: CookieService
+              ) { }
+
+  routingSubscription: any;
+  
+  level = 'user';
+  token = this.cookieService.get('token');
+
   math = Math;
 
   house: House;
@@ -29,27 +40,17 @@ export class FormHouseComponent implements OnInit {
 
   title:string;
 
-  constructor(private router: Router,
-              private route: ActivatedRoute,
-              private geolocation: GeolocationService,
-              private data: DataService,
-              private cookieService: CookieService,
-              private datePipe: DatePipe
-              ) { }
-
-  routingSubscription: any;
-
   submit(){
     if(this.new){
       console.log(this.house);
-      this.data.save("houses", this.house, insertID => {
+      this.data.save(this.level,"houses", this.house, this.token, insertID => {
         if (Number.isInteger(insertID)) {
           this.router.navigate(["/house", insertID]);
         }
       });
     }
     else{
-      this.data.save("houses", this.house, success => {
+      this.data.save(this.level,"houses", this.house, this.token, success => {
         if (success) {
           this.router.navigate(["/house", this.house.ID]);
         }
@@ -61,7 +62,7 @@ export class FormHouseComponent implements OnInit {
     this.routingSubscription =
       this.route.params.subscribe(params => {
         if(params["id"]) {
-          this.data.get("houses", params["id"], house => {
+          this.data.get(this.level,"houses", params["id"], this.token, house => {
             if (house) {
               this.new = false;
               this.house = house;
@@ -83,13 +84,13 @@ export class FormHouseComponent implements OnInit {
         }
       });
 
-      this.data.getList("categories", categories => {
+      this.data.getList(this.level,"categories", this.token, categories => {
         this.categories = categories;
       });
-      this.data.getList("activities", activities => {
+      this.data.getList(this.level,"activities", this.token, activities => {
         this.activities = activities;
       });
-      this.data.getList("tags", tags => {
+      this.data.getList(this.level,"tags", this.token, tags => {
         this.tags = tags;
       });
   }

@@ -11,6 +11,15 @@ import { Icons } from "src/app/elems/elem-icon/icons-categories";
 
 export class CategoryComponent implements OnInit {
 
+  constructor(private route: ActivatedRoute,
+              private data: DataService
+              ) { }
+              
+  routingSubscription: any;
+
+  level = 'public';
+  token = 'public';
+
   category: Category;
   listTitle: string;
 
@@ -21,11 +30,6 @@ export class CategoryComponent implements OnInit {
   iconsBgFolder :string = '';
   //iconsBgFolder :string = 'categories';
 
-  constructor(private route: ActivatedRoute,
-              private data: DataService
-              ) { }
-
-  routingSubscription: any;
 
   ngOnInit() {
     this.category = new Category();
@@ -33,7 +37,7 @@ export class CategoryComponent implements OnInit {
     this.routingSubscription =
       this.route.params.subscribe(params => {
         if(params["id"]) {
-          this.data.get("categories", params["id"], category => {
+          this.data.get(this.level,"categories", params["id"], this.token, category => {
             if (category) {
               this.category = category;
               this.listTitle = 'Locations de '+ this.category.title;

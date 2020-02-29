@@ -7,14 +7,19 @@ import { Tag } from "src/app/logic/Tag";
   templateUrl: './list-tag.component.html'
 })
 export class ListTagComponent implements OnInit {
+  
+  constructor(private data: DataService) { }
+
+  level = 'public';
+  token = 'public';
+  
   @Input() tagGroupFilter:number;
 
   tags: [Tag];
 
-  constructor(private data: DataService) { }
 
   ngOnInit() {
-    this.data.getList("tags", tags => {
+    this.data.getList(this.level,"tags", this.token, tags => {
       this.tags = tags;
     });
   }

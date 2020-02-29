@@ -9,10 +9,13 @@ import { ActivityType } from "src/app/logic/ActivityType";
 })
 export class TagComponent implements OnInit {
   
-  activityType: ActivityType;
-
   constructor(private data: DataService) { }
+  
+  level = 'public';
+  token = 'public';
 
+  activityType: ActivityType;
+  
   @Input() tagWithIcon:boolean = false;
   @Input() tagType:number  = 0;
   @Input() tagColor:string = "";
@@ -22,6 +25,7 @@ export class TagComponent implements OnInit {
   tagWithIconClass:string  = "";
   tagWithColorClass:string = "";
   
+
   setClasses(){
     if(this.tagColor) {
       this.tagWithColorClass ='tag-with-color';
@@ -38,7 +42,7 @@ export class TagComponent implements OnInit {
 
   // set text for activities_type title display like a tag
   setText(ID){
-    this.data.get("activities_types", ID, activityType => {
+    this.data.get(this.level,"activities_types", ID, this.token, activityType => {
       this.tagText = activityType.title;
     });
   }

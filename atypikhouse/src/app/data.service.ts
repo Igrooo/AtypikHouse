@@ -5,7 +5,7 @@ import { HttpHeaders, HttpClient, HttpParams } from "@angular/common/http";
 
 //API Server URL 
 const secure:string = ""; // s > activate https
-const domain:string = "37.59.61.46";
+const domain:string = "localhost";
 
 // Production port  : 1407
 // Development port : 3000 (server-backup with static .db file)
@@ -27,24 +27,10 @@ export class DataService {
     });
   }
 
-  get(route:string, ID:string, callback) {
-    this.http.get(`${this.endpoint}/select/${route}/${ID}`)
-      .subscribe(response =>{
-        callback(response['content']);
-      });
-  }
-
-  getList(route:string, callback) {
-    this.http.get(`${this.endpoint}/select/${route}`)
-      .subscribe(response => {
-      callback(response['content']);
-    });
-  }
-
   login(user, callback) {
     this.http.post(`${this.endpoint}/login`, user)
     .subscribe(response => {
-      callback(response['content']); //User ID
+      callback(response['content']); //Token & User ID
     });
   }
 
@@ -55,16 +41,30 @@ export class DataService {
     });
   }
 
-  save(route:string, elem, callback) {
+  get(level:string, route:string, ID:string, token, callback) {
+    this.http.get(`${this.endpoint}/${level}/select/${route}/${ID}`, {headers: new HttpHeaders().set('token', token)})
+      .subscribe(response =>{
+        callback(response['content']);
+      });
+  }
+
+  getList(level:string, route:string, token, callback) {
+    this.http.get(`${this.endpoint}/${level}/select/${route}`, {headers: new HttpHeaders().set('token', token)})
+      .subscribe(response => {
+      callback(response['content']);
+    });
+  }
+
+  save(level:string, route:string, elem, token, callback) {
     if (elem.ID) {
       // It's an update
-      this.http.put(`${this.endpoint}/update/${route}/${elem.ID}`, elem)
+      this.http.put(`${this.endpoint}/${level}/update/${route}/${elem.ID}`, elem, {headers: new HttpHeaders().set('token', token)})
         .subscribe(response => {
           callback(true);
         });
     } else {
       // It's an insert
-      this.http.post(`${this.endpoint}/insert/${route}`, elem)
+      this.http.post(`${this.endpoint}/${level}/insert/${route}`, elem, {headers: new HttpHeaders().set('token', token)})
         .subscribe(response => {
           callback(response['content']); //insertID
         });
@@ -72,8 +72,8 @@ export class DataService {
     callback(true);
   }
 
-  delete(route:string, ID: string, callback) {
-    this.http.delete(`${this.endpoint}/delete/${route}/${ID}`)
+  delete(level:string, route:string, ID: string, token, callback) {
+    this.http.delete(`${this.endpoint}/${level}/delete/${route}/${ID}`, {headers: new HttpHeaders().set('token', token)})
     .subscribe(response => {
       callback(true);
     });

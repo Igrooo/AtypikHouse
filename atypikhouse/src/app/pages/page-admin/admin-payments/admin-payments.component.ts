@@ -1,6 +1,7 @@
 import * as $ from 'jquery';
 import { Component, OnInit } from '@angular/core';
 import { DataService} from "src/app/data.service";
+import { CookieService } from "ngx-cookie-service";
 import { Payment } from "src/app/logic/Payment";
 import { DatePipe } from '@angular/common';
 
@@ -9,6 +10,15 @@ import { DatePipe } from '@angular/common';
   templateUrl: './admin-payments.component.html'
 })
 export class AdminPaymentsComponent implements OnInit {
+  
+  constructor(private data: DataService,
+              private datePipe: DatePipe,
+              private cookieService: CookieService
+              ) {}
+
+  level = 'admin';
+  token = this.cookieService.get('token');
+  
   payments: [Payment];
 
   displayedColumns: string[] = ['ID', 'status', 'amount', 'date', 'ID_user', 'ID_booking', 'tools'];
@@ -17,11 +27,6 @@ export class AdminPaymentsComponent implements OnInit {
 
   isReadonly:boolean = true;
 
-  constructor(
-    private data: DataService,
-    private datePipe: DatePipe) {
-
-  }
 
   focus(ID,focusedMode:string){
     let tr = $('#'+ID).parents('tr');
@@ -57,7 +62,7 @@ export class AdminPaymentsComponent implements OnInit {
   }
 
   edit(payment){
-    this.data.save("payments", payment, result => {
+    this.data.save(this.level,"payments", payment, this.token, result => {
       if (result) {
         
       }
@@ -65,7 +70,7 @@ export class AdminPaymentsComponent implements OnInit {
   }
 
   delete(paymentID){
-    this.data.delete("payments", paymentID, result => {
+    this.data.delete(this.level,"payments", paymentID, this.token, result => {
       if (result) {
         let tr = $('#'+paymentID).parents('tr');
         tr.remove();
@@ -89,7 +94,7 @@ export class AdminPaymentsComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.data.getList("payments", payments => {
+    this.data.getList(this.level,"payments", this.token, payments => {
       this.payments = payments;
     });
   }

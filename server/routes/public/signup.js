@@ -1,4 +1,4 @@
-import db from '../modules/db';
+import db from '../../modules/db';
 
 let express = require("express");
 let signup    = express.Router();
@@ -20,10 +20,11 @@ signup.post('/signup', (req, res) =>{
       db.query("SELECT * FROM ah_users WHERE `email` = " + "'" + req.body.email + "'" , (err, result) =>{
 
         if(err){
-          return res.status(500).send(err);
+          res.status(500).send(err);
         }
         if (result.length > 0) { 
-          res.status(200).send({
+          res.status(500).send({
+            status: false,
             message: 'E-mail already use.'
           })
         }else{
@@ -35,9 +36,10 @@ signup.post('/signup', (req, res) =>{
         }
       })
   }else{
-    return res.status(500).send({
-        message: req.body.type +' - '+ req.body.email +' - '+ req.body.password +' - '+ req.body.checkPassword +' - '+ req.body.name +' - '+ req.body.firstname +' - '+ req.body.address +' - '+ req.body.city +' - '+ req.body.siret
-    });
+    res.status(500).send({
+      status: false,
+      message: 'INSERT error: data missing for ' + req.params.tablename
+  })
   }
 });
 

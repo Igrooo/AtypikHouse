@@ -1,6 +1,7 @@
 import * as $ from 'jquery';
 import { Component, OnInit } from '@angular/core';
 import { DataService} from "src/app/data.service";
+import { CookieService } from "ngx-cookie-service";
 import { Post } from "src/app/logic/Post";
 import { DatePipe } from '@angular/common';
 
@@ -9,6 +10,15 @@ import { DatePipe } from '@angular/common';
   templateUrl: './admin-posts.component.html'
 })
 export class AdminPostsComponent implements OnInit {
+  
+  constructor(private data: DataService,
+              private datePipe: DatePipe,
+              private cookieService: CookieService
+              ) {}
+
+  level = 'admin';
+  token = this.cookieService.get('token');
+  
   posts: [Post];
 
   displayedColumns: string[] = ['ID', 'date', 'message', 'ID_house', 'ID_userFrom','ID_userTo', 'tools'];
@@ -16,12 +26,6 @@ export class AdminPostsComponent implements OnInit {
   editOn:string;
 
   isReadonly:boolean = true;
-
-  constructor(
-    private data: DataService,
-    private datePipe: DatePipe) {
-
-  }
 
   focus(ID,focusedMode:string){
     let tr = $('#'+ID).parents('tr');
@@ -57,7 +61,7 @@ export class AdminPostsComponent implements OnInit {
   }
 
   edit(post){
-    this.data.save("posts", post, result => {
+    this.data.save(this.level,"posts", post, this.token, result => {
       if (result) {
         
       }
@@ -65,7 +69,7 @@ export class AdminPostsComponent implements OnInit {
   }
 
   delete(postID){
-    this.data.delete("posts", postID, result => {
+    this.data.delete(this.level,"posts", postID, this.token, result => {
       if (result) {
         let tr = $('#'+postID).parents('tr');
         tr.remove();
@@ -74,7 +78,7 @@ export class AdminPostsComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.data.getList("posts", posts => {
+    this.data.getList(this.level,"posts", this.token, posts => {
       this.posts = posts;
     });
   }

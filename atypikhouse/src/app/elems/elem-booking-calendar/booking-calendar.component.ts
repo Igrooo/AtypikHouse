@@ -18,14 +18,15 @@ export interface DialogData {
 })
 export class BookingCalendarComponent implements OnInit {
 
+  constructor(
+            public dialogRef: MatDialogRef<BookingCalendarComponent>,
+            @Inject(MAT_DIALOG_DATA) public data: DialogData
+            ) { }
+
   calendarPlugins = [dayGridPlugin,listPlugin];
 
   bookingDetail:boolean = false;
   bookingID = 0;
-
-  constructor(
-    public dialogRef: MatDialogRef<BookingCalendarComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: DialogData) { }
 
   openBooking(event){
     event.jsEvent.preventDefault(); // don't let the browser navigate

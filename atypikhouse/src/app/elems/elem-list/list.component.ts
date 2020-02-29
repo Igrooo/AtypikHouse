@@ -9,6 +9,12 @@ import { Icons } from "src/app/elems/elem-icon/icons-categories"
   templateUrl: './list.component.html'
 })
 export class ListComponent implements OnInit {
+
+  constructor(private data: DataService) { }
+
+  level = 'public';
+  token = 'public';
+
   @Input() listTitle:string = 'Locations disponibles pour vos critères';
   @Input() filterCategory:number = 0;
 
@@ -22,12 +28,9 @@ export class ListComponent implements OnInit {
   iconsColor    :string = '#9dc1bb';
   iconsBgFolder :string = 'houses';
 
-  constructor(private data: DataService,
-              private router: Router
-              ) { }
   ngOnInit() {
     this.icons = Icons;
-    this.data.getList("houses", houses => {
+    this.data.getList(this.level,"houses", this.token, houses => {
       this.houses = houses;
     });
     //console.log('filterCategory: '+this.filterCategory);

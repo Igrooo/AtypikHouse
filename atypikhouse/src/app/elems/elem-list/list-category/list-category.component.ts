@@ -8,6 +8,12 @@ import { Icons } from "src/app/elems/elem-icon/icons-categories";
   templateUrl: './list-category.component.html'
 })
 export class ListCategoryComponent implements OnInit {
+
+  constructor(private data: DataService) { }
+
+  level = 'public';
+  token = 'public';
+
   categories: [Category];
   
   icons = Icons;
@@ -16,11 +22,8 @@ export class ListCategoryComponent implements OnInit {
   iconsColor    :string = '#ba9077';
   iconsBgFolder :string = 'categories';
 
-  constructor(private data: DataService
-    ) { }
-
   ngOnInit() {
-    this.data.getList("categories", categories => {
+    this.data.getList(this.level,"categories", this.token, categories => {
       this.categories = categories;
     })
   }

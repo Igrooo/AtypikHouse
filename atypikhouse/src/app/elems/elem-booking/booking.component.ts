@@ -2,6 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { Router, ActivatedRoute } from "@angular/router";
 import { DatePipe } from '@angular/common';
 import { DataService } from 'src/app/data.service';
+import { CookieService } from "ngx-cookie-service";
 import { Booking } from "src/app/logic/Booking";
 import { House } from "src/app/logic/House";
 import { Payment } from 'src/app/logic/Payment';
@@ -13,6 +14,19 @@ import { Payment } from 'src/app/logic/Payment';
 })
 
 export class BookingComponent implements OnInit {
+
+  constructor(private router: Router,
+              private route: ActivatedRoute,
+              private data: DataService,
+              private datePipe: DatePipe,
+              private cookieService: CookieService
+              ) { }
+
+  routingSubscription: any;
+
+  level = 'user';
+  token = this.cookieService.get('token');
+
   math = Math;
 
   house: House;
@@ -34,28 +48,20 @@ export class BookingComponent implements OnInit {
 
   @Input() bookingID = 0;
 
-  constructor(private router: Router,
-              private route: ActivatedRoute,
-              private data: DataService,
-              private datePipe: DatePipe
-              ) { }
-
-  routingSubscription: any;
-
   validBooking(){
-    this.data.getList("payments", payments => {
+    this.data.getList(this.level,"payments", this.token, payments => {
       if(payments){
         this.payments = payments;
         //console.log(payments);
-        this.payments.forEach((payment, index) => {
+        this.payments.forEach(payment => {
           if(payment.ID_booking == this.booking.ID){
             this.payment = payment;
             //console.log(this.payment);
             this.payment.status = 2;
-            this.data.save("payments", this.payment, insertID =>{
+            this.data.save(this.level,"payments", this.payment, this.token, insertID =>{
               if (Number.isInteger(insertID)) {
                 this.booking.status = 2;
-                this.data.save("booking", this.booking, insertID =>{});
+                this.data.save(this.level,"booking", this.booking, this.token, insertID =>{});
               }
             });
           }
@@ -70,13 +76,13 @@ export class BookingComponent implements OnInit {
   }
 
   getBooking(bookingID) {
-    this.data.get("booking", bookingID, booking => {
+    this.data.get(this.level,"booking", bookingID, this.token, booking => {
       if (booking) {
         this.booking = booking;
         this.nbNights = ( new Date(this.booking.dateEnd).getTime() - new Date(this.booking.dateStart).getTime() ) / (1000 * 3600 * 24);
         this.dateStartLabel = this.datePipe.transform(this.booking.dateStart,"dd/MM/yyyy");
         this.dateEndLabel = this.datePipe.transform(this.booking.dateEnd,"dd/MM/yyyy");
-        this.data.get("houses", this.booking.ID_house.toString(), house => {
+        this.data.get(this.level,"houses", this.booking.ID_house.toString(), this.token, house => {
           if (house) {
             this.house = house;
             this.priceTTC = this.math.round(this.house.price + ((this.house.price/100) * this.house.tax));

@@ -1,19 +1,15 @@
-// IMPORT ROUTES
-import login   from './routes/login';
-import signup  from './routes/signup';
-import auth    from './routes/middleware/token';
+import auth   from './routes/middleware/auth';
 
-// SELECT ROUTES //
-import select  from './routes/select';
+// IMPORT PUBLIC ROUTES
+import login  from './routes/public/login';
+import signup from './routes/public/signup';
+import select from './routes/public/select';
 
-// INSERT ROUTES //
-import insert from './routes/insert';
-
-// UPDATE ROUTES //
-import update from './routes/update';
-
-// DELETE ROUTES //
-import remove  from './routes/remove';
+// IMPORT PRIVATE ROUTES
+import privateSelect from './routes/private/select';
+import insert from './routes/private/insert';
+import update from './routes/private/update';
+import remove from './routes/private/remove';
 
 const express = require("express");
 const bodyparser = require("body-parser");
@@ -21,8 +17,6 @@ let app = express();
 
 app.use(bodyparser.urlencoded({extended: true}));
 app.use(bodyparser.json());
-
-const db = require ("./modules/db.js");
 
 // Connexion to server
 let port = process.env.PORT || 1407;
@@ -34,9 +28,7 @@ app.listen(port, (err) => {
     }
 })
 
-app.use(bodyparser.urlencoded({
-  extended: false
-}));
+app.use(bodyparser.urlencoded({extended: false}));
 app.use(bodyparser.json());
 
 //CORS cross-origin
@@ -52,17 +44,18 @@ app.use(function (req, res, next) {
   }
 });
 
+// PUBLIC ROUTE SELECT //
+app.use(select);
 // ROUTE LOGIN // 
 app.use(login);
-
 // ROUTE SIGNUP //
 app.use(signup);
 
-app.use(select);
+// MIDDLEWARE D'AUTHENTIFICATION //////////////////////////
+app.use(auth);
 
+// USERS // ADMIN //
+app.use(privateSelect);
 app.use(insert);
 app.use(update);
 app.use(remove);
-
-// MIDDLEWARE D'AUTHENTIFICATION //////////////////////////
-//app.use(auth);

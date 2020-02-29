@@ -1,6 +1,7 @@
 import * as $ from 'jquery';
 import { Component, OnInit } from '@angular/core';
 import { DataService} from "src/app/data.service";
+import { CookieService } from "ngx-cookie-service";
 import { Category } from "src/app/logic/Category";
 
 @Component({
@@ -8,17 +9,20 @@ import { Category } from "src/app/logic/Category";
   templateUrl: './admin-categories.component.html'
 })
 export class AdminCategoriesComponent implements OnInit {
+  
+  constructor(private data: DataService,
+              private cookieService: CookieService
+              ) { }
+  
+  level = 'admin';
+  token = this.cookieService.get('token');
+
   categories: [Category];
 
   displayedColumns: string[] = ['ID', 'title', 'description', 'tools'];
 
   editOn:string;
-
   isReadonly:boolean = true;
-
-  constructor(private data: DataService) {
-
-  }
 
   focus(ID,focusedMode:string){
     let tr = $('#'+ID).parents('tr');
@@ -54,7 +58,7 @@ export class AdminCategoriesComponent implements OnInit {
   }
 
   edit(category){
-    this.data.save("categories", category, result => {
+    this.data.save(this.level,"categories", category, this.token, result => {
       if (result) {
         
       }
@@ -62,7 +66,7 @@ export class AdminCategoriesComponent implements OnInit {
   }
 
   delete(categoryID){
-    this.data.delete("categories", categoryID, result => {
+    this.data.delete(this.level,"categories", categoryID, this.token, result => {
       if (result) {
         let tr = $('#'+categoryID).parents('tr');
         tr.remove();
@@ -71,7 +75,7 @@ export class AdminCategoriesComponent implements OnInit {
   }
   
   ngOnInit() {
-    this.data.getList("categories", categories => {
+    this.data.getList(this.level,"categories", this.token, categories => {
       this.categories = categories;
     });
   }

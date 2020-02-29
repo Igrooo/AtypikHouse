@@ -13,6 +13,16 @@ import { User } from "src/app/logic/User";
   templateUrl: './header.component.html'
 })
 export class HeaderComponent implements OnInit {
+
+  constructor(private data: DataService,
+              private geolocation: GeolocationService,
+              private router: Router,
+              private cookieService: CookieService
+              ) { }
+
+  level = 'public';
+  token = 'public';
+
   public randomBanner: number = Math.floor((Math.random() * 7) + 1);
 
   categories: [Category];
@@ -23,12 +33,6 @@ export class HeaderComponent implements OnInit {
   nbPersonsMax:number;
 
   logged:boolean = false;
-
-  constructor(private data: DataService,
-              private geolocation: GeolocationService,
-              private router: Router,
-              private cookieService: CookieService
-              ) { }
 
   arrayNbPersons(max:number): any[]{
     return Array(max);
@@ -47,6 +51,7 @@ export class HeaderComponent implements OnInit {
     this.cookieService.delete('logged');
     this.cookieService.delete('userID');
     this.cookieService.delete('userType');
+    this.cookieService.delete('token');
     this.router.navigate(["/logout"]);
   }
   goAccount(){
@@ -86,6 +91,7 @@ export class HeaderComponent implements OnInit {
   }
 
   ngOnInit() {
+
     this.user = new User;
 
     if(this.cookieService.get('logged')){
@@ -95,10 +101,10 @@ export class HeaderComponent implements OnInit {
 
     this.nbPersonsMax = 10;
 
-    this.data.getList("categories", categories => {
+    this.data.getList(this.level,"categories", this.token, categories => {
       this.categories = categories;
     });
-    this.data.getList("tags", tags => {
+    this.data.getList(this.level,"tags", this.token, tags => {
       this.tags = tags;
     });
   }

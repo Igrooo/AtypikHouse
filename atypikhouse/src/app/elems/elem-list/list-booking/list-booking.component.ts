@@ -12,6 +12,15 @@ import { Icons } from "src/app/elems/elem-icon/icons-categories"
   templateUrl: './list-booking.component.html'
 })
 export class ListBookingComponent implements OnInit {
+
+  constructor(private data: DataService,
+              private datePipe: DatePipe,
+              private cookieService: CookieService
+              ) { }
+
+  level = 'user';
+  token = this.cookieService.get('token');
+  
   listTitle:string;
   filterUser:number;
 
@@ -37,22 +46,16 @@ export class ListBookingComponent implements OnInit {
   }
 
   getHouseTitle(ID){
-    this.data.get("houses", ID, house => {
+    this.data.get(this.level,"houses", ID, this.token, house => {
       return house.title;
     });
   }
 
   getHouseCategory(ID){
-    this.data.get("houses", ID, house => {
+    this.data.get(this.level,"houses", ID, this.token, house => {
       return house.ID_category;
     });
   }
-
-  constructor(
-    private data: DataService,
-    private datePipe: DatePipe,
-    private cookieService: CookieService)
-    {}
 
   ngOnInit() {
     this.user = new User;
@@ -68,11 +71,11 @@ export class ListBookingComponent implements OnInit {
         this.listTitle = 'Réservations de séjours';
       }
     }
-    this.data.getList("booking", bookings => {
+    this.data.getList(this.level,"booking", this.token, bookings => {
       if(bookings){
         this.bookings = bookings;
         this.bookings.forEach((booking, index) => {
-          this.data.get("houses", booking.ID_house.toString(), house => {
+          this.data.get(this.level,"houses", booking.ID_house.toString(), this.token, house => {
             if(house){
               this.houseTitles[index] = house.title;
               this.houseCategories[index] = house.ID_category;

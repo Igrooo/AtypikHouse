@@ -1,6 +1,7 @@
 import * as $ from 'jquery';
 import { Component, OnInit } from '@angular/core';
 import { DataService} from "src/app/data.service";
+import { CookieService } from "ngx-cookie-service";
 import { Pic } from "src/app/logic/Pic";
 import { DatePipe } from '@angular/common';
 
@@ -9,6 +10,15 @@ import { DatePipe } from '@angular/common';
   templateUrl: './admin-pics.component.html'
 })
 export class AdminPicsComponent implements OnInit {
+  
+  constructor(private data: DataService,
+              private datePipe: DatePipe,
+              private cookieService: CookieService
+              ) {}
+  
+  level = 'admin';
+  token = this.cookieService.get('token');
+  
   pics: [Pic];
 
   displayedColumns: string[] = ['ID', 'title', 'date', 'tools'];
@@ -16,12 +26,6 @@ export class AdminPicsComponent implements OnInit {
   editOn:string;
 
   isReadonly:boolean = true;
-
-  constructor(
-    private data: DataService,
-    private datePipe: DatePipe,) {
-
-  }
 
   focus(ID,focusedMode:string){
     let tr = $('#'+ID).parents('tr');
@@ -57,7 +61,7 @@ export class AdminPicsComponent implements OnInit {
   }
 
   edit(pic){
-    this.data.save("pics", pic, result => {
+    this.data.save(this.level,"pics", pic, this.token, result => {
       if (result) {
         
       }
@@ -65,7 +69,7 @@ export class AdminPicsComponent implements OnInit {
   }
 
   delete(picID){
-    this.data.delete("pics", picID, result => {
+    this.data.delete(this.level,"pics", picID, this.token, result => {
       if (result) {
         let tr = $('#'+picID).parents('tr');
         tr.remove();
@@ -74,7 +78,7 @@ export class AdminPicsComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.data.getList("pics", pics => {
+    this.data.getList(this.level,"pics", this.token, pics => {
       this.pics = pics;
     });
   }

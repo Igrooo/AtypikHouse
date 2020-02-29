@@ -15,8 +15,18 @@ import { BookingCalendarComponent } from '../../elem-booking-calendar/booking-ca
   templateUrl: './list-house.component.html'
 })
 export class ListHouseComponent implements OnInit {
+  
+  constructor(private data: DataService,
+              private cookieService: CookieService,
+              public dialog: MatDialog,
+              private datePipe: DatePipe
+              ) { }
+
   @Input() listTitle:string;
   @Input() filterUser:number;
+  
+  level = 'user';
+  token = this.cookieService.get('token');
 
   math = Math;
 
@@ -37,12 +47,6 @@ export class ListHouseComponent implements OnInit {
   deleteDialogID:number = 0;
 
   isReady:boolean = false;
-
-  constructor(private data: DataService,
-              private cookieService: CookieService,
-              public dialog: MatDialog,
-              private datePipe: DatePipe
-              ) { }
 
   nbNights(dateStart, dateEnd){
     return ( new Date(dateEnd).getTime() - new Date(dateStart).getTime() ) / (1000 * 3600 * 24);
@@ -73,7 +77,7 @@ export class ListHouseComponent implements OnInit {
 
   getBookingsData(houseID){
     let bookingsdata = [];
-      this.bookings.forEach((booking, index) => {
+      this.bookings.forEach(booking => {
         if(booking.ID_house == houseID){
           let color = '#222222';
           let label = '<br>' ;
@@ -97,7 +101,7 @@ export class ListHouseComponent implements OnInit {
 
   getTotalBooking(status,houseID){
     let total = 0;
-    this.bookings.forEach((booking, index) => {
+    this.bookings.forEach(booking => {
       if(booking.ID_house == houseID && booking.status == status){
         total++;
       }
@@ -110,11 +114,11 @@ export class ListHouseComponent implements OnInit {
 
   updateHouse(status, houseID) {
     this.house = new House;
-    this.data.get("houses", houseID, house => {
+    this.data.get(this.level,"houses", houseID, this.token, house => {
       if (house) {
         this.house = house;
         this.house.status = status;
-        this.data.save("houses", this.house, success => {
+        this.data.save(this.level,"houses", this.house, this.token, success => {
           if (success) {
             setTimeout(function() {
               window.location.reload();
@@ -131,7 +135,7 @@ export class ListHouseComponent implements OnInit {
 
   deleteHouse(houseID) {
     //need delete linked bookings before (foreign key)
-    this.data.delete("houses", houseID, result => {
+    this.data.delete(this.level,"houses", houseID, this.token, result => {
       if (result) {
         window.location.reload();
       }
@@ -151,7 +155,7 @@ export class ListHouseComponent implements OnInit {
         this.filterUser = 0;
         this.listTitle = 'Annonces';
       }
-      this.data.get("users",this.user.ID.toString(), user =>{
+      this.data.get(this.level,"users",this.user.ID.toString(), this.token, user =>{
         this.user = user;
         if(this.user.siret != 0){
           this.userPro = true;
@@ -159,11 +163,11 @@ export class ListHouseComponent implements OnInit {
       });
     }
     this.icons = Icons;
-    this.data.getList("houses", houses => {
+    this.data.getList(this.level,"houses", this.token, houses => {
       this.houses = houses;
     });
 
-    this.data.getList("booking", bookings => {
+    this.data.getList(this.level,"booking", this.token, bookings => {
       this.bookings = bookings;
     });
   }
