@@ -8,24 +8,24 @@ import { CookieService } from "ngx-cookie-service";
 })
 export class FooterComponent implements OnInit {
 
-  constructor( private cookieService: CookieService) { }
+  constructor( private cookie: CookieService) { }
 
   // jQuery scripts for UI
   UItoggleTheme(){
     if($('body').hasClass('ah-theme-dark')){
-      this.cookieService.set('userTheme','light');
+      this.cookie.set('userTheme','light');
     }
     else{
-      this.cookieService.set('userTheme','dark');
+      this.cookie.set('userTheme','dark');
     }
-    let userTheme = this.cookieService.get('userTheme');
+    let userTheme = this.cookie.get('userTheme');
       $('meta[name="theme-color"]').attr('content', userTheme);
       $('body').removeClass('ah-theme-light ah-theme-dark').addClass('ah-theme-'+userTheme);
   }
 
   ngOnInit() {
-    if(this.cookieService.get('userTheme')){
-      let userTheme = this.cookieService.get('userTheme');
+    if(this.cookie.get('userTheme')){
+      let userTheme = this.cookie.get('userTheme');
       $('meta[name="theme-color"]').attr('content', userTheme);
       $('body').removeClass('ah-theme-light ah-theme-dark').addClass('ah-theme-'+userTheme);
     }

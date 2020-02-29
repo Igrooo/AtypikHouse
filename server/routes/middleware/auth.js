@@ -15,11 +15,22 @@ auth.use(function (req, res, next) {
     } 
     jwt.verify(token, secretkey, function (err, user) {
         if(err){
-            console.log(err);
-            res.status(403).send({
-                status: false,
-                message: 'Vous devez être identifié pour accéder à ce contenu  !'
-            })
+            if(err.name == 'TokenExpiredError'){
+                console.log(err.name);
+                console.log(err.message);
+                console.log(err.expiredAt);
+                res.status(200).send({
+                    status: false,
+                    content: 'expired'
+                })
+            }
+            else{
+                console.log(err);
+                res.status(403).send({
+                    status: false,
+                    message: 'Vous devez être identifié pour accéder à ce contenu  !'
+                })
+            }
             return;
         }
         req.user = user;

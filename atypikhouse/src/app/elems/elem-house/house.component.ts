@@ -21,10 +21,10 @@ export class HouseComponent implements OnInit {
 
   constructor(private router: Router,
               private route: ActivatedRoute,
-              private geolocation: GeolocationService,
+              private geoloc: GeolocationService,
               private data: DataService,
               private datePipe: DatePipe,
-              private cookieService: CookieService
+              private cookie: CookieService
               ) { }
 
   routingSubscription: any;
@@ -78,7 +78,7 @@ export class HouseComponent implements OnInit {
   }
 
   goMap(house: House) {
-    const mapURL = this.geolocation.getMapLink(house.address,house.city);
+    const mapURL = this.geoloc.getMapLink(house.address,house.city);
     window.open(mapURL, "_blank");
   }
 
@@ -140,7 +140,7 @@ export class HouseComponent implements OnInit {
 
   newPayment(booking, ID){
     this.level = 'user';
-    this.token = this.cookieService.get('token');
+    this.token = this.cookie.get('token');
     this.payment = new Payment();
     this.payment.status = booking.status;
     this.payment.amount = this.totalPrice;
@@ -152,14 +152,14 @@ export class HouseComponent implements OnInit {
 
   newBooking(){
     this.level = 'user';
-    this.token = this.cookieService.get('token');
+    this.token = this.cookie.get('token');
     this.booking = new Booking();
     this.booking.status     = 1;
     this.booking.date       = this.datePipe.transform(new Date(),"yyyy-MM-dd");
     this.booking.dateStart  = this.datePipe.transform(this.dateStart,"yyyy-MM-dd");
     this.booking.dateEnd    = this.datePipe.transform(this.dateEnd,"yyyy-MM-dd");
     this.booking.nbPersons  = this.nbPersons;
-    this.booking.ID_user    = +this.cookieService.get('userID');
+    this.booking.ID_user    = +this.cookie.get('userID');
     this.booking.ID_house   = this.house.ID;
 
     this.data.save(this.level,"booking", this.booking, this.token, insertID => {
@@ -180,10 +180,10 @@ export class HouseComponent implements OnInit {
             if (house) {
               this.house = house;
 
-              if(!!this.cookieService.get('logged') == true) {
+              if(!!this.cookie.get('logged') == true) {
                 this.logged = true;
                 /*Display cta overlay editor button if logged user is admin or house user*/
-                if((+this.cookieService.get('userType') == 0) || (+this.cookieService.get('userID') == this.house.ID_user)){
+                if((+this.cookie.get('userType') == 0) || (+this.cookie.get('userID') == this.house.ID_user)){
                   this.editable = true;
                 }
               }

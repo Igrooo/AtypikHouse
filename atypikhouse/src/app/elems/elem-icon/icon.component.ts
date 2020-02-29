@@ -33,8 +33,8 @@ export class IconComponent implements OnInit, OnChanges {
     let exists:boolean;
     let img = new Image();
     img.src = url;
-    img.onload = function() { exists = true };
-    img.onerror = function() { exists = false };
+    img.onload  = () => { exists = true };
+    img.onerror = () => { exists = false };
     return exists;
   }
 

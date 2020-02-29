@@ -11,7 +11,7 @@ import { User } from 'src/app/logic/User';
 export class UserComponent implements OnInit {
 
   constructor(private data: DataService,
-              private cookieService: CookieService,
+              private cookie: CookieService,
               private router: Router
               ) {
                 this.router.events.subscribe((event: Event) => {
@@ -31,7 +31,7 @@ export class UserComponent implements OnInit {
               }
   
   level = 'user';
-  token = this.cookieService.get('token');
+  token = this.cookie.get('token');
 
   user : User;
   userPro:boolean = false;
@@ -39,8 +39,8 @@ export class UserComponent implements OnInit {
 
   ngOnInit() {
     this.user = new User;
-    if(this.cookieService.get('logged')){
-      this.user.ID = +this.cookieService.get('userID');
+    if(this.cookie.get('logged')){
+      this.user.ID = +this.cookie.get('userID');
       this.data.get(this.level,"users", this.user.ID.toString(), this.token, user => {
         if (user) {
           this.user = user;

@@ -16,11 +16,11 @@ import { Pic } from "src/app/logic/Pic";
 export class AdminHousesComponent implements OnInit {
   
   constructor(private data: DataService,
-              private cookieService: CookieService
+              private cookie: CookieService
               ) { }
   
   level = 'admin';
-  token = this.cookieService.get('token');
+  token = this.cookie.get('token');
   
   houses: [House];
   categories: [Category];

@@ -42,8 +42,8 @@ export class ExternalPage implements OnInit {
             url: datafile,
             type: 'GET',
             data: { get_param: datapage },
-            success: function (data) {
-              $.each(data, function (index, data) {
+            success: (data) => {
+              $.each(data, (index) => {
                 if('/'+index.toString() === datapage){
                   var datasource = datasrc+data+datapage;
                   //('load '+datapage+' of '+data);
@@ -52,7 +52,7 @@ export class ExternalPage implements OnInit {
                 }
               })
             },
-            error: function (xhr, error) {
+            error: (xhr, error) => {
               //console.log('error load '+datafile, xhr, error);
             }
           });

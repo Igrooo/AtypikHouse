@@ -39,11 +39,6 @@
         </div>
         <h3 class="ah-form-house-title">Détails</h3>
         <div class="ah-form ah-form-house">
-            <mat-form-field class="ah-form-fieldset large ah-form-house-nbbeds">
-                <mat-label>Nombre de places</mat-label>
-                <input matInput name="nbBeds" [(ngModel)]="house.nbBeds" [value]="house.nbBeds" required>
-                <mat-hint><i>Pour un lit deux places comptez 2<br> (Par exemple pour deux lits 2 places le nombre total de places est de 4.)</i></mat-hint>
-            </mat-form-field><br>
             <mat-form-field class="ah-form-fieldset-inline ah-form-house-tags">
                 <mat-label>Thématiques</mat-label>
                 <mat-select multiple>
@@ -69,8 +64,13 @@
         </div>
         <h3 class="ah-form-house-title">Prix</h3>
         <div class="ah-form ah-form-house">
+            <mat-form-field class="ah-form-fieldset-inline ah-form-house-nbbeds">
+                <mat-label>Nombre de places</mat-label>
+                <input matInput name="nbBeds" [(ngModel)]="house.nbBeds" [value]="house.nbBeds" required>
+                <mat-hint><i>Pour un lit deux places comptez 2<br> (Par exemple pour deux lits 2 places le nombre total de places est de 4.)</i></mat-hint>
+            </mat-form-field>
             <mat-form-field class="ah-form-fieldset-inline ah-form-house-zipcode">
-                <mat-label>Prix HT</mat-label>
+                <mat-label>Prix HT d'une nuitée pour 1 personne</mat-label>
                 <input matInput name="price" [(ngModel)]="house.price" [value]="house.price" required>
                 <mat-icon matSuffix>euro</mat-icon>
             </mat-form-field>

@@ -14,7 +14,7 @@ export class FormLoginComponent implements OnInit {
   constructor(private router: Router,
               private data: DataService,
               private fb: FormBuilder,
-              private cookieService: CookieService
+              private cookie: CookieService
               ) { }
 
   user: User;
@@ -45,10 +45,10 @@ export class FormLoginComponent implements OnInit {
       if (credentials) {
         this.user = credentials.user;
         let token = credentials.token;
-        this.cookieService.set('logged',   'true');
-        this.cookieService.set('userID',   this.user.ID.toString());
-        this.cookieService.set('userType', this.user.type.toString());
-        this.cookieService.set('token',    token);
+        this.cookie.set('logged',   'true');
+        this.cookie.set('userID',   this.user.ID.toString());
+        this.cookie.set('userType', this.user.type.toString());
+        this.cookie.set('token',    token);
         this.router.navigate(["/logged"]);
       }
     });

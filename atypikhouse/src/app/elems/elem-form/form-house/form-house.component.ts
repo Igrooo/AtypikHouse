@@ -19,13 +19,13 @@ export class FormHouseComponent implements OnInit {
               private route: ActivatedRoute,
               private data: DataService,
               private datePipe: DatePipe,
-              private cookieService: CookieService
+              private cookie: CookieService
               ) { }
 
   routingSubscription: any;
   
   level = 'user';
-  token = this.cookieService.get('token');
+  token = this.cookie.get('token');
 
   math = Math;
 
@@ -75,7 +75,7 @@ export class FormHouseComponent implements OnInit {
           this.new = true;
           this.house   = new House();
           this.house.status = 1;
-          this.house.ID_user = +this.cookieService.get('userID');
+          this.house.ID_user = +this.cookie.get('userID');
           this.house.listID_activities = '0';
           this.house.listID_pics = '0';
           this.house.listID_tags = '0';

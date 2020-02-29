@@ -11,10 +11,10 @@ import { User } from "src/app/logic/User";
 export class AdminUsersComponent implements OnInit {
   
   constructor(private data: DataService,
-    private cookieService: CookieService) { }
+    private cookie: CookieService) { }
   
   level = 'admin';
-  token = this.cookieService.get('token');
+  token = this.cookie.get('token');
   
   users: [User];
 

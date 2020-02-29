@@ -108,6 +108,7 @@ import { IconComponent }                from './elems/elem-icon/icon.component';
 import { MapComponent }                 from './elems/elem-map/map.component';
 import { BookingCalendarComponent }     from './elems/elem-booking-calendar/booking-calendar.component';
 import { DocComponent }                 from './elems/elem-doc/doc.component';
+import { ExpiredDialogComponent }       from './elems/elem-expired-dialog/expired-dialog.component';
 
 const routes : Routes = [
 
@@ -252,7 +253,8 @@ const routes : Routes = [
     AdminTagsComponent,
     AdminUsersComponent,
     BookingCalendarComponent,
-    DocComponent
+    DocComponent,
+    ExpiredDialogComponent
   ],
   imports: [
     RouterModule.forRoot(routes),

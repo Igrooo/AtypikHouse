@@ -13,11 +13,11 @@ export class AdminBookingComponent implements OnInit {
   
   constructor(private data: DataService,
               private datePipe: DatePipe,
-              private cookieService: CookieService
+              private cookie: CookieService
               ) {}
 
   level = 'admin';
-  token = this.cookieService.get('token');
+  token = this.cookie.get('token');
 
   bookings: [Booking];
 

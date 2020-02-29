@@ -7,7 +7,6 @@ import { Booking } from "src/app/logic/Booking";
 import { House } from "src/app/logic/House";
 import { Payment } from 'src/app/logic/Payment';
 
-
 @Component({
   selector: 'app-booking',
   templateUrl: './booking.component.html'
@@ -19,13 +18,13 @@ export class BookingComponent implements OnInit {
               private route: ActivatedRoute,
               private data: DataService,
               private datePipe: DatePipe,
-              private cookieService: CookieService
+              private cookie: CookieService
               ) { }
 
   routingSubscription: any;
 
   level = 'user';
-  token = this.cookieService.get('token');
+  token = this.cookie.get('token');
 
   math = Math;
 

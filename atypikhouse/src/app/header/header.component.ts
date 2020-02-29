@@ -15,9 +15,9 @@ import { User } from "src/app/logic/User";
 export class HeaderComponent implements OnInit {
 
   constructor(private data: DataService,
-              private geolocation: GeolocationService,
+              private geoloc: GeolocationService,
               private router: Router,
-              private cookieService: CookieService
+              private cookie: CookieService
               ) { }
 
   level = 'public';
@@ -48,10 +48,10 @@ export class HeaderComponent implements OnInit {
     this.router.navigate(["/login"]);
   }
   logout(){
-    this.cookieService.delete('logged');
-    this.cookieService.delete('userID');
-    this.cookieService.delete('userType');
-    this.cookieService.delete('token');
+    this.cookie.delete('logged');
+    this.cookie.delete('userID');
+    this.cookie.delete('userType');
+    this.cookie.delete('token');
     this.router.navigate(["/logout"]);
   }
   goAccount(){
@@ -75,7 +75,7 @@ export class HeaderComponent implements OnInit {
   }
   searchboxLocation(locationMode){
     if(locationMode.value == 'location-user'){
-      this.geolocation.requestLocation(location => {
+      this.geoloc.requestLocation(location => {
         if (location) {
           console.log('User Location: '+location.latitude,location.longitude);
         }
@@ -94,8 +94,8 @@ export class HeaderComponent implements OnInit {
 
     this.user = new User;
 
-    if(this.cookieService.get('logged')){
-      this.user.ID = +this.cookieService.get('userID');
+    if(this.cookie.get('logged')){
+      this.user.ID = +this.cookie.get('userID');
       this.logged = true;
     }
 

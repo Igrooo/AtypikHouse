@@ -12,11 +12,11 @@ export class FormUserComponent implements OnInit {
 
   constructor(private router: Router,
               private data: DataService,
-              private cookieService: CookieService
+              private cookie: CookieService
               ) { }
 
   level = 'user';
-  token = this.cookieService.get('token');
+  token = this.cookie.get('token');
 
   @Input() user : User;
   @Input() signup:boolean = false;

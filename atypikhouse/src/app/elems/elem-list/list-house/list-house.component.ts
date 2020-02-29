@@ -5,7 +5,6 @@ import { MatDialog } from '@angular/material/dialog';
 import { DataService} from "src/app/data.service";
 import { CookieService } from "ngx-cookie-service";
 import { House } from "src/app/logic/House";
-import { Booking } from "src/app/logic/Booking";
 import { User } from "src/app/logic/User";
 import { Icons } from "src/app/elems/elem-icon/icons-categories"
 import { BookingCalendarComponent } from '../../elem-booking-calendar/booking-calendar.component';
@@ -17,7 +16,7 @@ import { BookingCalendarComponent } from '../../elem-booking-calendar/booking-ca
 export class ListHouseComponent implements OnInit {
   
   constructor(private data: DataService,
-              private cookieService: CookieService,
+              private cookie: CookieService,
               public dialog: MatDialog,
               private datePipe: DatePipe
               ) { }
@@ -26,7 +25,7 @@ export class ListHouseComponent implements OnInit {
   @Input() filterUser:number;
   
   level = 'user';
-  token = this.cookieService.get('token');
+  token = this.cookie.get('token');
 
   math = Math;
 
@@ -120,7 +119,7 @@ export class ListHouseComponent implements OnInit {
         this.house.status = status;
         this.data.save(this.level,"houses", this.house, this.token, success => {
           if (success) {
-            setTimeout(function() {
+            setTimeout(() => {
               window.location.reload();
             }, 500);
           }
@@ -144,9 +143,9 @@ export class ListHouseComponent implements OnInit {
   
   ngOnInit() {
     this.user = new User;
-    if(this.cookieService.get('logged')){
-      this.user.ID   = +this.cookieService.get('userID');
-      this.user.type = +this.cookieService.get('userType');
+    if(this.cookie.get('logged')){
+      this.user.ID   = +this.cookie.get('userID');
+      this.user.type = +this.cookie.get('userType');
       if(this.user.type == 1){
         this.filterUser = this.user.ID;
         this.listTitle = 'Mes annonces';

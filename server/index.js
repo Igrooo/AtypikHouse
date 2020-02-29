@@ -1,4 +1,5 @@
 import auth   from './routes/middleware/auth';
+import ping   from './routes/middleware/ping';
 
 // IMPORT PUBLIC ROUTES
 import login  from './routes/public/login';
@@ -53,6 +54,7 @@ app.use(signup);
 
 // MIDDLEWARE D'AUTHENTIFICATION //////////////////////////
 app.use(auth);
+app.use(ping);
 
 // USERS // ADMIN //
 app.use(privateSelect);

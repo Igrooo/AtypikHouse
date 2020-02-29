@@ -11,11 +11,11 @@ import { ActivityType } from "src/app/logic/ActivityType";
 export class AdminActivitiesTypeComponent implements OnInit {
   
   constructor(private data: DataService,
-              private cookieService: CookieService
+              private cookie: CookieService
               ) { }
 
   level = 'admin';
-  token = this.cookieService.get('token');
+  token = this.cookie.get('token');
 
   activitiesTypes: [ActivityType];
 

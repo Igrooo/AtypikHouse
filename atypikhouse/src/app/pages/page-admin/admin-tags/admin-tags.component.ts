@@ -11,10 +11,10 @@ import { Tag } from "src/app/logic/Tag";
 export class AdminTagsComponent implements OnInit {
   
   constructor(private data: DataService,
-    private cookieService: CookieService) { }
+    private cookie: CookieService) { }
 
   level = 'admin';
-  token = this.cookieService.get('token');
+  token = this.cookie.get('token');
   
   tags: [Tag];
 

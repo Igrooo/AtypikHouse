@@ -10,11 +10,11 @@ import { CookieService } from "ngx-cookie-service";
 export class PaymentComponent implements OnInit {
   
   constructor(private data: DataService,
-              private cookieService: CookieService
+              private cookie: CookieService
               ) { }
   
   level = 'user';
-  token = this.cookieService.get('token');
+  token = this.cookie.get('token');
 
   payments : [Payment];
   payment : Payment;

@@ -15,11 +15,11 @@ export class ListBookingComponent implements OnInit {
 
   constructor(private data: DataService,
               private datePipe: DatePipe,
-              private cookieService: CookieService
+              private cookie: CookieService
               ) { }
 
   level = 'user';
-  token = this.cookieService.get('token');
+  token = this.cookie.get('token');
   
   listTitle:string;
   filterUser:number;
@@ -59,9 +59,9 @@ export class ListBookingComponent implements OnInit {
 
   ngOnInit() {
     this.user = new User;
-    if(this.cookieService.get('logged')){
-      this.user.ID   = +this.cookieService.get('userID');
-      this.user.type = +this.cookieService.get('userType');
+    if(this.cookie.get('logged')){
+      this.user.ID   = +this.cookie.get('userID');
+      this.user.type = +this.cookie.get('userType');
       if(this.user.type == 1){
         this.filterUser = this.user.ID;
         this.listTitle = 'Mes réservations de séjours';

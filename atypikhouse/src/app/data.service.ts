@@ -41,17 +41,36 @@ export class DataService {
     });
   }
 
+  ping(level:string, token, callback) {
+    this.http.get(`${this.endpoint}/${level}/ping`, {headers: new HttpHeaders().set('token', token)})
+    .subscribe(response =>{
+      if(response['content'] == 'expired'){
+        callback(false);
+      }else{
+        callback(true);
+      }
+    });
+  }
+
   get(level:string, route:string, ID:string, token, callback) {
     this.http.get(`${this.endpoint}/${level}/select/${route}/${ID}`, {headers: new HttpHeaders().set('token', token)})
       .subscribe(response =>{
-        callback(response['content']);
+        if(response['content'] == 'expired'){
+          callback(false);
+        }else{
+          callback(response['content']);
+        }
       });
   }
 
   getList(level:string, route:string, token, callback) {
     this.http.get(`${this.endpoint}/${level}/select/${route}`, {headers: new HttpHeaders().set('token', token)})
       .subscribe(response => {
-      callback(response['content']);
+        if(response['content'] == 'expired'){
+          callback(false);
+        }else{
+          callback(response['content']);
+        }
     });
   }
 
@@ -60,22 +79,33 @@ export class DataService {
       // It's an update
       this.http.put(`${this.endpoint}/${level}/update/${route}/${elem.ID}`, elem, {headers: new HttpHeaders().set('token', token)})
         .subscribe(response => {
-          callback(true);
+          if(response['content'] == 'expired'){
+            callback(false);
+          }else{
+            callback(true);
+          }
         });
     } else {
       // It's an insert
       this.http.post(`${this.endpoint}/${level}/insert/${route}`, elem, {headers: new HttpHeaders().set('token', token)})
         .subscribe(response => {
-          callback(response['content']); //insertID
+          if(response['content'] == 'expired'){
+            callback(false);
+          }else{
+            callback(response['content']); //insertID
+          }
         });
     }
-    callback(true);
   }
 
   delete(level:string, route:string, ID: string, token, callback) {
     this.http.delete(`${this.endpoint}/${level}/delete/${route}/${ID}`, {headers: new HttpHeaders().set('token', token)})
     .subscribe(response => {
-      callback(true);
+      if(response['content'] == 'expired'){
+        callback(false);
+      }else{
+        callback(true);
+      }
     });
   }
 }
