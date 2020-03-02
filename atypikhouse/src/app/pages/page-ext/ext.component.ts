@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 
 // EXT Server URL for external pages
 const EXTsecure:string  = ""; // s > activate https
-const EXTdomain:string  = "localhost";
+const EXTdomain:string  = "37.59.61.46";
 const EXTport:string    = "80";
 
 const EXTroot:string    = "/www2/AtypikHouse/atypikhouse/";
