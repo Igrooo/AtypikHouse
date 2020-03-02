@@ -120,7 +120,7 @@ export class BookingComponent implements OnInit {
 
   ngOnChanges(){
     this.getID();
-    console.log(this.bookingID);
+    //console.log(this.bookingID);
     this.getBooking(this.bookingID);
   }
 

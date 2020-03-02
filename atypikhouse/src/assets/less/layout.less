@@ -909,6 +909,36 @@
     }
     .ah-form-house{
         margin-bottom: 20px;
+        .ah-form-house-tags,
+        .ah-form-house-city,
+        .ah-form-house-price,
+        .ah-form-house-tax{
+            display: inline-block;
+        }
+        .ah-form-house-price,
+        .ah-form-house-tax{
+            width: calc(50% - 20px);
+        }
+        .ah-form-house-tags{
+            width: calc(33% - 34px - ( (15px * 2 ) / 3 ) - 5px);
+        }
+        .ah-form-house-price{
+            margin-right: 20px;
+        }
+        .ah-form-house-tags{
+            margin-right: 5px;
+        }
+        .ah-cta-add-tag:not(:last-child){
+            margin-right: 18px;
+        }
+        .ah-cta-add-tag{
+            padding: 5px;
+            min-width: 30px;
+            line-height: 20px;
+        }
+        .ah-form-house-city{
+            width: calc(100% - 200px);
+        }
     }
 
 /*********************/
