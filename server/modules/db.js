@@ -25,7 +25,9 @@ db.connect((err) => {
     if(prod){
         console.log('Connected to the Production Database !');
     }
-    console.log('Connected to the Development Database !');
+    else{
+        console.log('Connected to the Development Database !');
+    }
 });
 
 export default db;
