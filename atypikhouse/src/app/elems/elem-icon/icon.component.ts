@@ -1,3 +1,8 @@
+//DEV
+//const domain:string  = 'http://localhost:4200/';
+//PROD
+const domain:string  = 'http://37.59.61.46:4200/';
+
 import { Component, OnInit, OnChanges, Input } from '@angular/core';
 
 @Component({
@@ -5,6 +10,7 @@ import { Component, OnInit, OnChanges, Input } from '@angular/core';
   templateUrl: './icon.component.html'
 })
 export class IconComponent implements OnInit, OnChanges {
+
 
   constructor() { }
 
@@ -70,8 +76,8 @@ export class IconComponent implements OnInit, OnChanges {
 
   setClasses(){
     if(this.iconBg){
-      if(this.imgExists('http://37.59.61.46:4200/'+this.iconBgFolder+this.iconBg+'.png') == false) {
-        console.log('background image http://37.59.61.46:4200/'+this.iconBgFolder+this.iconBg+'.png not found');
+      if(this.imgExists(domain+this.iconBgFolder+this.iconBg+'.png') == false) {
+        console.log('background image '+domain+this.iconBgFolder+this.iconBg+'.png not found');
         this.iconBgNotFoundClass = 'icon-backg-not-found';
         this.iconWithoutBgClass = 'icon-without-backg';
       }

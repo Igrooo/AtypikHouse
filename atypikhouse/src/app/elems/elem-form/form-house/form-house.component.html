@@ -19,12 +19,12 @@
             </mat-form-field>
             <mat-form-field class="ah-form-fieldset large ah-form-house-description">
                 <mat-label>Description</mat-label>
-                <textarea matInput name="description" [(ngModel)]="house.description" [value]="house.description" required></textarea>
+                <textarea matInput rows="auto" name="description" [(ngModel)]="house.description" [value]="house.description" required></textarea>
             </mat-form-field>
         </div>
         <h3 class="ah-form-house-title">Propriétés</h3>
         <div class="ah-form ah-form-house">
-            <mat-form-field class="ah-form-fieldset large ah-form-house-tags">
+            <mat-form-field class="ah-form-fieldset large ah-form-house-tags" *ngIf="!addTag0">
                 <mat-label>Thématiques</mat-label>
                 <mat-select multiple>
                     <ng-container *ngFor="let tag of tags">
@@ -32,16 +32,14 @@
                     </ng-container>
                 </mat-select>
             </mat-form-field>
-            <!--
-            <mat-form-field class="ah-form-fieldset large ah-form-house-price">
-                <mat-label>Ajouter un tag dans "Thématiques"</mat-label>
-                <input matInput name="tag" [(ngModel)]="tag.tag" [value]="tag.tag" required>
-                <mat-icon matSuffix>euro</mat-icon>
+            <button mat-button class="ah-cta-primary ah-cta-add-tag" *ngIf="!addTag0" (click)="addTag0 = true"><mat-icon>add</mat-icon></button>
+            <mat-form-field class="ah-form-fieldset large ah-form-house-tag" *ngIf="addTag0">
+                <mat-label>Ajouter une thématique</mat-label>
+                <input matInput name="tag">
             </mat-form-field>
-            -->
-            <button mat-button class="ah-cta-primary ah-cta-add-tag"><mat-icon>add</mat-icon></button>
-            <button mat-button class="ah-cta-primary ah-cta-submit-tag"><mat-icon>check</mat-icon></button>
-            <mat-form-field class="ah-form-fieldset large ah-form-house-tags">
+            <button mat-button class="ah-cta-primary ah-cta-submit-tag" *ngIf="addTag0" (click)="addTag0 = false"><mat-icon>close</mat-icon></button>
+            <button mat-button class="ah-cta-primary ah-cta-submit-tag" *ngIf="addTag0 && addTag0Complete"><mat-icon>check</mat-icon></button>
+            <mat-form-field class="ah-form-fieldset large ah-form-house-tags" *ngIf="!addTag1">
                 <mat-label>Services & équipements</mat-label>
                 <mat-select multiple>
                     <ng-container *ngFor="let tag of tags">
@@ -49,8 +47,13 @@
                     </ng-container>
                 </mat-select>
             </mat-form-field>
-            <button mat-button class="ah-cta-primary ah-cta-add-tag"><mat-icon>add</mat-icon></button>
-            <button mat-button class="ah-cta-primary ah-cta-submit-tag"><mat-icon>check</mat-icon></button>
+            <button mat-button class="ah-cta-primary ah-cta-add-tag" *ngIf="!addTag1" (click)="addTag1 = true"><mat-icon>add</mat-icon></button>
+            <mat-form-field class="ah-form-fieldset large ah-form-house-tag" *ngIf="addTag1">
+                <mat-label>Ajouter un service ou équipement</mat-label>
+                <input matInput name="tag">
+            </mat-form-field>
+            <button mat-button class="ah-cta-primary ah-cta-submit-tag" *ngIf="addTag1" (click)="addTag1 = false"><mat-icon>close</mat-icon></button>
+            <button mat-button class="ah-cta-primary ah-cta-submit-tag" *ngIf="addTag1 && addTag1Complete"><mat-icon>check</mat-icon></button>
         </div>
         <h3 class="ah-form-house-title">Localisation</h3>
         <div class="ah-form ah-form-house">
@@ -69,14 +72,64 @@
         </div>
         <h3 class="ah-form-house-title">Activités à proximité</h3>
         <div class="ah-form ah-form-house">
-            <mat-form-field class="ah-form-fieldset large ah-form-house-activities">
-                <mat-label>Activités</mat-label>
-                <mat-select multiple>
-                    <mat-option *ngFor="let activity of activities" [value]="activity.ID" multiple>{{activity.title}}</mat-option>
+            <ul class="ah-list smaller">
+                <li *ngFor="let activity of activities">
+                    <mat-form-field class="ah-form-fieldset-inline ah-form-house-activity ah-form-house-activity-type">
+                        <mat-label>Type</mat-label>
+                        <mat-select [(value)]="activity.ID_type">
+                            <mat-option *ngFor="let type of activitiesTypes" [value]="type.ID">{{type.title}}</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                    <mat-form-field class="ah-form-fieldset-inline ah-form-house-activity ah-form-house-activity-title">
+                        <mat-label>Titre</mat-label>
+                        <input matInput name="title"       [value]="activity.title">
+                    </mat-form-field>
+                    <mat-form-field class="ah-form-fieldset-inline ah-form-house-activity ah-form-house-activity-desc">
+                        <mat-label>Description</mat-label>
+                        <input matInput name="description" [value]="activity.description">
+                    </mat-form-field>
+                    <mat-form-field class="ah-form-fieldset-inline ah-form-house-activity ah-form-house-activity-lat">
+                        <mat-label>Latitude</mat-label>
+                        <input matInput name="locationLat" [value]="activity.locationLat">
+                    </mat-form-field>
+                    <mat-form-field class="ah-form-fieldset-inline ah-form-house-activity ah-form-house-activity-lng">
+                        <mat-label>Longitude</mat-label>
+                        <input matInput name="locationLng" [value]="activity.locationLng">
+                    </mat-form-field>
+                    <mat-form-field class="ah-form-fieldset-inline ah-form-house-activity ah-form-house-activity-tags">
+                        <mat-label>Tags</mat-label>
+                        <input matInput name="listID_tags" [value]="activity.listID_tags">
+                    </mat-form-field>
+                    <button mat-button class="ah-cta-primary ah-cta-remove-activity"><mat-icon>close</mat-icon></button>
+                </li>
+            </ul>
+            <mat-form-field class="ah-form-fieldset-inline ah-form-house-activity ah-form-house-activity-type">
+                <mat-label>Type</mat-label>
+                <mat-select>
+                    <mat-option *ngFor="let type of activitiesTypes" [value]="type.ID">{{type.title}}</mat-option>
                 </mat-select>
             </mat-form-field>
+            <mat-form-field class="ah-form-fieldset-inline ah-form-house-activity ah-form-house-activity-title">
+                <mat-label>Titre</mat-label>
+                <input matInput name="title">
+            </mat-form-field>
+            <mat-form-field class="ah-form-fieldset-inline ah-form-house-activity ah-form-house-activity-desc">
+                <mat-label>Description</mat-label>
+                <input matInput name="description">
+            </mat-form-field>
+            <mat-form-field class="ah-form-fieldset-inline ah-form-house-activity ah-form-house-activity-lat">
+                <mat-label>Latitude</mat-label>
+                <input matInput name="locationLat">
+            </mat-form-field>
+            <mat-form-field class="ah-form-fieldset-inline ah-form-house-activity ah-form-house-activity-lng">
+                <mat-label>Longitude</mat-label>
+                <input matInput name="locationLng">
+            </mat-form-field>
+            <mat-form-field class="ah-form-fieldset-inline ah-form-house-activity ah-form-house-activity-tags">
+                <mat-label>Tags</mat-label>
+                <input matInput name="listID_tags">
+            </mat-form-field>
             <button mat-button class="ah-cta-primary ah-cta-add-activity"><mat-icon>add</mat-icon></button>
-            <button mat-button class="ah-cta-primary ah-cta-submit-activity"><mat-icon>check</mat-icon></button>
         </div>
         <h3 class="ah-form-house-title">Prix & Places</h3>
         <div class="ah-form ah-form-house">

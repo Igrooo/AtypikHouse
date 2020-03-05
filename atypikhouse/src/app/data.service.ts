@@ -1,14 +1,16 @@
 import { Injectable } from '@angular/core';
 import { HttpHeaders, HttpClient, HttpParams } from "@angular/common/http";
 
-//const devmode:boolean = false;
-
 //API Server URL 
 const secure:string = ""; // s > activate https
+
+// DEV //// Development domain //// DEV //
+//const domain:string = "localhost";
+
+// PROD //// Production domain //// PROD //
 const domain:string = "37.59.61.46";
 
-// Production port  : 1407
-// Development port : 3000 (server-backup with static .db file)
+// Port
 const port:string = "1407";
 
 @Injectable({

@@ -55,9 +55,11 @@ import { HomePage }       from './pages/page-home/home.component';
 import { DemoPage }       from './pages/page-demo/demo.component';
 import { DemoTypoPage }   from './pages/page-demo/demo-typo/demo-typo.component';
 import { DemoIconsPage }  from './pages/page-demo/demo-icons/demo-icons.component';
-import { ExternalPage }   from './pages/page-ext/ext.component';
 import { AllPage }        from './pages/page-all/all.component';
 import { CategoriesPage } from './pages/page-categories/categories.component';
+import { AboutPage }      from './pages/page-about/about.component';
+import { CGUPage }        from './pages/page-cgu/cgu.component';
+import { FAQPage }        from './pages/page-faq/faq.component';
 
 import { AdminActivitiesComponent }     from './pages/page-admin/admin-activities/admin-activities.component';
 import { AdminActivitiesTypeComponent } from './pages/page-admin/admin-activities-type/admin-activities-type.component';
@@ -184,14 +186,14 @@ const routes : Routes = [
   { path: 'user/:id', component: UserComponent },                // Show user
   { path: 'user/edit', component: UserComponent },           // Edit user
 
-    // Redirect to editorial content
-    {path: 'faq',     component: ExternalPage},
-    {path: 'support', component: ExternalPage},
-    {path: 'news',    component: ExternalPage},
-    {path: 'cgu',     component: ExternalPage},
-    {path: 'about',   component: ExternalPage},
+    // Editorial content
+    {path: 'about',   component: AboutPage},
+    {path: 'faq',     component: FAQPage},
+    {path: 'cgu',     component: CGUPage},
+    {path: 'news',    redirectTo:'about'},
+    {path: 'support', redirectTo:'faq'},
     {path: 'help',    redirectTo:'faq'},
-    {path: 'blog',    redirectTo:'news'},
+    {path: 'blog',    redirectTo:'about'},
 ];
 
 @NgModule({
@@ -201,12 +203,14 @@ const routes : Routes = [
     FooterComponent,
     AsideComponent,
     HomePage,
-    ExternalPage,
     AllPage,
     DemoPage,
     DemoTypoPage,
     DemoIconsPage,
     CategoriesPage,
+    AboutPage,
+    CGUPage,
+    FAQPage,
     HouseComponent,
     ActivityComponent,
     BookingComponent,

@@ -6,6 +6,7 @@ import { CookieService } from "ngx-cookie-service";
 import { House } from "src/app/logic/House";
 import { Category } from "src/app/logic/Category";
 import { Activity } from "src/app/logic/Activity";
+import { ActivityType } from "src/app/logic/ActivityType";
 import { Tag } from "src/app/logic/Tag";
 
 @Component({
@@ -33,12 +34,18 @@ export class FormHouseComponent implements OnInit {
 
   categories: [Category];
   activities: [Activity];
+  activitiesTypes: [ActivityType];
   tags: [Tag];
 
   ready:boolean = false;
   new:boolean;
 
   title:string;
+
+  addTag0:boolean = false;
+  addTag1:boolean = false;
+  addTag0Complete:boolean = false;
+  addTag1Complete:boolean = false;
 
   submit(){
     if(this.new){
@@ -89,6 +96,9 @@ export class FormHouseComponent implements OnInit {
       });
       this.data.getList(this.level,"activities", this.token, activities => {
         this.activities = activities;
+      });
+      this.data.getList(this.level,"activities_types", this.token, activitiesTypes => {
+        this.activitiesTypes = activitiesTypes;
       });
       this.data.getList(this.level,"tags", this.token, tags => {
         this.tags = tags;

@@ -16,7 +16,6 @@ auth.use(function (req, res, next) {
     jwt.verify(token, secretkey, function (err, user) {
         if(err){
             if(err.name == 'TokenExpiredError'){
-                console.log(err.name);
                 console.log(err.message);
                 console.log(err.expiredAt);
                 res.status(200).send({

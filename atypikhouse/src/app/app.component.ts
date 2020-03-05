@@ -93,6 +93,8 @@ export class AppComponent implements OnInit {
 
       let token = this.cookie.get('token');
       let dialogOpen = false;
+
+      // ping token every minute
       setInterval(() => {
         if(!dialogOpen){
           this.data.ping(this.userType, token, valid => {
@@ -111,7 +113,7 @@ export class AppComponent implements OnInit {
             }
           });
         }
-      }, 60000); // ping token every minute
+      }, 60000); 
 
     }
 
