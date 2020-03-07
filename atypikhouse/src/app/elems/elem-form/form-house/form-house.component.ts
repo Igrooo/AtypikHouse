@@ -1,6 +1,7 @@
 import { Component, OnInit, Output } from '@angular/core';
 import { Router, ActivatedRoute } from "@angular/router";
 import { DatePipe } from '@angular/common';
+import { FormControl, FormBuilder } from '@angular/forms';
 import { DataService } from "src/app/data.service";
 import { CookieService } from "ngx-cookie-service";
 import { House } from "src/app/logic/House";
@@ -33,9 +34,11 @@ export class FormHouseComponent implements OnInit {
   house: House;
 
   categories: [Category];
-  activities: [Activity];
+  activities:Activity[]= [];
+  activitiesList:string[] = [];
   activitiesTypes: [ActivityType];
   tags: [Tag];
+  tag: Tag;
 
   ready:boolean = false;
   new:boolean;
@@ -46,6 +49,19 @@ export class FormHouseComponent implements OnInit {
   addTag1:boolean = false;
   addTag0Complete:boolean = false;
   addTag1Complete:boolean = false;
+
+  tags0 = new FormControl();
+  tags1 = new FormControl();
+
+  removedActivities = [0];
+
+  removeActivity(ID){
+    this.removedActivities.push(ID);
+  }
+
+  isRemoved(ID){
+    return this.removedActivities.includes(ID);
+  }
 
   submit(){
     if(this.new){
@@ -65,6 +81,38 @@ export class FormHouseComponent implements OnInit {
     }
   }
 
+  inputTag(type,event){
+    let value = event.target.value.trim();
+    if(type == 0){
+      this.addTag1 = false;
+      if(value != ''){
+        this.addTag0Complete = true;
+      }
+      else{
+        this.addTag0Complete = false;
+      }
+    }
+    if(type == 1){
+      this.addTag0 = false;
+      if(value != ''){
+        this.addTag1Complete = true;
+      }
+      else{
+        this.addTag1Complete = false;
+      }
+    }
+    if(value != ''){
+      this.tag = new Tag();
+      this.tag.type = type;
+      this.tag.tag  = value;
+    }
+  }
+
+  newTag(){
+    this.data.save(this.level,"tags", this.tag, this.token, insertID => {
+    });
+  }
+
   ngOnInit() {
     this.routingSubscription =
       this.route.params.subscribe(params => {
@@ -75,6 +123,31 @@ export class FormHouseComponent implements OnInit {
               this.house = house;
               this.title = 'Modifier "'+this.house.title+'"';
               this.ready = true;
+
+              let tags = this.house.listID_tags.split(',');
+              let selectedtags0:number[] = [];
+              let selectedtags1:number[] = [];
+              tags.forEach(tagID => {
+                this.data.get(this.level,"tags", tagID, this.token, tag => {
+                  if(tag){
+                    this.tag = tag;
+                    if(this.tag.type == 0){selectedtags0.push(this.tag.ID);}
+                    if(this.tag.type == 1){selectedtags1.push(this.tag.ID);}
+                    this.tags0.setValue(selectedtags0);
+                    this.tags1.setValue(selectedtags1);
+                  }
+                });
+              });
+              if(this.house.listID_activities != ''){
+                this.activitiesList = this.house.listID_activities.split(',');
+                this.activitiesList.forEach(activityID => {
+                  this.data.get(this.level,"activities", activityID, this.token, activity => {
+                    if(activity){
+                      this.activities.push(activity);
+                    }
+                  });
+                });
+              }
             }
           });
         }
@@ -94,9 +167,7 @@ export class FormHouseComponent implements OnInit {
       this.data.getList(this.level,"categories", this.token, categories => {
         this.categories = categories;
       });
-      this.data.getList(this.level,"activities", this.token, activities => {
-        this.activities = activities;
-      });
+
       this.data.getList(this.level,"activities_types", this.token, activitiesTypes => {
         this.activitiesTypes = activitiesTypes;
       });

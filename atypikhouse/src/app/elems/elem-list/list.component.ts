@@ -28,12 +28,18 @@ export class ListComponent implements OnInit {
   iconsColor    :string = '#9dc1bb';
   iconsBgFolder :string = 'houses';
 
+  isReady:boolean = false;
+
   ngOnInit() {
     this.icons = Icons;
     this.data.getList(this.level,"houses", this.token, houses => {
       this.houses = houses;
     });
     //console.log('filterCategory: '+this.filterCategory);
+  }
+
+  ngAfterContentChecked() {
+    this.isReady = true;
   }
 
 }

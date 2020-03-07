@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { Router } from "@angular/router";
 import { CookieService } from "ngx-cookie-service";
 import { FormGroup, FormBuilder } from "@angular/forms";
@@ -19,6 +19,8 @@ export class FormLoginComponent implements OnInit {
 
   user: User;
   userForm: FormGroup;
+
+  @Input() indialog:boolean = false;
 
   get password() {
     return this.userForm.get("password");

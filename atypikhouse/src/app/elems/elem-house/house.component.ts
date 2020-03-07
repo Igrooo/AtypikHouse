@@ -73,6 +73,8 @@ export class HouseComponent implements OnInit {
 
   nbPersonsMax:number;
 
+  isReady:boolean = false;
+
   arrayNbPersons(max:number): any[]{
     return Array(max);
   }
@@ -239,6 +241,10 @@ export class HouseComponent implements OnInit {
           });
         }
       });
+  }
+
+  ngAfterContentChecked() {
+    this.isReady = true;
   }
 
   ngOnDestroy() {

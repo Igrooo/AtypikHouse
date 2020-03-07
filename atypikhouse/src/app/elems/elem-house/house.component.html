@@ -4,7 +4,7 @@
     <!--
     <app-icon *ngIf="house" [forceReload]="true" (click)="slide()" [iconSize]="iconsSize" [iconsSet]="iconsSet" [iconGroup]="icons[house.ID_category - 1].group" [iconName]="icons[house.ID_category - 1].name" [iconBgFolder]="iconsBgFolder" [iconBg]="house.ID" [iconColor]="iconsColor" [iconTitle]="house.title" [iconSubTitle]="house.zipcode+', '+house.city" [cardText]="house.description" [cardMarker]="priceTTC.toString()"></app-icon>
     -->
-    <app-icon *ngIf="house" [forceReload]="true" [iconSize]="iconsSize" [iconsSet]="iconsSet" [iconGroup]="icons[house.ID_category - 1].group" [iconName]="icons[house.ID_category - 1].name" [iconBgFolder]="iconsBgFolder" [iconBg]="house.ID" [iconColor]="iconsColor" [iconTitle]="house.title" [iconSubTitle]="house.zipcode+', '+house.city" [cardText]="house.description" [cardMarker]="priceTTC.toString()"></app-icon>
+    <app-icon *ngIf="house && isReady" [forceReload]="true" [iconSize]="iconsSize" [iconsSet]="iconsSet" [iconGroup]="icons[house.ID_category - 1].group" [iconName]="icons[house.ID_category - 1].name" [iconBgFolder]="iconsBgFolder" [iconBg]="house.ID" [iconColor]="iconsColor" [iconTitle]="house.title" [iconSubTitle]="house.zipcode+', '+house.city" [cardText]="house.description" [cardMarker]="priceTTC.toString()"></app-icon>
   </section>
 <section class="ah-container-primary lead ah-section ah-product-info">
   <h2 class="ah-title hide">{{house.title}}</h2>

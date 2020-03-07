@@ -1,4 +1,4 @@
-<section class="ah-container ah-section ah-container-login">
+<section class="ah-container ah-section ah-container-login" *ngIf="!indialog">
     <h2>Connection</h2>
     <form [formGroup]="userForm" (submit)="login()" class="ah-form ah-form-login">
         <div class="ah-form-fieldset">
@@ -21,3 +21,19 @@
     </p>
     </div>
 </section>
+
+<form [formGroup]="userForm" (submit)="login()" class="ah-form ah-form-login" *ngIf="indialog">
+    <div class="ah-form-fieldset">
+        <mat-form-field>
+            <mat-label>E-mail</mat-label>
+            <input matInput name="email" type="email" formControlName="email" required>
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label>Mot de passe</mat-label>
+            <input matInput name="password" type="password" formControlName="password" required>
+        </mat-form-field>
+    </div>
+    <div class="ah-form-fieldset">
+        <button class="ah-cta-primary" mat-raised-button type="submit">Valider</button>
+    </div>
+</form>

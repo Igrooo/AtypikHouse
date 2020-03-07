@@ -26,7 +26,7 @@
         <div class="ah-form ah-form-house">
             <mat-form-field class="ah-form-fieldset large ah-form-house-tags" *ngIf="!addTag0">
                 <mat-label>Thématiques</mat-label>
-                <mat-select multiple>
+                <mat-select [formControl]="tags0" multiple>
                     <ng-container *ngFor="let tag of tags">
                         <mat-option *ngIf="tag.type === 0" [value]="tag.ID" multiple>{{tag.tag}}</mat-option>
                     </ng-container>
@@ -35,13 +35,13 @@
             <button mat-button class="ah-cta-primary ah-cta-add-tag" *ngIf="!addTag0" (click)="addTag0 = true"><mat-icon>add</mat-icon></button>
             <mat-form-field class="ah-form-fieldset large ah-form-house-tag" *ngIf="addTag0">
                 <mat-label>Ajouter une thématique</mat-label>
-                <input matInput name="tag">
+                <input matInput name="tag" (input)="inputTag(0,$event)">
             </mat-form-field>
-            <button mat-button class="ah-cta-primary ah-cta-submit-tag" *ngIf="addTag0" (click)="addTag0 = false"><mat-icon>close</mat-icon></button>
-            <button mat-button class="ah-cta-primary ah-cta-submit-tag" *ngIf="addTag0 && addTag0Complete"><mat-icon>check</mat-icon></button>
+            <button mat-button class="ah-cta-primary ah-cta-submit-tag" *ngIf="addTag0 && !addTag0Complete" (click)="addTag0 = false"><mat-icon>close</mat-icon></button>
+            <button mat-button class="ah-cta-primary ah-cta-submit-tag" *ngIf="addTag0 && addTag0Complete" (click)="newTag()"><mat-icon>check</mat-icon></button>
             <mat-form-field class="ah-form-fieldset large ah-form-house-tags" *ngIf="!addTag1">
                 <mat-label>Services & équipements</mat-label>
-                <mat-select multiple>
+                <mat-select [formControl]="tags1" multiple>
                     <ng-container *ngFor="let tag of tags">
                         <mat-option  *ngIf="tag.type === 1" [value]="tag.ID" multiple>{{tag.tag}}</mat-option>
                     </ng-container>
@@ -50,10 +50,10 @@
             <button mat-button class="ah-cta-primary ah-cta-add-tag" *ngIf="!addTag1" (click)="addTag1 = true"><mat-icon>add</mat-icon></button>
             <mat-form-field class="ah-form-fieldset large ah-form-house-tag" *ngIf="addTag1">
                 <mat-label>Ajouter un service ou équipement</mat-label>
-                <input matInput name="tag">
+                <input matInput name="tag" (input)="inputTag(1,$event)">
             </mat-form-field>
-            <button mat-button class="ah-cta-primary ah-cta-submit-tag" *ngIf="addTag1" (click)="addTag1 = false"><mat-icon>close</mat-icon></button>
-            <button mat-button class="ah-cta-primary ah-cta-submit-tag" *ngIf="addTag1 && addTag1Complete"><mat-icon>check</mat-icon></button>
+            <button mat-button class="ah-cta-primary ah-cta-submit-tag" *ngIf="addTag1 && !addTag1Complete" (click)="addTag1 = false"><mat-icon>close</mat-icon></button>
+            <button mat-button class="ah-cta-primary ah-cta-submit-tag" *ngIf="addTag1 && addTag1Complete" (click)="newTag()"><mat-icon>check</mat-icon></button>
         </div>
         <h3 class="ah-form-house-title">Localisation</h3>
         <div class="ah-form ah-form-house">
@@ -73,35 +73,57 @@
         <h3 class="ah-form-house-title">Activités à proximité</h3>
         <div class="ah-form ah-form-house">
             <ul class="ah-list smaller">
-                <li *ngFor="let activity of activities">
+                <div class="ah-form-fieldset-head">
                     <mat-form-field class="ah-form-fieldset-inline ah-form-house-activity ah-form-house-activity-type">
                         <mat-label>Type</mat-label>
-                        <mat-select [(value)]="activity.ID_type">
-                            <mat-option *ngFor="let type of activitiesTypes" [value]="type.ID">{{type.title}}</mat-option>
-                        </mat-select>
+                        <input matInput readonly>
                     </mat-form-field>
                     <mat-form-field class="ah-form-fieldset-inline ah-form-house-activity ah-form-house-activity-title">
                         <mat-label>Titre</mat-label>
-                        <input matInput name="title"       [value]="activity.title">
+                        <input matInput readonly>
                     </mat-form-field>
                     <mat-form-field class="ah-form-fieldset-inline ah-form-house-activity ah-form-house-activity-desc">
                         <mat-label>Description</mat-label>
-                        <input matInput name="description" [value]="activity.description">
+                        <input matInput readonly>
                     </mat-form-field>
                     <mat-form-field class="ah-form-fieldset-inline ah-form-house-activity ah-form-house-activity-lat">
                         <mat-label>Latitude</mat-label>
-                        <input matInput name="locationLat" [value]="activity.locationLat">
+                        <input matInput readonly>
                     </mat-form-field>
                     <mat-form-field class="ah-form-fieldset-inline ah-form-house-activity ah-form-house-activity-lng">
                         <mat-label>Longitude</mat-label>
-                        <input matInput name="locationLng" [value]="activity.locationLng">
+                        <input matInput readonly>
                     </mat-form-field>
                     <mat-form-field class="ah-form-fieldset-inline ah-form-house-activity ah-form-house-activity-tags">
                         <mat-label>Tags</mat-label>
-                        <input matInput name="listID_tags" [value]="activity.listID_tags">
+                        <input matInput readonly>
                     </mat-form-field>
-                    <button mat-button class="ah-cta-primary ah-cta-remove-activity"><mat-icon>close</mat-icon></button>
-                </li>
+                </div>
+                <ng-container *ngFor="let activity of activities">
+                    <li *ngIf="!isRemoved(activity.ID)">
+                        <mat-form-field class="ah-form-fieldset-inline ah-form-house-activity ah-form-house-activity-type">
+                            <mat-select [(value)]="activity.ID_type">
+                                <mat-option *ngFor="let type of activitiesTypes" [value]="type.ID">{{type.title}}</mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                        <mat-form-field class="ah-form-fieldset-inline ah-form-house-activity ah-form-house-activity-title">
+                            <input matInput name="title"       [value]="activity.title">
+                        </mat-form-field>
+                        <mat-form-field class="ah-form-fieldset-inline ah-form-house-activity ah-form-house-activity-desc">
+                            <input matInput name="description" [value]="activity.description">
+                        </mat-form-field>
+                        <mat-form-field class="ah-form-fieldset-inline ah-form-house-activity ah-form-house-activity-lat">
+                            <input matInput name="locationLat" [value]="activity.locationLat">
+                        </mat-form-field>
+                        <mat-form-field class="ah-form-fieldset-inline ah-form-house-activity ah-form-house-activity-lng">
+                            <input matInput name="locationLng" [value]="activity.locationLng">
+                        </mat-form-field>
+                        <mat-form-field class="ah-form-fieldset-inline ah-form-house-activity ah-form-house-activity-tags">
+                            <input matInput name="listID_tags" [value]="activity.listID_tags">
+                        </mat-form-field>
+                        <button mat-button class="ah-cta-primary ah-cta-remove-activity" (click)="removeActivity(activity.ID)"><mat-icon>close</mat-icon></button>
+                    </li>
+                </ng-container>
             </ul>
             <mat-form-field class="ah-form-fieldset-inline ah-form-house-activity ah-form-house-activity-type">
                 <mat-label>Type</mat-label>
@@ -129,7 +151,7 @@
                 <mat-label>Tags</mat-label>
                 <input matInput name="listID_tags">
             </mat-form-field>
-            <button mat-button class="ah-cta-primary ah-cta-add-activity"><mat-icon>add</mat-icon></button>
+            <button mat-button class="ah-cta-primary ah-cta-add-activity" disabled><mat-icon>add</mat-icon></button>
         </div>
         <h3 class="ah-form-house-title">Prix & Places</h3>
         <div class="ah-form ah-form-house">

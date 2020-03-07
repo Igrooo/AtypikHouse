@@ -23,7 +23,7 @@
         </div>
         <div class="ah-list-houses-container mat-elevation-z5">
           <div class="ah-list-houses-header">
-            <app-icon routerLink="/house/{{ house.ID }}" [forceReload]="true" [iconSize]="iconsSize"
+            <app-icon *ngIf="isReady" routerLink="/house/{{ house.ID }}" [forceReload]="true" [iconSize]="iconsSize"
               [iconsSet]="iconsSet" [iconGroup]="icons[house.ID_category - 1].group"
               [iconName]="icons[house.ID_category - 1].name" [iconBgFolder]="iconsBgFolder" [iconBg]="house.ID"
               [iconColor]="iconsColor" [iconTitle]="house.title" [iconSubTitle]="house.zipcode+', '+house.city"
@@ -83,7 +83,7 @@
         </div>
         <div class="ah-list-houses-container mat-elevation-z5">
           <div class="ah-list-houses-header">
-            <app-icon routerLink="/house/{{ house.ID }}" [forceReload]="true" [iconSize]="iconsSize"
+            <app-icon *ngIf="isReady" routerLink="/house/{{ house.ID }}" [forceReload]="true" [iconSize]="iconsSize"
               [iconsSet]="iconsSet" [iconGroup]="icons[house.ID_category - 1].group"
               [iconName]="icons[house.ID_category - 1].name" [iconBgFolder]="iconsBgFolder" [iconBg]="house.ID"
               [iconColor]="iconsColor" [iconTitle]="house.title" [iconSubTitle]="house.zipcode+', '+house.city"
@@ -143,7 +143,7 @@
         </div>
         <div class="ah-list-houses-container mat-elevation-z5">
           <div class="ah-list-houses-header">
-            <app-icon routerLink="/house/{{ house.ID }}" [forceReload]="true" [iconSize]="iconsSize"
+            <app-icon *ngIf="isReady" routerLink="/house/{{ house.ID }}" [forceReload]="true" [iconSize]="iconsSize"
               [iconsSet]="iconsSet" [iconGroup]="icons[house.ID_category - 1].group"
               [iconName]="icons[house.ID_category - 1].name" [iconBgFolder]="iconsBgFolder" [iconBg]="house.ID"
               [iconColor]="iconsColor" [iconTitle]="house.title" [iconSubTitle]="house.zipcode+', '+house.city"
