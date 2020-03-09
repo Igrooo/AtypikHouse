@@ -63,24 +63,6 @@ export class FormHouseComponent implements OnInit {
     return this.removedActivities.includes(ID);
   }
 
-  submit(){
-    if(this.new){
-      console.log(this.house);
-      this.data.save(this.level,"houses", this.house, this.token, insertID => {
-        if (Number.isInteger(insertID)) {
-          this.router.navigate(["/house", insertID]);
-        }
-      });
-    }
-    else{
-      this.data.save(this.level,"houses", this.house, this.token, success => {
-        if (success) {
-          this.router.navigate(["/house", this.house.ID]);
-        }
-      });
-    }
-  }
-
   inputTag(type,event){
     let value = event.target.value.trim();
     if(type == 0){
@@ -103,14 +85,63 @@ export class FormHouseComponent implements OnInit {
     }
     if(value != ''){
       this.tag = new Tag();
-      this.tag.type = type;
+      this.tag.type = type.toString();
       this.tag.tag  = value;
     }
   }
 
-  newTag(){
+  newTag(type){
     this.data.save(this.level,"tags", this.tag, this.token, insertID => {
+      if(insertID){
+        this.getTags();
+        if(type == 0){
+          let tags0values = this.tags0.value;
+          tags0values.push(insertID);
+          this.tags0.setValue(tags0values);
+          this.addTag0 = false;
+        }
+        else{
+          let tags1values = this.tags1.value;
+          tags1values.push(insertID);
+          this.tags1.setValue(tags1values);
+          this.addTag1 = false;
+        }
+        this.udpateTags();
+      }
     });
+  }
+
+  trackByTags(index: number, tag: Tag): number { return tag.ID; }
+
+  getTags(){
+    this.data.getList(this.level,"tags", this.token, tags => {
+      this.tags = tags;
+    });
+  }
+
+  udpateTags(){
+    let tags0values = this.tags0.value;
+    let tags1values = this.tags1.value;
+    this.house.listID_tags = tags0values.concat(tags1values).join();
+    console.log( this.house.listID_tags);
+  }
+  
+  submit(){
+    if(this.new){
+      console.log(this.house);
+      this.data.save(this.level,"houses", this.house, this.token, insertID => {
+        if (Number.isInteger(insertID)) {
+          this.router.navigate(["/house", insertID]);
+        }
+      });
+    }
+    else{
+      this.data.save(this.level,"houses", this.house, this.token, success => {
+        if (success) {
+          this.router.navigate(["/house", this.house.ID]);
+        }
+      });
+    }
   }
 
   ngOnInit() {
@@ -131,10 +162,14 @@ export class FormHouseComponent implements OnInit {
                 this.data.get(this.level,"tags", tagID, this.token, tag => {
                   if(tag){
                     this.tag = tag;
-                    if(this.tag.type == 0){selectedtags0.push(this.tag.ID);}
-                    if(this.tag.type == 1){selectedtags1.push(this.tag.ID);}
-                    this.tags0.setValue(selectedtags0);
-                    this.tags1.setValue(selectedtags1);
+                    if(this.tag.type == 0){
+                      selectedtags0.push(this.tag.ID);
+                      this.tags0.setValue(selectedtags0);
+                    }
+                    if(this.tag.type == 1){
+                      selectedtags1.push(this.tag.ID);
+                      this.tags1.setValue(selectedtags1);
+                    }
                   }
                 });
               });
@@ -171,9 +206,7 @@ export class FormHouseComponent implements OnInit {
       this.data.getList(this.level,"activities_types", this.token, activitiesTypes => {
         this.activitiesTypes = activitiesTypes;
       });
-      this.data.getList(this.level,"tags", this.token, tags => {
-        this.tags = tags;
-      });
+      this.getTags();
   }
 
   ngOnDestroy() {
