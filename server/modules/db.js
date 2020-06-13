@@ -1,16 +1,33 @@
+let prod;
+prod = true;
 let mysql = require('mysql');
 
-const db = mysql.createConnection({
+const dbDev = mysql.createConnection({
     host: 'localhost',
-    user: 'phpmyadmin',
-    password: 'root',
+    user: 'root',
+    password: '',
     port: "3306",
     database: 'atypikhouse'
 });
 
+const dbProd = mysql.createConnection({
+    host: 'localhost',
+    user: 'amine',
+    password: 'aminou@14',
+    port: "3306",
+    database: 'atypikhouse'
+});
+
+const db = (prod) ? dbProd:dbDev; 
+
 db.connect((err) => {
     if (err) throw err;
-    console.log('Connected!');
+    if(prod){
+        console.log('Connected to the Production Database !');
+    }
+    else{
+        console.log('Connected to the Development Database !');
+    }
 });
 
 export default db;

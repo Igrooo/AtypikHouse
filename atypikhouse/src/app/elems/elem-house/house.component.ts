@@ -18,9 +18,22 @@ import { Icons } from "src/app/elems/elem-icon/icons-categories";
 })
 
 export class HouseComponent implements OnInit {
-  isDataLoaded:boolean = false;
+
+  constructor(private router: Router,
+              private route: ActivatedRoute,
+              private geoloc: GeolocationService,
+              private data: DataService,
+              private datePipe: DatePipe,
+              private cookie: CookieService
+              ) { }
+
+  routingSubscription: any;
+
+  level = 'public';
+  token = 'public';
   math = Math;
 
+  logged:boolean = false;
   editable:boolean = false;
 
   icons = Icons;
@@ -60,22 +73,14 @@ export class HouseComponent implements OnInit {
 
   nbPersonsMax:number;
 
-  constructor(private router: Router,
-              private route: ActivatedRoute,
-              private geolocation: GeolocationService,
-              private data: DataService,
-              private datePipe: DatePipe,
-              private cookieService: CookieService
-              ) { }
-
-  routingSubscription: any;
+  isReady:boolean = false;
 
   arrayNbPersons(max:number): any[]{
     return Array(max);
   }
 
   goMap(house: House) {
-    const mapURL = this.geolocation.getMapLink(house.address,house.city);
+    const mapURL = this.geoloc.getMapLink(house.address,house.city);
     window.open(mapURL, "_blank");
   }
 
@@ -136,26 +141,30 @@ export class HouseComponent implements OnInit {
   }
 
   newPayment(booking, ID){
+    this.level = 'user';
+    this.token = this.cookie.get('token');
     this.payment = new Payment();
     this.payment.status = booking.status;
     this.payment.amount = this.totalPrice;
     this.payment.date   = booking.date;
     this.payment.ID_user = booking.ID_user;
     this.payment.ID_booking = ID;
-    this.data.save("payments", this.payment, payment => {});
+    this.data.save(this.level,"payments", this.payment, this.token, payment => {});
   }
 
   newBooking(){
+    this.level = 'user';
+    this.token = this.cookie.get('token');
     this.booking = new Booking();
     this.booking.status     = 1;
     this.booking.date       = this.datePipe.transform(new Date(),"yyyy-MM-dd");
     this.booking.dateStart  = this.datePipe.transform(this.dateStart,"yyyy-MM-dd");
     this.booking.dateEnd    = this.datePipe.transform(this.dateEnd,"yyyy-MM-dd");
     this.booking.nbPersons  = this.nbPersons;
-    this.booking.ID_user    = +this.cookieService.get('userID');
+    this.booking.ID_user    = +this.cookie.get('userID');
     this.booking.ID_house   = this.house.ID;
 
-    this.data.save("booking", this.booking, insertID => {
+    this.data.save(this.level,"booking", this.booking, this.token, insertID => {
       if (Number.isInteger(insertID)) {
         this.newPayment(this.booking,insertID)
         this.router.navigate(["/booking", insertID]);
@@ -169,20 +178,21 @@ export class HouseComponent implements OnInit {
     this.routingSubscription =
       this.route.params.subscribe(params => {
         if(params["id"]) {
-          this.data.get("houses", params["id"], house => {
+          this.data.get(this.level,"houses", params["id"], this.token, house => {
             if (house) {
               this.house = house;
 
-              if(!!this.cookieService.get('logged') == true) {
+              if(!!this.cookie.get('logged') == true) {
+                this.logged = true;
                 /*Display cta overlay editor button if logged user is admin or house user*/
-                if((+this.cookieService.get('userType') == 0) || (+this.cookieService.get('userID') == this.house.ID_user)){
+                if((+this.cookie.get('userType') == 0) || (+this.cookie.get('userID') == this.house.ID_user)){
                   this.editable = true;
                 }
               }
               if(this.house.listID_tags != ''){
                 this.tagsList = this.house.listID_tags.split(',');
-                this.tagsList.forEach((tagID) => {
-                  this.data.get("tags", tagID, tag => {
+                this.tagsList.forEach(tagID => {
+                  this.data.get(this.level,"tags", tagID, this.token, tag => {
                     if(tag){
                       this.tags.push(tag);
                     }
@@ -206,16 +216,16 @@ export class HouseComponent implements OnInit {
 
               if(this.house.listID_activities != ''){
                 this.activitiesList = this.house.listID_activities.split(',');
-                this.activitiesList.forEach((activityID) => {
-                  this.data.get("activities", activityID, activity => {
+                this.activitiesList.forEach(activityID => {
+                  this.data.get(this.level,"activities", activityID, this.token, activity => {
                     if(activity){
                       this.activities.push(activity);
                       this.markers.push({lat: activity.locationLat, lng: activity.locationLng, icon: '/assets/img/marker-grey.png'});
                       if(activity.listID_tags != ''){
                         let tags:Tag[]= [];
                         this.tagsActivityList = activity.listID_tags.split(',');
-                        this.tagsActivityList.forEach((tagID) => {
-                          this.data.get("tags", tagID, tag => {
+                        this.tagsActivityList.forEach(tagID => {
+                          this.data.get(this.level,"tags", tagID, this.token, tag => {
                             if(tag){
                               tags.push(tag.tag);
                             }
@@ -231,6 +241,10 @@ export class HouseComponent implements OnInit {
           });
         }
       });
+  }
+
+  ngAfterContentChecked() {
+    this.isReady = true;
   }
 
   ngOnDestroy() {

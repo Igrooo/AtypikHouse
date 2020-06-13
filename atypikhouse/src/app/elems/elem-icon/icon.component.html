@@ -1,4 +1,4 @@
-<a class="ah-icon icon-{{ iconSize }} {{ iconCircleClass }} {{ iconBgNotFoundClass }} {{ iconWithoutBgClass }} {{ iconWithoutColorClass }} {{ cardWithTextClass }} {{ cardWithMarkerClass }}" [ngStyle]="styles()">
+<a class="mat-elevation-z3 ah-icon icon-{{ iconSize }} {{ iconCircleClass }} {{ iconBgNotFoundClass }} {{ iconWithoutBgClass }} {{ iconWithoutColorClass }} {{ cardWithTextClass }} {{ cardWithMarkerClass }}" [ngStyle]="styles()">
         <img class="ah-icon-asset" src="{{ iconsSet }}{{ iconGroup }}/{{ iconName }}.{{ iconsType }}" alt="{{ iconName }}">
         <div *ngIf="iconSize == 'card' || 'banner'; else onlyTitle" class="ah-card-content" [ngStyle]="stylesCardContent()">
             <span *ngIf="iconTitle" class="icon-title">{{ iconTitle }}<br><span class="icon-subtitle">{{ iconSubTitle }}</span></span>

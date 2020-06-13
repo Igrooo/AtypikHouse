@@ -1,6 +1,7 @@
 import * as $ from 'jquery';
 import { Component, OnInit } from '@angular/core';
 import { DataService} from "src/app/data.service";
+import { CookieService } from "ngx-cookie-service";
 import { Booking } from "src/app/logic/Booking";
 import { DatePipe } from '@angular/common';
 
@@ -9,6 +10,15 @@ import { DatePipe } from '@angular/common';
   templateUrl: './admin-booking.component.html'
 })
 export class AdminBookingComponent implements OnInit {
+  
+  constructor(private data: DataService,
+              private datePipe: DatePipe,
+              private cookie: CookieService
+              ) {}
+
+  level = 'admin';
+  token = this.cookie.get('token');
+
   bookings: [Booking];
 
   displayedColumns: string[] = ['ID', 'status', 'nbPersons', 'date', 'dateStart', 'dateEnd', 'ID_user', 'ID_house', 'tools'];
@@ -17,11 +27,6 @@ export class AdminBookingComponent implements OnInit {
 
   isReadonly:boolean = true;
 
-  constructor(
-    private data: DataService,
-    private datePipe: DatePipe) {
-
-  }
 
   focus(ID,focusedMode:string){
     let tr = $('#'+ID).parents('tr');
@@ -57,7 +62,7 @@ export class AdminBookingComponent implements OnInit {
   }
 
   edit(booking){
-    this.data.save("booking", booking, result => {
+    this.data.save(this.level,"booking", booking, this.token, result => {
       if (result) {
         
       }
@@ -65,7 +70,7 @@ export class AdminBookingComponent implements OnInit {
   }
 
   delete(bookingID){
-    this.data.delete("booking", bookingID, result => {
+    this.data.delete(this.level,"booking", bookingID, this.token, result => {
       if (result) {
         let tr = $('#'+bookingID).parents('tr');
         tr.remove();
@@ -89,7 +94,7 @@ export class AdminBookingComponent implements OnInit {
   }
   
   ngOnInit() {
-    this.data.getList("booking", bookings => {
+    this.data.getList(this.level,"booking", this.token, bookings => {
       this.bookings = bookings;
     });
   }

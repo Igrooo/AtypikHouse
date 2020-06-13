@@ -1,8 +1,11 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { Router, Event, NavigationStart, NavigationEnd, NavigationError } from "@angular/router";
+import { DataService} from "src/app/data.service";
 import { CookieService } from "ngx-cookie-service";
-import { MatSnackBar } from "@angular/material";
+import { MatSnackBar } from "@angular/material/snack-bar";
+import { MatDialog } from '@angular/material/dialog';
 import { User } from "src/app/logic/User";
+import { ExpiredDialogComponent } from './elems/elem-expired-dialog/expired-dialog.component';
 
 @Component({
   selector: 'app-root',
@@ -18,17 +21,18 @@ export class AppComponent implements OnInit {
   private cookieLogged: boolean;
 
   user:     User;
-
   userType:string = 'none';
 
   constructor(private snackBar: MatSnackBar,
               private router: Router,
-              private cookieService: CookieService
+              private data: DataService,
+              private cookie: CookieService,
+              public  dialog: MatDialog
               ) {
                 this.router.events.subscribe((event: Event) => {
                   if (event instanceof NavigationStart) {
-                    this.cookieLogged = !!this.cookieService.get('logged');
-                    if(this.cookieLogged == true){
+                    this.cookieLogged = !!this.cookie.get('logged');
+                    if(this.cookieLogged){
                       this.logged = true;
                       this.pagetype = 'private';
                       console.log(this.pagetype);
@@ -41,11 +45,11 @@ export class AppComponent implements OnInit {
                   }
                   if (event instanceof NavigationEnd) {
                     this.href = window.location.pathname.substring(1); // remove '/'
-                    //Reload page on login/logout
+                    // Reload page on login/logout
                     if(this.href == 'logged' || this.href == 'logout'){
                       window.location.href = '';
                     }
-                    //Update pageid 
+                    // Update pageid 
                     if(this.href == ''){
                       this.pageid = 'home-'+this.title;
                       this.page = 'home';
@@ -59,6 +63,18 @@ export class AppComponent implements OnInit {
                         this.page = this.pageid;
                       }
                     }
+                    // Go out on private page
+                    if(!this.cookieLogged){
+                      switch(this.page){
+                        case 'user':
+                          this.logout();
+                          this.router.navigate(["/logout"]);
+                          break;
+                        case 'admin':
+                          this.logout();
+                          this.router.navigate(["/logout"]);
+                      }
+                    }
                     console.log('Current page: '+this.page);
                   }
                   if (event instanceof NavigationError) {
@@ -67,17 +83,56 @@ export class AppComponent implements OnInit {
                 });
               }
 
+  logout(){
+    this.cookie.delete('logged');
+    this.cookie.delete('userID');
+    this.cookie.delete('userType');
+    this.cookie.delete('token');
+  }
+
+  dialogOpen = false;
+  
+  tokenCheck() {
+    let token = this.cookie.get('token');
+    if(!this.dialogOpen){
+      this.data.ping(this.userType, token, valid => {
+        if(!valid){
+          this.logout();
+          console.log('User Session expired - JWT expired');
+          const dialogRef = this.dialog.open(ExpiredDialogComponent, { });
+          dialogRef.afterClosed().subscribe(result => {
+            //console.log('The dialog was closed');
+            this.router.navigate(["/logout"]);
+          });
+          this.dialogOpen = true;
+        }
+        else{
+          console.log('User Session - JWT is valid');
+        }
+      });
+    }
+  }
+
   ngOnInit() {
     this.user = new User;
-    if(this.cookieService.get('logged')){
-      this.user.ID   = +this.cookieService.get('userID');
-      this.user.type = +this.cookieService.get('userType');
+    if(this.cookie.get('logged')){
+      this.user.ID   = +this.cookie.get('userID');
+      this.user.type = +this.cookie.get('userType');
+
       if(this.user.type == 1){
         this.userType = 'user';
       }
       else{
         this.userType = 'admin';
       }
+
+      this.tokenCheck();
+
+      // ping token every minute
+      setInterval(() => {
+        this.tokenCheck();
+      }, 60000); 
+
     }
 
     if ((navigator as any).standalone == false) {
@@ -105,5 +160,6 @@ export class AppComponent implements OnInit {
         });
       }
     }
+
   }
 }

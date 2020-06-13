@@ -1,24 +1,32 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Payment } from 'src/app/logic/Payment';
 import { DataService } from "src/app/data.service";
+import { CookieService } from "ngx-cookie-service";
 
 @Component({
   selector: 'app-payment',
   templateUrl: './payment.component.html'
 })
 export class PaymentComponent implements OnInit {
+  
+  constructor(private data: DataService,
+              private cookie: CookieService
+              ) { }
+  
+  level = 'user';
+  token = this.cookie.get('token');
+
   payments : [Payment];
   payment : Payment;
 
   @Input() bookingID: number;
 
-  constructor(private data: DataService) { }
 
   ngOnInit() {
-    this.data.getList("payments", payments => {
+    this.data.getList(this.level,"payments", this.token, payments => {
       if(payments){
         this.payments = payments;
-        payments.forEach((payment, index) => {
+        payments.forEach(payment => {
           if(payment.ID_booking == this.bookingID){
             this.payment = payment;
           }

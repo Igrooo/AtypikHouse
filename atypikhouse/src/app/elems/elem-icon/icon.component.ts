@@ -1,3 +1,8 @@
+//DEV
+//const domain:string  = 'http://localhost:4200/';
+//PROD
+const domain:string  = 'http://37.59.61.46:4200/';
+
 import { Component, OnInit, OnChanges, Input } from '@angular/core';
 
 @Component({
@@ -5,6 +10,10 @@ import { Component, OnInit, OnChanges, Input } from '@angular/core';
   templateUrl: './icon.component.html'
 })
 export class IconComponent implements OnInit, OnChanges {
+
+
+  constructor() { }
+
   iconsType:string             = 'svg';
   @Input() forceReload:boolean = false;
   @Input() iconCircle:boolean  = false;
@@ -25,15 +34,13 @@ export class IconComponent implements OnInit, OnChanges {
   iconWithoutColorClass:string = '';
   cardWithTextClass:string     = '';
   cardWithMarkerClass:string   = '';
-  
-  constructor() { }
 
   imgExists(url) {
     let exists:boolean;
     let img = new Image();
     img.src = url;
-    img.onload = function() { exists = true };
-    img.onerror = function() { exists = false };
+    img.onload  = () => { exists = true };
+    img.onerror = () => { exists = false };
     return exists;
   }
 
@@ -69,8 +76,8 @@ export class IconComponent implements OnInit, OnChanges {
 
   setClasses(){
     if(this.iconBg){
-      if(this.imgExists('http://localhost:4200/'+this.iconBgFolder+this.iconBg+'.png') == false) {
-        console.log('background image http://localhost:4200/'+this.iconBgFolder+this.iconBg+'.png not found');
+      if(this.imgExists(domain+this.iconBgFolder+this.iconBg+'.png') == false) {
+        console.log('background image '+domain+this.iconBgFolder+this.iconBg+'.png not found');
         this.iconBgNotFoundClass = 'icon-backg-not-found';
         this.iconWithoutBgClass = 'icon-without-backg';
       }
@@ -133,8 +140,8 @@ export class IconComponent implements OnInit, OnChanges {
       this.counterOnChanges = 1;
     }
     if(this.counterOnChanges == 1){
-      this.setIconBg();
-      this.setClasses();
+      //this.setIconBg();
+      //this.setClasses();
       //console.log('iconsType: '+this.iconsType);
       //console.log('iconsSet: '+this.iconsSet);
       //console.log('iconBgFolder: '+this.iconBgFolder);

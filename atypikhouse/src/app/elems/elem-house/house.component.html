@@ -4,7 +4,7 @@
     <!--
     <app-icon *ngIf="house" [forceReload]="true" (click)="slide()" [iconSize]="iconsSize" [iconsSet]="iconsSet" [iconGroup]="icons[house.ID_category - 1].group" [iconName]="icons[house.ID_category - 1].name" [iconBgFolder]="iconsBgFolder" [iconBg]="house.ID" [iconColor]="iconsColor" [iconTitle]="house.title" [iconSubTitle]="house.zipcode+', '+house.city" [cardText]="house.description" [cardMarker]="priceTTC.toString()"></app-icon>
     -->
-    <app-icon *ngIf="house" [forceReload]="true" [iconSize]="iconsSize" [iconsSet]="iconsSet" [iconGroup]="icons[house.ID_category - 1].group" [iconName]="icons[house.ID_category - 1].name" [iconBgFolder]="iconsBgFolder" [iconBg]="house.ID" [iconColor]="iconsColor" [iconTitle]="house.title" [iconSubTitle]="house.zipcode+', '+house.city" [cardText]="house.description" [cardMarker]="priceTTC.toString()"></app-icon>
+    <app-icon *ngIf="house && isReady" [forceReload]="true" [iconSize]="iconsSize" [iconsSet]="iconsSet" [iconGroup]="icons[house.ID_category - 1].group" [iconName]="icons[house.ID_category - 1].name" [iconBgFolder]="iconsBgFolder" [iconBg]="house.ID" [iconColor]="iconsColor" [iconTitle]="house.title" [iconSubTitle]="house.zipcode+', '+house.city" [cardText]="house.description" [cardMarker]="priceTTC.toString()"></app-icon>
   </section>
 <section class="ah-container-primary lead ah-section ah-product-info">
   <h2 class="ah-title hide">{{house.title}}</h2>
@@ -16,14 +16,14 @@
               </li>
           </ng-container>
       </ul>
-      <button mat-button [matMenuTriggerFor]="share" aria-label="Partager" class="ah-house-share ah-cta-tertiary"><mat-icon>share</mat-icon> Partager</button>    
-      <mat-menu #share="matMenu">
-          <button mat-menu-item (click)="share('whatsapp',house)">
-            <i class="lab la-whatsapp"></i> <span>WhatsApp</span>
-          </button>
+      <button mat-button [matMenuTriggerFor]="shareMenu" aria-label="Partager" class="ah-house-share ah-cta-tertiary"><mat-icon>share</mat-icon> Partager</button>    
+      <mat-menu #shareMenu="matMenu">
+        <a mat-menu-item (click)="share('whatsapp',house)">
+          <i class="lab la-whatsapp"></i> <span>WhatsApp</span>
+        </a>
       </mat-menu>
     </div>
-    <section class="ah-container-tertiary ah-section ah-product-prebooking">
+    <section class="ah-container-tertiary ah-section ah-product-prebooking" *ngIf="logged">
       <h3 class="ah-product-booking-title">Réservation</h3>
       <form (submit)="newBooking()" class="ah-form ah-form-product-booking">
         <mat-form-field class="ah-form-fieldset-inline ah-form-booking-date-start">
@@ -48,6 +48,10 @@
         <span class="ah-product-price"><span class="from">à partir de </span><span class="price">{{ totalPrice }}&thinsp;€</span> <span class="bynight"> {{ byNightLabel }}</span></span>
         <button mat-button type="submit" class="ah-cta ah-cta-primary" [disabled]="!complete" >Réserver <mat-icon>double_arrow</mat-icon></button>
       </form>
+    </section>
+    <section class="ah-container-tertiary ah-section ah-product-prebooking text-center" *ngIf="!logged">
+      <h5 class="ah-product-booking-title">Connectez-vous<br> pour réserver un séjour à partir de <span class="price">{{ totalPrice }}&thinsp;€</span> !</h5><br>
+      <button routerLink="/login" class="ah-cta-primary" mat-button><mat-icon>person</mat-icon><span class="not-mobile">Se connecter</span></button>
     </section>
 </section>
 
@@ -74,7 +78,7 @@
             <li *ngFor="let activity of activities; let i = index;" class="text-left ah-activity">
               <h5 class="ah-activity-title">{{activity.title}}</h5>
               <ul class="ah-list-tags list-inline">
-                <li class="ah-activity-type" [attr.data]="activity-type">
+                <li class="ah-activity-type" data="activity-type">
                   <app-tag [tagID]="activity.ID_type"></app-tag>
                 </li>
                 <li *ngFor="let tag of tagsActivity[i];" [attr.data]="tag">

@@ -2,6 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { Router } from "@angular/router";
 import { User } from 'src/app/logic/User';
 import { DataService} from "src/app/data.service";
+import { CookieService } from "ngx-cookie-service";
 
 @Component({
   selector: 'app-form-user',
@@ -9,13 +10,17 @@ import { DataService} from "src/app/data.service";
 })
 export class FormUserComponent implements OnInit {
 
+  constructor(private router: Router,
+              private data: DataService,
+              private cookie: CookieService
+              ) { }
+
+  level = 'user';
+  token = this.cookie.get('token');
+
   @Input() user : User;
   @Input() signup:boolean = false;
   userPro:boolean = false;
-
-  constructor(
-    private router: Router,
-    private data: DataService) { }
 
   submit(){
     if(this.user.siret == null){
@@ -32,7 +37,7 @@ export class FormUserComponent implements OnInit {
     }
     //update
     else{
-      this.data.save("users", this.user, success => {
+      this.data.save(this.level,"users", this.user, this.token, success => {
         if(success){
           this.router.navigate(["/user", this.user.ID]);
         }

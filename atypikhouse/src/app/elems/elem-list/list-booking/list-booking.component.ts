@@ -12,6 +12,15 @@ import { Icons } from "src/app/elems/elem-icon/icons-categories"
   templateUrl: './list-booking.component.html'
 })
 export class ListBookingComponent implements OnInit {
+
+  constructor(private data: DataService,
+              private datePipe: DatePipe,
+              private cookie: CookieService
+              ) { }
+
+  level = 'user';
+  token = this.cookie.get('token');
+  
   listTitle:string;
   filterUser:number;
 
@@ -24,6 +33,10 @@ export class ListBookingComponent implements OnInit {
 
   icons = Icons;
 
+  isReady:boolean = false;
+
+  cancelDialogID:number = 0;
+
   dateLabel(date){
     return this.datePipe.transform(date,"dd/MM/yyyy");
   }
@@ -33,28 +46,22 @@ export class ListBookingComponent implements OnInit {
   }
 
   getHouseTitle(ID){
-    this.data.get("houses", ID, house => {
+    this.data.get(this.level,"houses", ID, this.token, house => {
       return house.title;
     });
   }
 
   getHouseCategory(ID){
-    this.data.get("houses", ID, house => {
+    this.data.get(this.level,"houses", ID, this.token, house => {
       return house.ID_category;
     });
   }
 
-  constructor(
-    private data: DataService,
-    private datePipe: DatePipe,
-    private cookieService: CookieService)
-    {}
-
   ngOnInit() {
     this.user = new User;
-    if(this.cookieService.get('logged')){
-      this.user.ID   = +this.cookieService.get('userID');
-      this.user.type = +this.cookieService.get('userType');
+    if(this.cookie.get('logged')){
+      this.user.ID   = +this.cookie.get('userID');
+      this.user.type = +this.cookie.get('userType');
       if(this.user.type == 1){
         this.filterUser = this.user.ID;
         this.listTitle = 'Mes réservations de séjours';
@@ -64,11 +71,11 @@ export class ListBookingComponent implements OnInit {
         this.listTitle = 'Réservations de séjours';
       }
     }
-    this.data.getList("booking", bookings => {
+    this.data.getList(this.level,"booking", this.token, bookings => {
       if(bookings){
         this.bookings = bookings;
         this.bookings.forEach((booking, index) => {
-          this.data.get("houses", booking.ID_house.toString(), house => {
+          this.data.get(this.level,"houses", booking.ID_house.toString(), this.token, house => {
             if(house){
               this.houseTitles[index] = house.title;
               this.houseCategories[index] = house.ID_category;
@@ -79,4 +86,15 @@ export class ListBookingComponent implements OnInit {
     });
   }
 
+  ngAfterContentChecked() {
+    this.isReady = true;
+  }
+
+  openCancelBooking(bookingID) {
+    this.cancelDialogID = bookingID;
+  }
+
+  cancelBooking(bookingID){
+    
+  }
 }

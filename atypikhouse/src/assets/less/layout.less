@@ -118,11 +118,21 @@
         max-width: 1320px;
         margin: auto;
     }
+    .ah-page.ah-page-home .ah-container-main,
+    .ah .ah-page.open-searchbox .ah-container-main{
+        &.sidenav-overlay{
+            max-height: calc(100vh - @ah-mat-toolbar-height - @ah-mat-toolbar-height - 430px);
+        }
+    }
     .ah-container-main{
         transition: margin-top 250ms ease-out;
+        &.sidenav-overlay{
+            max-height: calc(100vh - @ah-mat-toolbar-height - @ah-mat-toolbar-height);
+        }
     }
     .ah-nav-sidenav,
     .ah-container-main{
+        box-sizing: border-box;
         margin-top: @ah-mat-toolbar-height;
         margin-bottom: @ah-mat-toolbar-height;
         padding: 0 @ah-padding-primary;
@@ -613,7 +623,7 @@
     .ah-nav-sidenav.open{
         visibility: visible;
         opacity: 1;
-        width: 470px;
+        width: 415px;
         padding: @ah-padding-primary;
         & *{
             opacity: 1;
@@ -690,7 +700,8 @@
         margin: auto;
         .ah-list-houses-container{
             padding: @ah-child-paddin-secondary;
-            margin: @ah-child-margin-secondary 100px;
+            margin: @ah-child-margin-primary 100px;
+            margin-bottom: calc(@ah-child-margin-primary * 2);
         }
         .ah-list-houses-header{
             display: flex;
@@ -701,6 +712,26 @@
             .ah-list-houses-details{
                 vertical-align: top;
                 margin: 5px 10px;
+                .ah-house-title{
+                    margin-bottom: 12px;
+                }
+                .ah-booking-info{
+                    line-height: 2em;
+                    margin-bottom: 5px;
+                    .ah-booking-info-label{
+                        margin-left: 5px;
+                        vertical-align: text-bottom;
+                        .ah-booking-counter{
+                            min-width: 60px;
+                            display: inline-block;
+                            text-align: center;
+                            padding: 0;
+                        }
+                    }
+                    .ah-cta-calendar{
+                        margin-top: 15px;
+                    }
+                }
             }
             &:hover{
                 .ah-list-houses-actions{
@@ -757,6 +788,9 @@
             width: 130px;
             &:first-child{
                 margin-bottom: 20px;
+            }
+            &.ah-house-cancel{
+                margin-right: 20px;
             }
         }
         .status-0{
@@ -875,6 +909,60 @@
     }
     .ah-form-house{
         margin-bottom: 20px;
+        margin-right: 0 !important;
+        .ah-form-house-tag,
+        .ah-form-house-tags,
+        .ah-form-house-city,
+        .ah-form-house-price,
+        .ah-form-house-tax{
+            display: inline-block;
+        }
+        .ah-form-house-price,
+        .ah-form-house-tax{
+            width: calc(50% - 10px);
+        }
+        .ah-form-house-tag,
+        .ah-form-house-tags{
+            width: calc(50% - 34px - ( 18px / 2 ) - 5px);
+        }
+        .ah-form-house-activity-lat,
+        .ah-form-house-activity-lng{
+            width: 50px;
+        }
+        .ah-form-house-activity-type{
+            width: 130px;
+        }
+        .ah-form-house-activity-title{
+            width: 150px;
+        }
+        .ah-form-house-activity-tags{
+            width: 110px;
+        }
+        .ah-form-house-price{
+            margin-right: 20px;
+        }
+        .ah-form-house-activity,
+        .ah-form-house-tag,
+        .ah-form-house-tags{
+            margin-right: 5px;
+        }
+        .ah-cta-remove-activity,
+        .ah-cta-add-activity,
+        .ah-cta-add-tag,
+        .ah-cta-submit-tag,
+        .ah-cta-add-activity,
+        .ah-cta-submit-activity{
+            padding: 5px;
+            min-width: 30px;
+            line-height: 20px;
+            &:not(:last-child){
+                margin-right: 18px;
+            }
+        }
+        .ah-form-house-city{
+            width: calc(100% - 200px);
+        }
+        .ah-form-house-activity
     }
 
 /*********************/
@@ -1399,21 +1487,29 @@
     .ah-booking-container{
         display: inline-block;
         vertical-align: top;
+            .ah-icon-asset{
+                display: none;
+            }
     }
     .ah-booking-details,
     .ah-booking-actions{
         margin-top: 15px;
     }
     .ah-booking-details{
-        width: calc(100% - 110px - 220px);
+        width: calc(100% - 110px - 300px);
     }
     .ah-booking-actions{
-        width: 220px;
+        width: 300px;
         text-align: right;
     }
     .ah-booking-cta{
-        width: 100%;
+        width: calc(100% - 80px);
         padding: 20px 35px;
+    }
+    .ah-booking-cta-cancel{
+        width: 60px;
+        padding: 20px 0;
+        margin-right: 15px;
     }
     .ah-booking{
         &.status-0{
@@ -1511,7 +1607,7 @@
     .not-mobile{
         display: inline-block;
     }
-    @media screen and (max-width: 1060px) {
+    @media screen and (max-width: 1030px) {
         &.ah-mat{
             .mat-button .mat-icon{
                 margin-right: 0;
@@ -1530,9 +1626,68 @@
         .ah-title{
             font-size: 1.5em;
         }
+        .ah-list-houses-user{
+            .ah-list-houses-item{
+                .ah-cta-calendar {
+                    visibility: visible;
+                    opacity: 1;
+                    display: block;
+                    margin: auto;
+                }
+                .ah-list-houses-details{
+                    opacity: 1;
+                    font-size: 80%;
+                }
+            }
+            .ah-list-houses-container{
+                margin-top: 100px;
+                margin-left: auto;
+                margin-right: auto;
+                max-width: 330px;
+            }
+            .ah-list-houses-item:hover,
+            .ah-list-houses-item{
+                .ah-list-houses-actions{
+                    top: -80px;
+                    &.left{
+                        left: 0;
+                    }
+                    &.right{
+                        right: 0;
+                    }
+                }
+            }
+            .ah-house-cta{
+                height: 65px;
+                width: auto;
+                font-size: 1em;
+                vertical-align: top;
+                margin: 2px;
+            }
+            .ah-list-houses-header{
+                display: block;
+                .ah-icon{
+                    height: 51px;
+                    padding-top: 0;
+                    .ah-card-marker{
+                        display: none;
+                    }
+                }
+            }
+        } 
     }
     @media screen and (max-width: 800px) {
         font-size: @ah-font-size-root-medium;
+    }
+    @media screen and (max-width: 680px) {
+        .ah-booking-details{
+            width: calc(100% - 110px);
+        }
+        .ah-booking-actions{
+            display: block;
+            margin: auto;
+            text-align: center;
+        }
     }
     @media  screen and (max-width: 599px) {
         .ah-page{
@@ -1596,7 +1751,6 @@
             font-size: @ah-font-size-title / 2;
         }
         h3,
-        .ah-sidenav-link,
         .ah-ext-entry-content h2,
         .ah-subtitle{
             font-size: @ah-font-size-subtitle / 2;
@@ -1607,11 +1761,11 @@
         }
         h5,
         .ah-subtitle-h5{
-            font-size: @ah-font-size-subtitle-h5 / 2;
+            font-size: @ah-font-size-subtitle-h5 / 1.5;
         }
         h6,
         .ah-subtitle-h6{
-            font-size: @ah-font-size-subtitle-h6 / 2;
+            font-size: @ah-font-size-subtitle-h6 / 1.5;
         }
         .ah-product-details-map,
         .ah-product-details-activities{

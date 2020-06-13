@@ -1,9 +1,15 @@
 <h1 mat-dialog-title class="ah-booking-calendar-title">Calendrier des réservations</h1>
-<div mat-dialog-content>
+<div mat-dialog-content *ngIf="!bookingDetail">
   <div class="ah-booking-calendar">
-    <full-calendar locale="fr" firstDay="1" defaultView="dayGridMonth"  [plugins]="calendarPlugins"
+    <full-calendar locale="fr" firstDay="1" weekNumberCalculation="ISO" defaultView="dayGridMonth"  [plugins]="calendarPlugins"
     [buttonText]="{today: 'Aujourd\'hui'}"
     [events]="data"
+    (eventClick)="openBooking($event)"
     ></full-calendar>
+  </div>
+</div>
+<div mat-dialog-content *ngIf="bookingDetail">
+  <div class="ah-booking-calendar ah-booking-calendar-detail">
+    <app-booking [bookingID]="bookingID"></app-booking>
   </div>
 </div>

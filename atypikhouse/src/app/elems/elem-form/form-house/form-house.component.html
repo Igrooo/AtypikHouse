@@ -19,8 +19,42 @@
             </mat-form-field>
             <mat-form-field class="ah-form-fieldset large ah-form-house-description">
                 <mat-label>Description</mat-label>
-                <textarea matInput name="description" [(ngModel)]="house.description" [value]="house.description" required></textarea>
+                <textarea matInput rows="auto" name="description" [(ngModel)]="house.description" [value]="house.description" required></textarea>
             </mat-form-field>
+        </div>
+        <h3 class="ah-form-house-title">Propriétés</h3>
+        <div class="ah-form ah-form-house">
+            <input matInput name="listID_tags" [(ngModel)]="house.listID_tags" [value]="house.listID_tags" hidden>
+            <mat-form-field class="ah-form-fieldset large ah-form-house-tags" *ngIf="!addTag0">
+                <mat-label>Thématiques</mat-label>
+                <mat-select [formControl]="tags0" multiple (selectionChange)="udpateTags()">
+                    <ng-container *ngFor="let tag of tags; trackBy: trackByTags">
+                        <mat-option *ngIf="tag.type === 0" [value]="tag.ID" multiple>{{tag.tag}}</mat-option>
+                    </ng-container>
+                </mat-select>
+            </mat-form-field>
+            <button mat-button type="button" class="ah-cta-primary ah-cta-add-tag" *ngIf="!addTag0" (click)="addTag0 = true"><mat-icon>add</mat-icon></button>
+            <mat-form-field class="ah-form-fieldset large ah-form-house-tag" *ngIf="addTag0">
+                <mat-label>Ajouter une thématique</mat-label>
+                <input matInput name="tag" (input)="inputTag(0,$event)">
+            </mat-form-field>
+            <button mat-button type="button" class="ah-cta-primary ah-cta-submit-tag" *ngIf="addTag0 && !addTag0Complete" (click)="addTag0 = false"><mat-icon>close</mat-icon></button>
+            <button mat-button type="button" class="ah-cta-primary ah-cta-submit-tag" *ngIf="addTag0 && addTag0Complete" (click)="newTag(0)"><mat-icon>check</mat-icon></button>
+            <mat-form-field class="ah-form-fieldset large ah-form-house-tags" *ngIf="!addTag1">
+                <mat-label>Services & équipements</mat-label>
+                <mat-select [formControl]="tags1" multiple (selectionChange)="udpateTags()">
+                    <ng-container *ngFor="let tag of tags; trackBy: trackByTags">
+                        <mat-option  *ngIf="tag.type === 1" [value]="tag.ID" multiple>{{tag.tag}}</mat-option>
+                    </ng-container>
+                </mat-select>
+            </mat-form-field>
+            <button mat-button type="button" class="ah-cta-primary ah-cta-add-tag" *ngIf="!addTag1" (click)="addTag1 = true"><mat-icon>add</mat-icon></button>
+            <mat-form-field class="ah-form-fieldset large ah-form-house-tag" *ngIf="addTag1">
+                <mat-label>Ajouter un service ou équipement</mat-label>
+                <input matInput name="tag" (input)="inputTag(1,$event)">
+            </mat-form-field>
+            <button mat-button type="button" class="ah-cta-primary ah-cta-submit-tag" *ngIf="addTag1 && !addTag1Complete" (click)="addTag1 = false"><mat-icon>close</mat-icon></button>
+            <button mat-button type="button" class="ah-cta-primary ah-cta-submit-tag" *ngIf="addTag1 && addTag1Complete" (click)="newTag(1)"><mat-icon>check</mat-icon></button>
         </div>
         <h3 class="ah-form-house-title">Localisation</h3>
         <div class="ah-form ah-form-house">
@@ -32,52 +66,114 @@
                 <mat-label>Code postal</mat-label>
                 <input matInput name="zipcode" [(ngModel)]="house.zipcode" [value]="house.zipcode" required>
             </mat-form-field>
-            <mat-form-field class="ah-form-fieldset-inline ah-form-house-city">
+            <mat-form-field class="ah-form-fieldset large ah-form-house-city">
                 <mat-label>Ville</mat-label>
                 <input matInput name="city" [(ngModel)]="house.city" [value]="house.city" required>
             </mat-form-field>
         </div>
-        <h3 class="ah-form-house-title">Détails</h3>
+        <h3 class="ah-form-house-title">Activités à proximité</h3>
         <div class="ah-form ah-form-house">
-            <mat-form-field class="ah-form-fieldset large ah-form-house-nbbeds">
-                <mat-label>Nombre de places</mat-label>
-                <input matInput name="nbBeds" [(ngModel)]="house.nbBeds" [value]="house.nbBeds" required>
-                <mat-hint><i>Pour un lit deux places comptez 2<br> (Par exemple pour deux lits 2 places le nombre total de places est de 4.)</i></mat-hint>
-            </mat-form-field><br>
-            <mat-form-field class="ah-form-fieldset-inline ah-form-house-tags">
-                <mat-label>Thématiques</mat-label>
+            <ul class="ah-list smaller">
+                <div class="ah-form-fieldset-head">
+                    <mat-form-field class="ah-form-fieldset-inline ah-form-house-activity ah-form-house-activity-type">
+                        <mat-label>Type</mat-label>
+                        <input matInput readonly>
+                    </mat-form-field>
+                    <mat-form-field class="ah-form-fieldset-inline ah-form-house-activity ah-form-house-activity-title">
+                        <mat-label>Titre</mat-label>
+                        <input matInput readonly>
+                    </mat-form-field>
+                    <mat-form-field class="ah-form-fieldset-inline ah-form-house-activity ah-form-house-activity-desc">
+                        <mat-label>Description</mat-label>
+                        <input matInput readonly>
+                    </mat-form-field>
+                    <mat-form-field class="ah-form-fieldset-inline ah-form-house-activity ah-form-house-activity-lat">
+                        <mat-label>Latitude</mat-label>
+                        <input matInput readonly>
+                    </mat-form-field>
+                    <mat-form-field class="ah-form-fieldset-inline ah-form-house-activity ah-form-house-activity-lng">
+                        <mat-label>Longitude</mat-label>
+                        <input matInput readonly>
+                    </mat-form-field>
+                    <mat-form-field class="ah-form-fieldset-inline ah-form-house-activity ah-form-house-activity-tags">
+                        <mat-label>Tags</mat-label>
+                        <input matInput readonly>
+                    </mat-form-field>
+                </div>
+                <ng-container *ngFor="let activity of activities">
+                    <li *ngIf="!isRemoved(activity.ID)">
+                        <mat-form-field class="ah-form-fieldset-inline ah-form-house-activity ah-form-house-activity-type">
+                            <mat-select [(value)]="activity.ID_type">
+                                <mat-option *ngFor="let type of activitiesTypes" [value]="type.ID">{{type.title}}</mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                        <mat-form-field class="ah-form-fieldset-inline ah-form-house-activity ah-form-house-activity-title">
+                            <input matInput name="title"       [value]="activity.title">
+                        </mat-form-field>
+                        <mat-form-field class="ah-form-fieldset-inline ah-form-house-activity ah-form-house-activity-desc">
+                            <input matInput name="description" [value]="activity.description">
+                        </mat-form-field>
+                        <mat-form-field class="ah-form-fieldset-inline ah-form-house-activity ah-form-house-activity-lat">
+                            <input matInput name="locationLat" [value]="activity.locationLat">
+                        </mat-form-field>
+                        <mat-form-field class="ah-form-fieldset-inline ah-form-house-activity ah-form-house-activity-lng">
+                            <input matInput name="locationLng" [value]="activity.locationLng">
+                        </mat-form-field>
+                        <mat-form-field class="ah-form-fieldset-inline ah-form-house-activity ah-form-house-activity-tags">
+                            <input matInput name="listID_tags" [value]="activity.listID_tags">
+                        </mat-form-field>
+                        <button mat-button type="button" class="ah-cta-primary ah-cta-remove-activity" (click)="removeActivity(activity.ID)"><mat-icon>close</mat-icon></button>
+                    </li>
+                </ng-container>
+            </ul>
+            <mat-form-field class="ah-form-fieldset-inline ah-form-house-activity ah-form-house-activity-type">
+                <mat-label>Type</mat-label>
+                <mat-select>
+                    <mat-option *ngFor="let type of activitiesTypes" [value]="type.ID">{{type.title}}</mat-option>
+                </mat-select>
+            </mat-form-field>
+            <mat-form-field class="ah-form-fieldset-inline ah-form-house-activity ah-form-house-activity-title">
+                <mat-label>Titre</mat-label>
+                <input matInput name="title">
+            </mat-form-field>
+            <mat-form-field class="ah-form-fieldset-inline ah-form-house-activity ah-form-house-activity-desc">
+                <mat-label>Description</mat-label>
+                <input matInput name="description">
+            </mat-form-field>
+            <mat-form-field class="ah-form-fieldset-inline ah-form-house-activity ah-form-house-activity-lat">
+                <mat-label>Latitude</mat-label>
+                <input matInput name="locationLat">
+            </mat-form-field>
+            <mat-form-field class="ah-form-fieldset-inline ah-form-house-activity ah-form-house-activity-lng">
+                <mat-label>Longitude</mat-label>
+                <input matInput name="locationLng">
+            </mat-form-field>
+            <mat-form-field class="ah-form-fieldset-inline ah-form-house-activity ah-form-house-activity-tags">
+                <mat-label>Tags</mat-label>
                 <mat-select multiple>
                     <ng-container *ngFor="let tag of tags">
-                        <mat-option *ngIf="tag.type === 0" [value]="tag.ID" multiple>{{tag.tag}}</mat-option>
+                        <mat-option multiple>{{tag.tag}}</mat-option>
                     </ng-container>
                 </mat-select>
             </mat-form-field>
-            <mat-form-field class="ah-form-fieldset-inline ah-form-house-tags">
-                <mat-label>Services & équipements</mat-label>
-                <mat-select multiple>
-                    <ng-container *ngFor="let tag of tags">
-                        <mat-option  *ngIf="tag.type === 1" [value]="tag.ID" multiple>{{tag.tag}}</mat-option>
-                    </ng-container>
-                </mat-select>
-            </mat-form-field>
-            <mat-form-field class="ah-form-fieldset-inline ah-form-house-tags">
-                <mat-label>Activités</mat-label>
-                <mat-select multiple>
-                    <mat-option *ngFor="let activity of activities" [value]="activity.ID" multiple>{{activity.title}}</mat-option>
-                </mat-select>
-            </mat-form-field>
+            <button mat-button type="button" class="ah-cta-primary ah-cta-add-activity" disabled><mat-icon>add</mat-icon></button>
         </div>
-        <h3 class="ah-form-house-title">Prix</h3>
+        <h3 class="ah-form-house-title">Prix & Places</h3>
         <div class="ah-form ah-form-house">
-            <mat-form-field class="ah-form-fieldset-inline ah-form-house-zipcode">
-                <mat-label>Prix HT</mat-label>
+            <mat-form-field class="ah-form-fieldset large ah-form-house-price">
+                <mat-label>Prix HT d'une nuitée pour 1 personne</mat-label>
                 <input matInput name="price" [(ngModel)]="house.price" [value]="house.price" required>
                 <mat-icon matSuffix>euro</mat-icon>
             </mat-form-field>
-            <mat-form-field class="ah-form-fieldset-inline ah-form-house-city">
+            <mat-form-field class="ah-form-fieldset large ah-form-house-tax">
                 <mat-label>Taxe</mat-label>
                 <input matInput name="tax" [(ngModel)]="house.tax" [value]="house.tax" required>
                 <mat-icon matSuffix>%</mat-icon>
+            </mat-form-field>
+            <mat-form-field class="ah-form-fieldset large ah-form-house-nbbeds">
+                <mat-label>Nombre de places</mat-label>
+                <input matInput name="nbBeds" [(ngModel)]="house.nbBeds" [value]="house.nbBeds" required>
+                <mat-hint><i>Pour un lit deux places comptez 2 (Par exemple pour deux lits 2 places le nombre total de places est de 4.)</i></mat-hint>
             </mat-form-field>
         </div>
         <div class="ah-house-submit text-center">

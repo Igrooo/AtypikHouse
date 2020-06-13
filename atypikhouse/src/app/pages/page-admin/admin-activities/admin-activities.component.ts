@@ -2,6 +2,7 @@ import * as $ from 'jquery';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormBuilder } from '@angular/forms';
 import { DataService} from "src/app/data.service";
+import { CookieService } from "ngx-cookie-service";
 import { Activity } from "src/app/logic/Activity";
 import { ActivityType } from "src/app/logic/ActivityType";
 import { Tag } from "src/app/logic/Tag";
@@ -11,6 +12,13 @@ import { Tag } from "src/app/logic/Tag";
   templateUrl: './admin-activities.component.html'
 })
 export class AdminActivitiesComponent implements OnInit {
+  
+  constructor(private data: DataService,
+    private cookie: CookieService) { }
+
+  level = 'admin';
+  token = this.cookie.get('token');
+
   activities: [Activity];
   activitiesTypes: [ActivityType];
   tags: [Tag];
@@ -23,10 +31,6 @@ export class AdminActivitiesComponent implements OnInit {
   isReadonly:boolean = true;
 
   tagsForm = new FormControl();
-
-  constructor(private data: DataService) {
-
-  }
 
   focus(ID,focusedMode:string){
     let tr = $('#'+ID).parents('tr');
@@ -62,7 +66,7 @@ export class AdminActivitiesComponent implements OnInit {
   }
 
   edit(activity){
-    this.data.save("activities", activity, result => {
+    this.data.save(this.level,"activities", activity, this.token, result => {
       if (result) {
         
       }
@@ -70,7 +74,7 @@ export class AdminActivitiesComponent implements OnInit {
   }
 
   delete(activityID){
-    this.data.delete("activities", activityID, result => {
+    this.data.delete(this.level,"activities", activityID, this.token, result => {
       if (result) {
         let tr = $('#'+activityID).parents('tr');
         tr.remove();
@@ -79,13 +83,13 @@ export class AdminActivitiesComponent implements OnInit {
   }
   
   ngOnInit() {
-    this.data.getList("activities", activities => {
+    this.data.getList(this.level,"activities", this.token, activities => {
       this.activities = activities;
     });
-    this.data.getList("activities_types", activitiesTypes => {
+    this.data.getList(this.level,"activities_types", this.token, activitiesTypes => {
       this.activitiesTypes = activitiesTypes;
     });
-    this.data.getList("tags", tags => {
+    this.data.getList(this.level,"tags", this.token, tags => {
       this.tags = tags;
     });
   }

@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ExternalPage } from './ext.component';
+import { AboutPage } from './about.component';
 
-describe('ExternalPage', () => {
-  let component: ExternalPage;
-  let fixture: ComponentFixture<ExternalPage>;
+describe('AboutPage', () => {
+  let component: AboutPage;
+  let fixture: ComponentFixture<AboutPage>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ExternalPage ]
+      declarations: [ AboutPage ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ExternalPage);
+    fixture = TestBed.createComponent(AboutPage);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

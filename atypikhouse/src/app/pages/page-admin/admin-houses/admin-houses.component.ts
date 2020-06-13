@@ -1,6 +1,7 @@
 import * as $ from 'jquery';
 import { Component, OnInit } from '@angular/core';
 import { DataService} from "src/app/data.service";
+import { CookieService } from "ngx-cookie-service";
 import { FormControl, FormBuilder } from '@angular/forms';
 import { House } from "src/app/logic/House";
 import { Category } from "src/app/logic/Category";
@@ -13,6 +14,14 @@ import { Pic } from "src/app/logic/Pic";
   templateUrl: './admin-houses.component.html'
 })
 export class AdminHousesComponent implements OnInit {
+  
+  constructor(private data: DataService,
+              private cookie: CookieService
+              ) { }
+  
+  level = 'admin';
+  token = this.cookie.get('token');
+  
   houses: [House];
   categories: [Category];
   activities: [Activity];
@@ -29,9 +38,6 @@ export class AdminHousesComponent implements OnInit {
   tags2Form = new FormControl();
   picsForm = new FormControl();
 
-  constructor(private data: DataService) {
-
-  }
 
   focus(ID,focusedMode:string){
     let tr = $('#'+ID).parents('tr');
@@ -67,14 +73,14 @@ export class AdminHousesComponent implements OnInit {
   }
 
   edit(house){
-    this.data.save("houses", house, result => {
+    this.data.save(this.level,"houses", house, this.token, result => {
       if (result) {
       }
     });
   }
 
   delete(houseID){
-    this.data.delete("houses", houseID, result => {
+    this.data.delete(this.level,"houses", houseID, this.token, result => {
       if (result) {
         let tr = $('#'+houseID).parents('tr');
         tr.remove();
@@ -98,19 +104,19 @@ export class AdminHousesComponent implements OnInit {
   }
   
   ngOnInit() {
-    this.data.getList("houses", houses => {
+    this.data.getList(this.level,"houses", this.token, houses => {
       this.houses = houses;
     });
-    this.data.getList("categories", categories => {
+    this.data.getList(this.level,"categories", this.token, categories => {
       this.categories = categories;
     });
-    this.data.getList("activities", activities => {
+    this.data.getList(this.level,"activities", this.token, activities => {
       this.activities = activities;
     });
-    this.data.getList("tags", tags => {
+    this.data.getList(this.level,"tags", this.token, tags => {
       this.tags = tags;
     });
-    this.data.getList("pics", pics => {
+    this.data.getList(this.level,"pics", this.token, pics => {
       this.pics = pics;
     });
   }

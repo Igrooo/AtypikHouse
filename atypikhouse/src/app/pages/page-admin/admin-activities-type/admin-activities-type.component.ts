@@ -1,6 +1,7 @@
 import * as $ from 'jquery';
 import { Component, OnInit } from '@angular/core';
 import { DataService} from "src/app/data.service";
+import { CookieService } from "ngx-cookie-service";
 import { ActivityType } from "src/app/logic/ActivityType";
 
 @Component({
@@ -8,6 +9,14 @@ import { ActivityType } from "src/app/logic/ActivityType";
   templateUrl: './admin-activities-type.component.html'
 })
 export class AdminActivitiesTypeComponent implements OnInit {
+  
+  constructor(private data: DataService,
+              private cookie: CookieService
+              ) { }
+
+  level = 'admin';
+  token = this.cookie.get('token');
+
   activitiesTypes: [ActivityType];
 
   displayedColumns: string[] = ['ID', 'title', 'tools'];
@@ -15,10 +24,6 @@ export class AdminActivitiesTypeComponent implements OnInit {
   editOn:string;
 
   isReadonly:boolean = true;
-
-  constructor(private data: DataService) {
-
-  }
 
   focus(ID,focusedMode:string){
     let tr = $('#'+ID).parents('tr');
@@ -54,7 +59,7 @@ export class AdminActivitiesTypeComponent implements OnInit {
   }
 
   edit(activityType){
-    this.data.save("activities_types", activityType, result => {
+    this.data.save(this.level,"activities_types", activityType, this.token, result => {
       console.log(activityType);
       if (result) {
         
@@ -63,7 +68,7 @@ export class AdminActivitiesTypeComponent implements OnInit {
   }
 
   delete(activityTypeID){
-    this.data.delete("activities_types", activityTypeID, result => {
+    this.data.delete(this.level,"activities_types", activityTypeID, this.token, result => {
       if (result) {
         let tr = $('#'+activityTypeID).parents('tr');
         tr.remove();
@@ -72,7 +77,7 @@ export class AdminActivitiesTypeComponent implements OnInit {
   }
   
   ngOnInit() {
-    this.data.getList("activities_types", activitiesTypes => {
+    this.data.getList(this.level,"activities_types", this.token, activitiesTypes => {
       this.activitiesTypes = activitiesTypes;
     });
   }

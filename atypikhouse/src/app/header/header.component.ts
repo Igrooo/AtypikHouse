@@ -13,6 +13,16 @@ import { User } from "src/app/logic/User";
   templateUrl: './header.component.html'
 })
 export class HeaderComponent implements OnInit {
+
+  constructor(private data: DataService,
+              private geoloc: GeolocationService,
+              private router: Router,
+              private cookie: CookieService
+              ) { }
+
+  level = 'public';
+  token = 'public';
+
   public randomBanner: number = Math.floor((Math.random() * 7) + 1);
 
   categories: [Category];
@@ -23,12 +33,6 @@ export class HeaderComponent implements OnInit {
   nbPersonsMax:number;
 
   logged:boolean = false;
-
-  constructor(private data: DataService,
-              private geolocation: GeolocationService,
-              private router: Router,
-              private cookieService: CookieService
-              ) { }
 
   arrayNbPersons(max:number): any[]{
     return Array(max);
@@ -44,9 +48,10 @@ export class HeaderComponent implements OnInit {
     this.router.navigate(["/login"]);
   }
   logout(){
-    this.cookieService.delete('logged');
-    this.cookieService.delete('userID');
-    this.cookieService.delete('userType');
+    this.cookie.delete('logged');
+    this.cookie.delete('userID');
+    this.cookie.delete('userType');
+    this.cookie.delete('token');
     this.router.navigate(["/logout"]);
   }
   goAccount(){
@@ -70,7 +75,7 @@ export class HeaderComponent implements OnInit {
   }
   searchboxLocation(locationMode){
     if(locationMode.value == 'location-user'){
-      this.geolocation.requestLocation(location => {
+      this.geoloc.requestLocation(location => {
         if (location) {
           console.log('User Location: '+location.latitude,location.longitude);
         }
@@ -81,20 +86,25 @@ export class HeaderComponent implements OnInit {
     this.router.navigate(["/houses"]);
   }
 
+  posts() {
+    
+  }
+
   ngOnInit() {
+
     this.user = new User;
 
-    if(this.cookieService.get('logged')){
-      this.user.ID = +this.cookieService.get('userID');
+    if(this.cookie.get('logged')){
+      this.user.ID = +this.cookie.get('userID');
       this.logged = true;
     }
 
     this.nbPersonsMax = 10;
 
-    this.data.getList("categories", categories => {
+    this.data.getList(this.level,"categories", this.token, categories => {
       this.categories = categories;
     });
-    this.data.getList("tags", tags => {
+    this.data.getList(this.level,"tags", this.token, tags => {
       this.tags = tags;
     });
   }

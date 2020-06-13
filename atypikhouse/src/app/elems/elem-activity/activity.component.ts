@@ -8,9 +8,9 @@ import { Activity } from "src/app/logic/Activity";
 
 export class ActivityComponent implements OnInit {
   
-  activity: Activity;
-
   constructor() { }
+  
+  activity: Activity;
 
   ngOnInit() {
   }

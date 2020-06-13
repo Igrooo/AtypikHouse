@@ -4,7 +4,6 @@ import { GeolocationService } from "./geolocation.service";
 import { DataService } from "./data.service";
 import { CookieService } from "ngx-cookie-service";
 import { AgmCoreModule } from '@agm/core';
-
 import { registerLocaleData, DatePipe } from '@angular/common';
 import localeFr from '@angular/common/locales/fr';
 registerLocaleData(localeFr, 'fr');
@@ -13,20 +12,33 @@ import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
 
 import { HttpClientModule } from "@angular/common/http";
-import { Routes, ActivatedRoute, RouterModule } from "@angular/router";
+import { Routes, RouterModule } from "@angular/router";
 
 import { FormsModule, FormBuilder, ReactiveFormsModule } from "@angular/forms";
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MatButtonModule, MatIconModule, MatFormFieldModule, MatInputModule, MatSelectModule, MatSliderModule, MatAutocompleteModule,
-         MatToolbarModule, MatCardModule, MatSlideToggleModule, MatSnackBarModule, MatNativeDateModule, MatDatepickerModule, MatCheckboxModule } from '@angular/material';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { MatButtonModule } from '@angular/material/button';
+import { MatCardModule } from '@angular/material/card';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatNativeDateModule } from '@angular/material/core';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatIconModule } from '@angular/material/icon';
+import { MatInputModule } from '@angular/material/input';
+import { MatSelectModule } from '@angular/material/select';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { MatSliderModule } from '@angular/material/slider';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatMenuModule } from '@angular/material/menu';
-import { MatTabsModule, MatSortModule } from '@angular/material';
+import { MatSortModule } from '@angular/material/sort';
+import { MatTabsModule } from '@angular/material/tabs';
 import { MatTableModule } from '@angular/material/table'; 
 import { MatBadgeModule } from '@angular/material/badge';
 import { MatDialogModule } from '@angular/material/dialog'; 
-import { from } from 'rxjs';
-import 'hammerjs';
+import { MatListModule } from '@angular/material/list'; 
+//import { from } from 'rxjs';
 
 import { FullCalendarModule } from '@fullcalendar/angular';
 
@@ -43,9 +55,11 @@ import { HomePage }       from './pages/page-home/home.component';
 import { DemoPage }       from './pages/page-demo/demo.component';
 import { DemoTypoPage }   from './pages/page-demo/demo-typo/demo-typo.component';
 import { DemoIconsPage }  from './pages/page-demo/demo-icons/demo-icons.component';
-import { ExternalPage }   from './pages/page-ext/ext.component';
 import { AllPage }        from './pages/page-all/all.component';
 import { CategoriesPage } from './pages/page-categories/categories.component';
+import { AboutPage }      from './pages/page-about/about.component';
+import { CGUPage }        from './pages/page-cgu/cgu.component';
+import { FAQPage }        from './pages/page-faq/faq.component';
 
 import { AdminActivitiesComponent }     from './pages/page-admin/admin-activities/admin-activities.component';
 import { AdminActivitiesTypeComponent } from './pages/page-admin/admin-activities-type/admin-activities-type.component';
@@ -95,6 +109,8 @@ import { FormSignupComponent }          from './elems/elem-form/form-signup/form
 import { IconComponent }                from './elems/elem-icon/icon.component';
 import { MapComponent }                 from './elems/elem-map/map.component';
 import { BookingCalendarComponent }     from './elems/elem-booking-calendar/booking-calendar.component';
+import { DocComponent }                 from './elems/elem-doc/doc.component';
+import { ExpiredDialogComponent }       from './elems/elem-expired-dialog/expired-dialog.component';
 
 const routes : Routes = [
 
@@ -130,10 +146,10 @@ const routes : Routes = [
   { path: 'house/:id/posts', component: ListPostComponent },    // List posts of an house (userFrom & userTo)
 //
   ////Locataires pages
-  { path: 'user/:id/bookings',  component: ListBookingComponent },  // List booking of an user
+  { path: 'user/bookings',  component: ListBookingComponent },  // List booking of an user
   //
   ////Loueurs pages
-  { path: 'user/:id/houses',    component: ListHouseComponent },    // List houses of an user
+  { path: 'user/houses',    component: ListHouseComponent },    // List houses of an user
   { path: 'house/:id/bookings', component: ListBookingComponent },  // List booking of an house
   { path: 'house/:id/comments', component: ListCommentComponent },  // List comments of a house
 //
@@ -170,14 +186,14 @@ const routes : Routes = [
   { path: 'user/:id', component: UserComponent },                // Show user
   { path: 'user/edit', component: UserComponent },           // Edit user
 
-    // Redirect to editorial content
-    {path: 'faq',     component: ExternalPage},
-    {path: 'support', component: ExternalPage},
-    {path: 'news',    component: ExternalPage},
-    {path: 'cgu',     component: ExternalPage},
-    {path: 'about',   component: ExternalPage},
+    // Editorial content
+    {path: 'about',   component: AboutPage},
+    {path: 'faq',     component: FAQPage},
+    {path: 'cgu',     component: CGUPage},
+    {path: 'news',    redirectTo:'about'},
+    {path: 'support', redirectTo:'faq'},
     {path: 'help',    redirectTo:'faq'},
-    {path: 'blog',    redirectTo:'news'},
+    {path: 'blog',    redirectTo:'about'},
 ];
 
 @NgModule({
@@ -187,12 +203,14 @@ const routes : Routes = [
     FooterComponent,
     AsideComponent,
     HomePage,
-    ExternalPage,
     AllPage,
     DemoPage,
     DemoTypoPage,
     DemoIconsPage,
     CategoriesPage,
+    AboutPage,
+    CGUPage,
+    FAQPage,
     HouseComponent,
     ActivityComponent,
     BookingComponent,
@@ -238,7 +256,9 @@ const routes : Routes = [
     AdminPostsComponent,
     AdminTagsComponent,
     AdminUsersComponent,
-    BookingCalendarComponent
+    BookingCalendarComponent,
+    DocComponent,
+    ExpiredDialogComponent
   ],
   imports: [
     RouterModule.forRoot(routes),
@@ -246,7 +266,7 @@ const routes : Routes = [
     BrowserModule, BrowserAnimationsModule,
     MatButtonModule, MatIconModule, MatFormFieldModule, MatInputModule, MatSelectModule, MatSliderModule, MatAutocompleteModule,
     MatToolbarModule, MatCardModule, MatSlideToggleModule, MatSnackBarModule, MatMenuModule, MatTabsModule, MatSortModule, MatTableModule, MatBadgeModule,
-    MatNativeDateModule, MatDatepickerModule, MatDialogModule, MatCheckboxModule,
+    MatNativeDateModule, MatDatepickerModule, MatDialogModule, MatCheckboxModule, MatListModule,
     FullCalendarModule,
     ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
     AgmCoreModule.forRoot({

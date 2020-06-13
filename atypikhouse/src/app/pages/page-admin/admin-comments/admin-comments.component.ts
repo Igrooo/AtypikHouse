@@ -1,6 +1,7 @@
 import * as $ from 'jquery';
 import { Component, OnInit } from '@angular/core';
 import { DataService} from "src/app/data.service";
+import { CookieService } from "ngx-cookie-service";
 import { Comment } from "src/app/logic/Comment";
 import { DatePipe } from '@angular/common';
 
@@ -9,6 +10,15 @@ import { DatePipe } from '@angular/common';
   templateUrl: './admin-comments.component.html'
 })
 export class AdminCommentsComponent implements OnInit {
+  
+  constructor(private data: DataService,
+              private datePipe: DatePipe,
+              private cookie: CookieService
+              ) { }
+
+  level = 'admin';
+  token = this.cookie.get('token');
+  
   comments: [Comment];
 
   displayedColumns: string[] = ['ID', 'comment', 'rating', 'date', 'ID_user', 'ID_booking', 'tools'];
@@ -17,10 +27,6 @@ export class AdminCommentsComponent implements OnInit {
 
   isReadonly:boolean = true;
 
-  constructor(private data: DataService,
-    private datePipe: DatePipe) {
-
-  }
 
   focus(ID,focusedMode:string){
     let tr = $('#'+ID).parents('tr');
@@ -56,7 +62,7 @@ export class AdminCommentsComponent implements OnInit {
   }
 
   edit(comment){
-    this.data.save("comments", comment, result => {
+    this.data.save(this.level,"comments", comment, this.token, result => {
       if (result) {
         
       }
@@ -64,7 +70,7 @@ export class AdminCommentsComponent implements OnInit {
   }
 
   delete(commentID){
-    this.data.delete("comments", commentID, result => {
+    this.data.delete(this.level,"comments", commentID, this.token, result => {
       if (result) {
         let tr = $('#'+commentID).parents('tr');
         tr.remove();
@@ -73,7 +79,7 @@ export class AdminCommentsComponent implements OnInit {
   }
   
   ngOnInit() {
-    this.data.getList("comments", comments => {
+    this.data.getList(this.level,"comments", this.token, comments => {
       this.comments = comments;
     });
   }

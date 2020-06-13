@@ -1,14 +1,16 @@
 import { Injectable } from '@angular/core';
 import { HttpHeaders, HttpClient, HttpParams } from "@angular/common/http";
 
-//const devmode:boolean = false;
-
 //API Server URL 
 const secure:string = ""; // s > activate https
-const domain:string = "localhost";
 
-// Production port  : 1407
-// Development port : 3000 (server-backup with static .db file)
+// DEV //// Development domain //// DEV //
+//const domain:string = "localhost";
+
+// PROD //// Production domain //// PROD //
+const domain:string = "37.59.61.46";
+
+// Port
 const port:string = "1407";
 
 @Injectable({
@@ -27,38 +29,10 @@ export class DataService {
     });
   }
 
-  get(route:string, ID:string, callback) {
-    this.http.get(`${this.endpoint}/select/${route}/${ID}`)
-      .subscribe(response =>{
-        callback(response['content']);
-      });
-  }
-
-  getList(route:string, callback) {
-    this.http.get(`${this.endpoint}/select/${route}`)
-      .subscribe(response => {
-      callback(response['content']);
-    });
-  }
-
-  getTotalBooking(houseID:string, callback) {
-    this.http.get(`${this.endpoint}/totalbooking/${houseID}`)
-      .subscribe(response => {
-      callback(response['content']);
-    });
-  }
-
-  getTotalWaitingBooking(houseID:string, callback) {
-    this.http.get(`${this.endpoint}/totalwaitingbooking/${houseID}`)
-      .subscribe(response => {
-      callback(response['content']);
-    });
-  }
-
   login(user, callback) {
     this.http.post(`${this.endpoint}/login`, user)
     .subscribe(response => {
-      callback(response['content']); //User ID
+      callback(response['content']); //Token & User ID
     });
   }
 
@@ -69,27 +43,71 @@ export class DataService {
     });
   }
 
-  save(route:string, elem, callback) {
+  ping(level:string, token, callback) {
+    this.http.get(`${this.endpoint}/${level}/ping`, {headers: new HttpHeaders().set('token', token)})
+    .subscribe(response =>{
+      if(response['content'] == 'expired'){
+        callback(false);
+      }else{
+        callback(true);
+      }
+    });
+  }
+
+  get(level:string, route:string, ID:string, token, callback) {
+    this.http.get(`${this.endpoint}/${level}/select/${route}/${ID}`, {headers: new HttpHeaders().set('token', token)})
+      .subscribe(response =>{
+        if(response['content'] == 'expired'){
+          callback(false);
+        }else{
+          callback(response['content']);
+        }
+      });
+  }
+
+  getList(level:string, route:string, token, callback) {
+    this.http.get(`${this.endpoint}/${level}/select/${route}`, {headers: new HttpHeaders().set('token', token)})
+      .subscribe(response => {
+        if(response['content'] == 'expired'){
+          callback(false);
+        }else{
+          callback(response['content']);
+        }
+    });
+  }
+
+  save(level:string, route:string, elem, token, callback) {
     if (elem.ID) {
       // It's an update
-      this.http.put(`${this.endpoint}/update/${route}/${elem.ID}`, elem)
+      this.http.put(`${this.endpoint}/${level}/update/${route}/${elem.ID}`, elem, {headers: new HttpHeaders().set('token', token)})
         .subscribe(response => {
-          callback(true);
+          if(response['content'] == 'expired'){
+            callback(false);
+          }else{
+            callback(true);
+          }
         });
     } else {
       // It's an insert
-      this.http.post(`${this.endpoint}/insert/${route}`, elem)
+      this.http.post(`${this.endpoint}/${level}/insert/${route}`, elem, {headers: new HttpHeaders().set('token', token)})
         .subscribe(response => {
-          callback(response['content']); //insertID
+          if(response['content'] == 'expired'){
+            callback(false);
+          }else{
+            callback(response['content']); //insertID
+          }
         });
     }
-    callback(true);
   }
 
-  delete(route:string, ID: string, callback) {
-    this.http.delete(`${this.endpoint}/delete/${route}/${ID}`)
+  delete(level:string, route:string, ID: string, token, callback) {
+    this.http.delete(`${this.endpoint}/${level}/delete/${route}/${ID}`, {headers: new HttpHeaders().set('token', token)})
     .subscribe(response => {
-      callback(true);
+      if(response['content'] == 'expired'){
+        callback(false);
+      }else{
+        callback(true);
+      }
     });
   }
 }

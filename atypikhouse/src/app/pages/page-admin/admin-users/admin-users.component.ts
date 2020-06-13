@@ -1,6 +1,7 @@
 import * as $ from 'jquery';
 import { Component, OnInit } from '@angular/core';
 import { DataService} from "src/app/data.service";
+import { CookieService } from "ngx-cookie-service";
 import { User } from "src/app/logic/User";
 
 @Component({
@@ -8,6 +9,13 @@ import { User } from "src/app/logic/User";
   templateUrl: './admin-users.component.html'
 })
 export class AdminUsersComponent implements OnInit {
+  
+  constructor(private data: DataService,
+    private cookie: CookieService) { }
+  
+  level = 'admin';
+  token = this.cookie.get('token');
+  
   users: [User];
 
   displayedColumns: string[] = ['ID', 'type', 'email', 'name', 'firstname', 'address', 'zipcode', 'city', 'siret', 'tools'];
@@ -15,10 +23,6 @@ export class AdminUsersComponent implements OnInit {
   editOn:string;
 
   isReadonly:boolean = true;
-
-  constructor(private data: DataService) {
-
-  }
 
   focus(ID,focusedMode:string){
     let tr = $('#'+ID).parents('tr');
@@ -54,7 +58,7 @@ export class AdminUsersComponent implements OnInit {
   }
 
   edit(user){
-    this.data.save("users", user, result => {
+    this.data.save(this.level,"users", user, this.token, result => {
       if (result) {
         
       }
@@ -62,7 +66,7 @@ export class AdminUsersComponent implements OnInit {
   }
 
   delete(userID){
-    this.data.delete("users", userID, result => {
+    this.data.delete(this.level,"users", userID, this.token, result => {
       if (result) {
         let tr = $('#'+userID).parents('tr');
         tr.remove();
@@ -83,7 +87,7 @@ export class AdminUsersComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.data.getList("users", users => {
+    this.data.getList(this.level,"users", this.token, users => {
       this.users = users;
     });
   }
