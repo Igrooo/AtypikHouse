@@ -8,7 +8,7 @@ const secure:string = ""; // s > activate https
 //const domain:string = "localhost";
 
 // PROD //// Production domain //// PROD //
-const domain:string = "37.59.61.46";
+const domain:string = "data.ifaidy.website";
 
 // Port
 const port:string = "1407";
